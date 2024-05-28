@@ -27,3 +27,52 @@ npm run dev
 ```sh
 npm run build
 ```
+### Proyect directory structure
+```
+├───📁 src/
+│   ├───📁 assets/
+│   │   ├───📄 bg-login.svg
+│   │   └───📄 userIco.svg
+│   ├───📁 commons/
+│   │   └───📁 ui/
+│   │       ├───📁 btn-login/
+│   │       │   └───📄 btn-login.vue
+│   │       └───📁 btn-save/
+│   │           └───📄 btn-save.vue
+│   ├───📁 components/
+│   │   ├───📁 icons/
+│   │   │   ├───📄 IconCommunity.vue
+│   │   │   ├───📄 IconDocumentation.vue
+│   │   │   ├───📄 IconEcosystem.vue
+│   │   │   ├───📄 IconSupport.vue
+│   │   │   └───📄 IconTooling.vue
+│   │   └───📄 HelloWorld.vue
+│   ├───📁 modules/
+│   │   ├───📁 businessentity/
+│   │   │   ├───📁 components/
+│   │   │   ├───📁 composable/   
+│   │   │   ├───📁 layout/
+│   │   │   ├───📁 routes/
+│   │   │   └───📁 views/
+│   │   └───📁 loging/
+│   │       ├───📁 components/
+│   │       │   └───📄 FrmLogin.vue
+│   │       └───📁 views/
+│   │           └───📄 Loging.vue
+│   ├───📁 router/
+│   │   └───📄 index.js
+│   ├───📁 service/
+│   │   └───📁 businessentity/
+│   ├───📁 stores/
+│   │   └───📁 businessentity/
+│   ├───📄 App.vue
+│   ├───📄 index.css
+│   └───📄 main.js
+├───📄 index.html
+├───📄 jsconfig.json
+├───📄 package-lock.json
+├───📄 package.json
+├───📄 postcss.config.js
+├───📄 README.md
+├───📄 tailwind.config.js
+└───📄 vite.config.js
