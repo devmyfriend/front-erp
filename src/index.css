@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 input[type="text"]{
-    @apply rounded-md p-2;
+    @apply rounded-md p-2 h-[2rem];
 };
 
 select {
-    @apply rounded-md p-2;
+    @apply rounded-md p-2 h-[2rem];
 }
