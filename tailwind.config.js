@@ -16,7 +16,19 @@ export default {
     //   warning:   '#FFC107',
     //   disable:   '#999'
     // },
-    extend: {},
+    extend: {
+      colors:{
+        sidebar:   '#0f0f0f',
+        general:   '#353535',
+        navbar:    '#232323',
+        container: '#ffffff',
+        primary:   '#f16136',
+        success:   '#198754',
+        danger:    '#DC3545',
+        warning:   '#FFC107',
+        disable:   '#999'
+      },
+    },
   },
   plugins: [],
 }
