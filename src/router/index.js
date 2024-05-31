@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Loging from '@/modules/loging/views/Loging.vue'
 import HelloWorld from '@/components/HelloWorld.vue'
+import BusinessEntity from '@/modules/businessentity/views/BusinessEntity.vue'
 
 
 const router = createRouter({
@@ -15,6 +16,11 @@ const router = createRouter({
       path:'/login',
       name:'login',
       component: Loging
+    },
+    {
+      path:'/businessentity',
+      name: 'businessentity',
+      component: ()=> import('../modules/businessentity/views/BusinessEntity.vue')
     },
     {
       path:'/helloword',

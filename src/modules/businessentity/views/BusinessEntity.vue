@@ -1,10 +1,19 @@
 <script setup>
-  import frmGeneralData from '@/modules/businessentity/components/frmGeneralData.vue'
+// importaciones de vue
+import { reactive } from 'vue';
+// importaciones de store
+import { useBusinessEntity } from '@/stores/businessentity/businessentity.js';
+// importaciones de componentes
+  import frmGeneralData from '@/modules/businessentity/components/frmGeneralData.vue';
   import btnSave from '@/commons/ui/btn-save/btn-save.vue';
   import btnCancel from '@/commons/ui/btn-cancel/btn-cancel.vue';
   import titleH1 from '@/commons/ui/title-h1/title-h1.vue';
   import addPlus from '@/commons/ui/icons/add-plus.vue';
   import Sucursal from '@/commons/ui/icons/sucursal.vue';
+
+const store = useBusinessEntity();
+
+
 </script>
 
 <template>
@@ -35,4 +44,4 @@
   </div>
   
 </template>
-
+@/stores/businessentity/businessentity.js
