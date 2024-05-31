@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Loging from '@/modules/loging/views/Loging.vue'
 import HelloWorld from '@/components/HelloWorld.vue'
+import productosRouter from '@/modules/productos/routes/index'
 
 
 const router = createRouter({
@@ -9,7 +10,8 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      // component: HomeView
+      redirect: '/login'
+      /* component: HomeView */
     },
     {
       path:'/login',
@@ -19,16 +21,21 @@ const router = createRouter({
     {
       path:'/helloword',
       name: 'HelloWord',
-      component: () => import('../components/HelloWorld.vue')
+      component: HelloWorld
+    },
+    {
+      path:'/productos',
+      ... productosRouter
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: () => import('@/components/Test.vue')
+    },
+    {
+      path: '/:catchAll(.*)',
+      redirect: '/login'
     }
-    // {
-    //   path: '/about',
-    //   name: 'about',
-    //   // route level code-splitting
-    //   // this generates a separate chunk (About.[hash].js) for this route
-    //   // which is lazy-loaded when the route is visited.
-    //   component: () => import('../views/AboutView.vue')
-    // }
   ]
 })
 

@@ -1,0 +1,21 @@
+:root {
+    --sidebar-background: #0f0f0f;
+    --general-background: #353535;
+    --navbar-background: #232323;
+    --container-background: #fff;
+    --button-color-primary: #F16136;
+    --button-color-success: #198754;
+    --button-color-success-hover: #146841;
+    --button-color-danger: #DC3545;
+    --button-color-warning: #FFC107;
+
+    --font-color-primary: #fff;
+    --font-color-secondary: #F16136;
+    
+    --border-color: #353535;
+    --border-color-secondary: #F16136;
+    --border-radius-container: 2rem;
+    
+    --white: #fff;
+    --disabled-color: #999;
+}
