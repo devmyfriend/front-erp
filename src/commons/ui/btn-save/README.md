@@ -1,6 +1,6 @@
-# btn-login
+# btn-save
 
-Boton que se utilizara en todos los elementos que requieran realizar un login.
+Boton que se utilizara en todos los elementos que requieran realizar un save.
 
 
 ## Definición del componente

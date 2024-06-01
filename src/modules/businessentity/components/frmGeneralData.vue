@@ -11,6 +11,7 @@
 
     // importacion de componentes
     import titleH1 from '@/commons/ui/title-h1/title-h1.vue';
+    import titleH2 from '@/commons/ui/title-h1/title-h1.vue';
 
 
     const isPhysical = ref(true);
@@ -223,7 +224,7 @@
                 <hr>
                 <!-- Domicilio de la empresa -->
                 <div class="flex w-[100%] mt-1">
-                    <titleH1>Domicilio</titleH1>
+                    <titleH2>Domicilio</titleH2>
                 </div>
                 <!-- calle numero ext numero int -->
                 <fieldset class="flex flex-row w-full mt-1 mb-1">

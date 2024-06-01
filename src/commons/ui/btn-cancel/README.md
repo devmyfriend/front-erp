@@ -1,6 +1,6 @@
-# btn-login
+# btn-cancel
 
-Boton que se utilizara en todos los elementos que requieran realizar un login.
+Boton que se utilizara en todos los elementos que requieran realizar la cancelación de una acción.
 
 
 ## Definición del componente

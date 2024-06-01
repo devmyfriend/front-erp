@@ -15,7 +15,12 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 ```sh
 npm install
 ```
-
+### 
+Create .env file and set enviorement varible
+```
+VITE_APP_PATH_API_BUSINESSENTITY
+VITE_APP_PATH_API_PRODUCTS
+```
 ### Compile and Hot-Reload for Development
 
 ```sh
@@ -76,3 +81,12 @@ npm run build
 ├───📄 README.md
 ├───📄 tailwind.config.js
 └───📄 vite.config.js
+```
+### Stack
+* axops
+* pinia
+* sweetalert2
+* autoprefixer
+* postcss
+* tailwindcss
+  

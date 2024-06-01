@@ -5,9 +5,11 @@ import { reactive } from 'vue';
 import { useBusinessEntity } from '@/stores/businessentity/businessentity.js';
 // importaciones de componentes
   import frmGeneralData from '@/modules/businessentity/components/frmGeneralData.vue';
+  import frmSucursal from '@/modules/businessentity/components/frmSucursal.vue'
   import btnSave from '@/commons/ui/btn-save/btn-save.vue';
   import btnCancel from '@/commons/ui/btn-cancel/btn-cancel.vue';
   import titleH1 from '@/commons/ui/title-h1/title-h1.vue';
+  import titleH2 from '@/commons/ui/title-h1/title-h1.vue';
   import addPlus from '@/commons/ui/icons/add-plus.vue';
   import Sucursal from '@/commons/ui/icons/sucursal.vue';
 
@@ -33,8 +35,8 @@ const handleClick = () =>{
     <div class="flex flex-row  w-[81.96rem] h-[39.875rem]  bg-zinc-500" >
     <div class="flex flex-col">
       <frmGeneralData />
-      <div class="flex flex-row m-2 p-2 space-x-4 items-center border-[1px] border-white">
-        <titleH1>Sucursales</titleH1>
+      <div class="flex flex-row mx-6 my-2 px-1 space-x-4 items-center border-[1px] border-white">
+        <titleH2>Sucursales</titleH2>
         <div class="flex pt-2 pb-1">
           <addPlus></addPlus> <p class="mx-2">Agregar Sucuesales</p> <Sucursal></Sucursal> <p class="mx-2">Ver Sucursal</p>
         </div>
@@ -46,7 +48,7 @@ const handleClick = () =>{
     </div>
     <div class="flex flex-col w-full">
       <div class="flex w-[100%]">
-        <titleH1>Contacto</titleH1>
+        <frmSucursal></frmSucursal>
       </div>
     </div>
   </div>
