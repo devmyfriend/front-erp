@@ -9,6 +9,8 @@ import Email from '@/commons/ui/icons/email.vue';
 import Phone from '@/commons/ui/icons/phone.vue';
 import Back from '@/commons/ui/icons/back.vue';
 import Close from '@/commons/ui/icons/close.vue';
+import btnSave from '@/commons/ui/btn-save/btn-save.vue';
+import btnCancel from '@/commons/ui/btn-cancel/btn-cancel.vue';
 
 // states
 
@@ -161,7 +163,10 @@ const handleClickAddress = ( value )=>{
                         </Back>
                     </div>
                 </div>
-                
+                <div class="flex items-center justify-center pt-4 space-x-4 pr-10">
+                    <btnSave>Grabar</btnSave>
+                    <btnCancel>Cancelar</btnCancel>
+                </div>
             </form>
         </div>
         
