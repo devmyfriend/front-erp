@@ -15,8 +15,8 @@
 import { ref } from 'vue';
 import Swal from 'sweetalert2';
 const emit = defineEmits('eBusqueda');
-/* import { useProductos } from '@/modules/productos/store/productos.js';
-const store = useProductos(); */
+import { useProductos } from '@/store/index'
+const store = useProductos();
 
 const txtBusqueda = ref('');
 const props = defineProps({

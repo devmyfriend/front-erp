@@ -10,99 +10,29 @@ import { useProductos } from '@/store/index'
 const store = useProductos();
 
 const tipoProducto = ref('Todos');
-const ListadoProductos = ref([
-    {
-        NombreLinea: 'Linea 1',
-        NombreTipoProducto: 'Tipo 1',
-        NombreProducto: 'Producto 1',
-        CodigoProducto: '001',
-        ProductoId: 1,
-        Borrado: false
-    },
-    {
-        NombreLinea: 'Linea 2',
-        NombreTipoProducto: 'Tipo 2',
-        NombreProducto: 'Producto 2',
-        CodigoProducto: '002',
-        ProductoId: 2,
-        Borrado: false
-    },
-    {
-        NombreLinea: 'Linea 3',
-        NombreTipoProducto: 'Tipo 3',
-        NombreProducto: 'Producto 3',
-        CodigoProducto: '003',
-        ProductoId: 3,
-        Borrado: true
-    },
-    {
-        NombreLinea: 'Linea 4',
-        NombreTipoProducto: 'Tipo 4',
-        NombreProducto: 'Producto 4',
-        CodigoProducto: '004',
-        ProductoId: 4,
-        Borrado: false
-    },
-    {
-        NombreLinea: 'Linea 5',
-        NombreTipoProducto: 'Tipo 5',
-        NombreProducto: 'Producto 5',
-        CodigoProducto: '005',
-        ProductoId: 5,
-        Borrado: false
-    },
-    {
-        NombreLinea: 'Linea 2',
-        NombreTipoProducto: 'Tipo 1',
-        NombreProducto: 'Producto 6',
-        CodigoProducto: '002',
-        ProductoId: 6,
-        Borrado: false
-    },
-    {
-        NombreLinea: 'Linea 6',
-        NombreTipoProducto: 'Tipo 6',
-        NombreProducto: 'Producto 6',
-        CodigoProducto: '006',
-        ProductoId: 6,
-        Borrado: false
-    },
-    {
-        NombreLinea: 'Linea 7',
-        NombreTipoProducto: 'Tipo 6',
-        NombreProducto: 'Producto 7',
-        CodigoProducto: '007',
-        ProductoId: 7,
-        Borrado: false
-    }
-]);
 
-const ListadoTiposProducto = ref([
-    {
-        NombreTipoProducto: 'Tipo 1'
-    },
-    {
-        NombreTipoProducto: 'Tipo 2'
-    },
-    {
-        NombreTipoProducto: 'Tipo 3'
-    },
-    {
-        NombreTipoProducto: 'Tipo 4'
-    },
-    {
-        NombreTipoProducto: 'Tipo 5'
-    }
-]);
+const ListadoProductos = ref([]);
+const ListadoTiposProducto = ref([]);
 
 onMounted(() => {
     cargarDatos();
 });
 
 const cargarDatos = () => {
-    store.cargarProductos().then(() =>{ 
-        ListadoProductos.value = store.getProductos;
-        console.log('Productos cargados: \n' + JSON.stringify(ListadoProductos.value.length));
+    store.cargarProductos().then(() =>{
+        if(tipoProducto.value == 'Todos'){
+            ListadoProductos.value = store.getProductos;
+        }else{
+            ListadoProductos.value = store.getProductos.filter(producto => producto.NombreTipoProducto == tipoProducto.value);
+            if (ListadoProductos.value.length == 0) {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'No hay productos',
+                    text: 'No hay productos de este tipo'
+                });
+                tipoProducto.value = 'Todos';
+            }
+        }
     });
 
     store.cargarTiposProducto().then(() => {

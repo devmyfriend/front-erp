@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { cargarProductos, cargarTiposProducto} from "@/services/productosServices";
+import { buscarProductos, cargarProductos, cargarTiposProducto} from "@/services/productosServices";
 
 export const useProductos = defineStore('Productos', {
     state: () => ({
@@ -31,6 +31,13 @@ export const useProductos = defineStore('Productos', {
             const data = await cargarTiposProducto();
             if (data) {
                 this.ListadoTiposProducto = data;
+            }
+        },
+        async buscarProductos(palabra, tipo) {
+            const data = await buscarProductos(palabra, tipo);
+            if (data) {
+                this.ListadoProductos = data;
+                return true;
             }
         },
     }
