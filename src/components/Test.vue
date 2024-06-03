@@ -1,9 +1,13 @@
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import LayoutGeneral from '@/commons/layout/LayoutGeneral.vue';
 import buscadorProductos from '@/modules/productos/components/buscadorProductos.vue';
 import btnAgregar from '@/commons/ui/btn-agregar/btn-agregar.vue';
 import ventanasProductos from '@/modules/productos/components/ventanasProductos.vue';
+import Swal from 'sweetalert2';
+
+import { useProductos } from '@/store/index'
+const store = useProductos();
 
 const tipoProducto = ref('Todos');
 const ListadoProductos = ref([
@@ -90,6 +94,64 @@ const ListadoTiposProducto = ref([
         NombreTipoProducto: 'Tipo 5'
     }
 ]);
+
+onMounted(() => {
+    cargarDatos();
+});
+
+const cargarDatos = () => {
+    store.cargarProductos().then(() =>{ 
+        ListadoProductos.value = store.getProductos;
+        console.log('Productos cargados: \n' + JSON.stringify(ListadoProductos.value.length));
+    });
+
+    store.cargarTiposProducto().then(() => {
+        ListadoTiposProducto.value = store.getTiposProducto;
+        console.log('Tipos de Producto cargados: \n' + JSON.stringify(ListadoTiposProducto.value.length));
+    });
+}
+
+const esperarBusqueda = (texto) => {
+    if (texto === undefined) {
+        if(tipoProducto.value == 'Todos'){
+            cargarDatos();
+        }else{
+            store.cargarProductos().then(() => {
+                ListadoProductos.value = store.getProductos.filter(producto => producto.NombreTipoProducto == tipoProducto.value);
+                if (ListadoProductos.value.length == 0) {
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'No hay productos',
+                        text: 'No hay productos de este tipo'
+                    });
+                    tipoProducto.value = 'Todos';
+                }
+            });
+        }
+    }else{
+        ListadoProductos.value = store.getProductos;
+    }
+}
+
+watch (tipoProducto, (newValue, oldValue) => {
+    if (newValue == 0) {
+        cargarDatos();
+    }else{
+        tipoProducto.value = newValue;
+        cargarDatos();
+    
+        if (ListadoProductos.value.length == 0) {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'No hay productos',
+                    text: 'No hay productos de este     '
+                });
+                tipoProducto.value = 'Todos';
+            }
+    }
+    console.log('Tipo de Producto cambiado a: ' + tipoProducto.value);
+});
+
 </script>
 
 <template>
@@ -98,7 +160,7 @@ const ListadoTiposProducto = ref([
             Productos
         </template>
         <template v-slot:Ventanas>
-                <ventanasProductos/>
+                <ventanasProductos :tipoProducto="tipoProducto" />
         </template>
 
         <template v-slot:Contenido>
@@ -115,7 +177,7 @@ const ListadoTiposProducto = ref([
                             <option value="Todos">Todos</option>
                             <option v-for="Tipo in ListadoTiposProducto" :value="Tipo.NombreTipoProducto"> {{ Tipo.NombreTipoProducto }}</option>
                         </select>
-                        <btnAgregar :ruta="'login'" :tipoProducto="'Productos'"/>
+                        <btnAgregar :ruta="'login'"test/>
                     </div>
                 </div>
         

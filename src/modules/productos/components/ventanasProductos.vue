@@ -1,7 +1,7 @@
 <template>
     <div class="ventanas w-full h-10 justify-between gap-[10%]">
         <div class="rutas flex w-full overflow-hidden items-start">
-        <router-link :class="{btActivo: btActivo === 1}" :to=" { name: 'test', params: { tipo: props.tipoProducto}}" class="m-0 p-1 border-inputWidth border-inputBorder rounded-primaryWindowRadius bg-disable text-secondaryFontColor no-underline"> Listado </router-link>
+        <router-link :class="{btActivo: btActivo === 1}" :to=" { name: 'test'}" class="m-0 p-1 border-inputWidth border-inputBorder rounded-primaryWindowRadius bg-disable text-secondaryFontColor no-underline"> Listado </router-link>
         <router-link :class="{btActivo: btActivo === 2}" :to=" { name: 'test', params: { tipo: props.tipoProducto, id: codigoProducto}}" class="m-0 p-1 border-inputWidth border-inputBorder rounded-primaryWindowRadius bg-disable text-secondaryFontColor no-underline"> Formulario </router-link>
         <router-link v-if="nombreTipo != 'Servicios' && tipoProducto !='test'" :class="{btActivo: btActivo === 3}" :to=" { name: 'test', params: { tipo: tipoProducto, id: codigoProducto } }" class="m-0 p-1 border-inputWidth border-inputBorder rounded-primaryWindowRadius bg-disable text-secondaryFontColor no-underline"> Productos por Almacén </router-link>
         <router-link v-if="nombreTipo == 'Combos'" :class="{btActivo: btActivo === 4}" :to=" { name: 'test', params: { id: codigoProducto } }" class="m-0 p-1 border-inputWidth border-inputBorder rounded-primaryWindowRadius bg-disable text-secondaryFontColor no-underline"> Agregar Productos </router-link>
@@ -55,7 +55,7 @@ const codigoProducto = computed(() => {
     return props.codigoProducto ? props.codigoProducto : 0;
 });
 const btActivo = computed(() => {
-    return /* props.btActivo ? props.btActivo : 0 */ 7;
+    return props.btActivo ? props.btActivo : 0;
 });
 </script>
 

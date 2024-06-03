@@ -28,7 +28,7 @@ const router = createRouter({
       ... productosRouter
     },
     {
-      path: '/test',
+      path: '/test/:tipo?&:id?',
       name: 'test',
       component: () => import('@/components/Test.vue')
     },

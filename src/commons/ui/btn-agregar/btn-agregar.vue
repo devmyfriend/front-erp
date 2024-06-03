@@ -1,7 +1,6 @@
 <template>
         <router-link 
-        :to="{name: props.ruta, 
-        params: {tipo: props.tipoProducto} }"
+        :to="{name: props.ruta}"
         
         class="w-44 h-inputHeight rounded-lg
         border-none border-inputWidth font-labelWeight
@@ -28,6 +27,10 @@ const props = defineProps({
         required: false
     }
 });
+
+const test = () => {
+    console.log('test');
+}
 
 </script>
 
