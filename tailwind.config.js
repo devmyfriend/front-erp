@@ -19,6 +19,7 @@ export default {
         /* Lalo */
         primaryFontColor: '#000000',
         secondaryFontColor: '#ffffff',
+
         primaryBtnColor: '#353535',
         
         primaryHeaderTable: '#353535',
@@ -30,6 +31,9 @@ export default {
         disableBodyTable: '#aaaaaa',
 
         primaryPlaceholderColor: '#CBCBCB',
+
+        primaryFrmContainer: '#d9d9d9',
+        secondaryFrmContainer: '#cbcbcb',
       },
       fontSize: {
         h2Size: '1.5rem',
@@ -56,6 +60,7 @@ export default {
         primaryHeaderTableRadius: '0.5rem',
         primaryContainerRadius: '2rem',
         primaryWindowRadius: '0 0 0.5rem 0.5rem',
+        primaryButtonRadius: '0.75rem',
       },
       borderWidth: {
         inputWidth: '1px',
@@ -66,13 +71,13 @@ export default {
         labelPadding: '0.5rem',
         paddingInput: '0.25rem 1rem',
         primaryPaddingContainer: '1rem',
+        primaryPaddingButton: '0.5rem 1rem',
       },
       gap: {
         frmGap: '1rem',
       },
       margin: {
-        h2Margin: 'auto auto 1.5rem auto',
-        frmMargin: 'auto auto 1.5rem auto',
+        h2Margin: 'auto auto 1rem auto',
       },
       letterSpacing: {
         btnAgregarLetterSpacing: '0.25rem',
@@ -81,4 +86,3 @@ export default {
   },
   plugins: [],
 }
-

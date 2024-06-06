@@ -30,7 +30,6 @@ function buscar(texto) {
     if (texto.length != 0) { 
         store.buscarProductos(texto, props.tipoProducto).then((res) => {
             if (res) {
-                console.log('La respuesta obtenida es: ' + res);
                 emit('eBusqueda', texto);
             }else{
                 Swal.fire({

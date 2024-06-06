@@ -11,7 +11,11 @@ const router = createRouter({
       path: '/',
       name: 'home',
       redirect: '/login'
-      /* component: HomeView */
+    },
+    {
+      path: '/Menu',
+      name: 'Menu',
+      component: () => import('@/components/MenuTemporal.vue')
     },
     {
       path:'/login',
@@ -28,14 +32,9 @@ const router = createRouter({
       ... productosRouter
     },
     {
-      path: '/test/:tipo?&:id?',
-      name: 'test',
-      component: () => import('@/components/Test.vue')
-    },
-    {
       path: '/:catchAll(.*)',
       redirect: '/login'
-    }
+    },
   ]
 })
 

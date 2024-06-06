@@ -17,7 +17,6 @@ export const cargarProductos = async () => {
         });
     }
 };
-
 export const cargarTiposProducto = async () => {
     try {
         const datos = await axios.get(`${rutaTemporal}v1/productos/tipo`);
@@ -33,8 +32,28 @@ export const cargarTiposProducto = async () => {
         });
     }
 };
+export const buscarProductos = async (nombre, tipo) => {
+    try{
+        const datos = await axios.get(`${rutaTemporal}v1/productos/buscar/${nombre}`);
+        
+        if(datos.status === 200 && datos.statusText === "OK"){
+            if (tipo === 'Todos'){
+                return datos.data.response;
+            }else{
+                const respuesta = datos.data.response.filter((producto) => producto.NombreTipoProducto.toLowerCase() === tipo.toLowerCase());
+                return respuesta;
+            }
+        }
+    }catch (error){
+        console.error(error);
+        Swal.fire({
+            title: "Error",
+            text: JSON.stringify(error.message),
+            icon: "error",
+        });
+    }
+};
 
-/* -------------------------------------------- */
 
 export const cargarClavesUnidades = async (pagina) => {
     try{
@@ -59,71 +78,6 @@ export const cargarClavesProductos = async (pagina) => {
             return datos.data.response;
         }
 
-    }catch (error){
-        console.error(error);
-        Swal.fire({
-            title: "Error",
-            text: JSON.stringify(error.message),
-            icon: "error",
-        });
-    }
-};
-
-export const obtenerProducto = async (clave) => {
-    try{
-        const datos = await axios.get(`${rutaTemporal}v1/productos/detalle/${clave}`);
-
-        if(datos.status === 200 && datos.statusText === "OK"){
-            return datos.data.response[0];
-        }
-    }catch(error){
-        console.error(error);
-        Swal.fire({
-            title: "Error",
-            text: JSON.stringify(error.message),
-            icon: "error",
-        });
-    }
-};
-
-export const crearProducto = async (producto) => {  /* Return true, the Swal be here */
-    try{
-        const data = await axios.post(`${rutaTemporal}v1/productos/crear`, producto);
-
-        if(data.status === 200 && data.statusText === "OK"){
-            Swal.fire({
-                title: `${data.data.message}:`,
-                text:  `Producto con ID: ${data.data.ProductoId}`,
-                icon: "success",
-            });
-            return true;
-        }
-    }catch (error){
-        const { response } = error.request;
-        const msg = JSON.parse(response);
-        /* console.log(msg.errors ? msg.errors : msg.error); */
-        console.error(error);
-         Swal.fire({
-            title: msg.status ? `${msg.status}` : `Error`,
-            text: msg.error ? msg.error : msg.errors[0] === 'Invalid value' ? `${msg.errors[1]}` : `${msg.errors[0]}`,
-            icon: "error",
-        });
-    }
-};
-
-export const buscarProductos = async (nombre, tipo) => {
-    try{
-        const datos = await axios.get(`${rutaTemporal}v1/productos/buscar/${nombre}`);
-        
-        if(datos.status === 200 && datos.statusText === "OK"){
-            if (tipo === 'Todos'){
-                return datos.data.response;
-            }else{
-                const test = datos.data.response.filter((producto) => producto.NombreTipoProducto.toLowerCase() === tipo.toLowerCase());
-                console.log('Test: \n' + JSON.stringify(test));
-                return test;
-            }
-        }
     }catch (error){
         console.error(error);
         Swal.fire({
@@ -176,6 +130,47 @@ export const buscarClavesUnidades = async (palabra) => {
     }   
 };
 
+
+
+export const obtenerProducto = async (clave) => {
+    try{
+        const datos = await axios.get(`${rutaTemporal}v1/productos/detalle/${clave}`);
+
+        if(datos.status === 200 && datos.statusText === "OK"){
+            return datos.data.response[0];
+        }
+    }catch(error){
+        console.error(error);
+        Swal.fire({
+            title: "Error",
+            text: JSON.stringify(error.message),
+            icon: "error",
+        });
+    }
+};
+export const crearProducto = async (producto) => {
+    try{
+        const data = await axios.post(`${rutaTemporal}v1/productos/crear`, producto);
+
+        if(data.status === 200 && data.statusText === "OK"){
+            Swal.fire({
+                title: `${data.data.message}:`,
+                text:  `Producto con ID: ${data.data.ProductoId}`,
+                icon: "success",
+            });
+            return true;
+        }
+    }catch (error){
+        const { response } = error.request;
+        const msg = JSON.parse(response);
+        console.error(error);
+         Swal.fire({
+            title: msg.status ? `${msg.status}` : `Error`,
+            text: msg.error ? msg.error : msg.errors[0] === 'Invalid value' ? `${msg.errors[1]}` : `${msg.errors[0]}`,
+            icon: "error",
+        });
+    }
+};
 export const borrarProducto = async (id) => {
     try{
         const payload = {

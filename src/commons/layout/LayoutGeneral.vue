@@ -13,8 +13,7 @@
         </div>
         <div class="contentMy">
             <h1 class="moduleTitle"> <slot name="Titulo"> Menu </slot> </h1>
-                                                                                            <!-- -->
-            <div class="w-full flex flex-col sticky top-0 z-10 max-h-10 content-center items-center flex-auto bg-container rounded-t-primaryContainerRadius overflow-hidden">
+            <div class="w-full flex flex-col sticky top-0 z-10 max-h-max content-center items-center bg-container rounded-t-primaryContainerRadius">
                 <slot name="Ventanas">
 
                 </slot>

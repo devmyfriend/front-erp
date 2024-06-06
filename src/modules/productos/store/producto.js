@@ -20,7 +20,6 @@ export const useProductos = defineStore('Productos', {
         },
     },
     actions: {
-        /* cargarProductos cargarTiposProducto */
         async cargarProductos() {
             const data = await cargarProductos();
             if (data) {

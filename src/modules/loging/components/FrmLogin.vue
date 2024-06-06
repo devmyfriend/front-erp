@@ -10,7 +10,7 @@ const forceFailLogin = () => {
     failLogin.value = !failLogin.value
 }
 const moveHome = () => {
-    router.push({name:'HelloWord'})
+    router.push({name:'Menu'})
 }
 </script>
 
