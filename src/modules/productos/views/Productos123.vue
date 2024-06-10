@@ -7,7 +7,7 @@ import { useRouter } from 'vue-router';
 import { useProductos } from '@/store/index'
 import Swal from 'sweetalert2';
 import { useProductList } from '@/modules/productos/composables/useProductList.js';
-const { setTitle, getTitle } = useProductList();
+const { setTitle, setBtActivo } = useProductList();
 
 const store = useProductos();
 const router = useRouter();
@@ -21,7 +21,7 @@ const CodigoProducto = ref('');
 
 onBeforeMount(() => {
     setTitle('Listado de Productos');
-    console.log('[Productos123.vue] - onMounted: ' + getTitle());
+    setBtActivo(1);
     cargarDatos();
 });
 

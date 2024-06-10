@@ -1,7 +1,7 @@
 <script setup>
 import formulario from '@/modules/productos/components/formularioProductos.vue';
 import { useProductList } from '@/modules/productos/composables/useProductList.js';
-const { setTitle, getTitle } = useProductList();
+const { setTitle, setBtActivo } = useProductList();
 import { ref, onMounted, onBeforeMount } from 'vue';
 import { useProductos } from '@/store/index'
 const store = useProductos();
@@ -19,7 +19,7 @@ const ListadoTiposProducto = ref([]);
 
 onBeforeMount(() => {
     setTitle('Formulario de Productos');
-    console.log('[FRMPRODUCTOS.vue] - onMounted: ' + getTitle());
+    setBtActivo(2);
     cargarDatos();
 });
 

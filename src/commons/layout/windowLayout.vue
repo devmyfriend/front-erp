@@ -7,13 +7,14 @@ import { useRoute } from 'vue-router';
 const route = useRoute();
 
 
-const { title, setTitle, getTitle } = useProductList();
+const { getTitle, getBtActivo } = useProductList();
 const titulo = ref('');
 
 const updateTitle = () => {
     titulo.value = getTitle();
-    console.log('[windowLayout.vue] Titulo actualizado: ' + titulo.value );
 };
+
+const btActivo = ref(0);
 
 watch(() => route.name, (newRouteName) => {
     updateTitle();
@@ -21,10 +22,12 @@ watch(() => route.name, (newRouteName) => {
 
 onMounted(() => {
     updateTitle();
+    btActivo.value = getBtActivo();
 });
 
 onUpdated(() => {
     updateTitle();
+    btActivo.value = getBtActivo();
 });
 
 </script>
@@ -35,13 +38,11 @@ onUpdated(() => {
             {{ titulo }}
         </titleH1>
         <div class=" bg-container w-full h-[93%] rounded-[2rem] overflow-hidden">
-            <ventanas />
-            
-            <router-view/>
+            <ventanas :btActivo="btActivo" />
+
+            <router-view />
         </div>
-     </div>
+    </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
