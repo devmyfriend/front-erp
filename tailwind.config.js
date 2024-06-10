@@ -19,6 +19,9 @@ export default {
         /* Lalo */
         primaryFontColor: '#000000',
         secondaryFontColor: '#ffffff',
+        placeholderFontColor: '#353535',
+        
+        backgroundInputColor: '#f2f2f2',
 
         primaryBtnColor: '#353535',
         

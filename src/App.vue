@@ -11,6 +11,12 @@ import { RouterLink, RouterView } from 'vue-router'
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
+
+input, select, textarea{
+  color: theme('colors.primaryFontColor');
+  background-color: theme('colors.container');
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
