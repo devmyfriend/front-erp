@@ -8,7 +8,7 @@ const sidebarItems = ref([
     { srcProp: '/svg/sidebar/compraIco.svg', toProp: 'home', title: 'Compra' },
     { srcProp: '/svg/sidebar/catIco.svg', toProp: 'home', title: 'Catalógo' },
     { srcProp: '/svg/sidebar/cfgIco.svg', toProp: 'home', title: 'Configuración' },
-    { srcProp: '/svg/sidebar/cfgIco.svg', toProp: 'home', title: 'Menú Temporal' },
+    { srcProp: '/svg/sidebar/cfgIco.svg', toProp: 'Menu', title: 'Menú Temporal' },
     { srcProp: '/svg/sidebar/logoutIco.svg', toProp: 'login', title: 'Logout' }
 ])
 </script>
