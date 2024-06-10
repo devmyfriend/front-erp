@@ -1,7 +1,7 @@
 <template>
     <div class="flex items-center h-inputHeight">
         <input 
-            class=" text-primaryFontColor rounded-inputRadius border-inputBorder border-inputWidth p-paddingInput lg:w-96 md:w-60 sm:w-32 outline-none"
+            class=" text-primaryFontColor rounded-inputRadius border-inputBorder border-inputWidth p-paddingInput lg:w-96 md:w-60 sm:w-32 outline-none h-full text-base"
             type="text" 
             v-model="txtBusqueda" 
             @keyup.enter="buscar(txtBusqueda)" 
@@ -47,4 +47,7 @@ function buscar(texto) {
 </script>
 
 <style scoped>
+input::placeholder {
+    color: theme('colors.disableBodyTable');
+}
 </style>
