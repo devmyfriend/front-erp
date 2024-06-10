@@ -27,9 +27,42 @@ const router = createRouter({
       name: 'HelloWord',
       component: HelloWorld
     },
-    {
+/*     {
       path:'/productos',
       ... productosRouter
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: () => import('@/commons/layout/mainLayout.vue')
+    }, */
+    {
+      path: '/',
+      component: () => import('@/commons/layout/mainLayout.vue'),
+      children: [
+        {
+          path: '/',
+          name: 'test',
+          component: () => import('@/commons/layout/windowLayout.vue'),
+          children: [
+            {
+              path: '/productos/',
+              name: 'productos123',
+              component: () => import('@/modules/productos/views/Productos123.vue')
+            },
+            {
+              path: '/productos/formulario',
+              name: 'formProducts',
+              component: () => import('@/modules/productos/views/formProducts.vue')
+            }
+          ]
+        },
+        {
+          path: '/standardLayout',
+          name: 'test2',
+          component: () => import('@/commons/layout/standardLayout.vue')
+        }
+      ],
     },
     {
       path: '/:catchAll(.*)',
