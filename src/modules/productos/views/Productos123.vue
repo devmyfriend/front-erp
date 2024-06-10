@@ -26,10 +26,10 @@ onBeforeMount(() => {
 });
 
 const cargarDatos = () => {
-    store.cargarProductos().then(() =>{
-        if(tipoProducto.value == 'Todos'){
+    store.cargarProductos().then(() => {
+        if (tipoProducto.value == 'Todos') {
             ListadoProductos.value = store.getProductos;
-        }else{
+        } else {
             ListadoProductos.value = store.getProductos.filter(producto => producto.NombreTipoProducto == tipoProducto.value);
             if (ListadoProductos.value.length == 0) {
                 Swal.fire({
@@ -49,9 +49,9 @@ const cargarDatos = () => {
 
 const esperarBusqueda = (texto) => {
     if (texto === undefined) {
-        if(tipoProducto.value == 'Todos'){
+        if (tipoProducto.value == 'Todos') {
             cargarDatos();
-        }else{
+        } else {
             store.cargarProductos().then(() => {
                 ListadoProductos.value = store.getProductos.filter(producto => producto.NombreTipoProducto == tipoProducto.value);
                 if (ListadoProductos.value.length == 0) {
@@ -64,7 +64,7 @@ const esperarBusqueda = (texto) => {
                 }
             });
         }
-    }else{
+    } else {
         ListadoProductos.value = store.getProductos;
     }
 }
@@ -93,21 +93,21 @@ const borrarProducto = (tipoProducto, codigoProducto) => {
     });
 }
 
-watch (tipoProducto, (newValue, oldValue) => {
+watch(tipoProducto, (newValue, oldValue) => {
     if (newValue == 0) {
         cargarDatos();
-    }else{
+    } else {
         tipoProducto.value = newValue;
         cargarDatos();
-    
+
         if (ListadoProductos.value.length == 0) {
-                Swal.fire({
-                    icon: 'info',
-                    title: 'No hay productos',
-                    text: 'No hay productos de este     '
-                });
-                tipoProducto.value = 'Todos';
-            }
+            Swal.fire({
+                icon: 'info',
+                title: 'No hay productos',
+                text: 'No hay productos de este     '
+            });
+            tipoProducto.value = 'Todos';
+        }
     }
 });
 </script>
@@ -118,7 +118,7 @@ watch (tipoProducto, (newValue, oldValue) => {
 
         <div class="frm flex justify-between mb-6">
             <div>
-                <buscadorProductos @eBusqueda="esperarBusqueda" :tipoProducto="tipoProducto"/>
+                <buscadorProductos @eBusqueda="esperarBusqueda" :tipoProducto="tipoProducto" />
             </div>
             <div class="formulario w-full flex flex-row items-center gap-frmGap justify-end">
                 <label for="tipoProducto" class="text-labelSize font-labelWeight text-primaryFontColor"> Tipo: </label>
@@ -126,18 +126,19 @@ watch (tipoProducto, (newValue, oldValue) => {
                 p-paddingInput rounded-inputRadius border-inputBorder 
                 border-inputWidth text-primaryFontColor text-base" v-model="tipoProducto">
                     <option value="Todos">Todos</option>
-                    <option v-for="Tipo in ListadoTiposProducto" :value="Tipo.NombreTipoProducto"> {{ Tipo.NombreTipoProducto }}</option>
+                    <option v-for="Tipo in ListadoTiposProducto" :value="Tipo.NombreTipoProducto"> {{
+                        Tipo.NombreTipoProducto }}</option>
                 </select>
-                <btnAgregar :ruta="'formProducts'"/>
+                <btnAgregar :ruta="'formProducts'" />
             </div>
         </div>
 
-        <div class="w-full max-h-[66vh] min-h-[66vh] items-center flex flex-col overflow-y-scroll text-secondaryFontColor text-base">
-            <tablaProductos :ListadoProductos="ListadoProductos" :tipoProducto="tipoProducto" @eEditarProducto="editarProducto" @eBorrarProducto="borrarProducto" />
+        <div
+            class="w-full max-h-[66vh] min-h-[66vh] items-center flex flex-col overflow-y-scroll text-secondaryFontColor text-base">
+            <tablaProductos :ListadoProductos="ListadoProductos" :tipoProducto="tipoProducto"
+                @eEditarProducto="editarProducto" @eBorrarProducto="borrarProducto" />
         </div>
     </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
