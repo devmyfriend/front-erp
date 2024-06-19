@@ -2,8 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Loging from '@/modules/loging/views/Loging.vue'
 import HelloWorld from '@/components/HelloWorld.vue'
 import productosRouter from '@/modules/productos/routes/index'
-import layoutWIndow from './layoutWIndow'
-import layoutGeneral from './layoutGeneral'
 
 
 const router = createRouter({
@@ -15,14 +13,14 @@ const router = createRouter({
       redirect: '/login'
     },
     {
-      path:'/login',
-      name:'login',
-      component: Loging
-    },
-    {
       path: '/Menu',
       name: 'Menu',
       component: () => import('@/components/MenuTemporal.vue')
+    },
+    {
+      path:'/login',
+      name:'login',
+      component: Loging
     },
     {
       path:'/helloword',
@@ -35,11 +33,25 @@ const router = createRouter({
       children: [
         {
           path: '/window',
-          ...layoutWIndow,
+          name: 'layWindow',
+          component: () => import('@/commons/layout/windowLayout.vue'),
+          children: [
+            {
+              path: '/productos/',
+              name: 'productos123',
+              component: () => import('@/modules/productos/views/Productos123.vue')
+            },
+            {
+              path: '/productos/formulario/:tipo?/:id?',
+              name: 'formProducts',
+              component: () => import('@/modules/productos/views/formProducts.vue')
+            },
+          ]
         },
         {
           path: '/general',
-          ...layoutGeneral,
+          name: 'layContent',
+          component: () => import('@/commons/layout/standardLayout.vue')
         }
       ],
     },

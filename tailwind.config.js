@@ -37,6 +37,9 @@ export default {
 
         primaryFrmContainer: '#d9d9d9',
         secondaryFrmContainer: '#cbcbcb',
+
+        modalConfirm: '#f16136',
+        modalCancel: '#353535',
       },
       fontSize: {
         h2Size: '1.5rem',
@@ -85,7 +88,19 @@ export default {
       letterSpacing: {
         btnAgregarLetterSpacing: '0.25rem',
       },
+      backgroundColor: {
+        'black-40': 'rgba(0, 0, 0, 0.4)',
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    function({ addBase, theme }) {
+      addBase({
+        ':root': {
+          '--modal-confirm': theme('colors.modalConfirm'),
+          '--modal-cancel': theme('colors.modalCancel'),
+        }
+      });
+    }
+  ],
 }

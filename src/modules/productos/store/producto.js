@@ -1,11 +1,10 @@
 import { defineStore } from "pinia";
-import { buscarProductos, cargarProductos, cargarTiposProducto} from "@/services/productosServices";
+import { borrarProducto, buscarClavesProductos, buscarClavesUnidades, buscarProductos, cargarClavesProductos, cargarClavesUnidades, cargarProductos, cargarTiposProducto, obtenerProducto} from "@/services/productosServices";
 
 export const useProductos = defineStore('Productos', {
     state: () => ({
         ListadoProductos: [],
         ListadoTiposProducto: [],
-
         Producto: {},
     }),
     getters: {
@@ -39,6 +38,48 @@ export const useProductos = defineStore('Productos', {
                 return true;
             }
         },
+        async borrarProducto(payload) {
+            const data = await borrarProducto(payload);
+            if (data) {
+                return true;
+            }
+        },
+        async obtenerProducto(id) {
+            const data = await obtenerProducto(id);
+            if (data) {
+                this.Producto = data;
+                return true;
+            }
+        },
+
+        async cargarClavesUnidades(pagina) {
+            const data = await cargarClavesUnidades(pagina);
+            if (data) {
+                return data;
+            }
+        },
+        async cargarClavesProductos(pagina) {
+            const data = await cargarClavesProductos(pagina);
+            if (data) {
+                return data;
+            }
+        },
+
+
+        async buscarClavesProductos(palabra, pagina) {
+            const data = await buscarClavesProductos(palabra, pagina);
+            if (data) {
+                return data;
+            }
+        },
+        async buscarClavesUnidades(palabra, pagina) {
+            const data = await buscarClavesUnidades(palabra, pagina);
+            if (data) {
+                return data;
+            }
+        },
+
+
     }
 });
 

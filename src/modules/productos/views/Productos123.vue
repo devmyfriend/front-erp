@@ -6,10 +6,11 @@ import btnAgregar from '@/commons/ui/btn-agregar/btn-agregar.vue';
 import { useRouter } from 'vue-router';
 import { useProductos } from '@/store/index'
 import Swal from 'sweetalert2';
-import { useProductList } from '@/modules/productos/composables/useProductList.js';
-const { setTitle, setBtActivo } = useProductList();
-
+import { useVentanas } from '@/modules/productos/composables/useVentanas.js';
+import { useListProducts } from '@/modules/productos/composables/useListProducts.js';
+const { borrarProducto: deleteProduct } = useListProducts();
 const store = useProductos();
+const { setTitle, setBtActivo, setCodigoProducto, getCodigoProducto } = useVentanas();
 const router = useRouter();
 
 const tipoProducto = ref('Todos');
@@ -71,26 +72,16 @@ const esperarBusqueda = (texto) => {
 
 const editarProducto = (codigoProducto) => {
     CodigoProducto.value = codigoProducto;
-    router.push({ name: 'formProducts', params: { tipo: tipoProducto, id: codigoProducto } });
+    router.push({ name: 'formProducts', params: { tipo: tipoProducto } });
 }
-const borrarProducto = (tipoProducto, codigoProducto) => {
-    Swal.fire({
-        title: '¿Estás seguro?',
-        text: "No podrás revertir esto!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sí, borrarlo!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            Swal.fire(
-                'Borrado!',
-                'El producto ha sido borrado.',
-                'success'
-            );
-        }
-    });
+const borrarProducto = (producto) => {
+    CodigoProducto.value = producto.CodigoProducto;
+    deleteProduct(producto);
+}
+
+const borrarCodigoProducto = () => {
+    setCodigoProducto('');
+    CodigoProducto.value = '';
 }
 
 watch(tipoProducto, (newValue, oldValue) => {
@@ -104,7 +95,7 @@ watch(tipoProducto, (newValue, oldValue) => {
             Swal.fire({
                 icon: 'info',
                 title: 'No hay productos',
-                text: 'No hay productos de este     '
+                text: 'No hay productos de este tipo'
             });
             tipoProducto.value = 'Todos';
         }
@@ -113,8 +104,9 @@ watch(tipoProducto, (newValue, oldValue) => {
 </script>
 
 <template>
-    <div class="w-full h-full max-h-full min-h-full p-4">
-        <h2 class="text-h2Size font-h2Weight text-primaryFontColor m-h2Margin"> Listado de Productos </h2>
+
+    <div class="w-full h-[93%] max-h-[93%] min-h-[93%] p-4">
+        <h2 class="text-h2Size font-h2Weight text-primaryFontColor m-h2Margin"> Listado de Producto </h2>
 
         <div class="frm flex justify-between mb-6">
             <div>
@@ -129,7 +121,7 @@ watch(tipoProducto, (newValue, oldValue) => {
                     <option v-for="Tipo in ListadoTiposProducto" :value="Tipo.NombreTipoProducto"> {{
                         Tipo.NombreTipoProducto }}</option>
                 </select>
-                <btnAgregar :ruta="'formProducts'" />
+                <btnAgregar :ruta="'formProducts'" @click="borrarCodigoProducto()" />
             </div>
         </div>
 

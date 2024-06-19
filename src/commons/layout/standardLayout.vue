@@ -13,7 +13,7 @@ import ventanas from '@/modules/productos/components/ventanas.vue'
                 </slot> 
             </template>
         </titleH1>
-        <div class=" bg-container w-full h-[93%] rounded-[2rem] overflow-hidden">
+        <div class=" bg-container w-full h-[93%] rounded-[2rem] overflow-scroll">
             <router-view/>
         </div>
      </div>

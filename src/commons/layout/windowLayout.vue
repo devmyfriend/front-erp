@@ -2,12 +2,12 @@
 import { onMounted, onUpdated, ref, watch } from 'vue';
 import titleH1 from '@/commons/ui/title-h1/title-h1.vue';
 import ventanas from '@/modules/productos/components/ventanas.vue'
-import { useProductList } from '@/modules/productos/composables/useProductList.js';
+import { useVentanas } from '@/modules/productos/composables/useVentanas.js';
 import { useRoute } from 'vue-router';
 const route = useRoute();
 
 
-const { getTitle, getBtActivo } = useProductList();
+const { getTitle, getBtActivo } = useVentanas();
 const titulo = ref('');
 
 const updateTitle = () => {
@@ -37,8 +37,8 @@ onUpdated(() => {
         <titleH1 class="h-[4.75%] mb-[1.25%]">
             {{ titulo }}
         </titleH1>
-        <div class=" bg-container w-full h-[93%] rounded-[2rem] overflow-hidden">
-            <ventanas :btActivo="btActivo" />
+        <div class=" bg-container w-full h-[93%] rounded-[2rem] overflow-scroll">
+            <ventanas :btActivo="btActivo" class="sticky top-0 bg-white" />
 
             <router-view />
         </div>

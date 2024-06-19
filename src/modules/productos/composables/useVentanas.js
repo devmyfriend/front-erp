@@ -2,6 +2,7 @@ import { ref } from "vue";
 
 const title = ref("Productos");
 const btActivo = ref(0);
+const codigoProducto = ref('');
 
 function setTitle(newTitle) {
   title.value = newTitle;
@@ -19,12 +20,21 @@ function getBtActivo() {
   return btActivo.value;
 }
 
-export function useProductList() {
+function setCodigoProducto(newCodigoProducto) {
+  codigoProducto.value = newCodigoProducto;
+}
+function getCodigoProducto() {
+  return codigoProducto.value;
+}
+
+export function useVentanas() {
   return {
     title,
     setTitle,
     getTitle,
     setBtActivo,
     getBtActivo,
+    setCodigoProducto,
+    getCodigoProducto
   };
 }

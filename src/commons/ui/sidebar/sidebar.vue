@@ -14,55 +14,19 @@ const sidebarItems = ref([
 </script>
 
 <template>
-    <div class="sideBar-Content">
-        <img src="@/assets/img/empresas/fitgym.svg" alt="Empresa" class="sidebarCompanyImg">
-    
-        <div class="sideBar-Menu">
+    <div class="flex flex-col justify-between items-center flex-auto pt-4">
+        <img src="@/assets/img/empresas/fitgym.svg" alt="Empresa" class=" bg-white rounded-full w-[65%]">
+        <div class="sideBar-Menu flex flex-col justify-center gap-[6%] items-center mt-4 py-4 flex-auto overflow-y-scroll">
             <sidebarItem 
             v-for="item in sidebarItems" 
             :srcProp="item.srcProp" 
             :toProp="item.toProp"
             :title="item.title"
-            :class="{logout: item.toProp === 'login'}"
+            :class="{'mt-auto': item.toProp === 'login'}"
             />
         </div>
     </div>
 </template>
 
 <style scoped>
-.sideBar-Content{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    flex: 1 1 auto;
-}
-.sidebarCompanyImg{
-    width: 3vw;
-    height: auto;
-    background-color: var(--white);
-    border-radius: 50%;
-}
-.sideBar-Menu{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 6%;
-    align-items: center;
-    margin-top: 1rem;
-    padding: 1rem 0rem;
-    width: 100%;
-    flex: 1 1 auto;
-    max-height: 100vh;
-    overflow-y: scroll;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-
-.sideBar-Menu::-webkit-scrollbar {
-    width: 0;
-}
-.logout{
-    margin-top: auto;
-}
 </style>

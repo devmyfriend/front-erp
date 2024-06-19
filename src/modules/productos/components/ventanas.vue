@@ -83,9 +83,9 @@ const btActivo = computed(() => {
             </router-link>
         </div>
 
-        <div class="flex min-w-40 max-w-40 shrink-0">
+        <div class="flex xl:min-w-40 xl:max-w-40 md:max-w-12 max-w-7 shrink-0">
             <router-link
-                class="flex items-center justify-center m-0 px-6 w-60 no-underline bg-transparent text-secondaryFontColor border-none"
+                class="flex items-center xl:px-6 px-1 xl:justify-end justify-start m-0 w-60 no-underline bg-transparent text-secondaryFontColor border-none"
                 :to="{ name: 'productos123', params: { tipo: tipoProducto } }">
                 <img class="w-6 h-6 cursor-pointer" src="/svg/icons/Close.svg" alt="Cerar Imagen">
             </router-link>
