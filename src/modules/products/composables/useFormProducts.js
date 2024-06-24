@@ -1,12 +1,12 @@
-// src/modules/productos/composables/useFormProducts.js
+// src/modules/products/composables/useFormProducts.js
 
 import { ref, onMounted, onBeforeMount } from 'vue';
-import { useProductos } from '@/store/index';
-import { useVentanas } from '@/modules/productos/composables/useVentanas.js';
+import { useProductos } from '@/store/products';
+import { useWindows } from '@/modules/products/composables/useWindows.js';
 
 export function useFormProducts(props) {
     const store = useProductos();
-    const { setTitle, setBtActivo, getCodigoProducto } = useVentanas();
+    const { setTitle, setBtActivo, getCodigoProducto } = useWindows();
 
     const tipoProducto = ref(props.tipoProducto);
     const ListadoTiposProducto = ref([]);

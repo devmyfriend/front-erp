@@ -27,7 +27,7 @@ function getCodigoProducto() {
   return codigoProducto.value;
 }
 
-export function useVentanas() {
+export function useWindows() {
   return {
     title,
     setTitle,

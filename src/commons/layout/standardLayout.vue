@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import titleH1 from '@/commons/ui/title-h1/title-h1.vue';
-import ventanas from '@/modules/productos/components/ventanas.vue'
+import ventanas from '@/modules/products/components/windows.vue'
 </script>
 
 <template>

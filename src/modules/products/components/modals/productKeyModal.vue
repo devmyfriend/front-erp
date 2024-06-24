@@ -4,7 +4,7 @@
 <script setup>
   import { ref, watch } from 'vue';
   import Swal from 'sweetalert2';
-  import tablaClavesProductos from '@/modules/productos/components/modals/tablaClavesProductos.vue';
+  import tablaClavesProductos from '@/modules/products/components/modals/tablaClavesProductos.vue';
   const emit = defineEmits(['eEstadoModal']);
   
   const props = defineProps({
@@ -44,7 +44,7 @@
 import { ref, watch } from 'vue';
 import Swal from 'sweetalert2';
 import { createApp, h } from 'vue';
-import tablaClavesProductos from '@/modules/productos/components/modals/tablaClavesProductos.vue';
+import tablaClavesProductos from '@/modules/products/components/modals/tablaClavesProductos.vue';
 
 const emit = defineEmits(['eEstadoModal']);
 

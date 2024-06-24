@@ -1,11 +1,13 @@
 import { defineStore } from "pinia";
-import { borrarProducto, buscarClavesProductos, buscarClavesUnidades, buscarProductos, cargarClavesProductos, cargarClavesUnidades, cargarProductos, cargarTiposProducto, obtenerProducto} from "@/services/productosServices";
+import { borrarProducto, buscarClavesProductos, buscarClavesUnidades, buscarProductos, cargarClavesProductos, cargarClavesUnidades, cargarProductos, cargarTiposProducto, obtenerProducto} from "@/services/productsServices";
 
 export const useProductos = defineStore('Productos', {
     state: () => ({
         ListadoProductos: [],
         ListadoTiposProducto: [],
         Producto: {},
+        ListadoClavesProductos: [],
+
     }),
     getters: {
         getProductos(state) {
@@ -17,6 +19,9 @@ export const useProductos = defineStore('Productos', {
         getTiposProducto(state) {
             return state.ListadoTiposProducto;
         },
+        getClavesProductos(state) {
+            return state.ListadoClavesProductos;
+        }
     },
     actions: {
         async cargarProductos() {
@@ -61,6 +66,7 @@ export const useProductos = defineStore('Productos', {
         async cargarClavesProductos(pagina) {
             const data = await cargarClavesProductos(pagina);
             if (data) {
+                this.ListadoClavesProductos = data;
                 return data;
             }
         },

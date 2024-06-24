@@ -6,12 +6,12 @@ export default{
         {
             path: '/productos/',
             name: 'productos123',
-            component: () => import('@/modules/productos/views/Productos123.vue')
+            component: () => import('@/modules/products/views/Productos123.vue')
         },
         {
             path: '/productos/formulario/:tipo?/:id?',
             name: 'formProducts',
-            component: () => import('@/modules/productos/views/formProducts.vue')
+            component: () => import('@/modules/products/views/formProducts.vue')
         },
     ] */
 };

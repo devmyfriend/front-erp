@@ -14,6 +14,8 @@ import { RouterLink, RouterView } from 'vue-router'
 
 input, select, textarea{
   color: theme('colors.primaryFontColor');
+}
+select{
   background-color: theme('colors.container');
 }
 

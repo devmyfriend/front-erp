@@ -1,16 +1,16 @@
 <script setup>
 import { onMounted, ref, watch, onBeforeMount } from 'vue';
-import buscadorProductos from '@/modules/productos/components/buscadorProductos.vue';
-import tablaProductos from '@/modules/productos/components/tablaProductos.vue'
+import buscadorProductos from '@/modules/products/components/productFinder.vue';
+import tablaProductos from '@/modules/products/components/tableProducts.vue'
 import btnAgregar from '@/commons/ui/btn-agregar/btn-agregar.vue';
 import { useRouter } from 'vue-router';
-import { useProductos } from '@/store/index'
+import { useProductos } from '@/store/products'
 import Swal from 'sweetalert2';
-import { useVentanas } from '@/modules/productos/composables/useVentanas.js';
-import { useListProducts } from '@/modules/productos/composables/useListProducts.js';
+import { useWindows } from '@/modules/products/composables/useWindows.js';
+import { useListProducts } from '@/modules/products/composables/useListProducts.js';
 const { borrarProducto: deleteProduct } = useListProducts();
 const store = useProductos();
-const { setTitle, setBtActivo, setCodigoProducto, getCodigoProducto } = useVentanas();
+const { setTitle, setBtActivo, setCodigoProducto, getCodigoProducto } = useWindows();
 const router = useRouter();
 
 const tipoProducto = ref('Todos');

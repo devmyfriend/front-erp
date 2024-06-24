@@ -1,6 +1,7 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 const rutaProductos = import.meta.env.VITE_API_PRODUCTS_URL;
+const rutaGeneral = import.meta.env.VITE_API_URL;
 
 export const cargarProductos = async () => {
     try {
@@ -73,7 +74,7 @@ export const cargarClavesUnidades = async (pagina) => {
 };
 export const cargarClavesProductos = async (pagina) => {
     try{
-        const datos = await axios.get(`${process.env.VUE_APP_PATH_API}v1/productos/servicio/palabra/${pagina}`);
+        const datos = await axios.get(`${rutaGeneral}v1/productos/servicio/palabra/${pagina}`);
         if(datos.status === 200 && datos.statusText === "OK"){
             return datos.data.response;
         }

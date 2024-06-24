@@ -1,11 +1,10 @@
 <script setup>
-import { useProductos } from '@/store/index'
-import { computed, onMounted, ref, watch } from 'vue';
+import { useProductos } from '@/store/products'
+import { onMounted, ref, watch } from 'vue';
 import btnSave from '@/commons/ui/btn-save/btn-save.vue';
 import Swal from 'sweetalert2';
 
-/* Tablas */
-import tablaClavesProductos from '../components/modals/tablaClavesProductos.vue';
+import modalClaveProducto from '@/commons/ui/modals/productKeyModal.vue';
 
 const store = useProductos();
 
@@ -32,10 +31,12 @@ const registro = ref({
     lineaProducto: '',
     familiaProducto: '',
     subfamiliaProducto: '',
-    ClaveProductoSAT: '',
+    ClaveProductoServicio: '12123',
     ClaveUnidadSAT: '',
     ImpuestoCompuesto: ''
 });
+
+const ClaveProductoServicio = ref('10123');
 
 const verDatosAnidados = ref(false);
 
@@ -43,6 +44,7 @@ const ListadoTiposProducto = ref([]); // No trabajado
 const ListadoLineasProducto = ref([]); // No trabajado
 const ListadoFamiliasProducto = ref([]); // No trabajado
 const ListadoSubfamiliasProducto = ref([]); // No trabajado
+const ListadoClavesProducto = ref([]);
 
 const esperarImagen = (archivo) => {
     imagenPrueba.value = archivo;
@@ -53,6 +55,45 @@ const GuardarRegistro = () => {
 const ActualizarRegistro = () => {
     console.log('Actualizando...');
 }
+const selecionarClaveUnidad = (r) => {
+    registro.value.ClaveProductoServicio = r.ClaveProductoServicio;
+    modal.value.ClaveProductoServicio = false;
+    console.log('El valor obtenido: ' + JSON.stringify(r.ClaveProductoServicio) + ' y el valor asignado local es: ' + registro.value.ClaveProductoServicio);
+}
+const cerrarModal = () => {
+    modal.value.ClaveProductoServicio = false;
+    registro.value.ClaveProductoServicio = '';
+}
+const modal = ref({
+    ClaveProductoServicio: false
+});
+
+const abrirModal = (opt) => {
+    switch (opt) {
+        case 1:
+            modal.value.lineaProducto = true;
+            break;
+        case 2:
+            modal.value.familiaProducto = true;
+            break;
+        case 3:
+            modal.value.subfamiliaProd = true;
+            break;
+        case 4:
+            modal.value.ClaveProductoServicio = true;
+            break;
+        case 5:
+            modal.value.ClaveUnidadSAT = true;
+            break;
+        case 6:
+            modal.value.ImpuestoCompuesto = true;
+            break;
+        default:
+            console.log('Opción no válida');
+            break;
+    }
+
+}
 
 onMounted(() => {
     cargarDatos();
@@ -62,6 +103,9 @@ const cargarDatos = () => {
     store.cargarTiposProducto().then(() => {
         ListadoTiposProducto.value = store.getTiposProducto;
     });
+    store.cargarClavesProductos(1).then(() => {
+        ListadoClavesProducto.value = store.getClavesProductos;
+    });
 }
 
 watch(() => props.producto, (newValue) => {
@@ -69,42 +113,11 @@ watch(() => props.producto, (newValue) => {
         registro.value = newValue;
     }
 });
-
-const test = () => {
-
-Swal.fire({
-    icon: 'error',
-    title: 'Borrar registro',
-/*     html: `
-        <div class="h-80 w-full p-4 bg-green-600">
-        <h2 class="bg-red-200 text-xl">Contenido personalizado</h2>
-        <p class="underline bg-blue-600">Este es un párrafo con <strong>clases personalizadas</strong>.</p>
-        <button class="custom-button">Botón personalizado</button>
-        </div>
-    `, */
-    text: '¿Estás seguro de que deseas borrar este registro?',
-    showCloseButton: true,
-    showCancelButton: true,
-    focusCancel: true,
-    confirmButtonText: 'Borrar registro',
-    cancelButtonText: 'Cancelar',
-    confirmButtonColor: '#0000ff',
-    cancelButtonColor: '#0000ff',
-
-}).then((result) => {
-    if (result.isConfirmed) {
-        setTimeout(() => {
-            test2();
-        }, 2000);
-    }
-});
-};
-
 const Toast = Swal.mixin({
   toast: true,
-  position: "top-end",
+  position: "top",
   showConfirmButton: false,
-  timer: 3000,
+  timer: 1500,
   timerProgressBar: true,
   didOpen: (toast) => {
     toast.onmouseenter = Swal.stopTimer;
@@ -121,7 +134,7 @@ const test2 = () => {
 </script>
 
 <template>
-        <form @submit.prevent="modo === 0 ? GuardarRegistro() : ActualizarRegistro()" class="w-full xl:w-[64%] bg-primaryFrmContainer min-h-max max-h-full mb-8 xl:mb-0 rounded-2xl overflow-y-scroll">
+        <form @submit.prevent="modo === 0 ? test2() : test2()" class="w-full xl:w-[64%] bg-primaryFrmContainer min-h-max max-h-full mb-8 xl:mb-0 rounded-2xl overflow-y-scroll">
             <h3 class="text-xl uppercase bg-secondaryFrmContainer h-9 flex items-center px-4 font-semibold justify-center"> Formulario </h3>
             <div class="m-4 gap-y-4 flex flex-col">
 
@@ -162,7 +175,7 @@ const test2 = () => {
                     <select v-model="registro.lineaProducto" id="lineaProducto">
                         <option v-for="Linea in ListadoLineasProducto" :value="Linea.NombreLineaProducto"> {{ Linea.NombreLineaProducto }} </option>
                     </select>
-                    <button @click="abrirModal(1)" class="basis-16 min-h-7 bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 hover:bg-sidebar transition-all duration-300">
+                    <button type="button" @click="abrirModal(1)" class="basis-16 min-h-7 bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 hover:bg-sidebar transition-all duration-300">
                         <svg width="16" height="16" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M21.7008 19.0204L17.4165 14.7368C17.2231 14.5435 16.961 14.4361 16.686 14.4361H15.9855C17.1716 12.9194 17.8763 11.0118 17.8763 8.93663C17.8763 4 13.8756 0 8.93815 0C4.00068 0 0 4 0 8.93663C0 13.8733 4.00068 17.8733 8.93815 17.8733C11.0137 17.8733 12.9216 17.1686 14.4386 15.9828V16.6831C14.4386 16.9581 14.546 17.2202 14.7394 17.4135L19.0237 21.6971C19.4276 22.101 20.0808 22.101 20.4804 21.6971L21.6965 20.4812C22.1004 20.0773 22.1004 19.4243 21.7008 19.0204ZM8.93815 14.4361C5.90004 14.4361 3.43775 11.9785 3.43775 8.93663C3.43775 5.89903 5.89574 3.43716 8.93815 3.43716C11.9763 3.43716 14.4386 5.89474 14.4386 8.93663C14.4386 11.9742 11.9806 14.4361 8.93815 14.4361Z" fill="#fff"/>
                         </svg>
@@ -173,7 +186,7 @@ const test2 = () => {
                     <select v-model="registro.familiaProducto" id="familiaProducto">
                         <option v-for="Familia in ListadoFamiliasProducto" :value="Familia.NombreFamiliaProducto"> {{ Familia.NombreFamiliaProducto }} </option>
                     </select>
-                    <button @click="abrirModal(2)" class="bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 hover:bg-sidebar transition-all duration-300 basis-16 min-h-7">
+                    <button type="button" @click="abrirModal(2)" class="bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 hover:bg-sidebar transition-all duration-300 basis-16 min-h-7">
                         <svg width="16" height="16" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M21.7008 19.0204L17.4165 14.7368C17.2231 14.5435 16.961 14.4361 16.686 14.4361H15.9855C17.1716 12.9194 17.8763 11.0118 17.8763 8.93663C17.8763 4 13.8756 0 8.93815 0C4.00068 0 0 4 0 8.93663C0 13.8733 4.00068 17.8733 8.93815 17.8733C11.0137 17.8733 12.9216 17.1686 14.4386 15.9828V16.6831C14.4386 16.9581 14.546 17.2202 14.7394 17.4135L19.0237 21.6971C19.4276 22.101 20.0808 22.101 20.4804 21.6971L21.6965 20.4812C22.1004 20.0773 22.1004 19.4243 21.7008 19.0204ZM8.93815 14.4361C5.90004 14.4361 3.43775 11.9785 3.43775 8.93663C3.43775 5.89903 5.89574 3.43716 8.93815 3.43716C11.9763 3.43716 14.4386 5.89474 14.4386 8.93663C14.4386 11.9742 11.9806 14.4361 8.93815 14.4361Z" fill="#fff"/>
                         </svg>
@@ -184,18 +197,16 @@ const test2 = () => {
                     <select v-model="registro.subfamiliaProducto" id="subfamiliaProducto">
                         <option v-for="Subfamilia in ListadoSubfamiliasProducto" :value="Subfamilia.NombreSubfamiliaProducto"> {{ Subfamilia.NombreSubfamiliaProducto }} </option>
                     </select>
-                    <button @click="abrirModal(3)" class="bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 hover:bg-sidebar transition-all duration-300 basis-16 min-h-7">
+                    <button type="button" @click="abrirModal(3)" class="bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 hover:bg-sidebar transition-all duration-300 basis-16 min-h-7">
                         <svg width="16" height="16" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M21.7008 19.0204L17.4165 14.7368C17.2231 14.5435 16.961 14.4361 16.686 14.4361H15.9855C17.1716 12.9194 17.8763 11.0118 17.8763 8.93663C17.8763 4 13.8756 0 8.93815 0C4.00068 0 0 4 0 8.93663C0 13.8733 4.00068 17.8733 8.93815 17.8733C11.0137 17.8733 12.9216 17.1686 14.4386 15.9828V16.6831C14.4386 16.9581 14.546 17.2202 14.7394 17.4135L19.0237 21.6971C19.4276 22.101 20.0808 22.101 20.4804 21.6971L21.6965 20.4812C22.1004 20.0773 22.1004 19.4243 21.7008 19.0204ZM8.93815 14.4361C5.90004 14.4361 3.43775 11.9785 3.43775 8.93663C3.43775 5.89903 5.89574 3.43716 8.93815 3.43716C11.9763 3.43716 14.4386 5.89474 14.4386 8.93663C14.4386 11.9742 11.9806 14.4361 8.93815 14.4361Z" fill="#fff"/>
                         </svg>
                     </button>
                 </div>
                 <div class="min-w-full flex-wrap flex"> <!-- C. Producto SAT -->
-                    <label class="max-w-48 min-w-48 text-[1rem] items-center flex" for="ClaveProductoSAT"> C. Producto SAT: </label>
-                    <select v-model="registro.ClaveProductoSAT" id="ClaveProductoSAT">
-                        <option v-for="ClaveProd in ListadoSubfamiliasProducto" :value="ClaveProd.NombreSubfamiliaProducto"> {{ ClaveProd.NombreSubfamiliaProducto }} </option>
-                    </select>
-                    <button @click="abrirModal(4)" class="bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 hover:bg-sidebar transition-all duration-300 basis-16 min-h-7">
+                    <label class="max-w-48 min-w-48 text-[1rem] items-center flex" for="ClaveProductoServicio"> C. Producto SAT: </label>
+                    <input v-model="registro.ClaveProductoServicio" id="ClaveProductoServicio" disabled />
+                    <button type="button" @click="abrirModal(4)" class="bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 hover:bg-sidebar transition-all duration-300 basis-16 min-h-7">
                         <svg width="16" height="16" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M21.7008 19.0204L17.4165 14.7368C17.2231 14.5435 16.961 14.4361 16.686 14.4361H15.9855C17.1716 12.9194 17.8763 11.0118 17.8763 8.93663C17.8763 4 13.8756 0 8.93815 0C4.00068 0 0 4 0 8.93663C0 13.8733 4.00068 17.8733 8.93815 17.8733C11.0137 17.8733 12.9216 17.1686 14.4386 15.9828V16.6831C14.4386 16.9581 14.546 17.2202 14.7394 17.4135L19.0237 21.6971C19.4276 22.101 20.0808 22.101 20.4804 21.6971L21.6965 20.4812C22.1004 20.0773 22.1004 19.4243 21.7008 19.0204ZM8.93815 14.4361C5.90004 14.4361 3.43775 11.9785 3.43775 8.93663C3.43775 5.89903 5.89574 3.43716 8.93815 3.43716C11.9763 3.43716 14.4386 5.89474 14.4386 8.93663C14.4386 11.9742 11.9806 14.4361 8.93815 14.4361Z" fill="#fff"/>
                         </svg>
@@ -206,7 +217,7 @@ const test2 = () => {
                     <select v-model="registro.ClaveUnidadSAT" id="ClaveUnidadSAT">
                         <option v-for="ClaveUnidad in ListadoSubfamiliasProducto" :value="ClaveUnidad.NombreSubfamiliaProducto"> {{ ClaveUnidad.NombreSubfamiliaProducto }} </option>
                     </select>
-                    <button @click="abrirModal(5)" class="bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 hover:bg-sidebar transition-all duration-300 basis-16 min-h-7">
+                    <button type="button" @click="abrirModal(5)" class="bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 hover:bg-sidebar transition-all duration-300 basis-16 min-h-7">
                         <svg width="16" height="16" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M21.7008 19.0204L17.4165 14.7368C17.2231 14.5435 16.961 14.4361 16.686 14.4361H15.9855C17.1716 12.9194 17.8763 11.0118 17.8763 8.93663C17.8763 4 13.8756 0 8.93815 0C4.00068 0 0 4 0 8.93663C0 13.8733 4.00068 17.8733 8.93815 17.8733C11.0137 17.8733 12.9216 17.1686 14.4386 15.9828V16.6831C14.4386 16.9581 14.546 17.2202 14.7394 17.4135L19.0237 21.6971C19.4276 22.101 20.0808 22.101 20.4804 21.6971L21.6965 20.4812C22.1004 20.0773 22.1004 19.4243 21.7008 19.0204ZM8.93815 14.4361C5.90004 14.4361 3.43775 11.9785 3.43775 8.93663C3.43775 5.89903 5.89574 3.43716 8.93815 3.43716C11.9763 3.43716 14.4386 5.89474 14.4386 8.93663C14.4386 11.9742 11.9806 14.4361 8.93815 14.4361Z" fill="#fff"/>
                         </svg>
@@ -217,7 +228,7 @@ const test2 = () => {
                     <select v-model="registro.ImpuestoCompuesto" id="ImpuestoCompuesto">
                         <option v-for="ImpCompuesto in ListadoSubfamiliasProducto" :value="ImpCompuesto.NombreSubfamiliaProducto"> {{ ImpCompuesto.NombreSubfamiliaProducto }} </option>
                     </select>
-                    <button @click="abrirModal(6)" class="bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 hover:bg-sidebar transition-all duration-300 basis-16 min-h-7">
+                    <button type="button" @click="abrirModal(6)" class="bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 hover:bg-sidebar transition-all duration-300 basis-16 min-h-7">
                         <svg width="16" height="16" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M21.7008 19.0204L17.4165 14.7368C17.2231 14.5435 16.961 14.4361 16.686 14.4361H15.9855C17.1716 12.9194 17.8763 11.0118 17.8763 8.93663C17.8763 4 13.8756 0 8.93815 0C4.00068 0 0 4 0 8.93663C0 13.8733 4.00068 17.8733 8.93815 17.8733C11.0137 17.8733 12.9216 17.1686 14.4386 15.9828V16.6831C14.4386 16.9581 14.546 17.2202 14.7394 17.4135L19.0237 21.6971C19.4276 22.101 20.0808 22.101 20.4804 21.6971L21.6965 20.4812C22.1004 20.0773 22.1004 19.4243 21.7008 19.0204ZM8.93815 14.4361C5.90004 14.4361 3.43775 11.9785 3.43775 8.93663C3.43775 5.89903 5.89574 3.43716 8.93815 3.43716C11.9763 3.43716 14.4386 5.89474 14.4386 8.93663C14.4386 11.9742 11.9806 14.4361 8.93815 14.4361Z" fill="#fff"/>
                         </svg>
@@ -228,6 +239,7 @@ const test2 = () => {
             <btnSave :modo="modo" :elemento="elemento" class="mt-4 mb-2" />
             </div>
         </form>
+         <modalClaveProducto v-if="modal.ClaveProductoServicio === true" :registros="ListadoClavesProducto" @eSeleccionar="selecionarClaveUnidad" @eCancelar="cerrarModal" />
 </template>
 
 <style scoped>
@@ -245,7 +257,6 @@ textarea {
     font-size: 1rem;
     border-radius: 0.25rem;
     outline: none;
-    background-color: #fff;
 }
 input[type="checkbox"] {
     flex: 1 0 auto;

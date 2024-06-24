@@ -1,13 +1,13 @@
 <script setup>
 import { onMounted, onUpdated, ref, watch } from 'vue';
 import titleH1 from '@/commons/ui/title-h1/title-h1.vue';
-import ventanas from '@/modules/productos/components/ventanas.vue'
-import { useVentanas } from '@/modules/productos/composables/useVentanas.js';
+import ventanas from '@/modules/products/components/windows.vue'
+import { useWindows } from '@/modules/products/composables/useWindows.js';
 import { useRoute } from 'vue-router';
 const route = useRoute();
 
 
-const { getTitle, getBtActivo } = useVentanas();
+const { getTitle, getBtActivo } = useWindows();
 const titulo = ref('');
 
 const updateTitle = () => {

@@ -19,7 +19,7 @@
   
   <script setup>
   import { onMounted, ref } from 'vue';
-  import { cProductosStore } from '@/store/cProductosStore';
+  import { cProductosStore } from '@/store/cProductsStore';
   const store = cProductosStore();
   
   const listado = ref([]);

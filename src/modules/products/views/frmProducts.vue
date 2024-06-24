@@ -1,7 +1,7 @@
 <script setup>
-import formulario from '@/modules/productos/components/formularioProductos.vue';
-import formularioImagen from '@/modules/productos/components/formularioImagen.vue';
-import { useFormProducts } from '@/modules/productos/composables/useFormProducts.js';
+import formulario from '@/modules/products/components/frmProducts.vue';
+import formularioImagen from '@/modules/products/components/frmImage.vue';
+import { useFormProducts } from '@/modules/products/composables/useFormProducts.js';
 
 const props = defineProps({
     tipoProducto: {

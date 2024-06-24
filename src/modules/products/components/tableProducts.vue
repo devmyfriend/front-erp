@@ -1,9 +1,9 @@
 <script setup>
 import { onUpdated, ref, watch } from 'vue';
-import { useVentanas } from '@/modules/productos/composables/useVentanas.js';
-import modalEliminar from '@/commons/ui/modals/modalEliminar.vue';
+import { useWindows } from '@/modules/products/composables/useWindows.js';
+import modalEliminar from '@/commons/ui/modals/deleteModal.vue';
 
-const { setCodigoProducto, getCodigoProducto } = useVentanas();
+const { setCodigoProducto, getCodigoProducto } = useWindows();
 
 const props = defineProps({
     ListadoProductos: {
@@ -90,9 +90,9 @@ watch(() => props.ListadoProductos, (newValue, oldValue) => {
                 </td>
                 <td class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 last:rounded-r-primaryHeaderTableRadius items-center justify-center flex min-w-16">
                     <div class="min-w-16 h-full text-center items-center lg:justify-start justify-center flex lg:gap-1 flex-wrap">
-                        <img src="/svg/tableIcons/edit.svg" alt="Editar" class="cursor-pointer w-4 lg:w-6"
+                        <img src="/svg/tableIcons/editIco.svg" alt="Editar" class="cursor-pointer w-4 lg:w-6"
                             @click="editarProducto(producto.CodigoProducto)">
-                        <img src="/svg/tableIcons/trash.svg" alt="Borrar" class="cursor-pointer w-4 lg:w-6"
+                        <img src="/svg/tableIcons/trashIco.svg" alt="Borrar" class="cursor-pointer w-4 lg:w-6"
                             @click="borrarProducto(producto)" v-if="producto.Borrado === 0">
                     </div>
                 </td>

@@ -22,6 +22,5 @@
 </template>
 
 <style scoped>
-    @import url('@/commons/styles/estilosLayout.css');
-    @import url('@/commons/styles/estilosGym.css');
+    @import url('@/commons/styles/styleLayout.css');
 </style>

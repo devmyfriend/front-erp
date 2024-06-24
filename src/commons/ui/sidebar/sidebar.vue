@@ -3,13 +3,13 @@ import { ref } from 'vue'
 import sidebarItem from '@/commons/ui/sidebar/sidebarItem.vue'
 
 const sidebarItems = ref([
-    { srcProp: '/svg/sidebar/orgIco.svg', toProp: 'home', title: 'Organización' },
-    { srcProp: '/svg/sidebar/ventaIco.svg', toProp: 'home', title: 'Venta' },
-    { srcProp: '/svg/sidebar/compraIco.svg', toProp: 'home', title: 'Compra' },
-    { srcProp: '/svg/sidebar/catIco.svg', toProp: 'home', title: 'Catalógo' },
-    { srcProp: '/svg/sidebar/cfgIco.svg', toProp: 'home', title: 'Configuración' },
-    { srcProp: '/svg/sidebar/cfgIco.svg', toProp: 'Menu', title: 'Menú Temporal' },
-    { srcProp: '/svg/sidebar/logoutIco.svg', toProp: 'login', title: 'Logout' }
+    { srcProp: '/svg/sidebarIcons/orgIco.svg', toProp: 'home', title: 'Organización' },
+    { srcProp: '/svg/sidebarIcons/sellIco.svg', toProp: 'home', title: 'Venta' },
+    { srcProp: '/svg/sidebarIcons/buyIco.svg', toProp: 'home', title: 'Compra' },
+    { srcProp: '/svg/sidebarIcons/catIco.svg', toProp: 'home', title: 'Catalógo' },
+    { srcProp: '/svg/sidebarIcons/cfgIco.svg', toProp: 'home', title: 'Configuración' },
+    { srcProp: '/svg/sidebarIcons/cfgIco.svg', toProp: 'Menu', title: 'Menú Temporal' },
+    { srcProp: '/svg/sidebarIcons/logoutIco.svg', toProp: 'login', title: 'Logout' }
 ])
 </script>
 
