@@ -29,7 +29,6 @@ const registroParaBorrar = ref(null);
 
 const borrarProducto = (producto) => {
     registroParaBorrar.value = producto;
-    console.log('Datos recibidos del botón de borrar. \n', 'Tipo Producto: ', producto.NombreTipoProducto, 'Producto: ', JSON.stringify(producto));
 };
 
 const handleEliminar = (producto) => {
@@ -57,7 +56,7 @@ watch(() => props.ListadoProductos, (newValue, oldValue) => {
             <tr class="sticky top-0 bg-primaryHeaderTable h-primaryHeaderTableHeight rounded-primaryHeaderTableRadius">
                 <th class="border-b-secondaryTableWidth border-b-primaryUnderline first:rounded-l-primaryHeaderTableRadius">ID</th>
                 <th class="border-b-secondaryTableWidth border-b-primaryUnderline">Nombre</th>
-                <th class="border-b-secondaryTableWidth border-b-primaryUnderline">{{ registroParaBorrar != null }}</th>
+                <th class="border-b-secondaryTableWidth border-b-primaryUnderline">Código del producto</th>
                 <th class="border-b-secondaryTableWidth border-b-primaryUnderline">Tipo Producto</th>
                 <th class="border-b-secondaryTableWidth border-b-primaryUnderline">Puntos</th>
                 <th class="border-b-secondaryTableWidth border-b-primaryUnderline">Serie</th>

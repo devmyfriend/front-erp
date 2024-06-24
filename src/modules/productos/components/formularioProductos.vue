@@ -53,12 +53,6 @@ const GuardarRegistro = () => {
 const ActualizarRegistro = () => {
     console.log('Actualizando...');
 }
-const cambiarFrm = () => {
-    if (DatosGenerales.value)
-    {
-        verDatosAnidados.value = !verDatosAnidados.value;
-    }
-}
 
 onMounted(() => {
     cargarDatos();
@@ -70,27 +64,9 @@ const cargarDatos = () => {
     });
 }
 
-const DatosGenerales = computed(() => {
-    if ( registro.value.NombreTipoProducto === '' || registro.value.CodigoProducto === '' || registro.value.NombreProducto === '' || registro.value.DescripcionProducto === '' )
-    {
-        return false;
-    } else {
-        return true;
-    }
-});
-const DatosAnidados = computed(() => {
-    if ( registro.value.lineaProducto === '' || registro.value.familiaProducto === '' || registro.value.subfamiliaProducto === '' || registro.value.ClaveProductoSAT === '' || registro.value.ClaveUnidadSAT === '' || registro.value.ImpuestoCompuesto === '' )
-    {
-        return false;
-    } else {
-        return true;
-    }
-});
-
 watch(() => props.producto, (newValue) => {
     if (newValue != undefined) {
         registro.value = newValue;
-        console.log('[ComponenteFrm - Producto Obtenido]: ', JSON.stringify(registro.value) );
     }
 });
 

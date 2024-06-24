@@ -23,7 +23,6 @@ export function useFormProducts(props) {
         if (codigoProducto.value != '') {
             store.obtenerProducto(codigoProducto.value).then(() => {
                 producto.value = store.getProducto;
-                console.log('[FRM]: El producto cargado es: ' + JSON.stringify(producto.value));
             });
         }
     });
