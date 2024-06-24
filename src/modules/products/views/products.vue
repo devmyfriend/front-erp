@@ -4,7 +4,7 @@ import buscadorProductos from '@/modules/products/components/productFinder.vue';
 import tablaProductos from '@/modules/products/components/tableProducts.vue'
 import btnAgregar from '@/commons/ui/btn-agregar/btn-agregar.vue';
 import { useRouter } from 'vue-router';
-import { useProductos } from '@/store/products'
+import { useProductos } from '@/store/productsStore'
 import Swal from 'sweetalert2';
 import { useWindows } from '@/modules/products/composables/useWindows.js';
 import { useListProducts } from '@/modules/products/composables/useListProducts.js';

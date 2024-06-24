@@ -1,5 +1,5 @@
 <script setup>
-import { useProductos } from '@/store/products'
+import { useProductos } from '@/store/productsStore'
 import { onMounted, ref, watch } from 'vue';
 import btnSave from '@/commons/ui/btn-save/btn-save.vue';
 import Swal from 'sweetalert2';

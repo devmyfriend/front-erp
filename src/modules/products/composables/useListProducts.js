@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { useProductos } from '@/store/products'
+import { useProductos } from '@/store/productsStore'
 import Swal from "sweetalert2";
 const store = useProductos();
 const confirmButtonColor = getComputedStyle(document.documentElement).getPropertyValue('--modal-confirm').trim();

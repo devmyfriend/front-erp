@@ -15,7 +15,7 @@
 import { ref } from 'vue';
 import Swal from 'sweetalert2';
 const emit = defineEmits('eBusqueda');
-import { useProductos } from '@/store/products'
+import { useProductos } from '@/store/productsStore'
 const store = useProductos();
 
 const txtBusqueda = ref('');

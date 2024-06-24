@@ -5,8 +5,8 @@ export const useProductos = defineStore('Productos', {
     state: () => ({
         ListadoProductos: [],
         ListadoTiposProducto: [],
-        Producto: {},
         ListadoClavesProductos: [],
+        Producto: {},
 
     }),
     getters: {
