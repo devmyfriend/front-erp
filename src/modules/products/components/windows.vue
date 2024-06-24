@@ -37,7 +37,7 @@ const btActivo = computed(() => {
     <div class="flex justify-between">
         <div class="flex flex-row justify-start text-xl min-h-[1.5rem] max-w-[80vw] min-w-[80vw] overflow-x-scroll">
             <!-- 4vh -->
-            <router-link :class="{btActivado: btActivo === 1 }" :to="{ name: 'productos123', params: { tipo: tipoProducto } }" draggable="false"
+            <router-link :class="{btActivado: btActivo === 1 }" :to="{ name: 'productos', params: { tipo: tipoProducto } }" draggable="false"
                 class=" whitespace-nowrap bg-disable text-secondaryFontColor flex items-center justify-center min-w-max text-center text-base py-1 pl-8 pr-6 border-inputWidth border-inputBorder rounded-tl-[2rem]">
                 Listado
             </router-link>
@@ -86,7 +86,7 @@ const btActivo = computed(() => {
         <div class="flex xl:min-w-40 xl:max-w-40 md:max-w-12 max-w-7 shrink-0">
             <router-link
                 class="flex items-center xl:px-6 px-1 xl:justify-end justify-start m-0 w-60 no-underline bg-transparent text-secondaryFontColor border-none"
-                :to="{ name: 'productos123', params: { tipo: tipoProducto } }">
+                :to="{ name: 'productos', params: { tipo: tipoProducto } }">
                 <img class="w-6 h-6 cursor-pointer" src="/svg/generalIcons/closeIco.svg" alt="Cerar Imagen">
             </router-link>
         </div>

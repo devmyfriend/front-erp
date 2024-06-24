@@ -5,7 +5,7 @@ export default{
     children:[
         {
             path: '/productos/',
-            name: 'productos123',
+            name: 'productos',
             component: () => import('@/modules/products/views/products.vue')
         },
         {

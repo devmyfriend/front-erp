@@ -1,12 +1,12 @@
 export default{    
-    path:'/window',
+    path:'/general',
     name: 'layContent',
     component: () => import('@/commons/layout/standardLayout.vue'),
 /*     children:[
         {
             path: '/productos/',
-            name: 'productos123',
-            component: () => import('@/modules/products/views/Productos123.vue')
+            name: 'productos',
+            component: () => import('@/modules/products/views/productos.vue')
         },
         {
             path: '/productos/formulario/:tipo?/:id?',
