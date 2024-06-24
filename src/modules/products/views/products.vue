@@ -1,5 +1,6 @@
 <script setup>
-import { onMounted, ref, watch, onBeforeMount } from 'vue';
+
+import { ref, watch, onBeforeMount } from 'vue';
 import buscadorProductos from '@/modules/products/components/productFinder.vue';
 import tablaProductos from '@/modules/products/components/tableProducts.vue'
 import btnAgregar from '@/commons/ui/btn-agregar/btn-agregar.vue';
@@ -8,23 +9,15 @@ import { useProductos } from '@/store/productsStore'
 import Swal from 'sweetalert2';
 import { useWindows } from '@/modules/products/composables/useWindows.js';
 import { useListProducts } from '@/modules/products/composables/useListProducts.js';
+
 const { borrarProducto: deleteProduct } = useListProducts();
 const store = useProductos();
-const { setTitle, setBtActivo, setCodigoProducto, getCodigoProducto } = useWindows();
+const { setTitle, setBtActivo, setCodigoProducto } = useWindows();
 const router = useRouter();
-
 const tipoProducto = ref('Todos');
-
 const ListadoProductos = ref([]);
 const ListadoTiposProducto = ref([]);
-
 const CodigoProducto = ref('');
-
-onBeforeMount(() => {
-    setTitle('Listado de Productos');
-    setBtActivo(1);
-    cargarDatos();
-});
 
 const cargarDatos = () => {
     store.cargarProductos().then(() => {
@@ -47,7 +40,6 @@ const cargarDatos = () => {
         ListadoTiposProducto.value = store.getTiposProducto;
     });
 }
-
 const esperarBusqueda = (texto) => {
     if (texto === undefined) {
         if (tipoProducto.value == 'Todos') {
@@ -69,7 +61,6 @@ const esperarBusqueda = (texto) => {
         ListadoProductos.value = store.getProductos;
     }
 }
-
 const editarProducto = (codigoProducto) => {
     CodigoProducto.value = codigoProducto;
     router.push({ name: 'formProducts', params: { tipo: tipoProducto } });
@@ -78,11 +69,16 @@ const borrarProducto = (producto) => {
     CodigoProducto.value = producto.CodigoProducto;
     deleteProduct(producto);
 }
-
 const borrarCodigoProducto = () => {
     setCodigoProducto('');
     CodigoProducto.value = '';
 }
+
+onBeforeMount(() => {
+    setTitle('Listado de Productos');
+    setBtActivo(1);
+    cargarDatos();
+});
 
 watch(tipoProducto, (newValue, oldValue) => {
     if (newValue == 0) {
