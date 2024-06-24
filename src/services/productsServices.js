@@ -1,10 +1,11 @@
 import axios from "axios";
 import Swal from "sweetalert2";
-const rutaTemporal = "http://lachosoft.cloud:7000/api/";
+const rutaProductos = import.meta.env.VITE_API_PRODUCTS_URL;
+const rutaGeneral = import.meta.env.VITE_API_URL;
 
 export const cargarProductos = async () => {
     try {
-        const datos = await axios.get(`${rutaTemporal}v1/productos`);
+        const datos = await axios.get(`${rutaProductos}v1/productos`);
         if (datos.status === 200 && datos.statusText === "OK") {
             return datos.data.response;
         }
@@ -19,7 +20,7 @@ export const cargarProductos = async () => {
 };
 export const cargarTiposProducto = async () => {
     try {
-        const datos = await axios.get(`${rutaTemporal}v1/productos/tipo`);
+        const datos = await axios.get(`${rutaProductos}v1/productos/tipo`);
         if (datos.status === 200 && datos.statusText === "OK") {
             return datos.data.response;
         }
@@ -34,7 +35,7 @@ export const cargarTiposProducto = async () => {
 };
 export const buscarProductos = async (nombre, tipo) => {
     try{
-        const datos = await axios.get(`${rutaTemporal}v1/productos/buscar/${nombre}`);
+        const datos = await axios.get(`${rutaProductos}v1/productos/buscar/${nombre}`);
         
         if(datos.status === 200 && datos.statusText === "OK"){
             if (tipo === 'Todos'){
@@ -73,7 +74,7 @@ export const cargarClavesUnidades = async (pagina) => {
 };
 export const cargarClavesProductos = async (pagina) => {
     try{
-        const datos = await axios.get(`${process.env.VUE_APP_PATH_API}v1/productos/servicio/palabra/${pagina}`);
+        const datos = await axios.get(`${rutaGeneral}v1/productos/servicio/palabra/${pagina}`);
         if(datos.status === 200 && datos.statusText === "OK"){
             return datos.data.response;
         }
@@ -134,7 +135,7 @@ export const buscarClavesUnidades = async (palabra) => {
 
 export const obtenerProducto = async (clave) => {
     try{
-        const datos = await axios.get(`${rutaTemporal}v1/productos/detalle/${clave}`);
+        const datos = await axios.get(`${rutaProductos}v1/productos/detalle/${clave}`);
 
         if(datos.status === 200 && datos.statusText === "OK"){
             return datos.data.response[0];
@@ -150,7 +151,7 @@ export const obtenerProducto = async (clave) => {
 };
 export const crearProducto = async (producto) => {
     try{
-        const data = await axios.post(`${rutaTemporal}v1/productos/crear`, producto);
+        const data = await axios.post(`${rutaProductos}v1/productos/crear`, producto);
 
         if(data.status === 200 && data.statusText === "OK"){
             Swal.fire({
@@ -171,20 +172,11 @@ export const crearProducto = async (producto) => {
         });
     }
 };
-export const borrarProducto = async (id) => {
+export const borrarProducto = async (payload) => {
     try{
-        const payload = {
-            "ProductoId": id,
-            "BorradoPor": 2,
-        };
-        const datos = await axios.delete(`${rutaTemporal}v1/productos/borrar`, {data: payload});
+        const datos = await axios.delete(`${rutaProductos}v1/productos/borrar`, {data: payload});
 
         if(datos.status === 200 && datos.statusText === "OK"){
-            Swal.fire({
-                title: `${datos.data.message}`,
-                text: `Producto con ID: ${id} desactivado correctamente`,
-                icon: "success",
-            });
             return true;
         }
     }catch (error){

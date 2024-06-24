@@ -1,13 +1,13 @@
 <template>
     <div class="flex items-center h-inputHeight">
         <input 
-            class=" text-primaryFontColor rounded-inputRadius border-inputBorder border-inputWidth p-paddingInput lg:w-96 md:w-60 sm:w-32 outline-none"
+            class=" text-primaryFontColor rounded-inputRadius border-inputBorder border-inputWidth p-paddingInput lg:w-96 md:w-60 sm:w-32 outline-none h-full text-base"
             type="text" 
             v-model="txtBusqueda" 
             @keyup.enter="buscar(txtBusqueda)" 
             placeholder="Coca-Cola 600ml"
         >
-        <img src="/svg/icons/buscador.svg" alt="Icono de buscador" class="cursor-pointer h-buscadorIconHeight ml-4" @click="buscar(txtBusqueda)">
+        <img src="/svg/generalIcons/searchIco.svg" alt="Icono de buscador" class="cursor-pointer h-buscadorIconHeight ml-4" @click="buscar(txtBusqueda)">
     </div>
 </template>
 
@@ -15,7 +15,7 @@
 import { ref } from 'vue';
 import Swal from 'sweetalert2';
 const emit = defineEmits('eBusqueda');
-import { useProductos } from '@/store/index'
+import { useProductos } from '@/store/productsStore'
 const store = useProductos();
 
 const txtBusqueda = ref('');
@@ -47,4 +47,7 @@ function buscar(texto) {
 </script>
 
 <style scoped>
+input::placeholder {
+    color: theme('colors.disableBodyTable');
+}
 </style>
