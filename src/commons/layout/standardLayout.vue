@@ -1,7 +1,10 @@
 <script setup>
 import { ref } from 'vue';
 import titleH1 from '@/commons/ui/title-h1/title-h1.vue';
-import ventanas from '@/modules/products/components/windows.vue'
+/* import { useWindows } from '@/modules/products/composables/useWindows.js'; */
+
+import { useRoute } from 'vue-router';
+const route = useRoute();
 </script>
 
 <template>

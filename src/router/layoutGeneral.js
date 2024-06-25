@@ -1,17 +1,12 @@
 export default{    
-    path:'/general',
     name: 'layContent',
+    path:'/general',
     component: () => import('@/commons/layout/standardLayout.vue'),
-/*     children:[
+    children:[
         {
-            path: '/productos/',
-            name: 'productos',
-            component: () => import('@/modules/products/views/productos.vue')
+            path: '/coins/',
+            name: 'coins',
+            component: () => import('@/modules/SAT/coins/views/coins.vue'),
         },
-        {
-            path: '/productos/formulario/:tipo?/:id?',
-            name: 'formProducts',
-            component: () => import('@/modules/products/views/formProducts.vue')
-        },
-    ] */
+    ]
 };

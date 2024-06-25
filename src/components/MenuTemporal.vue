@@ -2,12 +2,12 @@
 import { ref } from 'vue';
 const modulos = ref([
     { nombre: 'Productos', ruta: '/productos' },
+    { nombre: 'frmProductos - Layout Window', ruta: { name: 'formProducts'}},
     { nombre: 'Login', ruta: '/login' },
     { nombre: 'Horacio', ruta: '/helloword' },
+    { nombre: 'Coins', ruta: { name: 'coins' } },
     { nombre: 'Layout Window', ruta: { name: 'layWindow'}},
     { nombre: 'Layout Standard', ruta: { name: 'layContent'}},
-    { nombre: 'Productos - Layout Window', ruta: { name: 'productos'}},
-    { nombre: 'frmProductos - Layout Window', ruta: { name: 'formProducts'}},
 ]);
 </script>
 
