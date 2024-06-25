@@ -10,6 +10,8 @@ const modulos = ref([
     { nombre: 'frmProductos - Layout Window', ruta: { name: 'formProducts'}},
     { nombre: 'Codigos Postales - SAT', ruta: { name: 'zipcode'}},
     { nombre: 'Colonias - SAT', ruta: { name: 'colony'}},
+    { nombre: 'CFDi - SAT', ruta: { name: 'cfdi'}},
+
 
 
 ]);
