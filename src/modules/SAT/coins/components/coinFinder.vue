@@ -5,7 +5,7 @@
             type="text" 
             v-model="txtBusqueda" 
             @keyup.enter="buscar(txtBusqueda)" 
-            placeholder="Nombre producto"
+            placeholder="Nombre moneda"
         >
         <img src="/svg/generalIcons/searchIco.svg" alt="Icono de buscador" class="cursor-pointer h-buscadorIconHeight ml-4" @click="buscar(txtBusqueda)">
     </div>
@@ -14,21 +14,15 @@
 <script setup>
 import { ref } from 'vue';
 import Swal from 'sweetalert2';
+import { coinsStore } from '@/store/coinsStore'
 const emit = defineEmits('eBusqueda');
-import { useProductos } from '@/store/productsStore'
-const store = useProductos();
+const store = coinsStore();
 
 const txtBusqueda = ref('');
-const props = defineProps({
-    tipoProducto: {
-        type: String,
-        default: 'Todos'
-    }
-});
 
 function buscar(texto) {
     if (texto.length != 0) { 
-        store.buscarProductos(texto, props.tipoProducto).then((res) => {
+        store.buscarMonedas(texto).then((res) => {
             if (res) {
                 emit('eBusqueda', texto);
             }else{

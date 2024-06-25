@@ -9,6 +9,7 @@ import { useProductos } from '@/store/productsStore'
 import Swal from 'sweetalert2';
 import { useWindows } from '@/modules/products/composables/useWindows.js';
 import { useListProducts } from '@/modules/products/composables/useListProducts.js';
+import titleH2 from '@/commons/ui/title-h2/title-h2.vue';
 
 const { borrarProducto: deleteProduct } = useListProducts();
 const store = useProductos();
@@ -102,7 +103,7 @@ watch(tipoProducto, (newValue, oldValue) => {
 <template>
 
     <div class="w-full h-[93%] max-h-[93%] min-h-[93%] p-4">
-        <h2 class="text-h2Size font-h2Weight text-primaryFontColor m-h2Margin"> Listado de Producto </h2>
+        <titleH2> Listado de Producto </titleH2>
 
         <div class="frm flex justify-between mb-6">
             <div>

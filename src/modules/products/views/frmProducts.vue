@@ -1,7 +1,8 @@
 <script setup>
-import formulario from '@/modules/products/components/frmProducts.vue';
+import formulario from '@/modules/products/components/frmDataProducts.vue';
 import formularioImagen from '@/modules/products/components/frmImage.vue';
 import { useFormProducts } from '@/modules/products/composables/useFormProducts.js';
+import titleH2 from '@/commons/ui/title-h2/title-h2.vue';
 
 const props = defineProps({
     tipoProducto: {
@@ -15,7 +16,7 @@ const { producto } = useFormProducts(props);
 
 <template>
     <div class="w-full h-full max-h-full min-h-full p-4">
-        <h2 class="text-h2Size font-h2Weight text-primaryFontColor m-h2Margin"> Formulario de Productos </h2>
+        <titleH2> Formulario de Productos </titleH2>
         <main class="flex justify-between text-primaryFontColor items-start min-w-full max-w-full bg-transparent mb-2 xl:flex-nowrap flex-wrap">
             <formulario :producto="producto" />
 
