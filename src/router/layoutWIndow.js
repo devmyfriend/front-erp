@@ -18,5 +18,10 @@ export default{
             name: 'zipcode',
             component: () => import('@/modules/zipcode/views/zipCode.vue')
         },
+        {
+            path: '/colonies/',
+            name: 'colony',
+            component: () => import('@/modules/colony/views/colony.vue')
+        },
     ]
 };

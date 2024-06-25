@@ -9,6 +9,8 @@ const modulos = ref([
     { nombre: 'Productos - Layout Window', ruta: { name: 'productos'}},
     { nombre: 'frmProductos - Layout Window', ruta: { name: 'formProducts'}},
     { nombre: 'Codigos Postales - SAT', ruta: { name: 'zipcode'}},
+    { nombre: 'Colonias - SAT', ruta: { name: 'colony'}},
+
 
 ]);
 </script>
