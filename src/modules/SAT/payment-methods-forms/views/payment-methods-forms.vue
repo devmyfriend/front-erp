@@ -16,14 +16,12 @@ const ListadoFormasPago = ref([]);
 onBeforeMount(() => {
     setTitle('Formas y métodos de pago');
     cargarDatos();
-    console.log('El titulo es: ', getTitle());  
 });
 
 const cargarDatos = () => {
     store.cargarMetodosFormasPago().then(() => {
         ListadoMetodosPago.value = store.getMetodosPago;
         ListadoFormasPago.value = store.getFormasPago;
-        console.log('Cabeceras Metodos: ' + Object.keys(ListadoMetodosPago.value[0]) + '\nCabeceras Formas: ' + Object.keys(ListadoFormasPago.value[0]));
     });
 };
 
