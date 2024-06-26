@@ -14,7 +14,6 @@ const ListadoMonedas = ref([]);
 onBeforeMount(() => {
     setTitle('Monedas SAT');
     cargarDatos();
-    console.log('El titulo es: ', getTitle());  
 });
 
 const cargarDatos = () => {
@@ -29,7 +28,6 @@ const handleBusqueda = (texto) => {
             ListadoMonedas.value = store.getMonedas;
         });
     } else {
-        console.log('Sin texto');
         cargarDatos();
     }
 };

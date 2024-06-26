@@ -35,7 +35,6 @@
   onMounted(() => {
     store.cargarClavesProductos().then(() => {
         listado.value = store.getClavesProductos;
-        console.log('Cabeceras: ' + Object.keys(listado.value[0]));
     });
   });
   

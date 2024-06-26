@@ -6,7 +6,7 @@ import tablePaymentMethods from '@/modules/SAT/payment-methods-forms/components/
 import tablePaymentForms from '@/modules/SAT/payment-methods-forms/components/tablePaymentForms.vue';
 
 import { useLayout } from '@/commons/composables/useLayout.js';
-const { setTitle, getTitle } = useLayout();
+const { setTitle } = useLayout();
 
 import { paymentStore } from '@/store/paymentStore';
 const store = paymentStore();
