@@ -2,7 +2,7 @@
 import { onMounted, onUpdated, ref, watch } from 'vue';
 import titleH1 from '@/commons/ui/title-h1/title-h1.vue';
 /* import { useWindows } from '@/modules/products/composables/useWindows.js'; */
-import { useLayout } from '@/modules/SAT/coins/composables/useLayout.js';
+import { useLayout } from '@/commons/composables/useLayout.js';
 import { useRoute } from 'vue-router';
 const route = useRoute();
 

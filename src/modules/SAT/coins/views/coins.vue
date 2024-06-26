@@ -3,7 +3,7 @@ import { onBeforeMount, onMounted, ref } from 'vue';
 import titleH2 from '@/commons/ui/title-h2/title-h2.vue';
 import tableCoins from '@/modules/SAT/coins/components/tableCoins.vue';
 import coinFinder from '@/modules/SAT/coins/components/coinFinder.vue';
-import { useLayout } from '@/modules/SAT/coins/composables/useLayout.js';
+import { useLayout } from '@/commons/composables/useLayout.js';
 const { setTitle, getTitle } = useLayout();
 
 import { coinsStore } from '@/store/coinsStore';

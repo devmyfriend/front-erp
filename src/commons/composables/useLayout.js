@@ -1,6 +1,6 @@
 import { ref } from "vue";
 
-const title = ref("Productos");
+const title = ref("Módulo");
 
 function setTitle(newTitle) {
   title.value = newTitle;
