@@ -39,10 +39,10 @@ const handleBusqueda = (texto) => {
         <div class="w-full h-full flex flex-col">
             <titleH2> Listado de Monedas </titleH2>
 
-            <div class="flex flex-col min-w-full min-h-9 max-w-full max-h-9">
+            <div class="flex flex-col min-w-full min-h-9 max-w-full max-h-9 mb-6">
                 <coinFinder @eBusqueda="handleBusqueda" />
             </div>
-            <div class="w-full items-center flex flex-col overflow-y-scroll text-secondaryFontColor text-base">
+            <div class="w-full items-center flex flex-col overflow-y-scroll text-secondaryFontColor text-base rounded-3xl">
                 <tableCoins :ListadoMonedas="ListadoMonedas"/>
             </div>
 

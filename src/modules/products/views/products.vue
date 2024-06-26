@@ -123,7 +123,7 @@ watch(tipoProducto, (newValue, oldValue) => {
         </div>
 
         <div
-            class="w-full max-h-[66vh] min-h-[66vh] items-center flex flex-col overflow-y-scroll text-secondaryFontColor text-base">
+            class="w-full max-h-[66vh] min-h-[66vh] items-center flex flex-col overflow-y-scroll text-secondaryFontColor text-base rounded-3xl">
             <tablaProductos :ListadoProductos="ListadoProductos" :tipoProducto="tipoProducto"
                 @eEditarProducto="editarProducto" @eBorrarProducto="borrarProducto" />
         </div>
