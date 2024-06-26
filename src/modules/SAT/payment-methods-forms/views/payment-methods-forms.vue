@@ -27,17 +27,6 @@ const cargarDatos = () => {
     });
 };
 
-const handleBusqueda = (texto) => {
-    if (texto) {
-        store.buscarMonedas(texto).then(() => {
-            ListadoMonedas.value = store.getMonedas;
-        });
-    } else {
-        console.log('Sin texto');
-        cargarDatos();
-    }
-};
-
 </script>
 
 <template>
