@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { borrarProducto, buscarClavesProductos, buscarClavesUnidades, buscarProductos, cargarClavesProductos, cargarClavesUnidades, cargarProductos, cargarTiposProducto, obtenerProducto} from "@/services/productsServices";
+import * as productServices from "@/services/productsServices";
 
 export const useProductos = defineStore('Productos', {
     state: () => ({
@@ -25,32 +25,32 @@ export const useProductos = defineStore('Productos', {
     },
     actions: {
         async cargarProductos() {
-            const data = await cargarProductos();
+            const data = await productServices.cargarProductos();
             if (data) {
                 this.ListadoProductos = data;
             }
         },
         async cargarTiposProducto() {
-            const data = await cargarTiposProducto();
+            const data = await productServices.cargarTiposProducto();
             if (data) {
                 this.ListadoTiposProducto = data;
             }
         },
         async buscarProductos(palabra, tipo) {
-            const data = await buscarProductos(palabra, tipo);
+            const data = await productServices.buscarProductos(palabra, tipo);
             if (data) {
                 this.ListadoProductos = data;
                 return true;
             }
         },
         async borrarProducto(payload) {
-            const data = await borrarProducto(payload);
+            const data = await productServices.borrarProducto(payload);
             if (data) {
                 return true;
             }
         },
         async obtenerProducto(id) {
-            const data = await obtenerProducto(id);
+            const data = await productServices.obtenerProducto(id);
             if (data) {
                 this.Producto = data;
                 return true;
@@ -58,13 +58,13 @@ export const useProductos = defineStore('Productos', {
         },
 
         async cargarClavesUnidades(pagina) {
-            const data = await cargarClavesUnidades(pagina);
+            const data = await productServices.cargarClavesUnidades(pagina);
             if (data) {
                 return data;
             }
         },
         async cargarClavesProductos(pagina) {
-            const data = await cargarClavesProductos(pagina);
+            const data = await productServices.cargarClavesProductos(pagina);
             if (data) {
                 this.ListadoClavesProductos = data;
                 return data;
@@ -73,13 +73,13 @@ export const useProductos = defineStore('Productos', {
 
 
         async buscarClavesProductos(palabra, pagina) {
-            const data = await buscarClavesProductos(palabra, pagina);
+            const data = await productServices.buscarClavesProductos(palabra, pagina);
             if (data) {
                 return data;
             }
         },
         async buscarClavesUnidades(palabra, pagina) {
-            const data = await buscarClavesUnidades(palabra, pagina);
+            const data = await productServices.buscarClavesUnidades(palabra, pagina);
             if (data) {
                 return data;
             }

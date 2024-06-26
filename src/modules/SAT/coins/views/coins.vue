@@ -3,7 +3,7 @@ import { onBeforeMount, onMounted, ref } from 'vue';
 import titleH2 from '@/commons/ui/title-h2/title-h2.vue';
 import tableCoins from '@/modules/SAT/coins/components/tableCoins.vue';
 import coinFinder from '@/modules/SAT/coins/components/coinFinder.vue';
-import { useLayout } from '@/modules/SAT/coins/composables/useLayout.js';
+import { useLayout } from '@/commons/composables/useLayout.js';
 const { setTitle, getTitle } = useLayout();
 
 import { coinsStore } from '@/store/coinsStore';
@@ -14,7 +14,6 @@ const ListadoMonedas = ref([]);
 onBeforeMount(() => {
     setTitle('Monedas SAT');
     cargarDatos();
-    console.log('El titulo es: ', getTitle());  
 });
 
 const cargarDatos = () => {
@@ -29,7 +28,6 @@ const handleBusqueda = (texto) => {
             ListadoMonedas.value = store.getMonedas;
         });
     } else {
-        console.log('Sin texto');
         cargarDatos();
     }
 };
@@ -44,10 +42,6 @@ const handleBusqueda = (texto) => {
             <div class="flex flex-col min-w-full min-h-9 max-w-full max-h-9">
                 <coinFinder @eBusqueda="handleBusqueda" />
             </div>
-
-            <div class="flex w-full max-h-[80vh] bg-white flex-col mt-4">
-            </div>
-
             <div class="w-full items-center flex flex-col overflow-y-scroll text-secondaryFontColor text-base">
                 <tableCoins :ListadoMonedas="ListadoMonedas"/>
             </div>

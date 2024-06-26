@@ -47,7 +47,6 @@
             row.addEventListener('click', () => {
             const index = row.getAttribute('data-index');
             const selectedData = props.registros[index];
-            console.log('[Modal] Registro seleccionado: ', JSON.stringify(selectedData.ClaveProductoServicio));
             Swal.close();
             emit('eSeleccionar', selectedData);
             });
@@ -70,7 +69,6 @@
     });
 
     const cerrarModal = () => {
-        console.log('[Cerrando]');
         emit('eCancelar');
         Swal.close();
     };

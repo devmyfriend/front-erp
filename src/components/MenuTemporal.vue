@@ -5,7 +5,8 @@ const modulos = ref([
     { nombre: 'frmProductos - Layout Window', ruta: { name: 'formProducts'}},
     { nombre: 'Login', ruta: '/login' },
     { nombre: 'Horacio', ruta: '/helloword' },
-    { nombre: 'Coins', ruta: { name: 'coins' } },
+    { nombre: 'Monedas', ruta: { name: 'coins' } },
+    { nombre: 'Metodos y formas de pago', ruta:  { name: 'payment'}},
     { nombre: 'Layout Window', ruta: { name: 'layWindow'}},
     { nombre: 'Layout Standard', ruta: { name: 'layContent'}},
 ]);
