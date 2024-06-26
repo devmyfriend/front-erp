@@ -1,14 +1,20 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onBeforeMount, onMounted, ref } from 'vue';
 import titleH2 from '@/commons/ui/title-h2/title-h2.vue';
 import tableCoins from '@/modules/SAT/coins/components/tableCoins.vue';
 import coinFinder from '@/modules/SAT/coins/components/coinFinder.vue';
+import { useLayout } from '@/modules/SAT/coins/composables/useLayout.js';
+const { setTitle, getTitle } = useLayout();
+
 import { coinsStore } from '@/store/coinsStore';
+
 const store = coinsStore();
 const ListadoMonedas = ref([]);
 
-onMounted(() => {
+onBeforeMount(() => {
+    setTitle('Monedas SAT');
     cargarDatos();
+    console.log('El titulo es: ', getTitle());  
 });
 
 const cargarDatos = () => {

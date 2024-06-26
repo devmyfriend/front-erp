@@ -10,7 +10,7 @@ function getTitle() {
   return title.value;
 }
 
-export function useWindows() {
+export function useLayout() {
   return {
     title,
     setTitle,
