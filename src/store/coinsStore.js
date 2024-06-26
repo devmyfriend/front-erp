@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { cargarMonedas, buscarMonedas } from '@/services/coinsServices';
+import * as coinsServices from '@/services/coinsServices';
 
 export const coinsStore = defineStore('Coins', {
     state: () => ({
@@ -12,13 +12,13 @@ export const coinsStore = defineStore('Coins', {
     },
     actions: {
         async cargarMonedas() {
-            const data = await cargarMonedas();
+            const data = await coinsServices.cargarMonedas();
             if (data) {
                 this.ListadoMonedas = data;
             }
         },
         async buscarMonedas(moneda) {
-            const data = await buscarMonedas(moneda);
+            const data = await coinsServices.buscarMonedas(moneda);
             if (data) {
                 if (data.length > 0){
                     this.ListadoMonedas = data;

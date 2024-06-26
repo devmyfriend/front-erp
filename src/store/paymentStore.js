@@ -1,6 +1,6 @@
 
 import { defineStore } from 'pinia';
-import { cargarMetodosFormasPago } from '@/services/paymentServices';
+import * as paymentServices from '@/services/paymentServices';
 
 export const paymentStore = defineStore('Payment', {
     state: () => ({
@@ -17,7 +17,7 @@ export const paymentStore = defineStore('Payment', {
     },
     actions: {
         async cargarMetodosFormasPago() {
-            const data = await cargarMetodosFormasPago();
+            const data = await paymentServices.cargarMetodosFormasPago();
             if (data) {
                 const { metodos, formas } = data[0];
                 this.ListadoMetodosPago = metodos;
