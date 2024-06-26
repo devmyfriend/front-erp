@@ -44,10 +44,6 @@ const handleBusqueda = (texto) => {
             <div class="flex flex-col min-w-full min-h-9 max-w-full max-h-9">
                 <coinFinder @eBusqueda="handleBusqueda" />
             </div>
-
-            <div class="flex w-full max-h-[80vh] bg-white flex-col mt-4">
-            </div>
-
             <div class="w-full items-center flex flex-col overflow-y-scroll text-secondaryFontColor text-base">
                 <tableCoins :ListadoMonedas="ListadoMonedas"/>
             </div>
