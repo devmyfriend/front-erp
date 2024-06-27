@@ -1,14 +1,14 @@
 export default{    
-    name: 'layContent',
     path:'/general',
+    name: 'layContent',
     component: () => import('@/commons/layout/standardLayout.vue'),
     children:[
         {
-            path: '/coins/',
+            path: '/monedas/',
             name: 'coins',
             component: () => import('@/modules/SAT/coins/views/coins.vue'),
         },{
-            path: '/payment',
+            path: '/pagos',
             name: 'payment',
             component: () => import('@/modules/SAT/payment-methods-forms/views/payment-methods-forms.vue')
         }
