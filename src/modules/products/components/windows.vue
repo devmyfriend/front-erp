@@ -1,36 +1,45 @@
 <script setup>
-import { computed } from 'vue';
+    import { computed, onMounted, onUpdated, ref, watch } from 'vue';
+    import { useRoute } from 'vue-router';
+    import { windowLayoutStore } from '@/store/windowLayoutStore';
+    const route = useRoute();
+    const windowStore = windowLayoutStore();
 
-const props = defineProps({
-    tipoProducto: {
-        type: String,
-        default: 'Todos'
-    },
-    codigoProducto: {
-        type: String,
-        default: ''
-    },
-    btActivo: {
-        type: Number,
-        default: 0
-    },
-    nombreTipo: {
-        type: String,
-        default: ''
-    }
-});
+    const btActivo = ref( windowStore.getBtActivo );
 
-const tipoProducto = computed(() => {
-    return props.tipoProducto || 'Todos';
-});
+    const props = defineProps({
+        tipoProducto: {
+            type: String,
+            default: 'Todos'
+        },
+        codigoProducto: {
+            type: String,
+            default: ''
+        },
+        nombreTipo: {
+            type: String,
+            default: ''
+        }
+    });
 
-const codigoProducto = computed(() => {
-    return props.codigoProducto || '';
-});
+    const tipoProducto = computed(() => {
+        return props.tipoProducto || 'Todos';
+    });
 
-const btActivo = computed(() => {
-    return props.btActivo || 1;
-});
+    const codigoProducto = computed(() => {
+        return props.codigoProducto || '';
+    });
+
+    onMounted(() => {
+        btActivo.value = windowStore.getBtActivo;
+        console.log('[onMounted] btActivo:', btActivo.value);
+    });
+    watch(() => route.name, () => {
+        setTimeout(() => {
+            btActivo.value = windowStore.getBtActivo;
+            console.log('[watch] btActivo:', btActivo.value);
+        }, 150);
+    });
 </script>
 
 <template>
@@ -94,34 +103,34 @@ const btActivo = computed(() => {
 </template>
 
 <style scoped>
-.ventanas {
-    display: grid;
-    grid-template-columns: auto 6rem;
-}
+    .ventanas {
+        display: grid;
+        grid-template-columns: auto 6rem;
+    }
 
-.rutas a {
-    padding: 0.25rem 1rem;
-    min-width: max-content;
-}
+    .rutas a {
+        padding: 0.25rem 1rem;
+        min-width: max-content;
+    }
 
-.rutas a:first-child {
-    border-left: none;
-    border-bottom-left-radius: 0rem;
-    padding-left: 2rem;
-}
+    .rutas a:first-child {
+        border-left: none;
+        border-bottom-left-radius: 0rem;
+        padding-left: 2rem;
+    }
 
-.rutas a:last-child {
-    border-right: 1px solid #000;
-    border-bottom-right-radius: 0rem;
+    .rutas a:last-child {
+        border-right: 1px solid #000;
+        border-bottom-right-radius: 0rem;
 
-}
+    }
 
-.btActivado {
-    background-color: #fff;
-    color: #000;
-    font-weight: bold;
-    border: none;
-    border-top: 1px solid #000;
-    height: 100%;
-}
+    .btActivado {
+        background-color: #fff;
+        color: #000;
+        font-weight: bold;
+        border: none;
+        border-top: 1px solid #000;
+        height: 100%;
+    }
 </style>
