@@ -16,6 +16,10 @@ export default{
             path: '/comprobantes',
             name: 'receipts',
             component: () => import('@/modules/SAT/receipt-types/views/receipt-types.vue')
+        },            {
+            path: '/paises',
+            name: 'countries',
+            component: () => import('@/modules/SAT/countries/views/countries.vue')
         }
     ]
 };
