@@ -9,6 +9,7 @@ const modulos = ref([
     { nombre: 'Metodos y formas de pago', ruta:  { name: 'payment'}},
     { nombre: 'Tipo de comprobantes', ruta: { name: 'receipts'}},
     { nombre: 'Paises', ruta: { name: 'countries'}},
+    { nombre: 'Impuestos SAT', ruta: { name: 'taxesSAT'}},
     { nombre: 'Layout Window', ruta: { name: 'layWindow'}},
     { nombre: 'Layout Standard', ruta: { name: 'layContent'}},
 ]);
