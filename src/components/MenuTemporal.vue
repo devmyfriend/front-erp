@@ -7,6 +7,9 @@ const modulos = ref([
     { nombre: 'Horacio', ruta: '/helloword' },
     { nombre: 'Monedas', ruta: { name: 'coins' } },
     { nombre: 'Metodos y formas de pago', ruta:  { name: 'payment'}},
+    { nombre: 'Tipo de comprobantes', ruta: { name: 'receipts'}},
+    { nombre: 'Layout Window', ruta: { name: 'layWindow'}},
+    { nombre: 'Layout Standard', ruta: { name: 'layContent'}},
     { nombre: 'Layout Window', ruta: { name: 'layWindow'}},
     { nombre: 'Layout Standard', ruta: { name: 'layContent'}},
 ]);

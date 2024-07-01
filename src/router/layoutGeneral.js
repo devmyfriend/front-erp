@@ -11,6 +11,11 @@ export default{
             path: '/pagos',
             name: 'payment',
             component: () => import('@/modules/SAT/payment-methods-forms/views/payment-methods-forms.vue')
+        },
+        {
+            path: '/comprobantes',
+            name: 'receipts',
+            component: () => import('@/modules/SAT/receipt-types/views/receipt-types.vue')
         }
     ]
 };
