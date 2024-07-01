@@ -1,18 +1,26 @@
 <script setup>
 
-import { ref, watch, onBeforeMount } from 'vue';
+import { ref, watch, onBeforeMount, inject, onUpdated, onMounted } from 'vue';
 import buscadorProductos from '@/modules/products/components/productFinder.vue';
 import tablaProductos from '@/modules/products/components/tableProducts.vue'
 import btnAgregar from '@/commons/ui/btn-agregar/btn-agregar.vue';
 import { useRouter } from 'vue-router';
 import { useProductos } from '@/store/productsStore'
-import Swal from 'sweetalert2';
+import { windowLayoutStore } from '@/store/windowLayoutStore';
+import ventanas from '@/modules/products/components/windows.vue';
 import { useWindows } from '@/modules/products/composables/useWindows.js';
 import { useListProducts } from '@/modules/products/composables/useListProducts.js';
+import titleH2 from '@/commons/ui/title-h2/title-h2.vue';
+import Swal from 'sweetalert2';
+import { useRoute } from 'vue-router';
 
+const route = useRoute();
+const windowStore = windowLayoutStore();
 const { borrarProducto: deleteProduct } = useListProducts();
 const store = useProductos();
-const { setTitle, setBtActivo, setCodigoProducto } = useWindows();
+const { setCodigoProducto } = useWindows();
+const setTitleContent = inject('setTitleContent');
+const setWindowContent = inject('setWindowContent');
 const router = useRouter();
 const tipoProducto = ref('Todos');
 const ListadoProductos = ref([]);
@@ -73,14 +81,20 @@ const borrarCodigoProducto = () => {
     setCodigoProducto('');
     CodigoProducto.value = '';
 }
-
+const updateTitle = () => {
+  setTitleContent('Productos');
+  setWindowContent(ventanas);
+};
 onBeforeMount(() => {
-    setTitle('Listado de Productos');
-    setBtActivo(1);
     cargarDatos();
+    updateTitle();
 });
 
-watch(tipoProducto, (newValue, oldValue) => {
+onUpdated(() => {
+    windowStore.setBtActivo(1);
+});
+
+watch(tipoProducto, (newValue) => {
     if (newValue == 0) {
         cargarDatos();
     } else {
@@ -102,7 +116,7 @@ watch(tipoProducto, (newValue, oldValue) => {
 <template>
 
     <div class="w-full h-[93%] max-h-[93%] min-h-[93%] p-4">
-        <h2 class="text-h2Size font-h2Weight text-primaryFontColor m-h2Margin"> Listado de Producto </h2>
+        <titleH2> Listado de Producto </titleH2>
 
         <div class="frm flex justify-between mb-6">
             <div>
@@ -122,7 +136,7 @@ watch(tipoProducto, (newValue, oldValue) => {
         </div>
 
         <div
-            class="w-full max-h-[66vh] min-h-[66vh] items-center flex flex-col overflow-y-scroll text-secondaryFontColor text-base">
+            class="w-full max-h-[66vh] min-h-[66vh] items-center flex flex-col overflow-y-scroll text-secondaryFontColor text-base rounded-3xl">
             <tablaProductos :ListadoProductos="ListadoProductos" :tipoProducto="tipoProducto"
                 @eEditarProducto="editarProducto" @eBorrarProducto="borrarProducto" />
         </div>

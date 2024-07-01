@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { cargarClavesProductos } from '@/services/clavesProductosServices'
+import * as ProductKeyServices from '@/services/productKeyServices';
 
 export const cProductosStore = defineStore('cProductos', {
     state: () => ({
@@ -12,7 +12,7 @@ export const cProductosStore = defineStore('cProductos', {
     },
     actions: {
         async cargarClavesProductos() {
-            const data = await cargarClavesProductos();
+            const data = await ProductKeyServices.cargarClavesProductos();
             if (data) {
                 this.listadoClavesProductos = data;
             }

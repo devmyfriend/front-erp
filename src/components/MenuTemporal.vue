@@ -2,14 +2,19 @@
 import { ref } from 'vue';
 const modulos = ref([
     { nombre: 'Productos', ruta: '/productos' },
+    { nombre: 'frmProductos - Layout Window', ruta: { name: 'formProducts'}},
     { nombre: 'Login', ruta: '/login' },
     { nombre: 'Horacio', ruta: '/helloword' },
+    { nombre: 'Monedas', ruta: { name: 'coins' } },
+    { nombre: 'Metodos y formas de pago', ruta:  { name: 'payment'}},
+    { nombre: 'Tipo de comprobantes', ruta: { name: 'receipts'}},
+    { nombre: 'Paises', ruta: { name: 'countries'}},
+    { nombre: 'Impuestos SAT', ruta: { name: 'taxesSAT'}},
+
+    { nombre: 'Codigos Postales - SAT', ruta: { name: 'zipcode'}},
+    
     { nombre: 'Layout Window', ruta: { name: 'layWindow'}},
     { nombre: 'Layout Standard', ruta: { name: 'layContent'}},
-    { nombre: 'Productos - Layout Window', ruta: { name: 'productos'}},
-    { nombre: 'frmProductos - Layout Window', ruta: { name: 'formProducts'}},
-    { nombre: 'Codigos Postales - SAT', ruta: { name: 'zipcode'}},
-
 ]);
 </script>
 

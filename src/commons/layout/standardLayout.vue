@@ -1,7 +1,29 @@
 <script setup>
-import { ref } from 'vue';
+import { onMounted, onUpdated, ref, watch } from 'vue';
 import titleH1 from '@/commons/ui/title-h1/title-h1.vue';
-import ventanas from '@/modules/products/components/windows.vue'
+/* import { useWindows } from '@/modules/products/composables/useWindows.js'; */
+import { useLayout } from '@/commons/composables/useLayout.js';
+import { useRoute } from 'vue-router';
+const route = useRoute();
+
+const { getTitle } = useLayout();
+const titulo = ref('');
+
+const updateTitle = () => {
+    titulo.value = getTitle();
+};
+
+watch(() => route.name, (newRouteName) => {
+    updateTitle();
+}, { immediate: true });
+
+onMounted(() => {
+    updateTitle();
+});
+
+onUpdated(() => {
+    updateTitle();
+});
 </script>
 
 <template>
@@ -9,7 +31,7 @@ import ventanas from '@/modules/products/components/windows.vue'
         <titleH1 class="h-[4.75%] mb-[1.25%]">
             <template v-slot>
                 <slot name="Titulo">
-                    ERP
+                    {{ titulo }}
                 </slot> 
             </template>
         </titleH1>

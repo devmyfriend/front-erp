@@ -7,7 +7,6 @@ export const cargarClavesProductos = async (pagina) => {
         if (pagina === undefined){
             pagina = 1;
         }
-        console.log('La pagina es: ' + pagina);
         const datos = await axios.get(`${rutaGeneral}v1/productos/servicio/palabra/${pagina}`);
         if (datos.status === 200 && datos.statusText === "OK") {
             return datos.data.response;

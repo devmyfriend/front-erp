@@ -16,28 +16,19 @@ export default {
         danger:    '#DC3545',
         warning:   '#FFC107',
         disable:   '#999',
-        /* Lalo */
         primaryFontColor: '#000000',
         secondaryFontColor: '#ffffff',
         placeholderFontColor: '#353535',
-        
         backgroundInputColor: '#f2f2f2',
-
         primaryBtnColor: '#353535',
-        
         primaryHeaderTable: '#353535',
-
         primaryUnderline: '#fff',
-
         primaryBodyTable: '#e6e6e6',
         secondaryBodyTable: '#d8d5d5',
         disableBodyTable: '#aaaaaa',
-
         primaryPlaceholderColor: '#CBCBCB',
-
         primaryFrmContainer: '#d9d9d9',
         secondaryFrmContainer: '#cbcbcb',
-
         modalConfirm: '#f16136',
         modalCancel: '#353535',
       },

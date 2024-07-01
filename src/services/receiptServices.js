@@ -1,12 +1,12 @@
 import axios from "axios";
 import Swal from "sweetalert2";
-const rutaProductos = import.meta.env.VITE_API_PRODUCTS_URL;
+const rutaGeneral = import.meta.env.VITE_API_URL;
 
-export const cargarLineas = async () => {
+export const cargarComprobantes = async () => {
     try {
-        const datos = await axios.get(`${rutaProductos}v1/lineas`);
+        const datos = await axios.get(`${rutaGeneral}v1/comprobante`);
         if (datos.status === 200 && datos.statusText === "OK") {
-            return datos.data.response;
+            return datos.data;
         }
     } catch (error) {
         console.error(error);
