@@ -24,9 +24,9 @@ export default{
             component: () => import('@/modules/colony/views/colony.vue')
         },
         {
-            path: '/cfdi/',
-            name: 'cfdi',
-            component: () => import('@/modules/cfdi/views/cfdi.vue')
+            path: '/regimen/',
+            name: 'regimen',
+            component: () => import('@/modules/regimenCfdi/views/regimenCfdi.vue')
         },
     ]
 };
