@@ -10,8 +10,6 @@ const modulos = ref([
     { nombre: 'Tipo de comprobantes', ruta: { name: 'receipts'}},
     { nombre: 'Layout Window', ruta: { name: 'layWindow'}},
     { nombre: 'Layout Standard', ruta: { name: 'layContent'}},
-    { nombre: 'Layout Window', ruta: { name: 'layWindow'}},
-    { nombre: 'Layout Standard', ruta: { name: 'layContent'}},
 ]);
 </script>
 
