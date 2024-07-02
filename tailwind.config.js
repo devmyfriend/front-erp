@@ -7,15 +7,27 @@ export default {
   theme: {
     extend: {
       colors:{
-        sidebar:   '#0f0f0f',
-        general:   '#353535',
-        navbar:    '#232323',
-        container: '#ffffff',
-        primary:   '#f16136',
+        sidebar: {
+          DEFAULT: '#0f0f0f',
+        },
+        general: {
+          DEFAULT: '#353535'
+        },
+        navbar:    {
+          DEFAULT: '#232323'
+        },
+        container: {
+          DEFAULT: '#ffffff'
+        },
+        primary: {
+          DEFAULT: '#f16136'
+        },
+
         success:   '#198754',
         danger:    '#DC3545',
         warning:   '#FFC107',
         disable:   '#999',
+        
         primaryFontColor: '#000000',
         secondaryFontColor: '#ffffff',
         placeholderFontColor: '#353535',
@@ -31,6 +43,31 @@ export default {
         secondaryFrmContainer: '#cbcbcb',
         modalConfirm: '#f16136',
         modalCancel: '#353535',
+
+
+        myfriend: {
+          100: '#92d0d0',
+          200: '#57bdbc',
+          300: '#2ba0a3',
+          400: '#106f7b',
+        },
+        thefit: {
+          100: '#737578',
+          200: '#c3c3c5',
+          300: '#fbd6cc',
+          400: '#ec6339',
+          modals: {
+            save: '#f16136',
+            cancel: '#353535',
+          }
+        },
+        bonavida: {
+          100: '#2775b9',
+          200: '#aac8e2',
+          300: '#cdd1df',
+          400: '#384981'
+        },
+
       },
       fontSize: {
         h2Size: '1.5rem',

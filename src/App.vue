@@ -16,7 +16,7 @@ input, select, textarea{
   color: theme('colors.primaryFontColor');
 }
 select{
-  background-color: theme('colors.container');
+  background-color: theme('colors.container.DEFAULT');
 }
 
 ::-webkit-scrollbar {
