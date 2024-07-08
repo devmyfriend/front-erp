@@ -10,6 +10,7 @@ export default {
         /* Diseños generales */
         blanco: '#fff',
         negro: '#000',
+        disabled: '#999',
         success:   '#198754',
         danger:    '#DC3545',
         warning:   '#FFC107',
