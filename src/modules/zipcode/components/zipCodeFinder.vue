@@ -7,7 +7,12 @@
       @keyup.enter="searchZipCode"
       placeholder="Buscar código postal"
     />
-    <searchIco class="cursor-pointer max-h-buscadorIconHeight ml-4" @click="searchZipCode" />
+    <img
+      src="/svg/generalIcons/searchIco.svg"
+      alt="Icono de buscador de código postal"
+      class="cursor-pointer h-buscadorIconHeight ml-4"
+      @click="searchZipCode"
+    />
   </div>
 </template>
 
@@ -15,7 +20,6 @@
 import { ref } from "vue";
 import { useZipCode } from "@/store/zipCodeStore";
 import Swal from "sweetalert2";
-import searchIco from "@/commons/ui/icons/actionIcons/searchIco.vue";
 
 const store = useZipCode();
 const txtBusqueda = ref("");
@@ -54,6 +58,6 @@ const searchZipCode = async () => {
 
 <style scoped>
 input::placeholder {
-  color: theme("colors.disabled");
+  color: theme("colors.disableBodyTable");
 }
 </style>
