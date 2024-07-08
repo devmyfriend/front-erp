@@ -1,6 +1,13 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, watch} from 'vue'
 import sidebarItem from '@/commons/ui/sidebar/sidebarItem.vue'
+import { useTheme } from '@/commons/composables/useTheme';
+const { themeImage } = useTheme();
+const imagen = ref(themeImage.value)
+
+watch(themeImage, (value) => {
+    imagen.value = value
+})
 
 const sidebarItems = ref([
     { icon: 'organizationIco', toProp: 'home', title: 'Organización' },
@@ -15,7 +22,7 @@ const sidebarItems = ref([
 
 <template>
     <div class="flex flex-col justify-between items-center flex-auto pt-4">
-        <img src="/svg/empresas/fitgym.svg" alt="Empresa" class=" bg-white rounded-full w-[65%]">
+        <img :src="imagen" alt="Empresa" class=" bg-white rounded-full w-[65%]">
         <div class="sideBar-Menu flex flex-col justify-center gap-[6%] items-center mt-4 py-4 flex-auto overflow-y-scroll">
             <sidebarItem 
             v-for="(item, index) in sidebarItems"

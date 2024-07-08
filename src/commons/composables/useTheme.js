@@ -1,17 +1,24 @@
 import { ref, computed } from "vue";
 
-const theme = ref(localStorage.getItem("theme") || "");
+const theme = ref(localStorage.getItem("theme") || "myfriend");
+const imagen = ref('/svg/empresas/myfriend.svg');
 
-function setTheme(newTheme) {
+const setTheme = (newTheme) => {
   theme.value = newTheme;
   localStorage.setItem("theme", newTheme);
-  document.documentElement.className = "";
-  if (newTheme === "myfriend") {
-    document.documentElement.classList.add("myfriend");
-  } else if (newTheme === "thefit") {
-    document.documentElement.classList.add("thefit");
-  } else if (newTheme === "bonavida") {
-    document.documentElement.classList.add("bonavida");
+
+  switch (newTheme) {
+    case 'myfriend':
+      imagen.value =  '/svg/empresas/myfriend.svg';
+      break;
+    case 'thefit':
+      imagen.value =  '/svg/empresas/fitgym.svg';
+      break;
+    case 'bonavida':
+      imagen.value =  '/svg/empresas/bonavida.svg';
+      break;
+    default:
+      imagen.value =  '/svg/empresas/myfriend.svg';
   }
 }
 
@@ -19,9 +26,13 @@ const themeClass = computed(() => {
   return theme.value;
 });
 
+const themeImage = computed(() => {
+  return imagen.value;
+});
 export function useTheme() {
   return {
     theme: themeClass,
+    themeImage: themeImage,
     setTheme,
   };
 }
