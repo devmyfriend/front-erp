@@ -1,5 +1,7 @@
 <script setup>
 import { ref, watch } from 'vue';
+import { useTheme } from '@/commons/composables/useTheme';
+const { theme } = useTheme();
 
 const ListadoPaises = ref([]);
 
@@ -18,17 +20,15 @@ watch(() => props.ListadoPaises, (newValue) => {
 <template>
     <table class="w-full leading-4 text-[1rem]">
         <thead>
-            <tr class="sticky top-0 h-primaryHeaderTableHeight">
-                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-tl-xl">Clave</th>
-                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-t-[1px]">Nombre</th>
+            <tr class="sticky top-0 h-primaryHeaderTableHeight text-white">
+                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-tl-xl" :class="`bg-headerTable-${theme}`">Clave</th>
+                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-t-[1px]" :class="`bg-headerTable-${theme}`">Nombre</th>
             </tr>
         </thead>
         <tbody>
-            <tr class="text-primaryFontColor" v-for="(pais, index) in ListadoPaises" :key="index"
-                :class="{
-                    'bg-primaryBodyTable': (index % 2 === 1),
-                    'bg-secondaryBodyTable': (index % 2 === 0)
-                }">
+            <tr class="bg-white" v-for="(pais, index) in ListadoPaises" :key="index"
+                :class="`text-textTable-${theme}`"
+            >
                 <td class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
                     {{ pais.ClavePais }}
                 </td>
