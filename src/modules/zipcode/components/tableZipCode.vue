@@ -1,5 +1,7 @@
 <script setup>
 import { ref, watch } from "vue";
+import { useTheme } from '@/commons/composables/useTheme';
+const { theme } = useTheme();
 
 const props = defineProps({
   ZipCodeList: {
@@ -20,61 +22,46 @@ watch(
 </script>
 
 <template>
-  <table class="w-full table-fixed text-sm">
+  <table class="w-full table-fixed text-base">
     <thead class="sticky top-0 text-white">
-      <tr
-        class="sticky top-0 bg-primaryHeaderTable h-primaryHeaderTableHeight rounded-primaryHeaderTableRadius"
-      >
-        <th
-          class="border-b-secondaryTableWidth border-b-primaryUnderline first:rounded-l-primaryHeaderTableRadius"
-        >
+      <tr class="sticky top-0 h-primaryHeaderTableHeight rounded-primaryHeaderTableRadius">
+        <th class="border-b-secondaryTableWidth border-b-primaryUnderline first:rounded-l-primaryHeaderTableRadius" :class="`bg-headerTable-${theme}`">
           País
         </th>
-        <th class="border-b-secondaryTableWidth border-b-primaryUnderline">
+        <th class="border-b-secondaryTableWidth border-b-primaryUnderline" :class="`bg-headerTable-${theme}`">
           Código Postal
         </th>
-        <th class="border-b-secondaryTableWidth border-b-primaryUnderline">
+        <th class="border-b-secondaryTableWidth border-b-primaryUnderline" :class="`bg-headerTable-${theme}`">
           Estado
         </th>
-        <th class="border-b-secondaryTableWidth border-b-primaryUnderline">
+        <th class="border-b-secondaryTableWidth border-b-primaryUnderline" :class="`bg-headerTable-${theme}`">
           Municipio
         </th>
-        <th
-          class="border-b-secondaryTableWidth border-b-primaryUnderline last:rounded-r-primaryHeaderTableRadius"
-        >
+        <th class="border-b-secondaryTableWidth border-b-primaryUnderline last:rounded-r-primaryHeaderTableRadius" :class="`bg-headerTable-${theme}`">
           Localidad
         </th>
       </tr>
     </thead>
     <tbody>
-      <tr
-        class="text-primaryFontColor bg-secondaryBodyTable"
-        v-for="(zipcode, index) in localZipCodeList"
-        :key="index"
-      >
+      <tr class="bg-white" v-for="(zipcode, index) in localZipCodeList" :key="index" :class="`text-textTable-${theme}`">
         <td
-          class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate first:rounded-l-primaryHeaderTableRadius"
-        >
+          class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate first:rounded-l-primaryHeaderTableRadius">
           {{ zipcode.pais }}
         </td>
         <td
-          class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate"
-        >
+          class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
           {{ zipcode.codigo_postal }}
         </td>
         <td
-          class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate"
-        >
+          class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
           {{ zipcode.estado }}
         </td>
         <td
-          class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate"
-        >
+          class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
           {{ zipcode.municipio }}
         </td>
         <td
-          class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate last:rounded-r-primaryHeaderTableRadius"
-        >
+          class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate last:rounded-r-primaryHeaderTableRadius">
           {{ zipcode.localidad }}
         </td>
       </tr>
