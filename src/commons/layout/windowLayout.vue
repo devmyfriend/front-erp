@@ -23,7 +23,7 @@ provide('setWindowContent', (content) => {
             </slot>
         </titleH1>
         <div class=" bg-container w-full h-[93%] rounded-[2rem] overflow-scroll">
-            <component :is="windowsContent" class="sticky top-0 bg-white" />
+            <component :is="windowsContent" class="sticky top-0 bg-background" />
             <router-view />
         </div>
     </div>
