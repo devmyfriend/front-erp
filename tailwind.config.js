@@ -29,6 +29,9 @@ export default {
         }),
         background: {
           DEFAULT: '#fff',
+          myfriend: '#fff',
+          thefit: '#fff',
+          bonavida: '#fff',
         },
         container: ({
           DEFAULT: '#232323',
