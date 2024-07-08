@@ -273,7 +273,6 @@ textarea {
     height: 5rem;
 }
 
-/* ----------------------- Formulario desplegable --------------------------- */
 .clickeable{
     cursor: pointer;
     transition: all 0.3s;
