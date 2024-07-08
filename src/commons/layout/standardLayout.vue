@@ -5,7 +5,6 @@ import { useLayout } from '@/commons/composables/useLayout.js';
 import { useRoute } from 'vue-router';
 import { useTheme } from '@/commons/composables/useTheme';
 const { theme } = useTheme();
-const temaActual = ref(theme.value);
 const route = useRoute();
 
 const { getTitle } = useLayout();
@@ -26,10 +25,6 @@ onMounted(() => {
 onUpdated(() => {
     updateTitle();
 });
-
-watch(() => theme.value, (newValue) => {
-    temaActual.value = newValue;
-});
 </script>
 
 <template>
@@ -41,7 +36,7 @@ watch(() => theme.value, (newValue) => {
                 </slot> 
             </template>
         </titleH1>
-        <div class="w-full h-[93%] rounded-[2rem] overflow-scroll" :class="`bg-container-${temaActual}`">
+        <div class="w-full h-[93%] rounded-[2rem] overflow-scroll" :class="`bg-container-${theme}`">
             <router-view/>
         </div>
      </div>
