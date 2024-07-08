@@ -19,8 +19,7 @@
 </script>
 
 <template>
-    <!-- bg-general -->
-    <div class="containerMy grid h-screen min-h-screen max-h-screen w-screen">   <!-- :class="[temaActual ? 'bg-general-100' : 'bg-general']" -->
+    <div class="containerMy grid h-screen min-h-screen max-h-screen w-screen">
         <div class="navbarMy bg-navbar px-4 py-2 text-center flex justify-between items-center h-[6vh] max-h-[6vh] w-[96vw] max-w-[96vw] box-border border-b-[2px] border-primary col-span-2"
             :class="[
             `bg-navbar-${temaActual}`,
@@ -44,7 +43,7 @@
         :class="`bg-sidebar-${temaActual}`">
             <sidebar />
         </div>
-        <div class="contentMy p-4 flex-auto flex flex-col max-h-[94vh] w-[96vw] max-w-[96vw]" :class="temaActual ? 'bg-general-100' : 'bg-general'">
+        <div class="contentMy p-4 flex-auto flex flex-col max-h-[94vh] w-[96vw] max-w-[96vw]" :class="temaActual ? `bg-background-${temaActual}` : 'bg-background'">
             <router-view/>
         </div>
     </div>
