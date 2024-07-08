@@ -3,7 +3,6 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-
   <RouterView />
 </template>
 
@@ -14,10 +13,10 @@ import { RouterLink, RouterView } from 'vue-router'
 }
 
 input, select, textarea{
-  color: #000;
+  color: theme('colors.primaryFontColor');
 }
 select{
-  background-color: #fff;
+  background-color: theme('colors.container');
 }
 
 ::-webkit-scrollbar {

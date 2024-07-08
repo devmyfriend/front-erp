@@ -11,6 +11,13 @@ const ListadoTiposProductos = ref([]);
 
 const CodigoProducto = ref('');
 
+
+/* const actionsBeforeMount = () => {
+    setTitle('Listado de Productos');
+    setBtActivo(1); setear esto desde el componente
+    cargarDatos();
+} */
+
 const esperarBusqueda = (texto) => {
     if (texto === undefined) {
         if (tipoProducto.value == 'Todos') {

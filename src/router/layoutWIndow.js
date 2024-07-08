@@ -13,5 +13,10 @@ export default{
             name: 'formProducts',
             component: () => import('@/modules/products/views/frmProducts.vue')
         },
+        {
+            path: '/zipcode/',
+            name: 'zipcode',
+            component: () => import('@/modules/zipcode/views/zipCode.vue')
+        },
     ]
 };
