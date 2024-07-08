@@ -27,7 +27,7 @@ const cargarDatos = () => {
     <div class="w-full h-full p-4 flex justify-center items-center">
         <div class="w-full h-full flex flex-col">
             <titleH2> Listado de Tipos de Comprobante </titleH2>
-            <div class="w-full items-center flex flex-col overflow-y-scroll text-secondaryFontColor text-base rounded-3xl">
+            <div class="w-full items-center flex flex-col overflow-y-scroll text-secondaryFontColor text-base rounded-b-2xl">
                 <tableReceipt :ListadoComprobantes="ListadoComprobantes"/>
             </div>
 

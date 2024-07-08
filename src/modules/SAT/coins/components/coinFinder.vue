@@ -1,13 +1,13 @@
 <template>
     <div class="flex items-center h-inputHeight">
         <input 
-            class=" text-primaryFontColor rounded-inputRadius border-inputBorder border-inputWidth p-paddingInput lg:w-96 md:w-60 sm:w-32 outline-none h-full text-base"
+            class=" text-black rounded-inputRadius border-inputBorder border-inputWidth p-paddingInput lg:w-96 md:w-60 sm:w-32 outline-none h-full text-base"
             type="text" 
             v-model="txtBusqueda" 
             @keyup.enter="buscar(txtBusqueda)" 
             placeholder="Nombre moneda"
         >
-        <img src="/svg/generalIcons/searchIco.svg" alt="Icono de buscador" class="cursor-pointer h-buscadorIconHeight ml-4" @click="buscar(txtBusqueda)">
+        <searchIco class="cursor-pointer max-h-buscadorIconHeight ml-4" @click="buscar(txtBusqueda)" />
     </div>
 </template>
 
@@ -15,6 +15,7 @@
 import { ref } from 'vue';
 import Swal from 'sweetalert2';
 import { coinsStore } from '@/store/coinsStore'
+import searchIco from '@/commons/ui/icons/actionIcons/searchIco.vue';
 const emit = defineEmits('eBusqueda');
 const store = coinsStore();
 
@@ -41,7 +42,7 @@ function buscar(texto) {
 </script>
 
 <style scoped>
-input::placeholder {
-    color: theme('colors.disableBodyTable');
+input::placeholder{
+    color: theme('colors.disabled');
 }
 </style>

@@ -23,6 +23,14 @@ export default{
             path: '/impuestos',
             name: 'taxesSAT',
             component: () => import('@/modules/SAT/tax/views/taxes.vue')
-        }   
+        },{
+            path: '/zipcode/',
+            name: 'zipcode',
+            component: () => import('@/modules/zipcode/views/zipCode.vue')
+        },{
+            path: '/testLalo',
+            name: 'Lalo',
+            component: () => import('@/components/Lalo.vue')
+        }
     ]
 };

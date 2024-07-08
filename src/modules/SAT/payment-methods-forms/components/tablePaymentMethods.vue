@@ -1,5 +1,7 @@
 <script setup>
 import { ref, watch } from 'vue';
+import { useTheme } from '@/commons/composables/useTheme';
+const { theme } = useTheme();
 
 const ListadoMetodosPago = ref([]);
 
@@ -18,19 +20,18 @@ watch(() => props.ListadoMetodosPago, (newValue) => {
 <template>
     <table class="w-full table-fixed leading-4 text-[1rem]">
         <thead>
-            <tr class="sticky top-0 h-primaryHeaderTableHeight">
-                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-tl-xl">Clave</th>
-                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-t-[1px]">Nombre</th>
-                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-tr-xl">Status</th>
+            <tr class="sticky top-0 h-primaryHeaderTableHeight text-white">
+                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-tl-xl" :class="`bg-headerTable-${theme}`">Clave</th>
+                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-t-[1px]" :class="`bg-headerTable-${theme}`">Nombre</th>
+                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-tr-xl" :class="`bg-headerTable-${theme}`">Status</th>
             </tr>
         </thead>
         <tbody>
             <tr class="text-primaryFontColor" v-for="(metodo, index) in ListadoMetodosPago" :key="index"
-                :class="{
-                    'bg-primaryBodyTable': (index % 2 === 1 && metodo.Activo === 1),
-                    'bg-secondaryBodyTable': (index % 2 === 0 && metodo.Activo === 1),
-                    'bg-disableBodyTable': (metodo.Activo === 0), 'text-white': (metodo.Activo === 0), 'font-medium': (metodo.Activo === 0)
-                }">
+                :class="[
+                    metodo.Activo === 1 ? `text-textTable-${theme} bg-white` : '',
+                    metodo.Activo === 0 ? 'text-white bg-disabled' : ''
+                ]">
                 <td class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
                     {{ metodo.ClaveMetodoPago }}
                 </td>
