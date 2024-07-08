@@ -1,9 +1,11 @@
 <script setup>
 import { onMounted, onUpdated, ref, watch } from 'vue';
 import titleH1 from '@/commons/ui/title-h1/title-h1.vue';
-/* import { useWindows } from '@/modules/products/composables/useWindows.js'; */
 import { useLayout } from '@/commons/composables/useLayout.js';
 import { useRoute } from 'vue-router';
+import { useTheme } from '@/commons/composables/useTheme';
+const { theme } = useTheme();
+const temaActual = ref(theme.value);
 const route = useRoute();
 
 const { getTitle } = useLayout();
@@ -13,7 +15,7 @@ const updateTitle = () => {
     titulo.value = getTitle();
 };
 
-watch(() => route.name, (newRouteName) => {
+watch(() => route.name, () => {
     updateTitle();
 }, { immediate: true });
 
@@ -23,6 +25,10 @@ onMounted(() => {
 
 onUpdated(() => {
     updateTitle();
+});
+
+watch(() => theme.value, (newValue) => {
+    temaActual.value = newValue;
 });
 </script>
 
@@ -35,7 +41,7 @@ onUpdated(() => {
                 </slot> 
             </template>
         </titleH1>
-        <div class=" bg-container w-full h-[93%] rounded-[2rem] overflow-scroll">
+        <div class="w-full h-[93%] rounded-[2rem] overflow-scroll" :class="`bg-container-${temaActual}`">
             <router-view/>
         </div>
      </div>

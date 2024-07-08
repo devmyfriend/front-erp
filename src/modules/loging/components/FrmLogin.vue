@@ -20,7 +20,7 @@ const moveHome = () => {
             <form @submit.prevent>
                 <div class="flex flex-col items-center p-2 m-2">
                     <h2 class="flex m-2 text-2xl text-white font-bold uppercase">Acceso</h2>
-                    <img class="flex w-[20%]" src="@/assets/userIco.svg" alt="Imagen de Usuario" />
+                    <img class="flex w-[20%]" src="/svg/generalIcons/userIco.svg" alt="Imagen de Usuario" />
                 </div>
                 <transition name="fade">
                     <div class="flex items-center justify-center mb-2 mx-auto px-2 text-red-600 font-semibold" v-if="failLogin">

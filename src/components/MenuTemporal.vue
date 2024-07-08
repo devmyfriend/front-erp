@@ -17,7 +17,7 @@ const modulos = ref([
 </script>
 
 <template>
-        <main class="bg-general flex flex-col items-center justify-center h-screen">
+        <main class="bg-container flex flex-col items-center justify-center h-screen">
             <h1 class="bg-sidebar rounded-2xl px-8 py-4 text-white font-semibold text-[2.5rem]"> Menú temporal</h1>
 
             <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 bg-navbar bg-opacity-90 min-w-[90vw] min-h-[70vh] mt-[3vh] rounded-2xl p-4">

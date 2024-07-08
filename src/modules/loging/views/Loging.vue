@@ -15,7 +15,7 @@
 
 <style scoped>
     .logContainer{
-    background-image: url('@/assets/bg-login.svg'); 
+    background-image: url('/svg/generalIcons/bg-login.svg'); 
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat;
