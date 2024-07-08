@@ -23,6 +23,10 @@ export default{
             path: '/impuestos',
             name: 'taxesSAT',
             component: () => import('@/modules/SAT/tax/views/taxes.vue')
-        }   
+        },{
+            path: '/testLalo',
+            name: 'Lalo',
+            component: () => import('@/components/Lalo.vue')
+        }
     ]
 };

@@ -6,31 +6,60 @@ export default {
   ],
   theme: {
     extend: {
-      colors:{
-        sidebar:   '#0f0f0f',
-        general:   '#353535',
-        navbar:    '#232323',
-        container: '#ffffff',
-        primary:   '#f16136',
+      colors: {
+        /* Diseños generales */
+        blanco: '#fff',
+        negro: '#000',
         success:   '#198754',
         danger:    '#DC3545',
         warning:   '#FFC107',
-        disable:   '#999',
-        primaryFontColor: '#000000',
-        secondaryFontColor: '#ffffff',
-        placeholderFontColor: '#353535',
-        backgroundInputColor: '#f2f2f2',
-        primaryBtnColor: '#353535',
-        primaryHeaderTable: '#353535',
-        primaryUnderline: '#fff',
-        primaryBodyTable: '#e6e6e6',
-        secondaryBodyTable: '#d8d5d5',
-        disableBodyTable: '#aaaaaa',
-        primaryPlaceholderColor: '#CBCBCB',
-        primaryFrmContainer: '#d9d9d9',
-        secondaryFrmContainer: '#cbcbcb',
-        modalConfirm: '#f16136',
-        modalCancel: '#353535',
+
+        /* Diseño por componente */
+        sidebar: ({
+          DEFAULT: '#0f0f0f',
+          myfriend: 'var(--myfriend-600)',
+          thefit: 'var(--thefit-orange-600)',
+          bonavida: 'var(--bonavida-dark-600)'
+        }),
+        navbar: ({
+          DEFAULT: '#232323',
+          myfriend: 'var(--myfriend-100)',
+          thefit: 'var(--thefit-orange-100)',
+          bonavida: 'var(--bonavida-dark-200)',
+        }),
+        background: {
+          DEFAULT: '#fff',
+        },
+        container: ({
+          DEFAULT: '#232323',
+          myfriend: 'var(--myfriend-500)',
+          thefit: 'var(--thefit-orange-100)',
+          bonavida: 'var(--bonavida-dark-200)',
+        }),
+        h1: ({
+          DEFAULT: '#000',
+          myfriend: 'var(--myfriend-900)',
+          thefit: 'var(--thefit-gray-600)',
+          bonavida: 'var(--bonavida-dark-600)',
+        }),
+        h2: ({
+          DEFAULT: '#fff',
+          myfriend: '#fff',
+          thefit: 'var(--thefit-orange-600)',
+          bonavida: 'var(--bonavida-light-600)',
+        }),
+        headerTable: ({
+          DEFAULT: '#000',
+          myfriend: 'var(--myfriend-600)',
+          thefit: 'var(--thefit-gray-600)',
+          bonavida: 'var(--bonavida-dark-600)',
+        }),
+        textTable: ({
+          DEFAULT: '#000',
+          myfriend: 'var(--myfriend-900)',
+          thefit: 'var(--thefit-gray-600)',
+          bonavida: 'var(--bonavida-light-600)',
+        }),
       },
       fontSize: {
         h2Size: '1.5rem',
@@ -47,7 +76,6 @@ export default {
         primaryHeaderTableHeight: '2.75rem',
         primaryBodyTableHeight: '2.5rem',
         buscadorIconHeight: '1.35rem',
-        
       },
       borderColor: {
         inputBorder: '#000',
@@ -57,30 +85,27 @@ export default {
         primaryHeaderTableRadius: '0.5rem',
         primaryContainerRadius: '2rem',
         primaryWindowRadius: '0 0 0.5rem 0.5rem',
-        primaryButtonRadius: '0.75rem',
+      primaryButtonRadius: '0.75rem',
       },
       borderWidth: {
         inputWidth: '1px',
         primaryTableWidth: '0.125rem',
-        secondaryTableWidth: '0.25rem',
+      secondaryTableWidth: '0.25rem',
       },
       padding: {
         labelPadding: '0.5rem',
         paddingInput: '0.25rem 1rem',
         primaryPaddingContainer: '1rem',
-        primaryPaddingButton: '0.5rem 1rem',
+      primaryPaddingButton: '0.5rem 1rem',
       },
       gap: {
-        frmGap: '1rem',
+      frmGap: '1rem',
       },
       margin: {
-        h2Margin: 'auto auto 1rem auto',
+      h2Margin: 'auto auto 1rem auto',
       },
       letterSpacing: {
-        btnAgregarLetterSpacing: '0.25rem',
-      },
-      backgroundColor: {
-        'black-40': 'rgba(0, 0, 0, 0.4)',
+      btnAgregarLetterSpacing: '0.25rem',
       },
     },
   },
@@ -92,6 +117,40 @@ export default {
           '--modal-cancel': theme('colors.modalCancel'),
         }
       });
+    }
+  ],
+  safelist: [
+    {
+      pattern: /bg-sidebar-.*/,
+      variants: ['responsive', 'hover', 'focus', 'active'],
+    },
+    {
+      pattern: /bg-navbar-.*/,
+      variants: ['responsive', 'hover', 'focus', 'active'],
+    },
+    {
+      pattern: /bg-background-.*/,
+      variants: ['responsive', 'hover', 'focus', 'active'],
+    },
+    {
+      pattern: /bg-container-.*/,
+      variants: ['responsive', 'hover', 'focus', 'active'],
+    },
+    {
+      pattern: /text-h1-.*/,
+      variants: ['responsive', 'hover', 'focus', 'active'],
+    },
+    {
+      pattern: /text-h2-.*/,
+      variants: ['responsive', 'hover', 'focus', 'active'],
+    },
+    {
+      pattern: /text-textTable-.*/,
+      variants: ['responsive', 'hover', 'focus', 'active'],
+    },
+    {
+      pattern: /bg-headerTable-.*/,
+      variants: ['responsive', 'hover', 'focus', 'active'],
     }
   ],
 }
