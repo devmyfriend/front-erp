@@ -3,12 +3,9 @@ import { onBeforeMount, ref } from 'vue';
 import titleH2 from '@/commons/ui/title-h2/title-h2.vue';
 import tableReceipt from '@/modules/SAT/receipt-types/components/tableReceipt.vue';
 import { useLayout } from '@/commons/composables/useLayout.js';
+import { useReceiptsTypes } from '@/modules/SAT/receipt-types/composables/useReceiptsTypes.js';
+const { cargarComprobantes, ListadoComprobantes } = useReceiptsTypes();
 const { setTitle } = useLayout();
-
-import { receiptStore } from '@/store/receiptStore';
-
-const store = receiptStore();
-const ListadoComprobantes = ref([]);
 
 onBeforeMount(() => {
     setTitle('Tipo de Comprobantes');
@@ -16,9 +13,7 @@ onBeforeMount(() => {
 });
 
 const cargarDatos = () => {
-    store.cargarComprobantes().then(() => {
-        ListadoComprobantes.value = store.getComprobantes;
-    });
+    cargarComprobantes();
 };
 
 </script>
