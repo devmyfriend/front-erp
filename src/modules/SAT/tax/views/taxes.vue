@@ -3,22 +3,17 @@ import { onBeforeMount, ref } from 'vue';
 import titleH2 from '@/commons/ui/title-h2/title-h2.vue';
 import tableTaxes from '@/modules/SAT/tax/components/tableTaxes.vue';
 import { useLayout } from '@/commons/composables/useLayout.js';
+import { useTaxes } from '@/modules/SAT/tax/composables/useTaxes.js';
+const { ListadoImpuestos, cargarImpuestos } = useTaxes();
 const { setTitle } = useLayout();
-
-import { taxStore } from '@/store/taxStore';
-
-const store = taxStore();
-const ListadoImpuestos = ref([]);
 
 onBeforeMount(() => {
     setTitle('Impuestos SAT');
     cargarDatos();
 });
 
-const cargarDatos = () => {
-    store.cargarImpuestos().then(() => {
-        ListadoImpuestos.value = store.getImpuestos;
-    });
+const cargarDatos = async () => {
+    await cargarImpuestos();
 };
 
 </script>

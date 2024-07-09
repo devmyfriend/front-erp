@@ -4,31 +4,24 @@ import titleH2 from '@/commons/ui/title-h2/title-h2.vue';
 import tableCoins from '@/modules/SAT/coins/components/tableCoins.vue';
 import coinFinder from '@/modules/SAT/coins/components/coinFinder.vue';
 import { useLayout } from '@/commons/composables/useLayout.js';
+import { useCoins } from '@/modules/SAT/coins/composables/useCoins.js';
+const { cargarMonedas, buscarMonedas, ListadoMonedas  } = useCoins();
 const { setTitle, getTitle } = useLayout();
-
-import { coinsStore } from '@/store/coinsStore';
-
-const store = coinsStore();
-const ListadoMonedas = ref([]);
 
 onBeforeMount(() => {
     setTitle('Monedas SAT');
-    cargarDatos();
 });
-
-const cargarDatos = () => {
-    store.cargarMonedas().then(() => {
-        ListadoMonedas.value = store.getMonedas;
-    });
+onMounted( async () => {
+    await cargarDatos();
+});
+const cargarDatos = async () => {
+    await cargarMonedas();
 };
-
-const handleBusqueda = (texto) => {
+const handleBusqueda = async (texto) => {
     if (texto) {
-        store.buscarMonedas(texto).then(() => {
-            ListadoMonedas.value = store.getMonedas;
-        });
+        await buscarMonedas(texto);
     } else {
-        cargarDatos();
+        await cargarDatos();
     }
 };
 

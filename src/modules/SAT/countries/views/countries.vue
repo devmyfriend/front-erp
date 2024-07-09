@@ -3,22 +3,17 @@ import { onBeforeMount, ref } from 'vue';
 import titleH2 from '@/commons/ui/title-h2/title-h2.vue';
 import tableCountry from '@/modules/SAT/countries/components/tableCountry.vue';
 import { useLayout } from '@/commons/composables/useLayout.js';
+import { useCountries } from '@/modules/SAT/countries/composables/useCountries.js';
+const { cargarPaises, ListadoPaises } = useCountries();
 const { setTitle } = useLayout();
-
-import { countryStore } from '@/store/countryStore';
-
-const store = countryStore();
-const ListadoPaises = ref([]);
 
 onBeforeMount(() => {
     setTitle('Países');
     cargarDatos();
 });
 
-const cargarDatos = () => {
-    store.cargarPaises().then(() => {
-        ListadoPaises.value = store.getPaises;
-    });
+const cargarDatos = async () => {
+    await cargarPaises();
 };
 
 </script>
