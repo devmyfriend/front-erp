@@ -13,4 +13,4 @@ Here's how to use the `title-h1` component:
 
 ## Styling
 
-Styled with bold font and scaled text size suitable for primary headers in your application.
+Styled with bold font and scaled text size suitable for primary headers in the application.

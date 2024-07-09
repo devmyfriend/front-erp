@@ -10,7 +10,7 @@ This `btn-save` component is designed as a submission button that dynamically sw
 
 ## Usage
 
-Include the component in your Vue template like this:
+Include the component in the Vue template like this:
 
 ```html
 <btn-save :modo="0" elemento="elementName"></btn-save>

@@ -14,10 +14,10 @@ This Vue component integrates SweetAlert2 to display a modal window with a table
 
 ## Usage
 
-Include the component in your Vue application and ensure you pass the `registros` prop with the data to display:
+Include the component in the Vue application and ensure you pass the `registros` prop with the data to display:
 
 ```html
-<selection-component :registros="yourDataArray"></selection-component>
+<selection-component :registros="DataArray"></selection-component>
 ```
 
 ## Styling
@@ -37,4 +37,4 @@ showTable();  // Call this method to display the modal
 
 ## Dependencies
 
-This component requires SweetAlert2 to be included in your project.
+This component requires SweetAlert2 to be included in the project.

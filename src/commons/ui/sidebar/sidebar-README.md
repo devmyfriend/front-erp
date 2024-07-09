@@ -9,7 +9,7 @@ No props are required for this component itself as it utilizes a local reactive 
 
 ## Usage
 
-Here's how to include the sidebar in your Vue project:
+Here's how to include the sidebar in the Vue project:
 
 ```html
 <sidebar></sidebar>
