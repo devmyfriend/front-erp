@@ -26,7 +26,7 @@ export default{
         },{
             path: '/zipcode/',
             name: 'zipcode',
-            component: () => import('@/modules/zipcode/views/zipCode.vue')
+            component: () => import('@/modules/SAT/zipcode/views/zipCode.vue')
         },{
             path: '/testLalo',
             name: 'Lalo',

@@ -1,8 +1,8 @@
 <script setup>
 import { onBeforeMount, onMounted } from "vue";
-import { useZipCodeList } from "@/modules/zipcode/composables/useListZipCode";
-import tabla from "@/modules/zipcode/components/tableZipCode.vue";
-import buscadorZipCode from "@/modules/zipcode/components/zipCodeFinder.vue";
+import { useZipCodeList } from "@/modules/SAT/zipcode/composables/useListZipCode";
+import tabla from "@/modules/SAT/zipcode/components/tableZipCode.vue";
+import buscadorZipCode from "@/modules/SAT/zipcode/components/zipCodeFinder.vue";
 import { useLayout } from "@/commons/composables/useLayout.js";
 import titleH2 from "@/commons/ui/title-h2/title-h2.vue";
 const { loadData, ZipCodeList } = useZipCodeList();
