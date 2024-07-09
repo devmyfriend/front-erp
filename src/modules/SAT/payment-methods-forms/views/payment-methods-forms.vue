@@ -1,28 +1,20 @@
 <script setup>
 import { onBeforeMount, ref } from 'vue';
 import titleH2 from '@/commons/ui/title-h2/title-h2.vue';
-
 import tablePaymentMethods from '@/modules/SAT/payment-methods-forms/components/tablePaymentMethods.vue';
 import tablePaymentForms from '@/modules/SAT/payment-methods-forms/components/tablePaymentForms.vue';
-
 import { useLayout } from '@/commons/composables/useLayout.js';
+import { usePaymentMethodsForms } from '@/modules/SAT/payment-methods-forms/composables/usePaymentMethodsForms.js';
+const { ListadoFormasPago, ListadoMetodosPago, cargarMetodosFormasPago } = usePaymentMethodsForms();
 const { setTitle } = useLayout();
-
-import { paymentStore } from '@/store/paymentStore';
-const store = paymentStore();
-const ListadoMetodosPago = ref([]);
-const ListadoFormasPago = ref([]);
 
 onBeforeMount(() => {
     setTitle('Formas y métodos de pago');
     cargarDatos();
 });
 
-const cargarDatos = () => {
-    store.cargarMetodosFormasPago().then(() => {
-        ListadoMetodosPago.value = store.getMetodosPago;
-        ListadoFormasPago.value = store.getFormasPago;
-    });
+const cargarDatos = async () => {
+    await cargarMetodosFormasPago();
 };
 
 </script>
