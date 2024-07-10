@@ -22,7 +22,7 @@ Here's how to use the `btn-file` component within a Vue template:
 <btn-file @eGuardar="handleImageSave"></btn-file>
 ```
 
-Where `handleImageSave` is a method in your Vue component that handles the URL received from the `btn-file` component.
+Where `handleImageSave` is a method in the Vue component that handles the URL received from the `btn-file` component.
 
 ## Props
 
@@ -30,7 +30,7 @@ This component does not accept any props.
 
 ## Styling
 
-The component uses TailwindCSS for styling. The button is designed to be visually cohesive with the rest of your application's design system.
+The component uses TailwindCSS for styling. The button is designed to be visually cohesive with the rest of the application's design system.
 
 - **Dimensions**: Button size is set to 56x10 pixels.
 - **Colors**: Uses primary button colors for background and secondary colors for text.
@@ -49,4 +49,4 @@ Here's an example of how the button appears:
 
 ## Dependencies
 
-Ensure you have TailwindCSS configured in your project to correctly apply the styles.
+Ensure you have TailwindCSS configured in the project to correctly apply the styles.
