@@ -13,42 +13,42 @@ select {
 :root {
     /* Variables finales para los diseños */
     
-    --myfriend-100: #cbe7e8;
+    --myfriend-100: #CBE7E8; /* Principal: Navbar*/
     --myfriend-200: #addbdc;
-    --myfriend-300: #92d0d0; /* Principal */
+    --myfriend-300: #92d0d0; 
     --myfriend-400: #71c5c3;
-    --myfriend-500: #57bdbc; /* Principal */
+    --myfriend-500: #54BDBB; /* Principal: Contenedor*/
     --myfriend-600: #3aaaa8;
-    --myfriend-700: #2ba0a3; /* Principal */
+    --myfriend-700: #2ba0a3; /* Principal: Cabeceras*/
     --myfriend-800: #1c878f;
-    --myfriend-900: #106f7b; /* Principal */
+    --myfriend-900: #0F6F7B; /* Principal: Sidebar */
     
     --thefit-gray-100: #d9dadb;
-    --thefit-gray-200: #c3c3c5; /* Principal */
+    --thefit-gray-200: #c3c3c5;
     --thefit-gray-300: #aeaeaf;
     --thefit-gray-400: #999899;
-    --thefit-gray-500: #848587;
-    --thefit-gray-600: #737578; /* Principal */
+    --thefit-gray-500: #848587; /* El 500 es más obscuro que el 600 (??? */
+    --thefit-gray-600: #999999; /* Principal: Cabeceras */
     
-    --thefit-orange-100: #fbd6cc; /* Principal */
+    --thefit-orange-100: #FBD6CC; /* Principal: Navbar y Contenedor*/
     --thefit-orange-200: #f8bead;
     --thefit-orange-300: #f5a68e;
     --thefit-orange-400: #f28f71;
     --thefit-orange-500: #ef7853;
-    --thefit-orange-600: #ec6339; /* Principal */
+    --thefit-orange-600: #EC633A; /* Principal: Sidebar*/
     
-    --bonavida-dark-100: #cdd1df; /* Principal */
-    --bonavida-dark-200: #afb6cc;
+    --bonavida-dark-100: #CDD1DE; /* Principal: Navbar y Contenedor*/
+    --bonavida-dark-200: #aeb6cc;
     --bonavida-dark-300: #919cba;
     --bonavida-dark-400: #7480a8;
     --bonavida-dark-500: #566494;
-    --bonavida-dark-600: #384981;  /* Principal */
+    --bonavida-dark-600: #364a82;
     
     --bonavida-light-100: #c9dced;
-    --bonavida-light-200: #aac8e2; /* Principal */
+    --bonavida-light-200: #aac8e2;
     --bonavida-light-300: #88b3d9;
     --bonavida-light-400: #699fce;
     --bonavida-light-500: #498ac3;
-    --bonavida-light-600: #2775b9; /* Principal */
+    --bonavida-light-600: #1c75b9; /* Principal: Cabeceras y Sidebar */
   }
   

@@ -10,7 +10,6 @@ const esperarImagen = (archivo) => {
 </script>
 
 <template>
-    <h3 class="text-xl uppercase bg-secondaryFrmContainer h-9 flex items-center px-4 font-semibold justify-center"> Imagen del Producto </h3>
         <div class="imgContainer flex flex-col items-center justify-center p-4  min-w-full max-w-full">
             <img v-if="false" :src="imagenPrueba" alt="Imagen del Producto" class="max-h-[50vh] min-h-[50vh] max-w-full bg-transparent overflow-scroll object-cover">
             <img v-else :src="imagenPrueba" alt="Imagen del Producto" class="max-h-[50vh] min-h-[50vh] max-w-[50vh] min-w-[50vh] bg-transparent overflow-scroll object-cover">

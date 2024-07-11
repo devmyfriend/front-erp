@@ -10,7 +10,12 @@ export default {
         /* Diseños generales */
         blanco: '#fff',
         negro: '#000',
-        disabled: '#999',
+        disabled: ({
+          DEFAULT: '#999',
+          myfriend: 'var(--myfriend-100)',
+          thefit: 'var(--thefit-orange-200)',
+          bonavida: 'var(--bonavida-dark-200)',
+        }),
         success:   '#198754',
         danger:    '#DC3545',
         warning:   '#FFC107',
@@ -18,15 +23,15 @@ export default {
         /* Diseño por componente */
         sidebar: ({
           DEFAULT: '#0f0f0f',
-          myfriend: 'var(--myfriend-600)',
+          myfriend: 'var(--myfriend-900)',
           thefit: 'var(--thefit-orange-600)',
-          bonavida: 'var(--bonavida-dark-600)'
+          bonavida: 'var(--bonavida-light-600)'
         }),
         navbar: ({
           DEFAULT: '#232323',
           myfriend: 'var(--myfriend-100)',
           thefit: 'var(--thefit-orange-100)',
-          bonavida: 'var(--bonavida-dark-200)',
+          bonavida: 'var(--bonavida-dark-100)',
         }),
         background: {
           DEFAULT: '#fff',
@@ -38,13 +43,19 @@ export default {
           DEFAULT: '#232323',
           myfriend: 'var(--myfriend-500)',
           thefit: 'var(--thefit-orange-100)',
+          bonavida: 'var(--bonavida-dark-100)',
+        }),
+        subcontainer: ({
+          DEFAULT: '#232323',
+          myfriend: 'var(--myfriend-300)',
+          thefit: 'var(--thefit-orange-200)',
           bonavida: 'var(--bonavida-dark-200)',
         }),
         h1: ({
           DEFAULT: '#000',
           myfriend: 'var(--myfriend-900)',
           thefit: 'var(--thefit-gray-600)',
-          bonavida: 'var(--bonavida-dark-600)',
+          bonavida: 'var(--bonavida-light-600)',
         }),
         h2: ({
           DEFAULT: '#fff',
@@ -54,14 +65,38 @@ export default {
         }),
         headerTable: ({
           DEFAULT: '#000',
-          myfriend: 'var(--myfriend-600)',
+          myfriend: 'var(--myfriend-700)',
           thefit: 'var(--thefit-gray-600)',
-          bonavida: 'var(--bonavida-dark-600)',
+          bonavida: 'var(--bonavida-light-600)',
         }),
         textTable: ({
           DEFAULT: '#000',
-          myfriend: 'var(--myfriend-900)',
+          myfriend: 'var(--myfriend-700)',
           thefit: 'var(--thefit-gray-600)',
+          bonavida: 'var(--bonavida-light-600)',
+        }),
+        primaryButton: ({
+          DEFAULT: '#000',
+          myfriend:         'var(--myfriend-700)',
+          'myfriend-hover': 'var(--myfriend-800)',
+          thefit:           'var(--thefit-gray-500)',
+          'thefit-hover':   'var(--thefit-gray-600)',
+          bonavida:         'var(--bonavida-light-500)',
+          'bonavida-hover': 'var(--bonavida-light-600)',
+        }),
+        secondaryButton: ({
+          DEFAULT: '#000',
+          myfriend:         'var(--myfriend-400)',
+          'myfriend-hover': 'var(--myfriend-600)',
+          thefit:           'var(--thefit-orange-600)',
+          'thefit-hover':   'var(--thefit-orange-500)',
+          bonavida:         'var(--bonavida-dark-500)',
+          'bonavida-hover': 'var(--bonavida-dark-600)',
+        }),
+        window: ({
+          DEFAULT: 'transparent',
+          myfriend: 'var(--myfriend-900)',
+          thefit: 'var(--thefit-orange-600)',
           bonavida: 'var(--bonavida-light-600)',
         }),
       },
@@ -125,6 +160,10 @@ export default {
   ],
   safelist: [
     {
+      pattern: /bg-disabled-.*/,
+      variants: ['responsive', 'hover', 'focus', 'active'],
+    },
+    {
       pattern: /bg-sidebar-.*/,
       variants: ['responsive', 'hover', 'focus', 'active'],
     },
@@ -138,6 +177,10 @@ export default {
     },
     {
       pattern: /bg-container-.*/,
+      variants: ['responsive', 'hover', 'focus', 'active'],
+    },
+    {
+      pattern: /bg-subcontainer-.*/,
       variants: ['responsive', 'hover', 'focus', 'active'],
     },
     {
@@ -155,6 +198,26 @@ export default {
     {
       pattern: /bg-headerTable-.*/,
       variants: ['responsive', 'hover', 'focus', 'active'],
-    }
+    },
+    {
+      pattern: /bg-primaryButton-.*/,
+      variants: ['responsive', 'hover', 'focus', 'active'],
+    },
+    {
+      pattern: /bg-secondaryButton-.*/,
+      variants: ['responsive', 'hover', 'focus', 'active'],
+    },
+    {
+      pattern: /bg-window-.*/,
+      variants: ['responsive', 'hover', 'focus', 'active'],
+    },
+    {
+      pattern: /border-primaryButton-.*/,
+      variants: ['responsive', 'hover', 'focus', 'active'],
+    },
+    {
+      pattern: /border-secondaryButton-.*/,
+      variants: ['responsive', 'hover', 'focus', 'active'],
+    },
   ],
 }

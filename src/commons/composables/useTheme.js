@@ -3,6 +3,7 @@ import { ref, computed } from "vue";
 const theme = ref(localStorage.getItem("theme") || "myfriend");
 const imagen = ref('/svg/empresas/myfriend.svg');
 
+
 const setTheme = (newTheme) => {
   theme.value = newTheme;
   localStorage.setItem("theme", newTheme);
@@ -29,6 +30,7 @@ const themeClass = computed(() => {
 const themeImage = computed(() => {
   return imagen.value;
 });
+
 export function useTheme() {
   return {
     theme: themeClass,

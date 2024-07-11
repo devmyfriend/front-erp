@@ -14,6 +14,9 @@ import titleH2 from '@/commons/ui/title-h2/title-h2.vue';
 import Swal from 'sweetalert2';
 import { useRoute } from 'vue-router';
 
+import { useTheme } from '@/commons/composables/useTheme';
+const { theme } = useTheme();
+
 const route = useRoute();
 const windowStore = windowLayoutStore();
 const { borrarProducto: deleteProduct } = useListProducts();
@@ -21,6 +24,7 @@ const store = useProductos();
 const { setCodigoProducto } = useWindows();
 const setTitleContent = inject('setTitleContent');
 const setWindowContent = inject('setWindowContent');
+
 const router = useRouter();
 const tipoProducto = ref('Todos');
 const ListadoProductos = ref([]);
@@ -123,22 +127,24 @@ watch(tipoProducto, (newValue) => {
                 <buscadorProductos @eBusqueda="esperarBusqueda" :tipoProducto="tipoProducto" />
             </div>
             <div class="formulario w-full flex flex-row items-center gap-frmGap justify-end">
-                <label for="tipoProducto" class="text-labelSize font-labelWeight text-primaryFontColor"> Tipo: </label>
+                <label for="tipoProducto" class="text-labelSize font-labelWeight text-white"> Tipo: </label>
                 <select class="h-inputHeight min-w-40 max-w-sm grow 
                 p-paddingInput rounded-inputRadius border-inputBorder 
-                border-inputWidth text-primaryFontColor text-base" v-model="tipoProducto">
+                border-inputWidth text-black text-base" v-model="tipoProducto">
                     <option value="Todos">Todos</option>
                     <option v-for="Tipo in ListadoTiposProducto" :value="Tipo.NombreTipoProducto"> {{
                         Tipo.NombreTipoProducto }}</option>
                 </select>
                 <btnAgregar :ruta="'formProducts'" @click="borrarCodigoProducto()" />
+
             </div>
         </div>
-
         <div
             class="w-full max-h-[66vh] min-h-[66vh] items-center flex flex-col overflow-y-scroll text-secondaryFontColor text-base rounded-3xl">
-            <tablaProductos :ListadoProductos="ListadoProductos" :tipoProducto="tipoProducto"
-                @eEditarProducto="editarProducto" @eBorrarProducto="borrarProducto" />
+            <tablaProductos 
+                :ListadoProductos="ListadoProductos" :tipoProducto="tipoProducto"
+                @eEditarProducto="editarProducto" @eBorrarProducto="borrarProducto" 
+            />
         </div>
     </div>
 </template>

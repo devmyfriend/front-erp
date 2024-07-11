@@ -2,6 +2,10 @@
 import { onUpdated, ref, watch } from 'vue';
 import { useWindows } from '@/modules/products/composables/useWindows.js';
 import modalEliminar from '@/commons/ui/modals/deleteModal.vue';
+import { useTheme } from '@/commons/composables/useTheme.js'
+import trashIco from '@/commons/ui/icons/tableIcons/trashIco.vue';
+import editIco from '@/commons/ui/icons/tableIcons/editIco.vue';
+const { theme } = useTheme();
 
 const { setCodigoProducto, getCodigoProducto } = useWindows();
 
@@ -53,23 +57,23 @@ watch(() => props.ListadoProductos, (newValue, oldValue) => {
 <template>
     <table class="w-full table-fixed">
         <thead class="sticky top-0 bg-transparent">
-            <tr class="sticky top-0 h-primaryHeaderTableHeight">
-                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-tl-xl">ID</th>
-                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-t-[1px]">Nombre</th>
-                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-t-[1px]">Código del Producto</th>
-                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-t-[1px]">Tipo Producto</th>
-                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-t-[1px]">Puntos</th>
-                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-t-[1px]">Serie</th>
-                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-tr-xl">Acciones</th>
+            <tr class="sticky top-0 h-primaryHeaderTableHeight text-white">
+                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-tl-xl" :class="`bg-headerTable-${theme}`">ID</th>
+                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-t-[1px]" :class="`bg-headerTable-${theme}`">Nombre</th>
+                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-t-[1px]" :class="`bg-headerTable-${theme}`">Código del Producto</th>
+                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-t-[1px]" :class="`bg-headerTable-${theme}`">Tipo Producto</th>
+                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-t-[1px]" :class="`bg-headerTable-${theme}`">Puntos</th>
+                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-t-[1px]" :class="`bg-headerTable-${theme}`">Serie</th>
+                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-tr-xl" :class="`bg-headerTable-${theme}`">Acciones</th>
             </tr>
         </thead>
         <tbody>
-            <tr class="text-primaryFontColor" v-for="(producto, index) in ListadoProductos" :key="index"
-                :class="{
-                    'bg-primaryBodyTable': (index % 2 === 1 && producto.Borrado === 0),
-                    'bg-secondaryBodyTable': (index % 2 === 0 && producto.Borrado === 0),
-                    'bg-disableBodyTable': (producto.Borrado === 1), 'text-white': (producto.Borrado === 1), 'font-medium': (producto.Borrado === 1)
-                }">
+            <tr v-for="(producto, index) in ListadoProductos" :key="index"
+            class="border-x-[1px] border-white"
+            :class="[
+                !producto.Borrado ? `text-textTable-${theme} bg-white` : '',
+                producto.Borrado ? `text-black bg-disabled-${theme}` : ''
+            ]">
                 <td class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
                     {{ producto.ProductoId }}
                 </td>
@@ -91,10 +95,9 @@ watch(() => props.ListadoProductos, (newValue, oldValue) => {
                 <td class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 ">
                     <div class="flex w-full items-center justify-center min-w-16">
                         <div class="min-w-16 h-full text-center items-center lg:justify-start justify-center flex lg:gap-1 flex-wrap">
-                            <img src="/svg/tableIcons/editIco.svg" alt="Editar" class="cursor-pointer w-4 lg:w-6"
-                                @click="editarProducto(producto.CodigoProducto)">
-                            <img src="/svg/tableIcons/trashIco.svg" alt="Borrar" class="cursor-pointer w-4 lg:w-6"
-                                @click="borrarProducto(producto)" v-if="producto.Borrado === 0">
+
+                            <editIco class="cursor-pointer w-4 lg:w-6" @click="editarProducto(producto.CodigoProducto)" :color="'black'" />
+                            <trashIco class="cursor-pointer w-4 lg:w-6" @click="borrarProducto(producto)" :color="'black'" v-if="producto.Borrado === 0"/>
                         </div>
                     </div>
                 </td>

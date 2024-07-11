@@ -39,6 +39,6 @@ function buscar(texto) {
 
 <style scoped>
 input::placeholder {
-    color: theme('colors.disabled');
+    color: theme('colors.disabled.DEFAULT');
 }
 </style>
