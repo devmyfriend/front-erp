@@ -46,90 +46,90 @@
 
 <template>
     <div class="flex justify-between" :class="`bg-container-${theme}`">
-        <div class="flex flex-row justify-start text-xl min-h-[1.5rem] max-w-[80vw] min-w-[80vw] overflow-x-scroll text-white">
+        <div class="flex flex-row justify-start text-xl min-h-[1.5rem] max-w-[80vw] min-w-[80vw] overflow-x-scroll">
             <router-link 
             :class="{
-                [`bg-window-${theme}`]: btActivo !== 1,
-                [`bg-transparent border-b-0`]: btActivo === 1,
+                [`bg-window-${theme} text-white`]: btActivo !== 1,
+                [`bg-transparent border-b-0 text-black`]: btActivo === 1,
             }"
 
                 :to="{ name: 'productos', params: { tipo: tipoProducto } }" draggable="false"
-                class="whitespace-nowrap bg-disable text-white hover:border-b-0 hover:bg-transparent transition-colors duration-300 flex items-center justify-center min-w-max text-center text-base py-1 pl-8 pr-6 border-inputWidth border-inputBorder rounded-tl-[2rem]">
+                class="whitespace-nowrap bg-disable hover:border-b-0 hover:text-black hover:bg-transparent transition-colors duration-300 flex items-center justify-center min-w-max text-center text-base py-1 pl-8 pr-6 border-inputWidth border-inputBorder rounded-tl-[2rem]">
                 Listado
             </router-link>
 
             <router-link 
             :class="{
-                [`bg-window-${theme}`]: btActivo !== 2,
-                [`bg-transparent border-b-0`]: btActivo === 2,
+                [`bg-window-${theme} text-white`]: btActivo !== 2,
+                [`bg-transparent border-b-0 text-black`]: btActivo === 2,
             }"
             :to="{ name: 'formProducts', params: { tipo: tipoProducto, id: codigoProducto } }"
                 v-if="codigoProducto !== ''" draggable="false"
-                class="whitespace-nowrap bg-disable text-white hover:border-b-0 hover:bg-transparent transition-colors duration-300 flex items-center justify-center min-w-max text-center text-base py-1 px-6 border-inputWidth border-inputBorder">
+                class="whitespace-nowrap bg-disable hover:border-b-0 hover:text-black hover:bg-transparent transition-colors duration-300 flex items-center justify-center min-w-max text-center text-base py-1 px-6 border-inputWidth border-inputBorder">
                 Formulario
             </router-link>
 
             <router-link 
             :class="{
-                [`bg-window-${theme}`]: btActivo !== 2,
-                [`bg-transparent border-b-0`]: btActivo === 2,
+                [`bg-window-${theme} text-white`]: btActivo !== 2,
+                [`bg-transparent border-b-0 text-black`]: btActivo === 2,
             }"
             :to="{ name: 'formProducts', params: { tipo: tipoProducto } }" draggable="false"
-                class="whitespace-nowrap bg-disable text-white hover:border-b-0 hover:bg-transparent transition-colors duration-300 flex items-center justify-center min-w-max text-center text-base py-1 px-6 border-inputWidth border-inputBorder"
+                class="whitespace-nowrap bg-disable hover:border-b-0 hover:text-black hover:bg-transparent transition-colors duration-300 flex items-center justify-center min-w-max text-center text-base py-1 px-6 border-inputWidth border-inputBorder"
                 v-else>
                 Formulario
             </router-link>
 
             <router-link 
             :class="{
-                [`bg-window-${theme}`]: btActivo !== 3,
-                [`bg-transparent border-b-0`]: btActivo === 3,
+                [`bg-window-${theme} text-white`]: btActivo !== 3,
+                [`bg-transparent border-b-0 text-black`]: btActivo === 3,
             }"
             :to="{ name: 'formProducts', params: { tipo: tipoProducto, id: codigoProducto } }"
                 draggable="false"
-                class="whitespace-nowrap bg-disable text-white hover:border-b-0 hover:bg-transparent transition-colors duration-300 flex items-center justify-center min-w-max text-center text-base py-1 px-6 border-inputWidth border-inputBorder">
+                class="whitespace-nowrap bg-disable hover:border-b-0 hover:text-black hover:bg-transparent transition-colors duration-300 flex items-center justify-center min-w-max text-center text-base py-1 px-6 border-inputWidth border-inputBorder">
                 Productos por Almacén
             </router-link>
 
             <router-link 
             :class="{
-                [`bg-window-${theme}`]: btActivo !== 4,
-                [`bg-transparent border-b-0`]: btActivo === 4,
+                [`bg-window-${theme} text-white`]: btActivo !== 4,
+                [`bg-transparent border-b-0 text-black`]: btActivo === 4,
             }"
             :to="{ name: 'formProducts', params: { id: codigoProducto } }" draggable="false"
-                class="whitespace-nowrap bg-disable text-white hover:border-b-0 hover:bg-transparent transition-colors duration-300 flex items-center justify-center min-w-max text-center text-base py-1 px-6 border-inputWidth border-inputBorder">
+                class="whitespace-nowrap bg-disable hover:border-b-0 hover:text-black hover:bg-transparent transition-colors duration-300 flex items-center justify-center min-w-max text-center text-base py-1 px-6 border-inputWidth border-inputBorder">
                 Agregar Productos
             </router-link>
 
             <router-link 
             :class="{
-                [`bg-window-${theme}`]: btActivo !== 5,
-                [`bg-transparent border-b-0`]: btActivo === 5,
+                [`bg-window-${theme} text-white`]: btActivo !== 5,
+                [`bg-transparent border-b-0 text-black`]: btActivo === 5,
             }"
             :to="{ name: 'formProducts', params: { id: codigoProducto } }" draggable="false"
-                class="whitespace-nowrap bg-disable text-white hover:border-b-0 hover:bg-transparent transition-colors duration-300 flex items-center justify-center min-w-max text-center text-base py-1 px-6 border-inputWidth border-inputBorder">
+                class="whitespace-nowrap bg-disable hover:border-b-0 hover:text-black hover:bg-transparent transition-colors duration-300 flex items-center justify-center min-w-max text-center text-base py-1 px-6 border-inputWidth border-inputBorder">
                 Políticas
             </router-link>
 
             <router-link
             :class="{
-                [`bg-window-${theme}`]: btActivo !== 6,
-                [`bg-transparent border-b-0`]: btActivo === 6,
+                [`bg-window-${theme} text-white`]: btActivo !== 6,
+                [`bg-transparent border-b-0 text-black`]: btActivo === 6,
             }"
             :to="{ name: 'formProducts', params: { tipo: tipoProducto, id: codigoProducto } }"
                 draggable="false"
-                class="whitespace-nowrap bg-disable text-white hover:border-b-0 hover:bg-transparent transition-colors duration-300 flex items-center justify-center min-w-max text-center text-base py-1 px-6 border-inputWidth border-inputBorder">
+                class="whitespace-nowrap bg-disable hover:border-b-0 hover:text-black hover:bg-transparent transition-colors duration-300 flex items-center justify-center min-w-max text-center text-base py-1 px-6 border-inputWidth border-inputBorder">
                 Cantidad por Almacén
             </router-link>
 
             <router-link
             :class="{
-                [`bg-window-${theme}`]: btActivo !== 7,
-                [`bg-transparent border-b-0`]: btActivo === 7,
+                [`bg-window-${theme} text-white`]: btActivo !== 7,
+                [`bg-transparent border-b-0 text-black`]: btActivo === 7,
             }"
             :to="{ name: 'formProducts', params: { tipo: tipoProducto, id: codigoProducto } }"
                 draggable="false"
-                class="whitespace-nowrap bg-disable text-white hover:border-b-0 hover:bg-transparent transition-colors duration-300 flex items-center justify-center min-w-max text-center text-base py-1 px-6 border-inputWidth border-inputBorder">
+                class="whitespace-nowrap bg-disable hover:border-b-0 hover:text-black hover:bg-transparent transition-colors duration-300 flex items-center justify-center min-w-max text-center text-base py-1 px-6 border-inputWidth border-inputBorder">
                 Proveedores
             </router-link>
         </div>
