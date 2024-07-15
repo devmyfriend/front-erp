@@ -25,7 +25,7 @@
             :class="`bg-navbar-${theme}`"
         >
             <div class="flex flex-row gap-4">
-            <h1 class="navbarTitle text-[4vh] leading-[4vh] font-bold p-0 text-start m-0" :class="theme === 'thefit' ? 'text-black' : 'text-white'">THE FIT GYM</h1>
+            <h1 class="navbarTitle text-[4vh] leading-[4vh] font-bold p-0 text-start m-0 uppercase" :class="theme === 'thefit' ? 'text-black' : 'text-white'"> {{ theme }}</h1>
             <select class="px-4" v-model="temaActual" @change="cambiarTema">
                 <option value="myfriend">MyFriend</option>
                 <option value="thefit">The Fit Gym / The Fit Bar</option>

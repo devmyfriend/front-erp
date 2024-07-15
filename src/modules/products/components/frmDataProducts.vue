@@ -50,9 +50,6 @@ const esperarImagen = (archivo) => {
 const GuardarRegistro = () => {
     console.log('Guardando...');
 }
-const ActualizarRegistro = () => {
-    console.log('Actualizando...');
-}
 const selecionarClaveUnidad = (r) => {
     registro.value.ClaveProductoServicio = r.ClaveProductoServicio;
     modal.value.ClaveProductoServicio = false;
@@ -233,7 +230,7 @@ const test2 = () => {
                 </div>
             </div>
 
-            <btnSave :modo="modo" :elemento="elemento" class="mt-4 mb-2" />
+            <btnSave class="mt-4 mb-2" />
             </div>
         </form>
          <modalClaveProducto v-if="modal.ClaveProductoServicio === true" :registros="ListadoClavesProducto" @eSeleccionar="selecionarClaveUnidad" @eCancelar="cerrarModal" />
