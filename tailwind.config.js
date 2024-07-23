@@ -12,10 +12,49 @@ export default {
         negro: '#000',
         disabled: ({
           DEFAULT: '#999',
-          myfriend: 'var(--myfriend-100)',
-          thefit: 'var(--thefit-orange-200)',
-          bonavida: 'var(--bonavida-dark-200)',
+          MyFriend: 'var(--myfriend-100)',
+          TheFit: 'var(--thefit-orange-200)',
+          Bonavida: 'var(--bonavida-dark-200)',
         }),
+
+
+
+        MyFriend: {
+          primary: '#0F6F7B',
+          secondary: '#2BA0A3',
+          sidebar: '#0F6F7B',
+          navbar: '#CBE7E8',
+          headers: '#2BA0A3',
+          text: '#0F6F7B',
+          subtext: '#fff',
+          background: '#54BDBB',
+          container: "#2BA0A3"
+        },
+        TheFit: {
+          primary: '#EC633A',
+          secondary: '#999999',
+          sidebar: '#EC633A',
+          navbar: '#FBD6CC',
+          headers: '#999999',
+          text: '#999999',
+          subtext: '#EC633A',
+          background: '#FBD6CC',
+          container: "#F5AA95"
+        },
+        Bonavida: {
+          primary: '#1c75b9',
+          secondary: '#CDD1DE',
+          sidebar: '#1c75b9',
+          navbar: '#CDD1DE',
+          headers: '#1c75b9',
+          text: '#1c75b9',
+          subtext: '#1c75b9',
+          background: '#CDD1DE',
+          container: "#8AAED0"
+        },
+
+
+
         success:   '#198754',
         danger:    '#DC3545',
         warning:   '#FFC107',
@@ -160,63 +199,45 @@ export default {
   ],
   safelist: [
     {
-      pattern: /bg-disabled-.*/,
+      pattern: /bg-MyFriend-.*/,
       variants: ['responsive', 'hover', 'focus', 'active'],
     },
     {
-      pattern: /bg-sidebar-.*/,
+      pattern: /bg-TheFit-.*/,
       variants: ['responsive', 'hover', 'focus', 'active'],
     },
     {
-      pattern: /bg-navbar-.*/,
+      pattern: /bg-Bonavida-.*/,
+      variants: ['responsive', 'hover', 'focus', 'active'],
+    },
+
+
+
+    {
+      pattern: /text-MyFriend-.*/,
       variants: ['responsive', 'hover', 'focus', 'active'],
     },
     {
-      pattern: /bg-background-.*/,
+      pattern: /text-TheFit-.*/,
       variants: ['responsive', 'hover', 'focus', 'active'],
     },
     {
-      pattern: /bg-container-.*/,
+      pattern: /text-Bonavida-.*/,
+      variants: ['responsive', 'hover', 'focus', 'active'],
+    },
+
+
+
+    {
+      pattern: /border-MyFriend-.*/,
       variants: ['responsive', 'hover', 'focus', 'active'],
     },
     {
-      pattern: /bg-subcontainer-.*/,
+      pattern: /border-TheFit-.*/,
       variants: ['responsive', 'hover', 'focus', 'active'],
     },
     {
-      pattern: /text-h1-.*/,
-      variants: ['responsive', 'hover', 'focus', 'active'],
-    },
-    {
-      pattern: /text-h2-.*/,
-      variants: ['responsive', 'hover', 'focus', 'active'],
-    },
-    {
-      pattern: /text-textTable-.*/,
-      variants: ['responsive', 'hover', 'focus', 'active'],
-    },
-    {
-      pattern: /bg-headerTable-.*/,
-      variants: ['responsive', 'hover', 'focus', 'active'],
-    },
-    {
-      pattern: /bg-primaryButton-.*/,
-      variants: ['responsive', 'hover', 'focus', 'active'],
-    },
-    {
-      pattern: /bg-secondaryButton-.*/,
-      variants: ['responsive', 'hover', 'focus', 'active'],
-    },
-    {
-      pattern: /bg-window-.*/,
-      variants: ['responsive', 'hover', 'focus', 'active'],
-    },
-    {
-      pattern: /border-primaryButton-.*/,
-      variants: ['responsive', 'hover', 'focus', 'active'],
-    },
-    {
-      pattern: /border-secondaryButton-.*/,
+      pattern: /border-Bonavida-.*/,
       variants: ['responsive', 'hover', 'focus', 'active'],
     },
   ],

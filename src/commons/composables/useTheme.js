@@ -38,3 +38,35 @@ export function useTheme() {
     setTheme,
   };
 }
+
+export function useThemes() {
+  const theme = ref(localStorage.getItem('theme') || 'MyFriend');
+  const imageTheme = ref(localStorage.getItem('ImageTheme') || '/svg/empresas/myfriend.svg');
+
+  const setTheme = (newTheme) => {
+    theme.value = newTheme;
+    localStorage.setItem('theme', newTheme);
+
+    switch (newTheme) {
+      case 'MyFriend':
+        imageTheme.value =  '/svg/empresas/myfriend.svg';
+        break;
+      case 'TheFit':
+        imageTheme.value =  '/svg/empresas/fitgym.svg';
+        break;
+      case 'Bonavida':
+        imageTheme.value =  '/svg/empresas/bonavida.svg';
+        break;
+      default:
+        imageTheme.value =  '/svg/empresas/myfriend.svg';
+    }
+
+    console.log('Se cambio el tema a: ', newTheme);
+  };
+
+  return {
+    theme,
+    imageTheme,
+    setTheme,
+  };
+}

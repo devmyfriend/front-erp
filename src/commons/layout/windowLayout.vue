@@ -2,7 +2,7 @@
 import { onMounted, onUpdated, ref, provide } from 'vue';
 import titleH1 from '@/commons/ui/title-h1/title-h1.vue';
 import { windowLayoutStore } from '@/store/windowLayoutStore';
-import { useTheme } from '@/commons/composables/useTheme.js'
+import { useTheme } from '@/commons/composables/theme'
 const { theme } = useTheme();
 
 const titleContent = ref('');
@@ -24,8 +24,8 @@ provide('setWindowContent', (content) => {
                 <div v-html="titleContent"></div>
             </slot>
         </titleH1>
-        <div class="w-full h-[93%] rounded-[2rem] overflow-hidden" :class="`bg-container-${theme}`" >
-            <component :is="windowsContent" class="sticky top-0 bg-background" />
+        <div class="w-full h-[93%] rounded-[2rem] overflow-hidden" :class="`bg-${theme}-container`" >
+            <component :is="windowsContent" class="sticky top-0" :class="`bg-${theme}-background`" />
             <router-view />
         </div>
     </div>

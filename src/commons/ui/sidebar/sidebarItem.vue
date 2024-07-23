@@ -30,9 +30,9 @@ const getIconComponent = (icon) => {
 </script>
 
 <template>
-    <router-link :to="{ name: data.toProp}" class="no-underline text-secondaryFontColor text-center w-full flex flex-col items-center justify-center">
+    <router-link :to="{ name: data.toProp}" class="no-underline text-center w-full flex flex-col items-center justify-center" :class="`text-blanco`">
         <component :is="getIconComponent(data.icon)" />
-        <p class="px-2 text-[0.65vw] font-semibold text-center break-all m-0 text-white">{{ data.title }}</p>
+        <p class="px-2 text-[0.65vw] font-semibold text-center break-words min-w-16 mx-2 text-ellipsis" :class="`text-blanco`" >{{ data.title }}</p>
     </router-link>
 </template>
 

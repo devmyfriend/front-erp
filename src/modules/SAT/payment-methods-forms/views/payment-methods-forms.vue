@@ -5,6 +5,8 @@ import tablePaymentMethods from '@/modules/SAT/payment-methods-forms/components/
 import tablePaymentForms from '@/modules/SAT/payment-methods-forms/components/tablePaymentForms.vue';
 import { useLayout } from '@/commons/composables/useLayout.js';
 import { usePaymentMethodsForms } from '@/modules/SAT/payment-methods-forms/composables/usePaymentMethodsForms.js';
+import { useTheme } from '@/commons/composables/theme';
+const { theme } = useTheme();
 const { ListadoFormasPago, ListadoMetodosPago, cargarMetodosFormasPago } = usePaymentMethodsForms();
 const { setTitle } = useLayout();
 

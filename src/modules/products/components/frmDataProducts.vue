@@ -5,7 +5,7 @@ import btnSave from '@/commons/ui/btn-save/btn-save.vue';
 import Swal from 'sweetalert2';
 import { useRoute, useRouter } from 'vue-router';
 import modalClaveProducto from '@/commons/ui/modals/productKeyModal.vue';
-import { useTheme } from '@/commons/composables/useTheme.js';
+import { useTheme } from '@/commons/composables/theme';
 const { theme } = useTheme();
 const store = useProductos();
 const route = useRoute()
@@ -129,7 +129,7 @@ const test2 = () => {
 </script>
 
 <template>
-        <form @submit.prevent="modo === 0 ? test2() : test2()" class="w-full xl:w-[64%] min-h-max max-h-full mb-8 xl:mb-0 rounded-2xl overflow-y-scroll" :class="`bg-subcontainer-${theme}`">
+        <form @submit.prevent="modo === 0 ? test2() : test2()" class="w-full xl:w-[64%] min-h-max max-h-full mb-8 xl:mb-0 rounded-2xl overflow-y-scroll" :class="`bg-${theme}-container`">
             <div class="m-4 gap-y-4 flex flex-col">
 
             <div class="mt-4 gap-y-4 flex flex-col">
@@ -169,7 +169,7 @@ const test2 = () => {
                     <select v-model="registro.lineaProducto" id="lineaProducto">
                         <option v-for="Linea in ListadoLineasProducto" :value="Linea.NombreLineaProducto"> {{ Linea.NombreLineaProducto }} </option>
                     </select>
-                    <button type="button" @click="abrirModal(1)" class="basis-16 min-h-7 bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 transition-all duration-300" :class="`bg-primaryButton-${theme} hover:bg-primaryButton-${theme}-hover`">
+                    <button type="button" @click="abrirModal(1)" class="basis-16 min-h-7 bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 transition-all duration-300" :class="`bg-${theme}-primary hover:bg-${theme}-secondary`">
                         <svg width="16" height="16" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M21.7008 19.0204L17.4165 14.7368C17.2231 14.5435 16.961 14.4361 16.686 14.4361H15.9855C17.1716 12.9194 17.8763 11.0118 17.8763 8.93663C17.8763 4 13.8756 0 8.93815 0C4.00068 0 0 4 0 8.93663C0 13.8733 4.00068 17.8733 8.93815 17.8733C11.0137 17.8733 12.9216 17.1686 14.4386 15.9828V16.6831C14.4386 16.9581 14.546 17.2202 14.7394 17.4135L19.0237 21.6971C19.4276 22.101 20.0808 22.101 20.4804 21.6971L21.6965 20.4812C22.1004 20.0773 22.1004 19.4243 21.7008 19.0204ZM8.93815 14.4361C5.90004 14.4361 3.43775 11.9785 3.43775 8.93663C3.43775 5.89903 5.89574 3.43716 8.93815 3.43716C11.9763 3.43716 14.4386 5.89474 14.4386 8.93663C14.4386 11.9742 11.9806 14.4361 8.93815 14.4361Z" fill="#fff"/>
                         </svg>
@@ -180,7 +180,7 @@ const test2 = () => {
                     <select v-model="registro.familiaProducto" id="familiaProducto">
                         <option v-for="Familia in ListadoFamiliasProducto" :value="Familia.NombreFamiliaProducto"> {{ Familia.NombreFamiliaProducto }} </option>
                     </select>
-                    <button type="button" @click="abrirModal(2)" class="bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 transition-all duration-300 basis-16 min-h-7" :class="`bg-primaryButton-${theme} hover:bg-primaryButton-${theme}-hover`">
+                    <button type="button" @click="abrirModal(2)" class="bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 transition-all duration-300 basis-16 min-h-7" :class="`bg-${theme}-primary hover:bg-${theme}-secondary`">
                         <svg width="16" height="16" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M21.7008 19.0204L17.4165 14.7368C17.2231 14.5435 16.961 14.4361 16.686 14.4361H15.9855C17.1716 12.9194 17.8763 11.0118 17.8763 8.93663C17.8763 4 13.8756 0 8.93815 0C4.00068 0 0 4 0 8.93663C0 13.8733 4.00068 17.8733 8.93815 17.8733C11.0137 17.8733 12.9216 17.1686 14.4386 15.9828V16.6831C14.4386 16.9581 14.546 17.2202 14.7394 17.4135L19.0237 21.6971C19.4276 22.101 20.0808 22.101 20.4804 21.6971L21.6965 20.4812C22.1004 20.0773 22.1004 19.4243 21.7008 19.0204ZM8.93815 14.4361C5.90004 14.4361 3.43775 11.9785 3.43775 8.93663C3.43775 5.89903 5.89574 3.43716 8.93815 3.43716C11.9763 3.43716 14.4386 5.89474 14.4386 8.93663C14.4386 11.9742 11.9806 14.4361 8.93815 14.4361Z" fill="#fff"/>
                         </svg>
@@ -191,7 +191,7 @@ const test2 = () => {
                     <select v-model="registro.subfamiliaProducto" id="subfamiliaProducto">
                         <option v-for="Subfamilia in ListadoSubfamiliasProducto" :value="Subfamilia.NombreSubfamiliaProducto"> {{ Subfamilia.NombreSubfamiliaProducto }} </option>
                     </select>
-                    <button type="button" @click="abrirModal(3)" class="bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 transition-all duration-300 basis-16 min-h-7" :class="`bg-primaryButton-${theme} hover:bg-primaryButton-${theme}-hover`">
+                    <button type="button" @click="abrirModal(3)" class="bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 transition-all duration-300 basis-16 min-h-7" :class="`bg-${theme}-primary hover:bg-${theme}-secondary`">
                         <svg width="16" height="16" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M21.7008 19.0204L17.4165 14.7368C17.2231 14.5435 16.961 14.4361 16.686 14.4361H15.9855C17.1716 12.9194 17.8763 11.0118 17.8763 8.93663C17.8763 4 13.8756 0 8.93815 0C4.00068 0 0 4 0 8.93663C0 13.8733 4.00068 17.8733 8.93815 17.8733C11.0137 17.8733 12.9216 17.1686 14.4386 15.9828V16.6831C14.4386 16.9581 14.546 17.2202 14.7394 17.4135L19.0237 21.6971C19.4276 22.101 20.0808 22.101 20.4804 21.6971L21.6965 20.4812C22.1004 20.0773 22.1004 19.4243 21.7008 19.0204ZM8.93815 14.4361C5.90004 14.4361 3.43775 11.9785 3.43775 8.93663C3.43775 5.89903 5.89574 3.43716 8.93815 3.43716C11.9763 3.43716 14.4386 5.89474 14.4386 8.93663C14.4386 11.9742 11.9806 14.4361 8.93815 14.4361Z" fill="#fff"/>
                         </svg>
@@ -200,7 +200,7 @@ const test2 = () => {
                 <div class="min-w-full flex-wrap flex"> <!-- C. Producto SAT -->
                     <label class="max-w-48 min-w-48 text-[1rem] items-center flex" for="ClaveProductoServicio"> C. Producto SAT: </label>
                     <input v-model="registro.ClaveProductoServicio" id="ClaveProductoServicio" disabled />
-                    <button type="button" @click="abrirModal(4)" class="bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 transition-all duration-300 basis-16 min-h-7" :class="`bg-primaryButton-${theme} hover:bg-primaryButton-${theme}-hover`">
+                    <button type="button" @click="abrirModal(4)" class="bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 transition-all duration-300 basis-16 min-h-7" :class="`bg-${theme}-primary hover:bg-${theme}-secondary`">
                         <svg width="16" height="16" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M21.7008 19.0204L17.4165 14.7368C17.2231 14.5435 16.961 14.4361 16.686 14.4361H15.9855C17.1716 12.9194 17.8763 11.0118 17.8763 8.93663C17.8763 4 13.8756 0 8.93815 0C4.00068 0 0 4 0 8.93663C0 13.8733 4.00068 17.8733 8.93815 17.8733C11.0137 17.8733 12.9216 17.1686 14.4386 15.9828V16.6831C14.4386 16.9581 14.546 17.2202 14.7394 17.4135L19.0237 21.6971C19.4276 22.101 20.0808 22.101 20.4804 21.6971L21.6965 20.4812C22.1004 20.0773 22.1004 19.4243 21.7008 19.0204ZM8.93815 14.4361C5.90004 14.4361 3.43775 11.9785 3.43775 8.93663C3.43775 5.89903 5.89574 3.43716 8.93815 3.43716C11.9763 3.43716 14.4386 5.89474 14.4386 8.93663C14.4386 11.9742 11.9806 14.4361 8.93815 14.4361Z" fill="#fff"/>
                         </svg>
@@ -211,7 +211,7 @@ const test2 = () => {
                     <select v-model="registro.ClaveUnidadSAT" id="ClaveUnidadSAT">
                         <option v-for="ClaveUnidad in ListadoSubfamiliasProducto" :value="ClaveUnidad.NombreSubfamiliaProducto"> {{ ClaveUnidad.NombreSubfamiliaProducto }} </option>
                     </select>
-                    <button type="button" @click="abrirModal(5)" class="bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 transition-all duration-300 basis-16 min-h-7" :class="`bg-primaryButton-${theme} hover:bg-primaryButton-${theme}-hover`">
+                    <button type="button" @click="abrirModal(5)" class="bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 transition-all duration-300 basis-16 min-h-7" :class="`bg-${theme}-primary hover:bg-${theme}-secondary`">
                         <svg width="16" height="16" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M21.7008 19.0204L17.4165 14.7368C17.2231 14.5435 16.961 14.4361 16.686 14.4361H15.9855C17.1716 12.9194 17.8763 11.0118 17.8763 8.93663C17.8763 4 13.8756 0 8.93815 0C4.00068 0 0 4 0 8.93663C0 13.8733 4.00068 17.8733 8.93815 17.8733C11.0137 17.8733 12.9216 17.1686 14.4386 15.9828V16.6831C14.4386 16.9581 14.546 17.2202 14.7394 17.4135L19.0237 21.6971C19.4276 22.101 20.0808 22.101 20.4804 21.6971L21.6965 20.4812C22.1004 20.0773 22.1004 19.4243 21.7008 19.0204ZM8.93815 14.4361C5.90004 14.4361 3.43775 11.9785 3.43775 8.93663C3.43775 5.89903 5.89574 3.43716 8.93815 3.43716C11.9763 3.43716 14.4386 5.89474 14.4386 8.93663C14.4386 11.9742 11.9806 14.4361 8.93815 14.4361Z" fill="#fff"/>
                         </svg>
@@ -222,7 +222,7 @@ const test2 = () => {
                     <select v-model="registro.ImpuestoCompuesto" id="ImpuestoCompuesto">
                         <option v-for="ImpCompuesto in ListadoSubfamiliasProducto" :value="ImpCompuesto.NombreSubfamiliaProducto"> {{ ImpCompuesto.NombreSubfamiliaProducto }} </option>
                     </select>
-                    <button type="button" @click="abrirModal(6)" class="bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 transition-all duration-300 basis-16 min-h-7" :class="`bg-primaryButton-${theme} hover:bg-primaryButton-${theme}-hover`">
+                    <button type="button" @click="abrirModal(6)" class="bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 transition-all duration-300 basis-16 min-h-7" :class="`bg-${theme}-primary hover:bg-${theme}-secondary`">
                         <svg width="16" height="16" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M21.7008 19.0204L17.4165 14.7368C17.2231 14.5435 16.961 14.4361 16.686 14.4361H15.9855C17.1716 12.9194 17.8763 11.0118 17.8763 8.93663C17.8763 4 13.8756 0 8.93815 0C4.00068 0 0 4 0 8.93663C0 13.8733 4.00068 17.8733 8.93815 17.8733C11.0137 17.8733 12.9216 17.1686 14.4386 15.9828V16.6831C14.4386 16.9581 14.546 17.2202 14.7394 17.4135L19.0237 21.6971C19.4276 22.101 20.0808 22.101 20.4804 21.6971L21.6965 20.4812C22.1004 20.0773 22.1004 19.4243 21.7008 19.0204ZM8.93815 14.4361C5.90004 14.4361 3.43775 11.9785 3.43775 8.93663C3.43775 5.89903 5.89574 3.43716 8.93815 3.43716C11.9763 3.43716 14.4386 5.89474 14.4386 8.93663C14.4386 11.9742 11.9806 14.4361 8.93815 14.4361Z" fill="#fff"/>
                         </svg>

@@ -14,7 +14,7 @@ import titleH2 from '@/commons/ui/title-h2/title-h2.vue';
 import Swal from 'sweetalert2';
 import { useRoute } from 'vue-router';
 
-import { useTheme } from '@/commons/composables/useTheme';
+import { useTheme } from '@/commons/composables/theme';
 const { theme } = useTheme();
 
 const route = useRoute();

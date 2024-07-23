@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import { useTheme } from '@/commons/composables/useTheme.js'
+import { useTheme } from '@/commons/composables/theme'
 const { theme } = useTheme();
 
 const emit = defineEmits(['eGuardar']);
@@ -21,12 +21,12 @@ const imprimirImagen = () => {
     <div class="m-4 mt-0">
         <input type="file" class="hidden" ref="fileInput" @change="imprimirImagen" />
         <button @click="cargarImagen" class="col-span-2 
-        text-white flex gap-4
+        flex gap-4
         p-primaryPaddingButton border-none
         rounded-primaryButtonRadius justify-center 
         items-center uppercase text-base font-bold 
         h-10 w-56 transition-all duration-300"
-            :class="`bg-primaryButton-${theme} hover:bg-primaryButton-${theme}-hover`">
+            :class="`bg-${theme}-primary hover:bg-${theme}-secondary text-${theme}-subtext`">
             <svg width="16" height="16" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"
                 class="imgButton">
                 <path

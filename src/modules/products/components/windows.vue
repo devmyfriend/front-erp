@@ -2,7 +2,7 @@
     import { computed, onMounted, onUpdated, ref, watch } from 'vue';
     import { useRoute } from 'vue-router';
     import { windowLayoutStore } from '@/store/windowLayoutStore';
-    import { useTheme } from '@/commons/composables/useTheme.js';
+    import { useTheme } from '@/commons/composables/theme';
     import closeIco from '@/commons/ui/icons/actionIcons/closeIco.vue';
     const { theme } = useTheme();
     const route = useRoute();
@@ -45,12 +45,12 @@
 </script>
 
 <template>
-    <div class="flex justify-between" :class="`bg-container-${theme}`">
+    <div class="flex justify-between" :class="`bg-${theme}-background`">
         <div class="flex flex-row justify-start text-xl min-h-[1.5rem] max-w-[80vw] min-w-[80vw] overflow-x-scroll">
             <router-link 
             :class="{
-                [`bg-window-${theme} text-white`]: btActivo !== 1,
-                [`bg-transparent border-b-0 text-black`]: btActivo === 1,
+                [`bg-${theme}-primary text-${theme}-subtext`]: btActivo !== 1,
+                [`bg-transparent border-b-0 text-${theme}-text`]: btActivo === 1,
             }"
 
                 :to="{ name: 'productos', params: { tipo: tipoProducto } }" draggable="false"
@@ -60,8 +60,8 @@
 
             <router-link 
             :class="{
-                [`bg-window-${theme} text-white`]: btActivo !== 2,
-                [`bg-transparent border-b-0 text-black`]: btActivo === 2,
+                [`bg-${theme}-primary text-white`]: btActivo !== 2,
+                [`bg-transparent border-b-0 text-${theme}-text`]: btActivo === 2,
             }"
             :to="{ name: 'formProducts', params: { tipo: tipoProducto, id: codigoProducto } }"
                 v-if="codigoProducto !== ''" draggable="false"
@@ -71,8 +71,8 @@
 
             <router-link 
             :class="{
-                [`bg-window-${theme} text-white`]: btActivo !== 2,
-                [`bg-transparent border-b-0 text-black`]: btActivo === 2,
+                [`bg-${theme}-primary text-${theme}-subtext`]: btActivo !== 2,
+                [`bg-transparent border-b-0 text-${theme}-text`]: btActivo === 2,
             }"
             :to="{ name: 'formProducts', params: { tipo: tipoProducto } }" draggable="false"
                 class="whitespace-nowrap bg-disable hover:border-b-0 hover:text-black hover:bg-transparent transition-colors duration-300 flex items-center justify-center min-w-max text-center text-base py-1 px-6 border-inputWidth border-inputBorder"
@@ -82,8 +82,8 @@
 
             <router-link 
             :class="{
-                [`bg-window-${theme} text-white`]: btActivo !== 3,
-                [`bg-transparent border-b-0 text-black`]: btActivo === 3,
+                [`bg-${theme}-primary text-${theme}-subtext`]: btActivo !== 3,
+                [`bg-transparent border-b-0 text-${theme}-text`]: btActivo === 3,
             }"
             :to="{ name: 'formProducts', params: { tipo: tipoProducto, id: codigoProducto } }"
                 draggable="false"
@@ -93,8 +93,8 @@
 
             <router-link 
             :class="{
-                [`bg-window-${theme} text-white`]: btActivo !== 4,
-                [`bg-transparent border-b-0 text-black`]: btActivo === 4,
+                [`bg-${theme}-primary text-${theme}-text`]: btActivo !== 4,
+                [`bg-transparent border-b-0 text-${theme}-text`]: btActivo === 4,
             }"
             :to="{ name: 'formProducts', params: { id: codigoProducto } }" draggable="false"
                 class="whitespace-nowrap bg-disable hover:border-b-0 hover:text-black hover:bg-transparent transition-colors duration-300 flex items-center justify-center min-w-max text-center text-base py-1 px-6 border-inputWidth border-inputBorder">
@@ -103,8 +103,8 @@
 
             <router-link 
             :class="{
-                [`bg-window-${theme} text-white`]: btActivo !== 5,
-                [`bg-transparent border-b-0 text-black`]: btActivo === 5,
+                [`bg-${theme}-primary text-${theme}-text`]: btActivo !== 5,
+                [`bg-transparent border-b-0 text-${theme}-text`]: btActivo === 5,
             }"
             :to="{ name: 'formProducts', params: { id: codigoProducto } }" draggable="false"
                 class="whitespace-nowrap bg-disable hover:border-b-0 hover:text-black hover:bg-transparent transition-colors duration-300 flex items-center justify-center min-w-max text-center text-base py-1 px-6 border-inputWidth border-inputBorder">
@@ -113,8 +113,8 @@
 
             <router-link
             :class="{
-                [`bg-window-${theme} text-white`]: btActivo !== 6,
-                [`bg-transparent border-b-0 text-black`]: btActivo === 6,
+                [`bg-${theme}-primary text-${theme}-text`]: btActivo !== 6,
+                [`bg-transparent border-b-0 text-${theme}-text`]: btActivo === 6,
             }"
             :to="{ name: 'formProducts', params: { tipo: tipoProducto, id: codigoProducto } }"
                 draggable="false"
@@ -124,8 +124,8 @@
 
             <router-link
             :class="{
-                [`bg-window-${theme} text-white`]: btActivo !== 7,
-                [`bg-transparent border-b-0 text-black`]: btActivo === 7,
+                [`bg-${theme}-primary text-${theme}-text`]: btActivo !== 7,
+                [`bg-transparent border-b-0 text-${theme}-text`]: btActivo === 7,
             }"
             :to="{ name: 'formProducts', params: { tipo: tipoProducto, id: codigoProducto } }"
                 draggable="false"
