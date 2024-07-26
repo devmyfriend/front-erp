@@ -11,49 +11,54 @@ export default {
         blanco: '#fff',
         negro: '#000',
         disabled: ({
-          DEFAULT: '#999',
-          MyFriend: 'var(--myfriend-100)',
-          TheFit: 'var(--thefit-orange-200)',
-          Bonavida: 'var(--bonavida-dark-200)',
+          DEFAULT: '#999'
         }),
 
-
-
         MyFriend: {
-          primary: '#0F6F7B',
-          secondary: '#2BA0A3',
-          sidebar: '#0F6F7B',
-          navbar: '#CBE7E8',
-          headers: '#2BA0A3',
-          text: '#0F6F7B',
-          subtext: '#fff',
-          background: '#54BDBB',
-          container: "#2BA0A3"
+          "primary": "#0F6F7B",
+          "primary-hover": "#0E5F6A",
+          "secondary": "#2BA0A3",
+          "secondary-hover": "#23898A",
+          "sidebar": "#0F6F7B",
+          "navbar": "#CBE7E8",
+          "headers": "#2BA0A3",
+          "headers-hover": "#23898A",
+          "text": "#0F6F7B",
+          "subtext": "#FFFFFF",
+          "background": "#54BDBB",
+          "container": "#2BA0A3",
+          "disabled": "#CBE7E8"
         },
         TheFit: {
-          primary: '#EC633A',
-          secondary: '#999999',
-          sidebar: '#EC633A',
-          navbar: '#FBD6CC',
-          headers: '#999999',
-          text: '#999999',
-          subtext: '#EC633A',
-          background: '#FBD6CC',
-          container: "#F5AA95"
-        },
+          "primary": "#EC633A",
+          "primary-hover": "#EC5532",
+          "secondary": "#999999",
+          "secondary-hover": "#858585",
+          "sidebar": "#EC633A",
+          "navbar": "#FBD6CC",
+          "headers": "#999999",
+          "headers-hover": "#858585",
+          "text": "#999999",
+          "subtext": "#EC633A",
+          "background": "#FBD6CC",
+          "container": "#F5AA95",
+          "disabled": "#FBD6CC"
+        },        
         Bonavida: {
-          primary: '#1c75b9',
-          secondary: '#CDD1DE',
-          sidebar: '#1c75b9',
-          navbar: '#CDD1DE',
-          headers: '#1c75b9',
-          text: '#1c75b9',
-          subtext: '#1c75b9',
-          background: '#CDD1DE',
-          container: "#8AAED0"
+          "primary": "#1c75b9",
+          "primary-hover": "#175f95",
+          "secondary": "#8e929f",
+          "secondary-hover": "#7a7d89",
+          "sidebar": "#1c75b9",
+          "navbar": "#CDD1DE",
+          "headers": "#1c75b9",
+          "headers-hover": "#175f95",
+          "text": "#1c75b9",
+          "subtext": "#1c75b9",
+          "background": "#CDD1DE",
+          "container": "#8AAED0",
+          "disabled": "#CDD1DE"
         },
-
-
 
         success:   '#198754',
         danger:    '#DC3545',
@@ -191,8 +196,12 @@ export default {
     function({ addBase, theme }) {
       addBase({
         ':root': {
-          '--modal-confirm': theme('colors.modalConfirm'),
-          '--modal-cancel': theme('colors.modalCancel'),
+          '--color-myfriend-primary': theme('colors.MyFriend.primary'),
+          '--color-thefit-primary': theme('colors.TheFit.primary'),
+          '--color-bonavida-primary': theme('colors.Bonavida.primary'),
+          '--color-myfriend-secondary': theme('colors.MyFriend.secondary'),
+          '--color-thefit-secondary': theme('colors.TheFit.secondary'),
+          '--color-bonavida-secondary': theme('colors.Bonavida.secondary'),
         }
       });
     }

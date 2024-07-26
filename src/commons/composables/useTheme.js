@@ -60,8 +60,6 @@ export function useThemes() {
       default:
         imageTheme.value =  '/svg/empresas/myfriend.svg';
     }
-
-    console.log('Se cambio el tema a: ', newTheme);
   };
 
   return {

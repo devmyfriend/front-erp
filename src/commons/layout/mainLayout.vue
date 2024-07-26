@@ -11,8 +11,8 @@
   }
 
   onBeforeMount (() => {
-    setTheme('MyFriend');
-    temaActual.value = 'MyFriend';
+    temaActual.value = theme.value;
+    setTheme(temaActual.value);
   });
   watch(() => theme.value, (newValue) => {
         temaActual.value = newValue;
@@ -26,7 +26,7 @@
         >
             <div class="flex flex-row gap-4">
             <h1 class="navbarTitle text-[4vh] leading-[4vh] font-bold p-0 text-start m-0 uppercase" :class="'text-white'"> {{ theme }}</h1>
-            <select class="px-4" v-model="temaActual" @change="cambiarTema">
+            <select class="px-4 lg:w-96 md:w-60 w-32" v-model="temaActual" @change="cambiarTema">
                 <option value="MyFriend">MyFriend </option>
                 <option value="TheFit">The Fit Gym / The Fit Bar</option>
                 <option value="Bonavida">Bonavida</option>

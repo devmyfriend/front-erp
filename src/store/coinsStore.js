@@ -27,6 +27,34 @@ export const coinsStore = defineStore('Coins', {
                     return false;
                 }
             }
-        }
+        },
+
+        async crearMoneda(moneda) {
+            const data = await coinsServices.crearMoneda(moneda);
+            if (data) {
+                this.cargarMonedas();
+                return true;
+            }else{
+                return false;
+            }
+        },
+        async actualizarMoneda(moneda) {
+            const data = await coinsServices.actualizarMoneda(moneda);
+            if (data) {
+                this.cargarMonedas();
+                return true;
+            }else{
+                return false;
+            }
+        },
+        async eliminarMoneda(moneda) {
+            const data = await coinsServices.eliminarMoneda(moneda);
+            if (data) {
+                this.cargarMonedas();
+                return true;
+            }else{
+                return false;
+            }
+        },
     },
 });

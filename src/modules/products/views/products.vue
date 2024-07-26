@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 import { useRoute } from 'vue-router';
 
 import { useTheme } from '@/commons/composables/theme';
-const { theme } = useTheme();
+    const { theme } = useTheme();
 
 const route = useRoute();
 const windowStore = windowLayoutStore();

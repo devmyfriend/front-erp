@@ -17,11 +17,6 @@ import { useTheme } from '@/commons/composables/theme.js'
 const { theme } = useTheme();
 
 const props = defineProps({
-    tipoProducto: {
-        type: String,
-        required: false,
-        default: 'Todos'
-    },
     ruta: {
         type: String,
         required: false
