@@ -2,7 +2,7 @@
   <div v-if="mostrar" class="fixed inset-0 bg-gray-600 bg-opacity-75 flex items-center justify-center z-10" @keydown.escape="closeModal">
     <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all max-w-lg w-full">
       <div class="px-4 py-5 sm:px-6">
-        <div class="w-full flex flex-row justify-between items-center min-h-4 max-h-4">
+        <div class="w-full flex flex-row justify-between items-center">
           <!-- <h3 class="text-lg leading-6 font-medium text-gray-900">
             Formulario de Monedas
           </h3> -->
@@ -28,7 +28,7 @@
         </div>
 
       </div>
-      <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse">
+      <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse mb-2">
         <button @click="closeModal"
           class="w-full justify-center transition-all duration-300 rounded-md px-4 py-2 md:text-base font-medium text-white border-2  sm:ml-3 sm:w-auto text-sm"
           :class="`bg-${theme}-secondary hover:bg-${theme}-secondary-hover`">

@@ -6,7 +6,7 @@ import coinFinder from '@/modules/SAT/coins/components/coinFinder.vue';
 import btnSave from '@/commons/ui/btn-save/btn-save.vue';
 import deleteModal from '@/commons/ui/modals/deleteModal.vue';
 import btnFormulario from '@/commons/ui/btn-formulario/btn-formulario.vue';
-import Lalo from '@/components/Lalo.vue';
+import coinsModal from '@/commons/components/modals/coinsModal.vue';
 import { useLayout } from '@/commons/composables/useLayout.js';
 import { useCoins } from '@/modules/SAT/coins/composables/useCoins.js';
 import { useTheme } from '@/commons/composables/theme';
@@ -139,7 +139,7 @@ const esperarCancelar = () => {
         </div>
     </div>
 
-    <Lalo :datos="bodyFrm" :mostrar="showModal" :modo="modoFormulario" @eConfirm="esperarModal" @eCancel="esperarCancelar" />
+    <coinsModal :datos="bodyFrm" :mostrar="showModal" :modo="modoFormulario" @eConfirm="esperarModal" @eCancel="esperarCancelar" />
 
 </template>
 
