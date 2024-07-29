@@ -30,7 +30,7 @@ export default{
         },{
             path: '/testLalo',
             name: 'Lalo',
-            component: () => import('@/components/Lalo.vue')
+            component: () => import('@/commons/components/modals/coinsModal.vue')
         }
     ]
 };
