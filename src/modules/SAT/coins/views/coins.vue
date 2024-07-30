@@ -8,9 +8,6 @@ import btnFormulario from '@/commons/ui/btn-formulario/btn-formulario.vue';
 import coinsModal from '@/commons/components/modals/coinsModal.vue';
 import { useLayout } from '@/commons/composables/useLayout.js';
 import { useCoins } from '@/modules/SAT/coins/composables/useCoins.js';
-import { useTheme } from '@/commons/composables/theme';
-
-const { theme } = useTheme();
 const { setTitle } = useLayout();
 const {
     ListadoMonedas,
@@ -44,8 +41,7 @@ onMounted(async () => {
                     <coinFinder @eBusqueda="esperarBusqueda" />
                 </div>
                 <btnFormulario @eNuevo="showModal = true; modoFormulario = 0"
-                    class="text-base px-4 py-2 text-white rounded-md h-full uppercase font-semibold flex items-center justify-center transition-all duration-300 max-w-24 md:max-w-32 xl:max-w-36"
-                    :class="`bg-${theme}-primary hover:bg-${theme}-secondary`" />
+                    class="text-base px-4 py-2 text-white rounded-md h-full uppercase font-semibold flex items-center justify-center transition-all duration-300 max-w-24 md:max-w-32 xl:max-w-36"/>
             </div>
 
             <div class="w-full items-center flex flex-col overflow-y-scroll text-secondaryFontColor text-base rounded-3xl">
