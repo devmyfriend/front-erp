@@ -24,7 +24,6 @@ const {
     esperarModal,
     borrarRegistro,
     esperarCancelar,
-    
 } = useCoins();
 
 onBeforeMount(() => {
