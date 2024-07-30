@@ -17,3 +17,93 @@ export const cargarImpuestos = async () => {
         });
     }
 }
+
+export const crearImpuesto = async (impuesto) => {
+    try{
+        const datos = await axios.post(`${rutaGeneral}v1/impuestos`, impuesto);
+        if (datos.status === 200 && datos.statusText === "OK") {
+            Swal.fire({
+                title: datos.data.message,
+                text: "El impuesto ha sido creado correctamente",
+                icon: "success",
+            });
+            return true;
+        }
+    } catch (error){ 
+        console.error(error);
+        if (error.response.status === 409) {
+            Swal.fire({
+                title: error.response.data.error ? error.response.data.error : JSON.stringify(error),
+                text: "Intenta ingresar un impuesto válido",
+                icon: "error",
+            });
+        } else {
+            console.log('error: ', JSON.stringify(error));
+            Swal.fire({
+                title: error.response.data.error ? error.response.data.error : JSON.stringify(error),
+                text: "Error del servidor",
+                icon: "error",
+            });
+        }
+    }
+}
+
+export const actualizarImpuesto = async (impuesto) => {
+    try {
+        const datos = await axios.put(`${rutaGeneral}v1/impuestos`, impuesto);
+        if (datos.status === 200 && datos.statusText === "OK") {
+            Swal.fire({
+                title: datos.data.message,
+                text: "El impuesto ha sido actualizado correctamente",
+                icon: "success",
+            });
+            return true;
+        }
+    } catch (error) {
+        console.error(error);
+        if (error.response.status === 404) {
+            Swal.fire({
+                title: error.response.data.error ? error.response.data.error : JSON.stringify(error),
+                text: "Intenta ingresar un impuesto válido",
+                icon: "error",
+            });
+        } else {
+            console.log('error: ', JSON.stringify(error));
+            Swal.fire({
+                title: error.response.data.error ? error.response.data.error : JSON.stringify(error),
+                text: "Error del servidor",
+                icon: "error",
+            });
+        }
+    }
+}
+
+export const eliminarImpuesto = async (id) => {
+    try {
+        const datos = await axios.delete(`${rutaGeneral}v1/impuestos/${id}`);
+        if (datos.status === 200 && datos.statusText === "OK") {
+            Swal.fire({
+                title: datos.data.message,
+                text: "El impuesto ha sido eliminado correctamente",
+                icon: "success",
+            });
+            return true;
+        }
+    } catch (error) {
+        console.error(error);
+        if (error.response.status === 404) {
+            Swal.fire({
+                title: error.response.data.error ? error.response.data.error : JSON.stringify(error),
+                text: "Intenta ingresar un impuesto válido",
+                icon: "error",
+            });
+        } else {
+            console.log('error: ', JSON.stringify(error));
+            Swal.fire({
+                title: error.response.data.error ? error.response.data.error : JSON.stringify(error),
+                text: "Error del servidor",
+                icon: "error",
+            });
+        }
+    }
+}
