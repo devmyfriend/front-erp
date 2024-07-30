@@ -4,13 +4,11 @@ import titleH2 from '@/commons/ui/title-h2/title-h2.vue';
 import tableTaxes from '@/modules/SAT/tax/components/tableTaxes.vue';
 import { useLayout } from '@/commons/composables/useLayout.js';
 import { useTaxes } from '@/modules/SAT/tax/composables/useTaxes.js';
-import { useTheme } from '@/commons/composables/theme';
 import btnFormulario from '@/commons/ui/btn-formulario/btn-formulario.vue';
 import deleteModal from '@/commons/ui/modals/deleteModal.vue';
 import TaxesModal from '@/commons/components/modals/taxesModal.vue';
 
 const { setTitle } = useLayout();
-const { theme } = useTheme();
 const {
     ListadoImpuestos,
     showModal,
@@ -19,7 +17,6 @@ const {
     bodyFrm,
     cargarDatos,
     esperarTabla,
-    subirDatos,
     esperarModal,
     esperarCancelar,
     borrarRegistro,
@@ -37,8 +34,7 @@ onBeforeMount(() => {
             <div class="flex flex-row mb-6 h-inputHeight justify-between">
                 <titleH2> Listado de Impuestos SAT</titleH2>
                 <btnFormulario @eNuevo="showModal = true; modoFormulario = 0"
-                    class="mr-2 text-base px-4 py-2 text-white rounded-md h-full uppercase font-semibold flex items-center justify-center transition-all duration-300 max-w-24 min-w-24 md:max-w-32 md:min-w-32 xl:max-w-36 xl:min-w-36"
-                    :class="`bg-${theme}-primary hover:bg-${theme}-secondary`"/>
+                    class="mr-2 text-base px-4 py-2 text-white rounded-md h-full uppercase font-semibold flex items-center justify-center transition-all duration-300 max-w-24 min-w-24 md:max-w-32 md:min-w-32 xl:max-w-36 xl:min-w-36"/>
             </div>
 
             <div 
