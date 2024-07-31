@@ -107,3 +107,37 @@ export const eliminarImpuesto = async (id) => {
         }
     }
 }
+
+/* 
+
+export const eliminarImpuesto = async (impuesto) => {
+    try {
+        const datos = await axios.delete(`${rutaGeneral}v1/impuestos`, { data: impuesto });
+        if (datos.status === 200 && datos.statusText === "OK") {
+            Swal.fire({
+                title: datos.data.message,
+                text: "El impuesto ha sido eliminado correctamente",
+                icon: "success",
+            });
+            return true;
+        }
+    } catch (error) {
+        console.error(error);
+        if (error.response.status === 404) {
+            Swal.fire({
+                title: error.response.data.error ? error.response.data.error : JSON.stringify(error),
+                text: "Intenta ingresar un impuesto válido",
+                icon: "error",
+            });
+        } else {
+            console.log('error: ', JSON.stringify(error));
+            Swal.fire({
+                title: error.response.data.error ? error.response.data.error : JSON.stringify(error),
+                text: "Error del servidor",
+                icon: "error",
+            });
+        }
+    }
+}
+
+*/
