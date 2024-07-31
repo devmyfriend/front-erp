@@ -3,9 +3,6 @@
     <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all max-w-lg w-full">
       <div class="px-4 py-5 sm:px-6">
         <div class="w-full flex flex-row justify-between items-center">
-          <!-- <h3 class="text-lg leading-6 font-medium text-gray-900">
-            Formulario de Monedas
-          </h3> -->
           <titleH2 class="mb-0" :class="`text-${theme}-text`"> {{ modo === 0 ? 'Nueva' : 'Editar' }} moneda </titleH2>
           <div class="h-8 w-5 flex justify-end items-center cursor-pointer">
             <p @click="closeModal"
