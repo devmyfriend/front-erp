@@ -19,7 +19,7 @@
 
         </div>
         <div class="flex flex-col justify-center items-start mt-6">
-          <label class="text-sm font-bold text-gray-700 relative px-1">Descripción</label>
+          <label class="text-sm font-bold text-gray-700 relative px-1">Nombre:</label>
           <input v-model="datos.Nombre" type="text" placeholder="IVA"
             class="mt-1 block w-full text-sm border-2 border-gray-400 transition-all duration-300 focus:border-gray-800 box-border p-2 outline-none">
         </div>
