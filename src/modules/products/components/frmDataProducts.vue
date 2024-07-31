@@ -133,25 +133,25 @@ const test2 = () => {
             <div class="m-4 gap-y-4 flex flex-col">
 
             <div class="mt-4 gap-y-4 flex flex-col">
-                <div class="min-w-full flex-wrap flex"> <!-- Tipo -->
+                <div class="min-w-full flex-wrap flex">
                     <label class="max-w-48 min-w-48 text-[1rem] items-center flex" for="tipoProducto"> Tipo de producto: </label>
                     <select v-model="registro.NombreTipoProducto" id="tipoProducto">
                         <option v-for="Tipo in ListadoTiposProducto" :value="Tipo.NombreTipoProducto"> {{ Tipo.NombreTipoProducto }} </option>
                     </select>
                 </div>
-                <div class="min-w-full flex-wrap flex"> <!-- Clave -->
+                <div class="min-w-full flex-wrap flex">
                     <label class="max-w-48 min-w-48 text-[1rem] items-center flex" for="CodigoProducto"> Código del producto: </label>
                     <input type="text" v-model="registro.CodigoProducto" id="CodigoProducto">
                 </div>
-                <div class="min-w-full flex-wrap flex"> <!-- Nombre -->
+                <div class="min-w-full flex-wrap flex">
                     <label class="max-w-48 min-w-48 text-[1rem] items-center flex" for="NombreProducto"> Nombre del producto: </label>
                     <input type="text" v-model="registro.NombreProducto" id="NombreProducto">
                 </div>
-                <div class="flex flex-wrap descr"> <!-- Descripción -->
+                <div class="flex flex-wrap descr">
                     <label class="max-w-48 min-w-48 text-[1rem]" for="DescripcionProducto"> Descripción del producto: </label>
                     <textarea v-model="registro.DescripcionProducto" id="DescripcionProducto"></textarea>
                 </div>
-                <div class="min-w-full flex-wrap max-w-full flex gap-4"> <!-- No.Serie y Puntos -->
+                <div class="min-w-full flex-wrap max-w-full flex gap-4">
                     <div class="flex grow flex-wrap">
                         <label class="max-w-48 min-w-48 shrink-0 text-[1rem] items-center flex"> Puntos: </label>
                         <input type="number" min="0" v-model="registro.Puntos" id="Puntos" class="grow">
@@ -164,7 +164,7 @@ const test2 = () => {
             </div>
 
             <div class="gap-y-4 flex flex-col">
-                <div class="min-w-full flex-wrap flex"> <!-- Línea -->
+                <div class="min-w-full flex-wrap flex">
                     <label class="max-w-48 min-w-48 text-[1rem] items-center flex" for="lineaProducto"> Línea: </label>
                     <select v-model="registro.lineaProducto" id="lineaProducto">
                         <option v-for="Linea in ListadoLineasProducto" :value="Linea.NombreLineaProducto"> {{ Linea.NombreLineaProducto }} </option>
@@ -175,7 +175,7 @@ const test2 = () => {
                         </svg>
                     </button>
                 </div>
-                <div class="min-w-full flex-wrap flex"> <!-- Familia -->
+                <div class="min-w-full flex-wrap flex">
                     <label class="max-w-48 min-w-48 text-[1rem] items-center flex" for="familiaProducto"> Familia: </label>
                     <select v-model="registro.familiaProducto" id="familiaProducto">
                         <option v-for="Familia in ListadoFamiliasProducto" :value="Familia.NombreFamiliaProducto"> {{ Familia.NombreFamiliaProducto }} </option>
@@ -186,7 +186,7 @@ const test2 = () => {
                         </svg>
                     </button>
                 </div>
-                <div class="min-w-full flex-wrap flex"> <!-- Subfamilia -->
+                <div class="min-w-full flex-wrap flex">
                     <label class="max-w-48 min-w-48 text-[1rem] items-center flex" for="subfamiliaProducto"> Subfamilia: </label>
                     <select v-model="registro.subfamiliaProducto" id="subfamiliaProducto">
                         <option v-for="Subfamilia in ListadoSubfamiliasProducto" :value="Subfamilia.NombreSubfamiliaProducto"> {{ Subfamilia.NombreSubfamiliaProducto }} </option>
@@ -197,7 +197,7 @@ const test2 = () => {
                         </svg>
                     </button>
                 </div>
-                <div class="min-w-full flex-wrap flex"> <!-- C. Producto SAT -->
+                <div class="min-w-full flex-wrap flex">
                     <label class="max-w-48 min-w-48 text-[1rem] items-center flex" for="ClaveProductoServicio"> C. Producto SAT: </label>
                     <input v-model="registro.ClaveProductoServicio" id="ClaveProductoServicio" disabled />
                     <button type="button" @click="abrirModal(4)" class="bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 transition-all duration-300 basis-16 min-h-7" :class="`bg-${theme}-primary hover:bg-${theme}-secondary`">
@@ -206,7 +206,7 @@ const test2 = () => {
                         </svg>
                     </button>
                 </div>
-                <div class="min-w-full flex-wrap flex"> <!-- C. Unidad SAT -->
+                <div class="min-w-full flex-wrap flex">
                     <label class="max-w-48 min-w-48 text-[1rem] items-center flex" for="ClaveUnidadSAT"> C. Unidad SAT: </label>
                     <select v-model="registro.ClaveUnidadSAT" id="ClaveUnidadSAT">
                         <option v-for="ClaveUnidad in ListadoSubfamiliasProducto" :value="ClaveUnidad.NombreSubfamiliaProducto"> {{ ClaveUnidad.NombreSubfamiliaProducto }} </option>
@@ -217,7 +217,7 @@ const test2 = () => {
                         </svg>
                     </button>
                 </div>
-                <div class="min-w-full flex-wrap flex"> <!-- Impuesto Compuesto -->
+                <div class="min-w-full flex-wrap flex">
                     <label class="max-w-48 min-w-48 text-[1rem] items-center flex" for="ImpuestoCompuesto"> C. Impuesto Compuesto: </label>
                     <select v-model="registro.ImpuestoCompuesto" id="ImpuestoCompuesto">
                         <option v-for="ImpCompuesto in ListadoSubfamiliasProducto" :value="ImpCompuesto.NombreSubfamiliaProducto"> {{ ImpCompuesto.NombreSubfamiliaProducto }} </option>
