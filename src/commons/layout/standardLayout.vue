@@ -30,14 +30,14 @@ onUpdated(() => {
 
 <template>
     <div class="text-[2rem] w-full h-full overflow-hidden">
-        <titleH1 class="h-[4.75%] mb-[1.25%]">
+        <titleH1 class="h-[4.75%]">
             <template v-slot>
                 <slot name="Titulo">
                     {{ titulo }}
                 </slot> 
             </template>
         </titleH1>
-        <div class="w-full h-[93%] rounded-[2rem] overflow-scroll" :class="`bg-${theme}-background`">
+        <div class="w-[97%] md:w-[98%] lg:w-full h-[93%] md:h-[93%] lg:h-[91%] xl:h-[92%] 2xl:h-[91%] rounded-[2rem] overflow-scroll" :class="`bg-${theme}-background`">
             <router-view/>
         </div>
      </div>

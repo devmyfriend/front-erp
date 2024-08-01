@@ -51,7 +51,7 @@ watch(() => theme.value, (newValue) => {
                 <sidebar />
             </div>
         </div>
-        <div class="contentMy p-1 sm:p-1 md:p-2 2xl:p-4 flex-auto flex flex-col max-h-[94vh] w-[96vw] max-w-[96vw] bg-white">
+        <div class="contentMy p-1 sm:p-1 md:p-2 2xl:p-4 flex-auto flex flex-col max-h-[92vh] sm:max-h-[92vh] 2xl:max-h-[92vh] w-[96vw] max-w-[96vw] bg-white">
             <router-view />
         </div>
     </div>
