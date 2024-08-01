@@ -13,7 +13,7 @@ const emit = defineEmits(['eNuevo']);
 
 <template>
     <button @click="emit('eNuevo')"
-    class="col-span-2 text-white flex p-primaryPaddingButton border-none gap-4 h-10 font-bold
+    class="col-span-2 text-white flex p-primaryPaddingButton border-none gap-4 h-2 sm:h-4 md:h-6 lg:h-10 xl:h-10 2xl:h-10 font-bold
     rounded-primaryButtonRadius justify-center items-center uppercase text-base grow transition-all duration-300"
     :class="`bg-${theme}-primary hover:bg-${theme}-secondary`">
         <svg v-if="modo === 0" class="hidden md:block" width="20" height="20" id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">

@@ -16,9 +16,9 @@ const sidebarItems = ref([
 </script>
 
 <template>
-    <div class="flex flex-col justify-between items-center flex-auto pt-4">
+    <div class="flex flex-col justify-between items-center flex-auto pt-4 overflow-scroll">
         <img :src="imageTheme" alt="Empresa" class=" bg-white rounded-full w-[65%]">
-        <div class="sideBar-Menu flex flex-col justify-center gap-[6%] items-center mt-4 py-4 flex-auto overflow-y-scroll">
+        <div class="sideBar-Menu flex flex-col justify-center gap-[6%] items-center mt-4 py-4 flex-auto">
             <sidebarItem 
             v-for="(item, index) in sidebarItems"
             :key="index"    

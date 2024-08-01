@@ -4,7 +4,7 @@ const { theme } = useTheme();
 </script>
 
 <template>
-    <h2 class="text-2xl font-bold mb-4 w-full" :class="`text-${theme}-subtext`">
+    <h2 class="text-[1rem] lg:text-[1.5rem] font-bold w-full mb-0" :class="`text-${theme}-subtext`">
         <slot></slot>
     </h2>
 </template>
