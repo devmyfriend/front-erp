@@ -37,7 +37,7 @@ onUpdated(() => {
                 </slot> 
             </template>
         </titleH1>
-        <div class="w-[97%] md:w-[98%] lg:w-full h-[93%] md:h-[93%] lg:h-[91%] xl:h-[92%] 2xl:h-[91%] rounded-[2rem] overflow-scroll" :class="`bg-${theme}-background`">
+        <div class="w-[97%] md:w-[98%] lg:w-full shrink h-[93%] md:h-[93%] lg:h-[91%] xl:h-[92%] 2xl:h-[91%] rounded-[2rem] overflow-scroll" :class="`bg-${theme}-background`">
             <router-view/>
         </div>
      </div>

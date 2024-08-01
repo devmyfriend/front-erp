@@ -21,10 +21,10 @@ watch(() => props.ListadoFormasPago, (newValue) => {
     <table class="w-full table-fixed leading-4 text-[1rem]">
         <thead>
             <tr class="sticky top-0 h-primaryHeaderTableHeight text-white">
-                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-tl-xl" :class="`bg-${theme}-headers`">Clave</th>
-                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-t-[1px]" :class="`bg-${theme}-headers`">Nombre</th>
-                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-t-[1px]" :class="`bg-${theme}-headers`">Bancarizado</th>
-                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-tr-xl" :class="`bg-${theme}-headers`">Status</th>
+                <th :class="`bg-${theme}-headers`">Clave</th>
+                <th :class="`bg-${theme}-headers`">Nombre</th>
+                <th :class="`bg-${theme}-headers`">Bancarizado</th>
+                <th :class="`bg-${theme}-headers`">Status</th>
             </tr>
         </thead>
         <tbody>
@@ -33,7 +33,7 @@ watch(() => props.ListadoFormasPago, (newValue) => {
                     forma.Activo === 1 ? `text-${theme}-text bg-white` : '',
                     forma.Activo === 0 ? `text-${theme}-subtext bg-${theme}-disabled` : ''
                 ]">
-                <td class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+                <td class="h-primaryBodyTableHeight border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
                     {{ forma.ClaveFormaPago }}
                 </td>
                 <td class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-start truncate">
@@ -41,7 +41,7 @@ watch(() => props.ListadoFormasPago, (newValue) => {
                 </td>
                 <td class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
                     {{ forma.Bancarizado ? 'Si' : 'No' }}
-                </td>
+                </td>primaryHeaderTable
                 <td class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
                     {{ forma.Activo ? 'Activo' : 'Inactivo'}}
                 </td>

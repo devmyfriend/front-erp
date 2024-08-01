@@ -35,14 +35,14 @@ const handleAccion = (moneda, accion) => {
     <table class="w-full table-fixed leading-4 text-[1rem]">
         <thead>
             <tr class="sticky top-0 h-primaryHeaderTableHeight text-white">
-                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-tl-xl"
+                <th class="bg-primaryHeaderTable"
                     :class="`bg-${theme}-headers`">Clave</th>
-                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-t-[1px]"
+                <th class="bg-primaryHeaderTable "
                     :class="`bg-${theme}-headers`">Nombre</th>
-                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable"
-                    :class="`bg-${theme}-headers ${editable ? 'rounded-t-[1px]' : 'rounded-tr-xl'}`">Status</th>
+                <th class="bg-primaryHeaderTable"
+                    :class="`bg-${theme}-headers `">Status</th>
                 <th v-if="editable"
-                    class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-tr-xl"
+                    class="bg-primaryHeaderTable "
                     :class="`bg-${theme}-headers`"> Acciones </th>
             </tr>
         </thead>
@@ -52,23 +52,22 @@ const handleAccion = (moneda, accion) => {
                 !moneda.Activo ? `text-${theme}-text bg-disabled-${theme}` : ''
             ]">
                 <td
-                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+                    class="h-primaryBodyTableHeight border-b-secondaryTableWidth px-2 text-center truncate">
                     {{ moneda.ClaveMoneda }}
                 </td>
                 <td
-                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-start truncate">
+                    class="h-primaryBodyTableHeight border-b-secondaryTableWidth border-l-primaryTableWidth px-2 text-start truncate">
                     {{ moneda.Descripcion }}
                 </td>
                 <td
-                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+                    class="h-primaryBodyTableHeight border-b-secondaryTableWidth border-l-primaryTableWidth px-2 text-center truncate">
                     {{ moneda.Activo ? 'Activo' : 'Inactivo' }}
                 </td>
                 <td v-if="editable"
                     class="h-primaryBodyTableHeight 
-                    border-l-primaryTableWidth 
-                    border-b-secondaryTableWidth 
-                    border-b-primaryUnderline px-2 
-                    text-center truncate
+                    border-b-secondaryTableWidth
+                    border-l-primaryTableWidth
+                    text-center truncate px-2
                     flex justify-center items-center">
                     <editIco class="cursor-pointer" @click="handleAccion(moneda, 1)"/>
                     <trashIco class="cursor-pointer" @click="handleAccion(moneda, 2)" />

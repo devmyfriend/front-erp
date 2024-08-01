@@ -36,14 +36,14 @@ watch(() => props.ListadoComprobantes, (newValue) => {
     <table class="w-full table-fixed leading-4 text-[1rem]">
         <thead>
             <tr class="sticky top-0 h-primaryHeaderTableHeight text-white">
-                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-tl-xl"
+                <th class="bg-primaryHeaderTable"
                     :class="`bg-${theme}-headers`">Clave</th>
-                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-t-[1px]"
+                <th class="bg-primaryHeaderTable"
                     :class="`bg-${theme}-headers`">Nombre</th>
-                <!-- <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable"
-                    :class="`bg-${theme}-headers ${editable ? 'rounded-t-[1px]' : 'rounded-tr-xl'}`">Status </th> -->
+                <!-- <th class="bg-primaryHeaderTable"
+                    :class="`bg-${theme}-headers`">Status </th> -->
                 <th v-if="editable"
-                    class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-tr-xl"
+                    class="bg-primaryHeaderTable"
                     :class="`bg-${theme}-headers`"> Acciones </th>
             </tr>
         </thead>
@@ -51,7 +51,7 @@ watch(() => props.ListadoComprobantes, (newValue) => {
             <tr class="text-primaryFontColor" v-for="(comprobante, index) in ListadoComprobantes" :key="index" :class="`text-${theme}-text bg-white`" >
             <!-- :class="[comprobante.Borrado ? `text-${theme}-text bg-white` : '', !comprobante.Borrado ? `text-${theme}-subtext bg-${theme}-disabled` : '']" -->
                 <td
-                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+                    class="h-primaryBodyTableHeight border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
                     {{ comprobante.ClaveTipoDeComprobante }}
                 </td>
                 <td

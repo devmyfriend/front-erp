@@ -53,7 +53,7 @@ watch(() => props.ListadoImpuestos, (newValue) => {
                 !impuesto.Activo ? `text-${theme}-subtext bg-${theme}-disabled` : ''
             ]">
                 <td
-                    class="max-h-6 sm:max-h-6 md:max-h-7 lg:max-h-8 xl:max-h-9 2xl:max-h-10 border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+                    class="max-h-6 sm:max-h-6 md:max-h-7 lg:max-h-8 xl:max-h-9 2xl:max-h-10 border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
                     {{ impuesto.ClaveImpuesto }}
                 </td>
                 <td
