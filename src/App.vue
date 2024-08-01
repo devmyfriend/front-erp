@@ -1,9 +1,16 @@
 <script setup>
 import { RouterView } from 'vue-router'
+import { useTheme } from '@/commons/composables/theme';
+import { onMounted } from 'vue';
+const { favicon, setFavicon } = useTheme();
+
+onMounted(() => {
+  setFavicon(favicon);
+});
+
 </script>
 
 <template>
-
   <RouterView />
 </template>
 
