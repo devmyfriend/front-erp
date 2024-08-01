@@ -26,7 +26,6 @@ const waitSearch = async (cp) => {
 
 const loadData = async () => {
   await store.loadZipCode();
-  console.log("Datos cargados desde el store:", store.getZipCodes);
   if (store.getZipCodes.length === 0) {
     Swal.fire({
       icon: "info",
@@ -35,7 +34,6 @@ const loadData = async () => {
     });
   } else {
     ZipCodeList.value = store.getZipCodes;
-    console.log("ZipCodeList actualizado:", ZipCodeList.value);
   }
 };
 

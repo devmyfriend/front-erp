@@ -54,7 +54,7 @@ export const crearMoneda = async (moneda) => {
                 icon: "error",
             });
         } else {
-            console.log('error: ', JSON.stringify(error));
+            console.error('error: ', JSON.stringify(error));
             Swal.fire({
                 title: error.response.data.error ? error.response.data.error : JSON.stringify(error),
                 text: "Error del servidor",

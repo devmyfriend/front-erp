@@ -37,7 +37,6 @@ const esperarTabla = (data) => {
         subirDatos(moneda);
     } else if (accion === 2) {
         modalData.value = moneda.ClaveMoneda;
-        console.log('Se va a borrar la moneda: ', moneda.ClaveMoneda);
     }
 };
 
@@ -61,7 +60,6 @@ const esperarModal = (datos) => {
             cargarDatos();
         });
     } else if (modoFormulario.value === 1) {
-        console.log('El modal pidió actualizar con los datos: ' + JSON.stringify(datos));
         store.actualizarMoneda(datos).then(() => {
             cargarDatos();
         });

@@ -39,7 +39,6 @@
     watch(() => route.name, () => {
         setTimeout(() => {
             btActivo.value = windowStore.getBtActivo;
-            console.log('[watch] btActivo:', btActivo.value);
         }, 150);
     });
 </script>

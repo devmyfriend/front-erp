@@ -29,17 +29,14 @@ export function useThemes() {
   };
 
   const setFavicon = (iconPath) => {
-    console.log('La ruta recibida es: ' + iconPath);
     const favicon = document.querySelector('link[rel="icon"]');
     if (favicon) {
       favicon.href = iconPath;
-      console.log('Se ha cambiado el favicon');
     } else {
       const newFavicon = document.createElement('link');
       newFavicon.rel = 'icon';
       newFavicon.href = iconPath;
       document.head.appendChild(newFavicon);
-      console.log('Se ha creado un nuevo favicon');
     }
   };
 

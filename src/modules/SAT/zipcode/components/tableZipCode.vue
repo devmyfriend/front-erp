@@ -15,7 +15,6 @@ const localZipCodeList = ref(props.ZipCodeList);
 watch(
   () => props.ZipCodeList,
   (newVal) => {
-    console.log("Nueva lista de códigos postales recibida:", newVal);
     localZipCodeList.value = newVal;
   }
 );

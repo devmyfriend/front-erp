@@ -38,7 +38,7 @@ export const crearImpuesto = async (impuesto) => {
                 icon: "error",
             });
         } else {
-            console.log('error: ', JSON.stringify(error));
+            console.error('error: ', JSON.stringify(error));
             Swal.fire({
                 title: error.response.data.error ? error.response.data.error : JSON.stringify(error),
                 text: "Error del servidor",
@@ -68,7 +68,7 @@ export const actualizarImpuesto = async (impuesto) => {
                 icon: "error",
             });
         } else {
-            console.log('error: ', JSON.stringify(error));
+            console.error('error: ', JSON.stringify(error));
             Swal.fire({
                 title: error.response.data.error ? error.response.data.error : JSON.stringify(error),
                 text: "Error del servidor",
@@ -98,7 +98,7 @@ export const eliminarImpuesto = async (id) => {
                 icon: "error",
             });
         } else {
-            console.log('error: ', JSON.stringify(error));
+            console.error('error: ', JSON.stringify(error));
             Swal.fire({
                 title: error.response.data.error ? error.response.data.error : JSON.stringify(error),
                 text: "Error del servidor",
@@ -130,7 +130,7 @@ export const eliminarImpuesto = async (impuesto) => {
                 icon: "error",
             });
         } else {
-            console.log('error: ', JSON.stringify(error));
+            console.error('error: ', JSON.stringify(error));
             Swal.fire({
                 title: error.response.data.error ? error.response.data.error : JSON.stringify(error),
                 text: "Error del servidor",

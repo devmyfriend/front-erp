@@ -19,17 +19,14 @@ const cargarDatos = async () => {
 
 const esperarTabla = (data) => {
     const [impuesto, accion] = data;
-    console.log('El impuesto a trabajar es: ' + JSON.stringify(impuesto) + ' y la acción es: ' + accion );
     if (accion === 1) {
         subirDatos(impuesto);
     } else if (accion === 2) {
         modalData.value = impuesto.ClaveImpuesto;
-        console.log('Se va a borrar el impuesto: ', impuesto.ClaveImpuesto);
     }
 };
 
 const subirDatos = (datos) => {
-    console.log('Los datos a subir son: ' + JSON.stringify(datos));
     bodyFrm.value = { ...datos };
     showModal.value = true;
     modoFormulario.value = 1;
@@ -42,7 +39,6 @@ const esperarModal = (datos) => {
             esperarCancelar();
         });
     } else if (modoFormulario.value === 1) {
-        console.log('El modal pidió actualizar con los datos: ' + JSON.stringify(datos));
         store.actualizarImpuesto(datos).then(() => {
             cargarDatos();
             esperarCancelar();
