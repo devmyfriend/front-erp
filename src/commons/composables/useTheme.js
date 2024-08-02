@@ -6,6 +6,8 @@ export function useThemes() {
   const favicon = ref(localStorage.getItem('favicon') || '/favicon/myfriend.ico');
 
   const setTheme = (newTheme) => {
+    console.log('Cambiando tema a: ' + newTheme);
+    
     theme.value = newTheme;
     localStorage.setItem('theme', newTheme);
 
