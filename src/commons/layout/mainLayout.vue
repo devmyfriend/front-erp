@@ -2,8 +2,6 @@
 import sidebar from '@/commons/ui/sidebar/sidebar.vue';
 import themeSwitcher from '@/commons/ui/theme-switcher/theme-switcher.vue';
 import { useTheme } from '@/commons/composables/theme';
-import { ref } from 'vue';
-
 const { theme } = useTheme();
 </script>
 
