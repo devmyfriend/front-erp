@@ -1,7 +1,6 @@
 <script setup>
-import { onMounted, onUpdated, ref, provide } from 'vue';
+import { ref, provide } from 'vue';
 import titleH1 from '@/commons/ui/title-h1/title-h1.vue';
-import { windowLayoutStore } from '@/store/windowLayoutStore';
 import { useTheme } from '@/commons/composables/theme'
 const { theme } = useTheme();
 
