@@ -1,5 +1,5 @@
 <script setup>
-    import titleH1 from '@/commons/ui/title-h1/title-h1.vue';
+import titleH1 from '@/commons/ui/title-h1/title-h1.vue';
 </script>
 
 <template>
@@ -13,20 +13,11 @@
                 <!-- id y logo -->
                 <fieldset class="flex flex-row items-center mt-2 mb-2">
                     <div class="flex mr-2">
-                        <label 
-                            class="mr-2 pt-2 pb-2 md:hidden" 
-                            for="BusinessEntityId"
-                        >
+                        <label class="mr-2 pt-2 pb-2 md:hidden" for="BusinessEntityId">
                             Id
                         </label>
-                        <input 
-                            class="w-36 md:w-full bg-success" 
-                            name="BusinessEntityId" 
-                            role="Id" 
-                            readonly 
-                            type="text" 
-                            placeholder="Id de la empresa" 
-                        />
+                        <input class="w-36 md:w-full bg-success" name="BusinessEntityId" role="Id" readonly type="text"
+                            placeholder="Id de la empresa" />
                     </div>
                     <!-- <div class="flex">
                         <label
@@ -45,34 +36,18 @@
                 <!-- rfc y razón social -->
                 <fieldset class="flex flex-row w-full">
                     <div class="flex flex-col w-full">
-                        <label
-                            class=" flex flex-row w-full mr-2 pt-2 pb-2 md:hidden" 
-                            for="OfficialNumber"
-                        >
+                        <label class=" flex flex-row w-full mr-2 pt-2 pb-2 md:hidden" for="OfficialNumber">
                             R.F.C.
                         </label>
-                        <input
-                            class=" flex flex-row rounded-md p-2 w-36 md:w-full" 
-                            name="OfficialNumber" 
-                            role="RFC" 
-                            type="text" 
-                            placeholder="R. F.C."
-                        />
+                        <input class=" flex flex-row rounded-md p-2 w-36 md:w-full" name="OfficialNumber" role="RFC"
+                            type="text" placeholder="R. F.C." />
                     </div>
                     <div class="flex w-full mx-2">
-                        <label 
-                            class="mr-2 pt-2 pb-2 md:hidden"
-                            for="OfficialName"
-                        >
+                        <label class="mr-2 pt-2 pb-2 md:hidden" for="OfficialName">
                             Razón Social
                         </label>
-                        <input
-                            class=" rounded-md p-2 md:w-full "
-                            name="OfficialName" 
-                            role="OfficialName" 
-                            type="text"
-                            placeholder="Razón Social"
-                        />
+                        <input class=" rounded-md p-2 md:w-full " name="OfficialName" role="OfficialName" type="text"
+                            placeholder="Razón Social" />
                     </div>
                 </fieldset>
                 <!-- Pais -->
@@ -81,7 +56,7 @@
                         <label for="Contry">País</label>
                     </div>
                     <div class="flex">
-                        <select name="Contry" >
+                        <select name="Contry">
                             <option value=""></option>
                         </select>
                     </div>
@@ -94,7 +69,7 @@
                     </div>
                     <div class="flex">
                         <label for="Moral">Persona Moral</label>
-                        <input name="Moral" role="MoralPerson" readonly type="radio" >
+                        <input name="Moral" role="MoralPerson" readonly type="radio">
                     </div>
                 </Fieldset>
                 <!-- Régimen fiscal -->

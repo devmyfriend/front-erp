@@ -2,11 +2,7 @@
   <div class="flex items-center h-inputHeight">
     <input
       class="text-primaryFontColor rounded-inputRadius border-inputBorder border-inputWidth p-paddingInput lg:w-96 md:w-60 sm:w-32 outline-none h-full text-base"
-      type="text"
-      v-model="txtBusqueda"
-      @keyup.enter="searchZipCode"
-      placeholder="Buscar código postal"
-    />
+      type="text" v-model="txtBusqueda" @keyup.enter="searchZipCode" placeholder="Buscar código postal" />
     <searchIco class="cursor-pointer max-h-buscadorIconHeight ml-4" @click="searchZipCode" />
   </div>
 </template>

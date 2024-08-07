@@ -27,24 +27,25 @@ watch(() => props.ListadoMetodosPago, (newValue) => {
             </tr>
         </thead>
         <tbody>
-            <tr class="text-primaryFontColor" v-for="(metodo, index) in ListadoMetodosPago" :key="index"
-                :class="[
-                    metodo.Activo === 1 ? `text-${theme}-text bg-white` : '',
-                    metodo.Activo === 0 ? `text-${theme}-subtext bg-${theme}-disabled` : ''
-                ]">
-                <td class="h-primaryBodyTableHeight border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+            <tr class="text-primaryFontColor" v-for="(metodo, index) in ListadoMetodosPago" :key="index" :class="[
+                metodo.Activo === 1 ? `text-${theme}-text bg-white` : '',
+                metodo.Activo === 0 ? `text-${theme}-subtext bg-${theme}-disabled` : ''
+            ]">
+                <td
+                    class="h-primaryBodyTableHeight border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
                     {{ metodo.ClaveMetodoPago }}
                 </td>
-                <td class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-start truncate">
+                <td
+                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-start truncate">
                     {{ metodo.Descripcion }}
                 </td>
-                <td class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
-                    {{ metodo.Activo ? 'Activo' : 'Inactivo'}}
+                <td
+                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+                    {{ metodo.Activo ? 'Activo' : 'Inactivo' }}
                 </td>
             </tr>
         </tbody>
     </table>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

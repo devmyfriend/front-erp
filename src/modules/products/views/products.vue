@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 import { useRoute } from 'vue-router';
 
 import { useTheme } from '@/commons/composables/theme';
-    const { theme } = useTheme();
+const { theme } = useTheme();
 
 const route = useRoute();
 const windowStore = windowLayoutStore();
@@ -86,8 +86,8 @@ const borrarCodigoProducto = () => {
     CodigoProducto.value = '';
 }
 const updateTitle = () => {
-  setTitleContent('Productos');
-  setWindowContent(ventanas);
+    setTitleContent('Productos');
+    setWindowContent(ventanas);
 };
 onBeforeMount(() => {
     cargarDatos();
@@ -141,10 +141,8 @@ watch(tipoProducto, (newValue) => {
         </div>
         <div
             class="w-full max-h-[66vh] min-h-[66vh] items-center flex flex-col overflow-y-scroll text-secondaryFontColor text-base rounded-3xl">
-            <tablaProductos 
-                :ListadoProductos="ListadoProductos" :tipoProducto="tipoProducto"
-                @eEditarProducto="editarProducto" @eBorrarProducto="borrarProducto" 
-            />
+            <tablaProductos :ListadoProductos="ListadoProductos" :tipoProducto="tipoProducto"
+                @eEditarProducto="editarProducto" @eBorrarProducto="borrarProducto" />
         </div>
     </div>
 </template>

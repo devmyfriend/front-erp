@@ -6,15 +6,15 @@ const ListadoMetodosPago = ref([]);
 const ListadoFormasPago = ref([]);
 
 const cargarMetodosFormasPago = async () => {
-    await store.cargarMetodosFormasPago();
-    ListadoMetodosPago.value = store.getMetodosPago;
-    ListadoFormasPago.value = store.getFormasPago;
-}
+  await store.cargarMetodosFormasPago();
+  ListadoMetodosPago.value = store.getMetodosPago;
+  ListadoFormasPago.value = store.getFormasPago;
+};
 
 export function usePaymentMethodsForms() {
-    return {
-        ListadoMetodosPago,
-        ListadoFormasPago,
-        cargarMetodosFormasPago,
-    };
+  return {
+    ListadoMetodosPago,
+    ListadoFormasPago,
+    cargarMetodosFormasPago,
+  };
 }

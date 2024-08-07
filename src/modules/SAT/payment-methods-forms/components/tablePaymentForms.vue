@@ -28,27 +28,29 @@ watch(() => props.ListadoFormasPago, (newValue) => {
             </tr>
         </thead>
         <tbody>
-            <tr class="text-primaryFontColor" v-for="(forma, index) in ListadoFormasPago" :key="index"
-                :class="[
-                    forma.Activo === 1 ? `text-${theme}-text bg-white` : '',
-                    forma.Activo === 0 ? `text-${theme}-subtext bg-${theme}-disabled` : ''
-                ]">
-                <td class="h-primaryBodyTableHeight border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+            <tr class="text-primaryFontColor" v-for="(forma, index) in ListadoFormasPago" :key="index" :class="[
+                forma.Activo === 1 ? `text-${theme}-text bg-white` : '',
+                forma.Activo === 0 ? `text-${theme}-subtext bg-${theme}-disabled` : ''
+            ]">
+                <td
+                    class="h-primaryBodyTableHeight border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
                     {{ forma.ClaveFormaPago }}
                 </td>
-                <td class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-start truncate">
+                <td
+                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-start truncate">
                     {{ forma.Descripcion }}
                 </td>
-                <td class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+                <td
+                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
                     {{ forma.Bancarizado ? 'Si' : 'No' }}
                 </td>primaryHeaderTable
-                <td class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
-                    {{ forma.Activo ? 'Activo' : 'Inactivo'}}
+                <td
+                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+                    {{ forma.Activo ? 'Activo' : 'Inactivo' }}
                 </td>
             </tr>
         </tbody>
     </table>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

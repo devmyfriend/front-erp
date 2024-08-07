@@ -1,4 +1,4 @@
-import { useThemes as originalUseTheme } from './useTheme';
+import { useThemes as originalUseTheme } from "./useTheme";
 
 const themeInstance = originalUseTheme();
 

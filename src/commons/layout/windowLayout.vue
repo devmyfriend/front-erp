@@ -8,10 +8,10 @@ const titleContent = ref('');
 const windowsContent = ref(null);
 
 provide('setTitleContent', (content) => {
-  titleContent.value = content;
+    titleContent.value = content;
 });
 provide('setWindowContent', (content) => {
-  windowsContent.value = content;
+    windowsContent.value = content;
 });
 
 </script>
@@ -23,7 +23,7 @@ provide('setWindowContent', (content) => {
                 <div v-html="titleContent"></div>
             </slot>
         </titleH1>
-        <div class="w-full h-[93%] rounded-[2rem] overflow-hidden" :class="`bg-${theme}-container`" >
+        <div class="w-full h-[93%] rounded-[2rem] overflow-hidden" :class="`bg-${theme}-container`">
             <component :is="windowsContent" class="sticky top-0" :class="`bg-${theme}-background`" />
             <router-view />
         </div>

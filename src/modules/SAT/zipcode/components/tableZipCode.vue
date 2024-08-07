@@ -24,7 +24,8 @@ watch(
   <table class="w-full table-fixed text-base">
     <thead class="sticky top-0 text-white">
       <tr class="sticky top-0 h-primaryHeaderTableHeight rounded-primaryHeaderTableRadius">
-        <th class="border-b-secondaryTableWidth border-b-primaryUnderline first:rounded-l-primaryHeaderTableRadius" :class="`bg-${theme}-primary`">
+        <th class="border-b-secondaryTableWidth border-b-primaryUnderline first:rounded-l-primaryHeaderTableRadius"
+          :class="`bg-${theme}-primary`">
           País
         </th>
         <th class="border-b-secondaryTableWidth border-b-primaryUnderline" :class="`bg-${theme}-primary`">
@@ -36,7 +37,8 @@ watch(
         <th class="border-b-secondaryTableWidth border-b-primaryUnderline" :class="`bg-${theme}-primary`">
           Municipio
         </th>
-        <th class="border-b-secondaryTableWidth border-b-primaryUnderline last:rounded-r-primaryHeaderTableRadius" :class="`bg-${theme}-primary`">
+        <th class="border-b-secondaryTableWidth border-b-primaryUnderline last:rounded-r-primaryHeaderTableRadius"
+          :class="`bg-${theme}-primary`">
           Localidad
         </th>
       </tr>

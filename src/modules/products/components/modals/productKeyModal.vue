@@ -82,4 +82,3 @@ watch(() => props.mostrar, (newVal) => {
   }
 });
 </script>
-

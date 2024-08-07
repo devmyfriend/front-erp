@@ -1,5 +1,5 @@
 <script setup>
-    import FrmLogin from '@/modules/loging/components/FrmLogin.vue'
+import FrmLogin from '@/modules/loging/components/FrmLogin.vue'
 </script>
 
 <template>
@@ -14,14 +14,11 @@
 </template>
 
 <style scoped>
-    .logContainer{
-    background-image: url('/svg/generalIcons/bg-login.svg'); 
-    background-size: cover; 
-    background-position: center; 
+.logContainer {
+    background-image: url('/svg/generalIcons/bg-login.svg');
+    background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
     min-height: 100vh;
-  }
+}
 </style>
-
-
-

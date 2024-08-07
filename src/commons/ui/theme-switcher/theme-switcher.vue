@@ -20,8 +20,7 @@ watch(() => theme.value, (newValue) => {
 </script>
 
 <template>
-    <select class="px-4 max-w-max max-h-full py-0 h-full text-[0.8rem]"
-            v-model="temaActual" @change="cambiarTema">
+    <select class="px-4 max-w-max max-h-full py-0 h-full text-[0.8rem]" v-model="temaActual" @change="cambiarTema">
         <option value="MyFriend">MyFriend</option>
         <option value="TheFit">The Fit Gym / The Fit Bar</option>
         <option value="Bonavida">Bonavida</option>

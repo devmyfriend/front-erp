@@ -10,7 +10,7 @@ const forceFailLogin = () => {
     failLogin.value = !failLogin.value
 }
 const moveHome = () => {
-    router.push({name:'Menu'})
+    router.push({ name: 'Menu' })
 }
 </script>
 
@@ -23,19 +23,18 @@ const moveHome = () => {
                     <img class="flex w-[20%]" src="/svg/generalIcons/userIco.svg" alt="Imagen de Usuario" />
                 </div>
                 <transition name="fade">
-                    <div class="flex items-center justify-center mb-2 mx-auto px-2 text-red-600 font-semibold" v-if="failLogin">
+                    <div class="flex items-center justify-center mb-2 mx-auto px-2 text-red-600 font-semibold"
+                        v-if="failLogin">
                         <span> El usuario y o contraseña son incorrectas </span>
                     </div>
                 </transition>
                 <div class="flex items-center mb-4">
-                    <input
-                        class=" w-[75%] border-0 rounded-md mx-auto p-2 px-4 outline-none" 
-                        type="text" placeholder="Correo electrónico">
+                    <input class=" w-[75%] border-0 rounded-md mx-auto p-2 px-4 outline-none" type="text"
+                        placeholder="Correo electrónico">
                 </div>
                 <div class="flex items-center mb-4">
-                    <input
-                        class=" w-[75%] border-0 rounded-md mx-auto p-2 px-4 outline-none" 
-                        type="password" placeholder="Contraseña">
+                    <input class=" w-[75%] border-0 rounded-md mx-auto p-2 px-4 outline-none" type="password"
+                        placeholder="Contraseña">
                 </div>
                 <div class="flex justify-center mb-4">
                     <BtnLogin @handle-click="forceFailLogin">Iniciar sesión</BtnLogin>
@@ -43,7 +42,8 @@ const moveHome = () => {
                 </div>
                 <div class="flex justify-center">
                     <p>
-                        ¿Olvidaste tu contraseña? <a @click="moveHome" class="cursor-pointer hover:underline">Haz click aquí</a>
+                        ¿Olvidaste tu contraseña? <a @click="moveHome" class="cursor-pointer hover:underline">Haz click
+                            aquí</a>
                     </p>
                 </div>
             </form>
@@ -52,13 +52,4 @@ const moveHome = () => {
 </template>
 
 <style scoped>
-.fade-enter-active, .fade-leave-active {
-    transition: opacity 0.5s;
-}
-.fade-enter-from, .fade-leave-to {
-    opacity: 0;
-}
-.fade-enter-to, .fade-leave-from {
-    opacity: 1;
-}
 </style>

@@ -15,24 +15,38 @@ onMounted(() => {
 </template>
 
 <style>
-*{
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+/* Animaciones */
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
 }
 
-input, select, textarea{
-  color: #000;
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
-select{
-  background-color: #fff;
+
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
+}
+
+/* Scroll invisible */
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 ::-webkit-scrollbar {
   display: none;
 }
+
 ::-moz-progress-bar {
   display: none;
 }
+
+/* Formato del checkbox */
 
 input[type="checkbox"] {
   appearance: none;
@@ -46,6 +60,7 @@ input[type="checkbox"] {
   height: 2rem;
   width: 2rem;
 }
+
 input[type="checkbox"]::before {
   display: flex;
   justify-content: center;
@@ -53,11 +68,20 @@ input[type="checkbox"]::before {
   border: none;
   border-radius: 0.3125rem;
 }
+
 input[type="checkbox"]:checked::before {
   content: '✓';
   font-size: 2rem;
   line-height: 1.1125rem;
 }
 
-</style>
+input,
+select,
+textarea {
+  color: #000;
+}
 
+select {
+  background-color: #fff;
+}
+</style>

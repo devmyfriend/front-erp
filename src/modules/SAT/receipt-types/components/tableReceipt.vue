@@ -36,20 +36,17 @@ watch(() => props.ListadoComprobantes, (newValue) => {
     <table class="w-full table-fixed leading-4 text-[1rem]">
         <thead>
             <tr class="sticky top-0 h-primaryHeaderTableHeight text-white">
-                <th class="bg-primaryHeaderTable"
-                    :class="`bg-${theme}-headers`">Clave</th>
-                <th class="bg-primaryHeaderTable"
-                    :class="`bg-${theme}-headers`">Nombre</th>
+                <th class="bg-primaryHeaderTable" :class="`bg-${theme}-headers`">Clave</th>
+                <th class="bg-primaryHeaderTable" :class="`bg-${theme}-headers`">Nombre</th>
                 <!-- <th class="bg-primaryHeaderTable"
                     :class="`bg-${theme}-headers`">Status </th> -->
-                <th v-if="editable"
-                    class="bg-primaryHeaderTable"
-                    :class="`bg-${theme}-headers`"> Acciones </th>
+                <th v-if="editable" class="bg-primaryHeaderTable" :class="`bg-${theme}-headers`"> Acciones </th>
             </tr>
         </thead>
         <tbody>
-            <tr class="text-primaryFontColor" v-for="(comprobante, index) in ListadoComprobantes" :key="index" :class="`text-${theme}-text bg-white`" >
-            <!-- :class="[comprobante.Borrado ? `text-${theme}-text bg-white` : '', !comprobante.Borrado ? `text-${theme}-subtext bg-${theme}-disabled` : '']" -->
+            <tr class="text-primaryFontColor" v-for="(comprobante, index) in ListadoComprobantes" :key="index"
+                :class="`text-${theme}-text bg-white`">
+                <!-- :class="[comprobante.Borrado ? `text-${theme}-text bg-white` : '', !comprobante.Borrado ? `text-${theme}-subtext bg-${theme}-disabled` : '']" -->
                 <td
                     class="h-primaryBodyTableHeight border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
                     {{ comprobante.ClaveTipoDeComprobante }}
@@ -58,11 +55,12 @@ watch(() => props.ListadoComprobantes, (newValue) => {
                     class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-start truncate">
                     {{ comprobante.Descripcion }}
                 </td>
-<!--                 <td
+                <!--                 <td
                     class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
                     {{ comprobante.Borrado ? 'Activo' : 'Inactivo' }}
                 </td> -->
-                <td v-if="editable" class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate flex justify-center items-center">
+                <td v-if="editable"
+                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate flex justify-center items-center">
                     <editIco class="cursor-pointer" @click="handleAccion(comprobante, 1)" />
                     <trashIco class="cursor-pointer" @click="handleAccion(comprobante, 2)" />
                 </td>

@@ -1,16 +1,16 @@
 <script setup>
-    import { onBeforeUnmount, onMounted, onUnmounted, onUpdated, ref } from 'vue';
-    import Swal from 'sweetalert2';
-    const emit = defineEmits(['eSeleccionar', 'eCancelar']);
-    const props = defineProps({
-        registros: {
-            type: Array,
-            required: true
-        },
-    });
-    
-    const showTable = () => {
-        Swal.fire({
+import { onBeforeUnmount, onMounted, onUnmounted, onUpdated, ref } from 'vue';
+import Swal from 'sweetalert2';
+const emit = defineEmits(['eSeleccionar', 'eCancelar']);
+const props = defineProps({
+    registros: {
+        type: Array,
+        required: true
+    },
+});
+
+const showTable = () => {
+    Swal.fire({
         title: `Selecciona una Clave Unidad`,
         html: `
         <table class="w-full table-fixed">
@@ -43,55 +43,57 @@
         allowEnterKey: false,
         showConfirmButton: false,
         didOpen: () => {
-        document.querySelectorAll('#dataTable tbody tr').forEach(row => {
-            row.addEventListener('click', () => {
-            const index = row.getAttribute('data-index');
-            const selectedData = props.registros[index];
-            Swal.close();
-            emit('eSeleccionar', selectedData);
+            document.querySelectorAll('#dataTable tbody tr').forEach(row => {
+                row.addEventListener('click', () => {
+                    const index = row.getAttribute('data-index');
+                    const selectedData = props.registros[index];
+                    Swal.close();
+                    emit('eSeleccionar', selectedData);
+                });
             });
-        });
 
-        document.getElementById('cancelButton').addEventListener('click', () => {
-            emit('eCancelar');
-        });
+            document.getElementById('cancelButton').addEventListener('click', () => {
+                emit('eCancelar');
+            });
 
-        document.getElementById('trSection').addEventListener('click', () => {
-            console.log('Click en trSection');
-        });
+            document.getElementById('trSection').addEventListener('click', () => {
+                console.log('Click en trSection');
+            });
 
         }
     });
-    };
+};
 
-    onMounted(() => {
-        showTable();
-    });
+onMounted(() => {
+    showTable();
+});
 
-    const cerrarModal = () => {
-        emit('eCancelar');
-        Swal.close();
-    };
+const cerrarModal = () => {
+    emit('eCancelar');
+    Swal.close();
+};
 
-    onUnmounted(() => {
-        cerrarModal();
-    });
+onUnmounted(() => {
+    cerrarModal();
+});
 </script>
 
 <template>
 </template>
 
 <style>
-    .table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    .table th, .table td {
-        border: 1px solid #ddd;
-        padding: 8px;
-    }
-    .table th {
-        background-color: #f2f2f2;
-    }
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.table th {
+    background-color: #f2f2f2;
+}
 </style>
-    

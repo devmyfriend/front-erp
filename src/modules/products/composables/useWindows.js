@@ -2,7 +2,7 @@ import { ref } from "vue";
 
 const title = ref("Productos");
 const btActivo = ref(0);
-const codigoProducto = ref('');
+const codigoProducto = ref("");
 
 function setTitle(newTitle) {
   title.value = newTitle;
@@ -35,6 +35,6 @@ export function useWindows() {
     setBtActivo,
     getBtActivo,
     setCodigoProducto,
-    getCodigoProducto
+    getCodigoProducto,
   };
 }

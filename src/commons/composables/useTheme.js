@@ -1,30 +1,34 @@
 import { ref } from "vue";
 
 export function useThemes() {
-  const theme = ref(localStorage.getItem('theme') || 'MyFriend');
-  const imageTheme = ref(localStorage.getItem('ImageTheme') || '/svg/empresas/myfriend.svg');
-  const favicon = ref(localStorage.getItem('favicon') || '/favicon/myfriend.ico');
+  const theme = ref(localStorage.getItem("theme") || "MyFriend");
+  const imageTheme = ref(
+    localStorage.getItem("ImageTheme") || "/svg/empresas/myfriend.svg"
+  );
+  const favicon = ref(
+    localStorage.getItem("favicon") || "/favicon/myfriend.ico"
+  );
 
-  const setTheme = (newTheme) => {    
+  const setTheme = (newTheme) => {
     theme.value = newTheme;
-    localStorage.setItem('theme', newTheme);
+    localStorage.setItem("theme", newTheme);
 
     switch (newTheme) {
-      case 'MyFriend':
-        imageTheme.value =  '/svg/empresas/myfriend.svg';
-        setFavicon('/favicon/myfriend.ico');
+      case "MyFriend":
+        imageTheme.value = "/svg/empresas/myfriend.svg";
+        setFavicon("/favicon/myfriend.ico");
         break;
-      case 'TheFit':
-        imageTheme.value =  '/svg/empresas/fitgym.svg';
-        setFavicon('/favicon/thefitgym.ico');
+      case "TheFit":
+        imageTheme.value = "/svg/empresas/fitgym.svg";
+        setFavicon("/favicon/thefitgym.ico");
         break;
-      case 'Bonavida':
-        imageTheme.value =  '/svg/empresas/bonavida.svg';
-        setFavicon('/favicon/bonavida.ico');
+      case "Bonavida":
+        imageTheme.value = "/svg/empresas/bonavida.svg";
+        setFavicon("/favicon/bonavida.ico");
         break;
       default:
-        imageTheme.value =  '/svg/empresas/myfriend.svg';
-        setFavicon('/favicon/myfriend.ico');
+        imageTheme.value = "/svg/empresas/myfriend.svg";
+        setFavicon("/favicon/myfriend.ico");
     }
   };
 
@@ -33,8 +37,8 @@ export function useThemes() {
     if (favicon) {
       favicon.href = iconPath;
     } else {
-      const newFavicon = document.createElement('link');
-      newFavicon.rel = 'icon';
+      const newFavicon = document.createElement("link");
+      newFavicon.rel = "icon";
       newFavicon.href = iconPath;
       document.head.appendChild(newFavicon);
     }
@@ -45,6 +49,6 @@ export function useThemes() {
     imageTheme,
     setTheme,
     setFavicon,
-    favicon
+    favicon,
   };
 }

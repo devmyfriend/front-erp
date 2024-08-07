@@ -1,6 +1,4 @@
 <script setup>
-import { ref } from 'vue';
-
 </script>
 
 <template>
@@ -8,5 +6,4 @@ import { ref } from 'vue';
     <img src="@/assets/svg/user/userIco.svg" alt="Usuario" class="navbarUserImg">
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

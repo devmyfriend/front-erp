@@ -1,13 +1,9 @@
 <template>
     <div class="flex items-center h-inputHeight">
-        <input 
+        <input
             class=" text-black rounded-inputRadius border-inputBorder border-inputWidth p-paddingInput lg:w-96 md:w-60 sm:w-32 outline-none h-full text-base"
-            type="text" 
-            v-model="txtBusqueda" 
-            @keyup.enter="buscar(txtBusqueda)" 
-            placeholder="Nombre producto"
-        >
-        <searchIco @click="buscar(txtBusqueda)" class="cursor-pointer h-buscadorIconHeight ml-4"/>
+            type="text" v-model="txtBusqueda" @keyup.enter="buscar(txtBusqueda)" placeholder="Nombre producto">
+        <searchIco @click="buscar(txtBusqueda)" class="cursor-pointer h-buscadorIconHeight ml-4" />
     </div>
 </template>
 
@@ -28,11 +24,11 @@ const props = defineProps({
 });
 
 function buscar(texto) {
-    if (texto.length != 0) { 
+    if (texto.length != 0) {
         store.buscarProductos(texto, props.tipoProducto).then((res) => {
             if (res) {
                 emit('eBusqueda', texto);
-            }else{
+            } else {
                 Swal.fire({
                     title: 'No se encontraron resultados',
                     icon: 'info',
@@ -41,7 +37,7 @@ function buscar(texto) {
                 emit('eBusqueda');
             }
         });
-    }else{
+    } else {
         emit('eBusqueda');
     }
 }
