@@ -23,7 +23,7 @@ provide('setWindowContent', (content) => {
                 <div v-html="titleContent"></div>
             </slot>
         </titleH1>
-        <div class="w-full h-[93%] rounded-[2rem] overflow-hidden" :class="`bg-${theme}-container`">
+        <div class="w-full h-[93%] rounded-[2rem] overflow-hidden" :class="`bg-${theme}-background`">
             <component :is="windowsContent" class="sticky top-0" :class="`bg-${theme}-background`" />
             <router-view />
         </div>

@@ -8,6 +8,13 @@ const store = coinsStore();
 
 const txtBusqueda = ref('');
 
+const props = defineProps({
+  color: {
+    type: String,
+    default: 'white'
+  }
+});
+
 function buscar(texto) {
     if (texto.length != 0) {
         store.buscarMonedas(texto).then((res) => {
@@ -33,7 +40,7 @@ function buscar(texto) {
         <input
             class=" text-black rounded-inputRadius border-inputBorder border-inputWidth p-paddingInput lg:w-96 md:w-60 w-32 outline-none h-full text-base"
             type="text" v-model="txtBusqueda" @keyup.enter="buscar(txtBusqueda)" placeholder="Nombre moneda">
-        <searchIco class="cursor-pointer max-h-buscadorIconHeight ml-4" @click="buscar(txtBusqueda)" />
+        <searchIco class="cursor-pointer max-h-buscadorIconHeight ml-4" @click="buscar(txtBusqueda)" :color="color" />
     </div>
 </template>
 
