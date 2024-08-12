@@ -17,7 +17,7 @@ const sidebarItems = ref([
 
 <template>
     <div class="flex flex-col justify-between items-center pt-4 overflow-scroll">
-        <img :src="imageTheme" alt="Empresa" class=" bg-white rounded-full w-[45%]  md:w-[65%]">
+        <img :src="imageTheme" alt="Empresa" class=" bg-white rounded-full w-[45%] md:w-[65%] companyImg">
         <div class="flex flex-col justify-center gap-[6%] items-center mt-4 py-4 flex-auto w-4/5 max-w-2/5">
             <sidebarItem v-for="(item, index) in sidebarItems" :key="index" :data="item"
                 :class="{ 'mt-auto': item.toProp === 'login' }" />
@@ -25,4 +25,8 @@ const sidebarItems = ref([
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.companyImg {
+    filter: drop-shadow(3px 1px 4px rgba(0, 0, 0, 0.6));
+}
+</style>
