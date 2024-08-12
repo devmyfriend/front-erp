@@ -1,41 +1,42 @@
 <script setup>
 import sidebar from '@/commons/ui/sidebar/sidebar.vue';
 import themeSwitcher from '@/commons/ui/theme-switcher/theme-switcher.vue';
+import titleH1 from '../ui/title-h1/title-h1.vue';
 import { useTheme } from '@/commons/composables/theme';
 const { theme } = useTheme();
+import { useLayout } from '@/commons/composables/useLayout.js';
+const { title } = useLayout();
 </script>
 
 <template>
-    <div class="containerMy grid h-screen min-h-screen max-h-screen w-screen">
-        <div class="navbarMy px-4 py-2 text-center flex justify-between items-center min-h-12 h-[6vh] max-h-[6vh] w-[96vw] max-w-[96vw] box-border col-span-2"
-            :class="`bg-${theme}-navbar`">
-
-            <h1
-                class="text-[2vh] md:text-[3vh] lg:text-[3.5vh] leading-[4vh] font-bold p-0 text-start uppercase text-white w-max mr-4">
-                {{ theme }}
-            </h1>
-
-            <themeSwitcher />
-
-            <div class="flex-grow"></div>
-
-            <img src="/svg/generalIcons/userIco.svg" alt="Usuario" class="navbarUserImg h-full max-h-full">
-        </div>
-
-        <div class="sidebarMy min-w-[2.5rem] w-[4vw] max-h-screen overflow-hidden flex flex-col"
-            :class="`bg-${theme}-sidebar text-${theme}-subtext px-[2px] md:px-1 lg:px-2`">
-            <div class="flex flex-col grow h-full max-w-full shrink overflow-hidden">
-                <sidebar />
+    <div class="flex flex-row w-full h-full gap">
+        <!-- Sidebar -->
+        <sidebar class=" h-full text-white 
+        min-w-12 sm:min-w-12 md:min-w-14 lg:min-w-16 xl:min-w-16 2xl:min-w-[72px]
+        max-w-12 sm:max-w-12 md:max-w-14 lg:max-w-16 xl:max-w-16 2xl:max-w-[72px]"
+        :class="`bg-${theme}-sidebar`" />
+        
+        <div class="flex-grow flex flex-col flex-wrap">
+            <div class="flex items-center px-4 h-[5%] w-full max-w-full flex-wrap" :class="`bg-${theme}-navbar`">
+                <h1 class="font-bold p-0 text-start uppercase text-white leading-[4vh] w-max mr-4 lg:text-[2rem]">
+                    {{ theme }}
+                </h1>
+                <themeSwitcher/>
+                <div class="flex-grow"></div> 
+                <img src="/svg/generalIcons/userIco.svg" alt="Usuario" class="navbarUserImg h-3/4 max-h-full">
             </div>
-        </div>
 
-        <div
-            class="contentMy p-1 sm:p-1 md:p-2 2xl:p-4 flex-auto flex flex-col max-h-[92vh] sm:max-h-[92vh] 2xl:max-h-[92vh] w-[96vw] max-w-[96vw] bg-white">
-            <router-view />
+            <div class="flex flex-col flex-grow max-h-[95%]">
+                <div class="flex flex-col overflow-hidden h-full p-2 md:p-4">
+                    <titleH1> {{ title }} </titleH1>
+                    <div class="flex-grow overflow-hidden rounded-2xl">
+                        <router-view/>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 
 <style scoped>
-@import url('@/commons/styles/styleLayout.css');
 </style>

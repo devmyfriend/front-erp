@@ -1,5 +1,5 @@
 export default {
-  path: "/general",
+  path: "/",
   name: "layContent",
   component: () => import("@/commons/layout/standardLayout.vue"),
   children: [
@@ -13,8 +13,7 @@ export default {
       name: "payment",
       component: () =>
         import(
-          "@/modules/SAT/payment-methods-forms/views/payment-methods-forms.vue"
-        ),
+          "@/modules/SAT/payment-methods-forms/views/payment-methods-forms.vue"),
     },
     {
       path: "/comprobantes",
@@ -38,9 +37,21 @@ export default {
       component: () => import("@/modules/SAT/zipcode/views/zipCode.vue"),
     },
     {
-      path: "/testLalo",
-      name: "Lalo",
-      component: () => import("@/commons/components/modals/modalBuscador.vue"),
+      path: "/productos",
+      name: "products",
+      component: () => import("@/modules/products/layout/layoutWindow.vue"),
+      children: [
+        {
+          path: "/productos/listado",
+          name: "productsList",
+          component: () => import("@/modules/products/views/products.vue"),
+        },
+        {
+            path: "/productos/formulario",
+            name: "productsForm",
+            component: () => import("@/modules/products/views/frmProducts.vue"),
+        },
+      ]
     },
   ],
 };

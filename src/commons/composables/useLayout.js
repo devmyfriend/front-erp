@@ -1,19 +1,21 @@
 import { ref } from "vue";
 
-const title = ref("Módulo");
+const title = ref("Dashboard mini");
+const view = ref("Dashboard");
+
+function setViewTitle(newTitle) {
+  view.value = newTitle;
+}
 
 function setTitle(newTitle) {
   title.value = newTitle;
 }
 
-function getTitle() {
-  return title.value;
-}
-
 export function useLayout() {
   return {
     title,
+    view,
     setTitle,
-    getTitle,
+    setViewTitle,
   };
 }

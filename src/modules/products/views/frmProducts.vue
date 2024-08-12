@@ -1,17 +1,13 @@
 <script setup>
-import { inject, onMounted, onUpdated } from 'vue';
+import { onMounted } from 'vue';
 import formulario from '@/modules/products/components/frmDataProducts.vue';
 import formularioImagen from '@/modules/products/components/frmImage.vue';
 import { useFormProducts } from '@/modules/products/composables/useFormProducts.js';
-import titleH2 from '@/commons/ui/title-h2/title-h2.vue';
-import { windowLayoutStore } from '@/store/windowLayoutStore';
-import { useTheme } from '@/commons/composables/theme';
-const { theme } = useTheme();
-const windowStore = windowLayoutStore();
 
-const setTitleContent = inject('setTitleContent');
-const setWindowContent = inject('setWindowContent');
-import ventanas from '@/modules/products/components/windows.vue';
+import { useLayout } from '@/commons/composables/useLayout';
+import { useTheme } from '@/commons/composables/theme';
+const { setViewTitle } = useLayout();
+const { theme } = useTheme();
 
 const props = defineProps({
   tipoProducto: {
@@ -22,24 +18,15 @@ const props = defineProps({
 
 const { producto } = useFormProducts(props);
 
-const updateTitle = () => {
-  setTitleContent('Productos');
-  setWindowContent(ventanas);
-};
-
 onMounted(() => {
-  updateTitle();
-  windowStore.setBtActivo(2);
+  localStorage.setItem('btnActivo', 2);
+  setViewTitle('Formulario de Productos');
 });
 
-onUpdated(() => {
-  windowStore.setBtActivo(2);
-});
 </script>
 
 <template>
-  <titleH2 class="sticky pt-4 pl-4">Formulario de Productos</titleH2>
-  <div class="w-full h-[93%] p-4 overflow-scroll">
+  <div class="w-full overflow-scroll mt-6">
     <main
       class="flex justify-between text-primaryFontColor items-start min-w-full max-w-full bg-transparent mb-2 xl:flex-nowrap flex-wrap">
       <formulario :producto="producto" />

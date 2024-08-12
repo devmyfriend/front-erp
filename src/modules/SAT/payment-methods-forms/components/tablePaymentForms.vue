@@ -43,7 +43,7 @@ watch(() => props.ListadoFormasPago, (newValue) => {
                 <td
                     class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
                     {{ forma.Bancarizado ? 'Si' : 'No' }}
-                </td>primaryHeaderTable
+                </td>
                 <td
                     class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
                     {{ forma.Activo ? 'Activo' : 'Inactivo' }}

@@ -7,10 +7,13 @@ import { useReceiptsTypes } from '@/modules/SAT/receipt-types/composables/useRec
 import btnFormulario from '@/commons/ui/btn-formulario/btn-formulario.vue';
 import deleteModal from '@/commons/ui/modals/deleteModal.vue';
 import receiptTypesModal from '@/commons/components/modals/receiptTypesModal.vue';
-const { setTitle } = useLayout();
+import { useTheme } from '@/commons/composables/theme';
+const { theme } = useTheme();
+const { setTitle, setViewTitle } = useLayout();
 
 onBeforeMount(() => {
     setTitle('Tipo de Comprobantes');
+    setViewTitle('Listado de Tipos de Comprobante');
     cargarDatos();
 });
 
@@ -30,20 +33,32 @@ const {
 </script>
 
 <template>
-    <div class="w-full h-full p-4 flex justify-center items-center">
-        <div class="w-full h-full flex flex-col">
-            <div class="flex mb-6 h-inputHeight justify-between">
-                <titleH2> Listado de Tipos de Comprobante </titleH2>
-                <btnFormulario @eNuevo="showModal = true; modoFormulario = 0"
-                    class="mr-2 text-base px-4 py-2 text-white rounded-md h-full uppercase font-semibold flex items-center justify-center transition-all duration-300 max-w-24 min-w-24 md:max-w-32 md:min-w-32 xl:max-w-36 xl:min-w-36" />
-            </div>
-            <div
-                class="w-full items-center flex flex-col overflow-y-scroll text-secondaryFontColor text-base rounded-3xl">
-                <tableReceipt :ListadoComprobantes="ListadoComprobantes" :editable="true" @eAccion="esperarTabla" />
-                <deleteModal :id="modalData" v-if="modalData !== null" @eEliminar="borrarRegistro"
-                    @eCancelar="esperarCancelar" />
-            </div>
-        </div>
+
+    <div class="flex mb-6 h-inputHeight justify-end">
+       <!--  <titleH2> Listado de Tipos de Comprobante </titleH2> -->
+        <btnFormulario @eNuevo="showModal = true; modoFormulario = 0"
+            class="mr-2 text-base px-4 py-2 text-white rounded-md uppercase font-semibold flex items-center justify-center transition-all duration-300 max-w-24 min-w-24 md:max-w-32 md:min-w-32 xl:max-w-36 xl:min-w-36" />
+    </div>
+    <div
+        class="w-full items-center flex flex-col overflow-y-scroll text-secondaryFontColor text-base">
+        <!-- <p> asdasd asd </p>
+        <p> mokmkom </p>
+        <p> hbybtvubjnt </p>
+        <p> zxncbv </p>
+        <p> 1289371823 </p>
+        <p> 98798798 </p>
+        <p> ---.-,-,-,-.,. </p> -->
+            <tableReceipt :ListadoComprobantes="ListadoComprobantes" :editable="true" @eAccion="esperarTabla" />
+        <!-- <p> asdasd asd </p>
+        <p> mokmkom </p>
+        <p> hbybtvubjnt </p>
+        <p> zxncbv </p>
+        <p> 1289371823 </p>
+        <p> 98798798 </p>
+        <p> ---.-,-,-,-.,. </p> -->
+        
+        <deleteModal :id="modalData" v-if="modalData !== null" @eEliminar="borrarRegistro"
+            @eCancelar="esperarCancelar" />
     </div>
 
     <receiptTypesModal :datos="bodyFrm" :mostrar="showModal" :modo="modoFormulario" @eConfirm="esperarModal"

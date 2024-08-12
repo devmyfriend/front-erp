@@ -1,12 +1,23 @@
 <script setup>
 import { useTheme } from '@/commons/composables/theme';
 import { ref, onBeforeMount, watch } from 'vue';
+import dropdownIco from '../icons/actionIcons/dropdownIco.vue';
 
 const { theme, setTheme } = useTheme();
 const temaActual = ref('');
+const mostrarDropdown = ref(false);
 
 function cambiarTema() {
     setTheme(temaActual.value);
+    cerrarDropdown();
+}
+
+function abrirDropdown() {
+    mostrarDropdown.value = !mostrarDropdown.value;
+}
+
+function cerrarDropdown() {
+    mostrarDropdown.value = false;
 }
 
 onBeforeMount(() => {
@@ -20,9 +31,43 @@ watch(() => theme.value, (newValue) => {
 </script>
 
 <template>
-    <select class="px-4 max-w-max max-h-full py-0 h-full text-[0.8rem]" v-model="temaActual" @change="cambiarTema">
+    <select name="themeSwitcher"
+        class="shortIcon hidden md:block px-4 min-h-6 h-2/3 max-h-8 py-0 text-[0.8rem] shrink w-28 sm:w-auto" v-model="temaActual"
+        @change="cambiarTema">
         <option value="MyFriend">MyFriend</option>
         <option value="TheFit">The Fit Gym / The Fit Bar</option>
         <option value="Bonavida">Bonavida</option>
     </select>
+    <div class="relative inline-block">
+        <dropdownIco class="cursor-pointer block md:hidden max-h-3" @click="abrirDropdown"></dropdownIco>
+        <div v-if="mostrarDropdown" class="dropdown-menu">
+            <option @click="() => { temaActual = 'MyFriend'; cambiarTema(); }">MyFriend</option>
+            <option @click="() => { temaActual = 'TheFit'; cambiarTema(); }">The Fit Gym / The Fit Bar</option>
+            <option @click="() => { temaActual = 'Bonavida'; cambiarTema(); }">Bonavida</option>
+        </div>
+    </div>
 </template>
+
+<style scoped>
+.relative {
+    position: relative;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+.dropdown-menu option {
+    display: block;
+    padding: 10px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.dropdown-menu option:hover {
+    background: #f0f0f0;
+}
+</style>

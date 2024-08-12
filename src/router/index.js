@@ -1,8 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Loging from "@/modules/loging/views/Loging.vue";
 import HelloWorld from "@/components/HelloWorld.vue";
-import productosRouter from "@/modules/products/routes/index";
-import layoutWIndow from "./layoutWIndow";
 import layoutGeneral from "./layoutGeneral";
 
 const router = createRouter({
@@ -33,11 +31,6 @@ const router = createRouter({
       component: () => import("@/commons/layout/mainLayout.vue"),
       children: [
         {
-          path: "/window",
-          ...layoutWIndow,
-        },
-        {
-          path: "/general",
           ...layoutGeneral,
         },
       ],

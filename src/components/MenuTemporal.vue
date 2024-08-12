@@ -14,17 +14,19 @@ const modulos = ref([
     { nombre: 'Impuestos SAT', ruta: { name: 'taxesSAT' } },
     { nombre: 'Horacio', ruta: '/helloword' },
     { nombre: 'Codigos Postales - SAT', ruta: { name: 'zipcode' } },
-    { nombre: 'Test Lalo', ruta: { name: 'Lalo' } },
+    { nombre: '(Productos)', ruta: { name: 'products' } },
+    { nombre: '(Productos Listado)', ruta: { name: 'productsList' } },
+    { nombre: '(Productos Formulario)', ruta: { name: 'productsForm' } },
 ]);
 </script>
 
 <template>
     <main class="bg-container flex flex-col items-center justify-center h-screen px-4 max-w-full">
         <div
-            class="bg-sidebar rounded-2xl w-3/4 py-6 flex flex-row place-content-center text-center gap-4 flex-wrap md:flex-col mt-6 min-h-[40%] xl:min-h-max px-4 md:px-6 ">
+            class="bg-sidebar rounded-2xl w-3/4 max-h-44 py-6 flex place-content-center text-center gap-4 flex-wrap flex-col mt-6 h-[40%] xl:h-max px-4 md:px-6 ">
             <h1 class="text-white font-semibold text-[2rem] flex-grow max-h-12"> Menú temporal</h1>
-            <div class="w-64 max-w-64 max-h-12 h-12 md:w-1/4 flex justify-center items-center">
-                <themeSwitcher class="flex-grow"/>
+            <div class="w-64 max-w-64 max-h-12 h-12 flex justify-center items-center">
+                <themeSwitcher/>
             </div>
         </div>
         <section class="flex flex-grow min-h-44 p-6 w-full justify-center">

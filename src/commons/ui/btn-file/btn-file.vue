@@ -26,7 +26,7 @@ const imprimirImagen = () => {
         rounded-primaryButtonRadius justify-center 
         items-center uppercase text-base font-bold 
         h-10 w-56 transition-all duration-300"
-            :class="`bg-${theme}-primary hover:bg-${theme}-secondary text-${theme}-subtext`">
+            :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover text-white`">
             <svg width="16" height="16" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"
                 class="imgButton">
                 <path

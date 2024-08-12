@@ -59,10 +59,12 @@ watch(() => props.ListadoComprobantes, (newValue) => {
                     class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
                     {{ comprobante.Borrado ? 'Activo' : 'Inactivo' }}
                 </td> -->
-                <td v-if="editable"
-                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate flex justify-center items-center">
-                    <editIco class="cursor-pointer" @click="handleAccion(comprobante, 1)" />
-                    <trashIco class="cursor-pointer" @click="handleAccion(comprobante, 2)" />
+                <td v-if="editable" 
+                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-start truncate">
+                    <div class="w-full h-full flex items-center justify-center">
+                        <editIco class="cursor-pointer" @click="handleAccion(comprobante, 1)" />
+                        <trashIco class="cursor-pointer" @click="handleAccion(comprobante, 2)" />
+                    </div>
                 </td>
             </tr>
         </tbody>

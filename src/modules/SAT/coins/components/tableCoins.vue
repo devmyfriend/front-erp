@@ -36,7 +36,7 @@ const handleAccion = (moneda, accion) => {
         <thead>
             <tr class="sticky top-0 h-primaryHeaderTableHeight text-white">
                 <th class="bg-primaryHeaderTable" :class="`bg-${theme}-headers`">Clave</th>
-                <th class="bg-primaryHeaderTable " :class="`bg-${theme}-headers`">Nombre</th>
+                <th class="bg-primaryHeaderTable" :class="`bg-${theme}-headers`">Nombre</th>
                 <th class="bg-primaryHeaderTable" :class="`bg-${theme}-headers `">Status</th>
                 <th v-if="editable" class="bg-primaryHeaderTable " :class="`bg-${theme}-headers`"> Acciones </th>
             </tr>
@@ -50,7 +50,7 @@ const handleAccion = (moneda, accion) => {
                     {{ moneda.ClaveMoneda }}
                 </td>
                 <td
-                    class="h-primaryBodyTableHeight border-b-secondaryTableWidth border-l-primaryTableWidth px-2 text-start truncate">
+                    class="h-primaryBodyTableHeight border-b-secondaryTableWidth border-l-primaryTableWidth px-2 text-center truncate">
                     {{ moneda.Descripcion }}
                 </td>
                 <td

@@ -1,156 +1,49 @@
 <script setup>
-import { computed, onMounted, onUpdated, ref, watch } from 'vue';
-import { useRoute } from 'vue-router';
-import { windowLayoutStore } from '@/store/windowLayoutStore';
-import { useTheme } from '@/commons/composables/theme';
+import { ref, onMounted, defineAsyncComponent } from 'vue';
 import closeIco from '@/commons/ui/icons/actionIcons/closeIco.vue';
-const { theme } = useTheme();
+import { useTheme } from '@/commons/composables/theme';
+import { useRouter, useRoute } from 'vue-router';
+const router = useRouter();
 const route = useRoute();
-const windowStore = windowLayoutStore();
+const { theme } = useTheme();
 
-const btActivo = ref(windowStore.getBtActivo);
+const dropdownIco = defineAsyncComponent(() => import('@/commons/ui/icons/actionIcons/dropdownIco.vue'));
+const IconCommunity = defineAsyncComponent(() => import('@/commons/components/icons/IconCommunity.vue'));
+const IconDocumentation = defineAsyncComponent(() => import('@/commons/components/icons/IconDocumentation.vue'));
+const IconEcosystem = defineAsyncComponent(() => import('@/commons/components/icons/IconEcosystem.vue'));
+const IconSupport = defineAsyncComponent(() => import('@/commons/components/icons/IconSupport.vue'));
+const IconTooling = defineAsyncComponent(() => import('@/commons/components/icons/IconTooling.vue'));
 
-const props = defineProps({
-    tipoProducto: {
-        type: String,
-        default: 'Todos'
-    },
-    codigoProducto: {
-        type: String,
-        default: ''
-    },
-    nombreTipo: {
-        type: String,
-        default: ''
-    }
-});
+const tabs = ref([
+    { Name: 'Ventanas', route: 'products'  ,Component: dropdownIco },
+    { Name: 'Listado', route: 'productsList'  ,Component: IconCommunity },
+    { Name: 'Formulario', route: 'productsForm'  ,Component: IconDocumentation },
+]);
 
-const tipoProducto = computed(() => {
-    return props.tipoProducto || 'Todos';
-});
+const btnActivo = ref(parseInt(localStorage.getItem('btnActivo')) || 1);
 
-const codigoProducto = computed(() => {
-    return props.codigoProducto || '';
-});
-
-onMounted(() => {
-    btActivo.value = windowStore.getBtActivo;
-});
-watch(() => route.name, () => {
-    setTimeout(() => {
-        btActivo.value = windowStore.getBtActivo;
-    }, 150);
-});
+const changeView = (view, index) => {
+    router.push({ name: view.route });
+    btnActivo.value = index;
+    localStorage.setItem('btnActivo', index);
+    console.log('El boton activo es: ', btnActivo.value);
+}
 </script>
 
 <template>
-    <div class="flex justify-between" :class="`bg-${theme}-background`">
-        <div class="flex flex-row justify-start text-xl min-h-[1.5rem] max-w-[80vw] min-w-[80vw] overflow-x-scroll">
-            <router-link :class="{
-                [`bg-${theme}-primary text-${theme}-subtext`]: btActivo !== 1,
-                [`bg-transparent border-b-0 text-${theme}-text`]: btActivo === 1,
-            }" :to="{ name: 'productos', params: { tipo: tipoProducto } }" draggable="false"
-                class="whitespace-nowrap bg-disable hover:border-b-0 hover:text-black hover:bg-transparent transition-colors duration-300 flex items-center justify-center min-w-max text-center text-base py-1 pl-8 pr-6 border-inputWidth border-inputBorder rounded-tl-[2rem]">
-                Listado
-            </router-link>
-
-            <router-link :class="{
-                [`bg-${theme}-primary text-white`]: btActivo !== 2,
-                [`bg-transparent border-b-0 text-${theme}-text`]: btActivo === 2,
-            }" :to="{ name: 'formProducts', params: { tipo: tipoProducto, id: codigoProducto } }"
-                v-if="codigoProducto !== ''" draggable="false"
-                class="whitespace-nowrap bg-disable hover:border-b-0 hover:text-black hover:bg-transparent transition-colors duration-300 flex items-center justify-center min-w-max text-center text-base py-1 px-6 border-inputWidth border-inputBorder">
-                Formulario
-            </router-link>
-
-            <router-link :class="{
-                [`bg-${theme}-primary text-${theme}-subtext`]: btActivo !== 2,
-                [`bg-transparent border-b-0 text-${theme}-text`]: btActivo === 2,
-            }" :to="{ name: 'formProducts', params: { tipo: tipoProducto } }" draggable="false"
-                class="whitespace-nowrap bg-disable hover:border-b-0 hover:text-black hover:bg-transparent transition-colors duration-300 flex items-center justify-center min-w-max text-center text-base py-1 px-6 border-inputWidth border-inputBorder"
-                v-else>
-                Formulario
-            </router-link>
-
-            <router-link :class="{
-                [`bg-${theme}-primary text-${theme}-subtext`]: btActivo !== 3,
-                [`bg-transparent border-b-0 text-${theme}-text`]: btActivo === 3,
-            }" :to="{ name: 'formProducts', params: { tipo: tipoProducto, id: codigoProducto } }" draggable="false"
-                class="whitespace-nowrap bg-disable hover:border-b-0 hover:text-black hover:bg-transparent transition-colors duration-300 flex items-center justify-center min-w-max text-center text-base py-1 px-6 border-inputWidth border-inputBorder">
-                Productos por Almacén
-            </router-link>
-
-            <router-link :class="{
-                [`bg-${theme}-primary text-${theme}-text`]: btActivo !== 4,
-                [`bg-transparent border-b-0 text-${theme}-text`]: btActivo === 4,
-            }" :to="{ name: 'formProducts', params: { id: codigoProducto } }" draggable="false"
-                class="whitespace-nowrap bg-disable hover:border-b-0 hover:text-black hover:bg-transparent transition-colors duration-300 flex items-center justify-center min-w-max text-center text-base py-1 px-6 border-inputWidth border-inputBorder">
-                Agregar Productos
-            </router-link>
-
-            <router-link :class="{
-                [`bg-${theme}-primary text-${theme}-text`]: btActivo !== 5,
-                [`bg-transparent border-b-0 text-${theme}-text`]: btActivo === 5,
-            }" :to="{ name: 'formProducts', params: { id: codigoProducto } }" draggable="false"
-                class="whitespace-nowrap bg-disable hover:border-b-0 hover:text-black hover:bg-transparent transition-colors duration-300 flex items-center justify-center min-w-max text-center text-base py-1 px-6 border-inputWidth border-inputBorder">
-                Políticas
-            </router-link>
-
-            <router-link :class="{
-                [`bg-${theme}-primary text-${theme}-text`]: btActivo !== 6,
-                [`bg-transparent border-b-0 text-${theme}-text`]: btActivo === 6,
-            }" :to="{ name: 'formProducts', params: { tipo: tipoProducto, id: codigoProducto } }" draggable="false"
-                class="whitespace-nowrap bg-disable hover:border-b-0 hover:text-black hover:bg-transparent transition-colors duration-300 flex items-center justify-center min-w-max text-center text-base py-1 px-6 border-inputWidth border-inputBorder">
-                Cantidad por Almacén
-            </router-link>
-
-            <router-link :class="{
-                [`bg-${theme}-primary text-${theme}-text`]: btActivo !== 7,
-                [`bg-transparent border-b-0 text-${theme}-text`]: btActivo === 7,
-            }" :to="{ name: 'formProducts', params: { tipo: tipoProducto, id: codigoProducto } }" draggable="false"
-                class="whitespace-nowrap bg-disable hover:border-b-0 hover:text-black hover:bg-transparent transition-colors duration-300 flex items-center justify-center min-w-max text-center text-base py-1 px-6 border-inputWidth border-inputBorder">
-                Proveedores
-            </router-link>
+    <div class="flex-grow h-inputHeight flex flex-row justify-between" :class="`bg-${theme}-primary`">
+        <div class="flex flex-row overflow-x-auto">
+            <button v-for="(tab, index) in tabs" :key="index"
+            class="cursor-pointer flex-shrink-0 text-white px-4 border text-xs md:text-base"
+            :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover border-${theme}-primary-hover ${ btnActivo === index ? `bg-${theme}-primary-hover` : ''}`"
+            @click="changeView(tab, index)" >
+                {{ tab.Name }}
+            </button>
         </div>
-
-        <div class="flex xl:min-w-40 xl:max-w-40 md:max-w-12 max-w-7 shrink-0">
-            <router-link
-                class="flex items-center xl:px-6 px-1 xl:justify-end xl:pr-8 justify-start m-0 w-60 no-underline bg-transparent border-none"
-                :to="{ name: 'productos', params: { tipo: tipoProducto } }">
-                <closeIco class="w-6 h-6 cursor-pointer" />
-            </router-link>
-        </div>
+        <closeIco class="h-full mx-4"/>
     </div>
 </template>
 
 <style scoped>
-.ventanas {
-    display: grid;
-    grid-template-columns: auto 6rem;
-}
 
-.rutas a {
-    padding: 0.25rem 1rem;
-    min-width: max-content;
-}
-
-.rutas a:first-child {
-    border-left: none;
-    border-bottom-left-radius: 0rem;
-    padding-left: 2rem;
-}
-
-.rutas a:last-child {
-    border-right: 1px solid #000;
-    border-bottom-right-radius: 0rem;
-
-}
-
-.btActivado {
-    color: #fff;
-    font-weight: bold;
-    border: none;
-    border-top: 1px solid #000;
-    height: 100%;
-}
 </style>

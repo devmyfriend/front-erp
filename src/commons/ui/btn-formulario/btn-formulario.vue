@@ -12,7 +12,7 @@ const emit = defineEmits(['eNuevo']);
 </script>
 
 <template>
-    <button @click="emit('eNuevo')" class="col-span-2 text-white flex p-primaryPaddingButton border-none gap-4 h-2 sm:h-8 md:h-10 lg:h-10 xl:h-10 2xl:h-10 font-bold
+    <button @click="emit('eNuevo')" class="col-span-2 text-white flex p-primaryPaddingButton border-none gap-4 h-8 sm:h-8 md:h-10 lg:h-10 xl:h-10 2xl:h-10 font-bold
     rounded-primaryButtonRadius justify-center items-center uppercase text-base grow transition-all duration-300"
         :class="`bg-${theme}-primary hover:bg-${theme}-secondary`">
         <svg v-if="modo === 0"

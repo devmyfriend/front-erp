@@ -18,23 +18,21 @@ watch(() => props.ListadoPaises, (newValue) => {
 </script>
 
 <template>
-    <table class="w-full leading-4 text-[1rem]">
+    <table class="w-full table-fixed leading-4 text-[1rem]">
         <thead>
             <tr class="sticky top-0 h-primaryHeaderTableHeight text-white">
-                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-tl-xl"
-                    :class="`bg-${theme}-primary`">Clave</th>
-                <th class="border-b-secondaryTableWidth border-b-primaryUnderline bg-primaryHeaderTable rounded-t-[1px]"
-                    :class="`bg-${theme}-primary`">Nombre</th>
+                <th class="bg-primaryHeaderTable" :class="`bg-${theme}-headers`">Clave</th>
+                <th class="bg-primaryHeaderTable" :class="`bg-${theme}-headers`">Nombre</th>
             </tr>
         </thead>
         <tbody>
             <tr class="bg-white" v-for="(pais, index) in ListadoPaises" :key="index" :class="`text-${theme}-text`">
                 <td
-                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+                    class="h-primaryBodyTableHeight border-b-secondaryTableWidth px-2 ">
                     {{ pais.ClavePais }}
                 </td>
                 <td
-                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-start truncate">
+                    class="h-primaryBodyTableHeight border-b-secondaryTableWidth px-2 border-l-primaryTableWidth">
                     {{ pais.Descripcion }}
                 </td>
             </tr>

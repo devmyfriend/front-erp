@@ -8,7 +8,7 @@ const { theme } = useTheme();
 <template>
     <button type="submit" class="col-span-2 text-white flex p-primaryPaddingButton border-none gap-4 h-10 font-bold
     rounded-primaryButtonRadius justify-center items-center uppercase text-base grow transition-all duration-300"
-        :class="`bg-${theme}-primary hover:bg-${theme}-secondary`">
+        :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover`">
         <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"
             class="imgButton">
             <path

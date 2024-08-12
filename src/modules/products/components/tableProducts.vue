@@ -62,13 +62,13 @@ watch(() => props.ListadoProductos, (newValue, oldValue) => {
                     :class="`bg-${theme}-headers`">ID</th>
                 <th class="border-b-secondaryTableWidth border-b-primaryUnderline rounded-t-[1px]"
                     :class="`bg-${theme}-headers`">Nombre</th>
-                <th class="border-b-secondaryTableWidth border-b-primaryUnderline rounded-t-[1px]"
+                <th class="hidden md:table-cell border-b-secondaryTableWidth border-b-primaryUnderline rounded-t-[1px]"
                     :class="`bg-${theme}-headers`">Código del Producto</th>
                 <th class="border-b-secondaryTableWidth border-b-primaryUnderline rounded-t-[1px]"
                     :class="`bg-${theme}-headers`">Tipo Producto</th>
-                <th class="border-b-secondaryTableWidth border-b-primaryUnderline rounded-t-[1px]"
-                    :class="`bg-${theme}-headers`">Puntos</th>
-                <th class="border-b-secondaryTableWidth border-b-primaryUnderline rounded-t-[1px]"
+                <th class="hidden md:table-cell border-b-secondaryTableWidth border-b-primaryUnderline rounded-t-[1px]"
+                :class="`bg-${theme}-headers`">Puntos</th>
+                <th class="hidden md:table-cell border-b-secondaryTableWidth border-b-primaryUnderline rounded-t-[1px]"
                     :class="`bg-${theme}-headers`">Serie</th>
                 <th class="border-b-secondaryTableWidth border-b-primaryUnderline rounded-tr-xl"
                     :class="`bg-${theme}-headers`">Acciones</th>
@@ -88,7 +88,7 @@ watch(() => props.ListadoProductos, (newValue, oldValue) => {
                     {{ producto.NombreProducto }}
                 </td>
                 <td
-                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+                    class="hidden md:table-cell h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
                     {{ producto.CodigoProducto }}
                 </td>
                 <td
@@ -96,23 +96,20 @@ watch(() => props.ListadoProductos, (newValue, oldValue) => {
                     {{ producto.NombreTipoProducto }}
                 </td>
                 <td
-                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+                    class="hidden md:table-cell h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
                     {{ producto.Puntos }}
                 </td>
                 <td
-                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+                    class="hidden md:table-cell h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
                     {{ producto.Serie ? 'Sí' : 'No' }}
                 </td>
                 <td
                     class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 ">
                     <div class="flex w-full items-center justify-center min-w-16">
                         <div
-                            class="min-w-16 h-full text-center items-center lg:justify-start justify-center flex lg:gap-1 flex-wrap">
-
-                            <editIco class="cursor-pointer w-4 lg:w-6" @click="editarProducto(producto.CodigoProducto)"
-                                :color="'black'" />
-                            <trashIco class="cursor-pointer w-4 lg:w-6" @click="borrarProducto(producto)"
-                                :color="'black'" v-if="producto.Borrado === 0" />
+                            class="min-w-16 h-full text-center items-center lg:justify-start justify-center flex gap-1 lg:gap-1 flex-wrap">
+                            <editIco class="cursor-pointer shrink" @click="editarProducto(producto.CodigoProducto)"/>
+                            <trashIco class="cursor-pointer shrink" @click="borrarProducto(producto)" v-if="producto.Borrado === 0" />
                         </div>
                     </div>
                 </td>
