@@ -3,7 +3,7 @@ import { onMounted } from 'vue';
 import formulario from '@/modules/products/components/frmDataProducts.vue';
 import formularioImagen from '@/modules/products/components/frmImage.vue';
 import { useFormProducts } from '@/modules/products/composables/useFormProducts.js';
-import ventanas from '@/modules/products/components/windows.vue';
+import ventanas from '@/commons/components/windows.vue';
 import { useLayout } from '@/commons/composables/useLayout';
 import { useTheme } from '@/commons/composables/theme';
 const { setTitle ,setViewTitle } = useLayout();
@@ -19,8 +19,8 @@ const props = defineProps({
 const { producto } = useFormProducts(props);
 
 const tabsCollection = [
-        { name: 'Listado', route: 'productsList' },
-        { name: 'Formulario', route: 'productsForm' }
+  { name: 'Listado', route: 'productsList' },
+  { name: 'Formulario', route: 'productsForm' }
 ];
 
 onMounted(() => {

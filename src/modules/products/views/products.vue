@@ -9,7 +9,7 @@
     import Swal from 'sweetalert2';
     import { useLayout } from '@/commons/composables/useLayout';
     import { useTheme } from '@/commons/composables/theme';
-    import ventanas from '@/modules/products/components/windows.vue';
+    import ventanas from '@/commons/components/windows.vue';
 
     const { setTitle, setViewTitle } = useLayout();
     const { theme } = useTheme();

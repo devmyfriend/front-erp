@@ -14,7 +14,7 @@ const {
 } = useCoins();
 
 const showModal = ref(false);
-const registro = ref(null);
+const registro = ref({});
 
 const abrirModal = async () => {
     showModal.value = true;
@@ -62,7 +62,7 @@ const modulos = ref([
 
         <div
             class="bg-sidebar rounded-2xl w-3/4 max-h-44 py-6 flex place-content-center text-center gap-4 flex-wrap flex-col mt-6 h-[40%] xl:h-max px-4 md:px-6 ">
-            <h1 class="text-white font-semibold text-[2rem] flex-grow max-h-12" @click="abrirModal"> Menú temporal {{ registro.Nombre }}</h1>
+            <h1 class="text-white font-semibold text-[2rem] flex-grow max-h-12" @click="abrirModal"> Menú temporal {{ registro.Descripcion }}</h1>
             <div class="w-64 max-w-64 max-h-12 h-12 flex justify-center items-center">
                 <themeSwitcher/>
             </div>
