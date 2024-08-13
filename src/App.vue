@@ -14,7 +14,7 @@ onMounted(() => {
   <div class="h-screen max-h-full max-w-full 
     justify-between items-center 
     flex flex-row flex-wrap">
-    <RouterView/>
+    <RouterView class="w-full h-full"/>
   </div>
 </template>
 
