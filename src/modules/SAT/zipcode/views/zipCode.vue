@@ -4,12 +4,12 @@ import { useZipCodeList } from "@/modules/SAT/zipcode/composables/useListZipCode
 import tabla from "@/modules/SAT/zipcode/components/tableZipCode.vue";
 import buscadorZipCode from "@/modules/SAT/zipcode/components/zipCodeFinder.vue";
 import { useLayout } from "@/commons/composables/useLayout.js";
-import titleH2 from "@/commons/ui/title-h2/title-h2.vue";
 const { loadData, ZipCodeList } = useZipCodeList();
-const { setTitle } = useLayout();
+const { setTitle, setViewTitle } = useLayout();
 
 onBeforeMount(() => {
   setTitle("Códigos postales");
+  setViewTitle("Listado de Códigos Postales");
 });
 
 onMounted(async () => {
@@ -18,7 +18,6 @@ onMounted(async () => {
 </script>
 
 <template>
-      <titleH2> Listado de Códigos Postales </titleH2>
       <div class="flex flex-col min-w-full min-h-9 max-w-full max-h-9 mb-6">
         <buscadorZipCode />
       </div>

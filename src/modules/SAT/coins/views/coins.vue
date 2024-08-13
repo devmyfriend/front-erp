@@ -46,7 +46,7 @@ onMounted(async () => {
     </div>
 
     <div
-        class="w-full items-center flex flex-col flex-grow overflow-y-scroll text-secondaryFontColor text-base">
+        class="w-full items-center flex flex-col flex-grow overflow-y-scroll text-secondaryFontColor text-base rounded-3xl">
         <tableCoins :ListadoMonedas="ListadoMonedas" :editable="true" @eAccion="esperarTabla" />
         <deleteModal :id="modalData" v-if="modalData !== null" @eEliminar="borrarRegistro"
             @eCancelar="esperarCancelar" />

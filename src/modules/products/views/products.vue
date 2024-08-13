@@ -102,7 +102,7 @@
 </script>
 
 <template>
-    <div class="flex flex-row mb-6 justify-between flex-wrap gap-4 mt-6">
+    <div class="flex flex-row mb-6 justify-between flex-wrap gap-4 mt-4">
         <div>
             <buscadorProductos @eBusqueda="esperarBusqueda" :tipoProducto="tipoProducto" />
         </div>

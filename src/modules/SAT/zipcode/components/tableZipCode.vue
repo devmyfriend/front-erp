@@ -25,20 +25,20 @@ watch(
     <thead class="sticky top-0 text-white">
       <tr class="sticky top-0 h-primaryHeaderTableHeight rounded-primaryHeaderTableRadius">
         <th class="border-b-secondaryTableWidth border-b-primaryUnderline first:rounded-l-primaryHeaderTableRadius"
-          :class="`bg-${theme}-primary`">
+          :class="`bg-${theme}-headers`">
           País
         </th>
-        <th class="border-b-secondaryTableWidth border-b-primaryUnderline" :class="`bg-${theme}-primary`">
+        <th class="border-b-secondaryTableWidth border-b-primaryUnderline" :class="`bg-${theme}-headers`">
           Código Postal
         </th>
-        <th class="border-b-secondaryTableWidth border-b-primaryUnderline" :class="`bg-${theme}-primary`">
+        <th class="border-b-secondaryTableWidth border-b-primaryUnderline" :class="`bg-${theme}-headers`">
           Estado
         </th>
-        <th class="border-b-secondaryTableWidth border-b-primaryUnderline" :class="`bg-${theme}-primary`">
+        <th class="border-b-secondaryTableWidth border-b-primaryUnderline" :class="`bg-${theme}-headers`">
           Municipio
         </th>
         <th class="border-b-secondaryTableWidth border-b-primaryUnderline last:rounded-r-primaryHeaderTableRadius"
-          :class="`bg-${theme}-primary`">
+          :class="`bg-${theme}-headers`">
           Localidad
         </th>
       </tr>
