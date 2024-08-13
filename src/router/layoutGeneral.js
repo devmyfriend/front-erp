@@ -37,17 +37,17 @@ export default {
       component: () => import("@/modules/SAT/zipcode/views/zipCode.vue"),
     },
     {
-      path: "/productos",
+      path: "/productos/",
       name: "products",
-      component: () => import("@/modules/products/layout/layoutWindow.vue"),
+      redirect: "/listado",
       children: [
         {
-          path: "/productos/listado",
+          path: "listado",
           name: "productsList",
           component: () => import("@/modules/products/views/products.vue"),
         },
         {
-            path: "/productos/formulario",
+            path: "formulario",
             name: "productsForm",
             component: () => import("@/modules/products/views/frmProducts.vue"),
         },

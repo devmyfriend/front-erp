@@ -9,6 +9,7 @@
     import Swal from 'sweetalert2';
     import { useLayout } from '@/commons/composables/useLayout';
     import { useTheme } from '@/commons/composables/theme';
+    import ventanas from '@/modules/products/components/windows.vue';
 
     const { setTitle, setViewTitle } = useLayout();
     const { theme } = useTheme();
@@ -76,10 +77,17 @@
         setCodigoProducto('');
         CodigoProducto.value = '';
     }
+
+    const tabsCollection = [
+        { name: 'Listado', route: 'productsList' },
+        { name: 'Formulario', route: 'productsForm' }
+    ];
+
     onBeforeMount(() => {
         cargarDatos();
         setViewTitle('Listado de Productos');
-        localStorage.setItem('btnActivo', 1);
+        setTitle('Productos');
+        sessionStorage.setItem('btnActivo', 0);
     });
 
     watch(tipoProducto, (newValue) => {
@@ -102,29 +110,34 @@
 </script>
 
 <template>
-    <div class="flex flex-row mb-6 justify-between flex-wrap gap-4 mt-4">
-        <div>
-            <buscadorProductos @eBusqueda="esperarBusqueda" :tipoProducto="tipoProducto" />
-        </div>
-
-        <div class="min-h-[35px]">
-            <label for="tipoProducto" class="text-labelSize font-labelWeight text-white mr-1"> Tipo </label>
-            <select class="h-inputHeight min-w-40 max-w-sm 
-            p-paddingInput rounded-inputRadius border-inputBorder 
-            border-inputWidth text-black text-base" id="tipoProducto" v-model="tipoProducto">
-                <option value="Todos">Todos</option>
-                <option v-for="Tipo in ListadoTiposProducto" :value="Tipo.NombreTipoProducto"> {{
-                    Tipo.NombreTipoProducto }}</option>
-            </select>
-        </div>
+    <div class="flex sticky top-0 z-20">
+        <ventanas :tabsCollection="tabsCollection" />
     </div>
 
+    <div class="flex-grow flex flex-col">
+        <div class="flex flex-row mb-6 justify-between flex-wrap gap-4 mt-4">
+            <div>
+                <buscadorProductos @eBusqueda="esperarBusqueda" :tipoProducto="tipoProducto" />
+            </div>
 
-    <div class="w-full items-center flex flex-col overflow-y-scroll text-secondaryFontColor text-base rounded-3xl">
-        <tablaProductos :ListadoProductos="ListadoProductos" :tipoProducto="tipoProducto"
-            @eEditarProducto="editarProducto" @eBorrarProducto="borrarProducto" />
-            <!-- <deleteModal :id="modalData" v-if="modalData !== null" @eEliminar="borrarRegistro"
-            @eCancelar="esperarCancelar" /> -->
+            <div class="min-h-[35px]">
+                <label for="tipoProducto" class="text-labelSize font-labelWeight text-white mr-1"> Tipo </label>
+                <select class="h-inputHeight min-w-40 max-w-sm 
+                p-paddingInput rounded-inputRadius border-inputBorder 
+                border-inputWidth text-black text-base" id="tipoProducto" v-model="tipoProducto">
+                    <option value="Todos">Todos</option>
+                    <option v-for="Tipo in ListadoTiposProducto" :value="Tipo.NombreTipoProducto"> {{
+                        Tipo.NombreTipoProducto }}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="w-full items-center flex flex-col overflow-y-scroll text-secondaryFontColor text-base rounded-3xl">
+            <tablaProductos :ListadoProductos="ListadoProductos" :tipoProducto="tipoProducto"
+                @eEditarProducto="editarProducto" @eBorrarProducto="borrarProducto" />
+                <!-- <deleteModal :id="modalData" v-if="modalData !== null" @eEliminar="borrarRegistro"
+                @eCancelar="esperarCancelar" /> -->
+        </div>
     </div>
 </template>
 

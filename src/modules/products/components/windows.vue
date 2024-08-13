@@ -6,36 +6,35 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 const { theme } = useTheme();
 
-const tabs = ref([
-    { Name: 'Ventanas', route: 'products' },
-    { Name: 'Listado', route: 'productsList' },
-    { Name: 'Formulario', route: 'productsForm' },
-]);
+const props = defineProps({
+    tabsCollection: Array
+});
 
-const btnActivo = ref(parseInt(localStorage.getItem('btnActivo')) || 1);
+const btnActivo = ref(parseInt(sessionStorage.getItem('btnActivo')) || 0);
 
 const changeView = (view, index) => {
     router.push({ name: view.route });
     btnActivo.value = index;
-    localStorage.setItem('btnActivo', index);
-    console.log('El boton activo es: ', btnActivo.value);
+    sessionStorage.setItem('btnActivo', index);
 }
 </script>
 
 <template>
     <div class="flex-grow h-[44px] flex flex-row justify-between" :class="`bg-${theme}-background`">
         <div class="flex flex-row overflow-hidden rounded-xl shadow-md shadow-[#212121] h-8" :class="`bg-${theme}-primary`">
-            <button v-for="(tab, index) in tabs" :key="index"
-            class="cursor-pointer flex-shrink-0 text-white px-4 border text-xs md:text-base"
-            :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover border-${theme}-primary-hover ${ btnActivo === index ? `bg-${theme}-primary-hover` : ''}`"
-            @click="changeView(tab, index)" >
-                {{ tab.Name }}
+            <button v-for="(tab, index) in tabsCollection" :key="index"
+            class="cursor-pointer flex-shrink-0 text-white px-4 border text-xs md:text-base hover:px-6 transition-all duration-200"
+            :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover border-${theme}-primary-hover ${ btnActivo === index ? `bg-${theme}-primary-hover px-6` : ''}`"
+            @click="changeView(tab, index)">
+                {{ tab.name }}
             </button>
         </div>
-        <closeIco class="h-full mx-2"/>
+        <closeIco class="h-full mx-2 cursor-pointer closeIco hover:w-7 transition-all duration-200" @click="changeView(tabsCollection[0], 0)"/>
     </div>
 </template>
 
 <style scoped>
-
+.closeIco{
+    filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.8));
+}
 </style>
