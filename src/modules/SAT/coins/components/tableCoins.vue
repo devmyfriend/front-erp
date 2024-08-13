@@ -1,41 +1,42 @@
 <script setup>
-import { ref, watch } from 'vue';
+import { onMounted } from 'vue';
 import { useTheme } from '@/commons/composables/theme';
 import editIco from '@/commons/ui/icons/tableIcons/editIco.vue';
 import trashIco from '@/commons/ui/icons/tableIcons/trashIco.vue';
+import { useCoins } from '@/modules/SAT/coins/composables/useCoins';
+const { ListadoMonedas, cargarDatos } = useCoins();
 const { theme } = useTheme();
 
-const ListadoMonedas = ref([]);
-
+const emits = defineEmits(['eAccion', 'eSelect']);
 const props = defineProps({
-    ListadoMonedas: {
-        type: Array,
-        default: () => []
-    },
     editable: {
         type: Boolean,
         default: false
     },
-    accion: {
-        type: Array,
-        default: () => []
+    clickeable: {
+        type: Boolean,
+        default: false
     }
 });
-const emits = defineEmits(['eAccion']);
 
-watch(() => props.ListadoMonedas, (newValue) => {
-    ListadoMonedas.value = newValue;
-});
 const handleAccion = (moneda, accion) => {
     emits('eAccion', [moneda, accion]);
 };
+const selectItem = (moneda) => {
+    emits('eSelect', moneda);
+};
+
+onMounted(() => {
+    cargarDatos();
+});
+
 </script>
 
 <template>
     <table class="w-full table-fixed leading-4 text-[1rem]">
         <thead>
             <tr class="sticky top-0 h-primaryHeaderTableHeight text-white">
-                <th class="bg-primaryHeaderTable" :class="`bg-${theme}-headers`">Clave</th>
+                <th class="bg-primaryHeaderTable" :class="`bg-${theme}-headers`">Clave {{ clickeable }}</th>
                 <th class="bg-primaryHeaderTable" :class="`bg-${theme}-headers`">Nombre</th>
                 <th class="bg-primaryHeaderTable" :class="`bg-${theme}-headers `">Status</th>
                 <th v-if="editable" class="bg-primaryHeaderTable " :class="`bg-${theme}-headers`"> Acciones </th>
@@ -44,8 +45,9 @@ const handleAccion = (moneda, accion) => {
         <tbody>
             <tr v-for="(moneda, index) in ListadoMonedas" :key="index" :class="[
                 moneda.Activo ? `text-${theme}-text bg-white` : '',
-                !moneda.Activo ? `text-${theme}-text bg-disabled-${theme}` : ''
-            ]">
+                !moneda.Activo ? `text-${theme}-text bg-disabled-${theme}` : '',
+                clickeable ? 'cursor-pointer hover:font-bold transition-all duration-100' : ''
+            ]" @click="clickeable ? selectItem(moneda) : null">
                 <td class="h-primaryBodyTableHeight border-b-secondaryTableWidth px-2 text-center truncate">
                     {{ moneda.ClaveMoneda }}
                 </td>

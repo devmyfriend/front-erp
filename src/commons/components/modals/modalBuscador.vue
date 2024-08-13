@@ -3,7 +3,7 @@
     <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all max-w-[90vw] w-full sm:max-w-[60vw]">
       <div class="px-4 py-5 sm:px-6">
         <div class="w-full flex flex-row justify-between items-center">
-          <titleH2 class="mb-0" :class="`text-${theme}-text`"> {{ modo === 0 ? 'Nuevo' : 'Editar' }} registro </titleH2>
+          <titleH2 class="mb-0" :class="`text-${theme}-text`"> Seleccionar un registro </titleH2>
           <div class="h-8 w-5 flex justify-end items-center cursor-pointer">
             <p @click="closeModal" class="text-xl font-bold hover:text-2xl text-gray-600 hover:text-black transition-all duration-200"> X </p>
           </div>
@@ -24,15 +24,12 @@
             <tableCoins :ListadoMonedas="ListadoMonedas"/>
           </div>
         </slot>
-        <p class="pl-1 italic opacity-50 underline font-semibold text-gray-600 text-base w-full text-left bg-white"> Selecciona un registro, por favor.</p>
+        <p class="pl-1 italic opacity-80 underline font-semibold text-base w-full text-left bg-white" :class="`text-${theme}-headers`"> Selecciona un registro, por favor.</p>
       </main>
 
       <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse mb-2">
-        <button @click="closeModal" class="w-full justify-center transition-all duration-300 rounded-md px-4 py-2 md:text-base font-medium text-white border-2 sm:ml-3 sm:w-auto text-sm" :class="`bg-${theme}-secondary hover:bg-${theme}-secondary-hover`">
+        <button @click="closeModal" class="w-full justify-center transition-all duration-300 rounded-md px-4 py-2 font-medium text-white border-2 text-sm md:text-base" :class="`bg-${theme}-secondary hover:bg-${theme}-secondary-hover`">
           Cancelar
-        </button>
-        <button @click="confirmAction" class="mt-3 w-full justify-center transition-all duration-300 rounded-md px-4 py-2 md:text-base font-medium text-white border-2 sm:mt-0 sm:ml-3 sm:w-auto text-sm" :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover`">
-          Confirmar
         </button>
       </div>
     </div>
@@ -48,24 +45,15 @@ import coinFinder from '@/modules/SAT/coins/components/coinFinder.vue';
 import tableCoins from '@/modules/SAT/coins/components/tableCoins.vue';
 import { coinsStore } from '@/store/coinsStore';
 const store = coinsStore();
-const ListadoMonedas = ref([]);
 /* Test */
 
 const { theme } = useTheme();
 
 const emit = defineEmits(['eConfirm', 'eCancel']);
 const props = defineProps({
-  datos: {
-    type: Object,
-    default: () => ({ ClaveMoneda: null, Descripcion: null }),
-  },
   mostrar: {
     type: Boolean,
     default: true,
-  },
-  modo: {
-    type: Number,
-    default: 0,
   },
 });
 
@@ -77,6 +65,7 @@ const closeModal = () => {
   mostrar.value = false;
   /* test */
   emit('eCancel');
+  console.log('cerrando modal');
 };
 
 const confirmAction = () => {
@@ -91,19 +80,12 @@ const handleEscapeKey = (event) => {
 
 /* test */
 
-const test1 = () => {
-  store.cargarMonedas().then(() => {
-    ListadoMonedas.value = store.getMonedas;
-  });
-};
-
 const mostrar = ref(props.mostrar);
 
 /* test */
 
 onMounted(() => {
   document.addEventListener('keydown', handleEscapeKey);
-  test1();
 });
 
 onBeforeUnmount(() => {

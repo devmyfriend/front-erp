@@ -11,18 +11,14 @@ const bodyFrm = ref({
   Descripcion: null,
 });
 
-const cargarMonedas = async () => {
-  await store.cargarMonedas();
-  ListadoMonedas.value = store.getMonedas;
-};
-
 const buscarMonedas = async (texto) => {
   await store.buscarMonedas(texto);
   ListadoMonedas.value = store.getMonedas;
 };
 
 const cargarDatos = async () => {
-  await cargarMonedas();
+  await store.cargarMonedas();
+  ListadoMonedas.value = store.getMonedas;
   modoFormulario.value = 0;
   showModal.value = false;
   bodyFrm.value = {
@@ -90,7 +86,6 @@ export function useCoins() {
     showModal,
     modoFormulario,
     bodyFrm,
-    cargarMonedas,
     buscarMonedas,
     cargarDatos,
     esperarTabla,

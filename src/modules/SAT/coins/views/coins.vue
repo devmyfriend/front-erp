@@ -12,12 +12,10 @@ import { useTheme } from '@/commons/composables/theme';
 const { theme } = useTheme();
 const { setTitle, setViewTitle } = useLayout();
 const {
-    ListadoMonedas,
     modalData,
     showModal,
     modoFormulario,
     bodyFrm,
-    cargarDatos,
     esperarTabla,
     esperarBusqueda,
     esperarModal,
@@ -28,10 +26,6 @@ const {
 onBeforeMount(() => {
     setTitle('Monedas SAT');
     setViewTitle('Listado de Monedas');
-});
-
-onMounted(async () => {
-    await cargarDatos();
 });
 </script>
 
@@ -47,7 +41,7 @@ onMounted(async () => {
 
     <div
         class="w-full items-center flex flex-col flex-grow overflow-y-scroll text-secondaryFontColor text-base rounded-3xl">
-        <tableCoins :ListadoMonedas="ListadoMonedas" :editable="true" @eAccion="esperarTabla" />
+        <tableCoins :editable="true" @eAccion="esperarTabla" />
         <deleteModal :id="modalData" v-if="modalData !== null" @eEliminar="borrarRegistro"
             @eCancelar="esperarCancelar" />
     </div>
