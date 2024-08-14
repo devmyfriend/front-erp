@@ -7,7 +7,7 @@ import ventanas from '@/commons/components/windows.vue';
 import { useLayout } from '@/commons/composables/useLayout';
 import { useTheme } from '@/commons/composables/theme';
 import { useWindows } from '@/commons/composables/useWindows';
-const { setActiveTab } = useWindows();
+const { setActiveTab, setTabsCollection} = useWindows();
 const { setTitle ,setViewTitle } = useLayout();
 const { theme } = useTheme();
 
@@ -24,6 +24,10 @@ onMounted(() => {
   setViewTitle('Formulario de Productos');
   setTitle('Productos');
   setActiveTab(1);
+  setTabsCollection([
+      { name: 'Listado', route: 'productsList' },
+      { name: 'Formulario', route: 'productsForm' }
+  ]);
 });
 
 </script>
