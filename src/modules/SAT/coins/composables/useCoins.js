@@ -11,13 +11,13 @@ const bodyFrm = ref({
   Descripcion: null,
 });
 
-const buscarMonedas = async (texto) => {
-  await store.buscarMonedas(texto);
+const findCoins = async (texto) => {
+  await store.findCoins(texto);
   ListadoMonedas.value = store.getMonedas;
 };
 
 const cargarDatos = async () => {
-  await store.cargarMonedas();
+  await store.loadCoins();
   ListadoMonedas.value = store.getMonedas;
   modoFormulario.value = 0;
   showModal.value = false;
@@ -38,7 +38,7 @@ const esperarTabla = (data) => {
 
 const esperarBusqueda = async (texto) => {
   if (texto) {
-    await buscarMonedas(texto);
+    await findCoins(texto);
   } else {
     await cargarDatos();
   }
@@ -52,18 +52,18 @@ const subirDatos = (datos) => {
 
 const esperarModal = (datos) => {
   if (modoFormulario.value === 0) {
-    store.crearMoneda(bodyFrm.value).then(() => {
+    store.createCoin(bodyFrm.value).then(() => {
       cargarDatos();
     });
   } else if (modoFormulario.value === 1) {
-    store.actualizarMoneda(datos).then(() => {
+    store.updateCoins(datos).then(() => {
       cargarDatos();
     });
   }
 };
 
 const borrarRegistro = () => {
-  store.eliminarMoneda(modalData.value).then(() => {
+  store.deleteCoins(modalData.value).then(() => {
     cargarDatos();
     modalData.value = null;
   });
@@ -86,7 +86,7 @@ export function useCoins() {
     showModal,
     modoFormulario,
     bodyFrm,
-    buscarMonedas,
+    findCoins,
     cargarDatos,
     esperarTabla,
     esperarBusqueda,

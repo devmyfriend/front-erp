@@ -11,14 +11,14 @@ export const coinsStore = defineStore("Coins", {
     },
   },
   actions: {
-    async cargarMonedas() {
-      const data = await coinsServices.cargarMonedas();
+    async loadCoins() {
+      const data = await coinsServices.loadCoins();
       if (data) {
         this.ListadoMonedas = data;
       }
     },
-    async buscarMonedas(moneda) {
-      const data = await coinsServices.buscarMonedas(moneda);
+    async findCoins(moneda) {
+      const data = await coinsServices.findCoins(moneda);
       if (data) {
         if (data.length > 0) {
           this.ListadoMonedas = data;
@@ -29,28 +29,28 @@ export const coinsStore = defineStore("Coins", {
       }
     },
 
-    async crearMoneda(moneda) {
-      const data = await coinsServices.crearMoneda(moneda);
+    async createCoin(moneda) {
+      const data = await coinsServices.createCoin(moneda);
       if (data) {
-        this.cargarMonedas();
+        this.loadCoins();
         return true;
       } else {
         return false;
       }
     },
-    async actualizarMoneda(moneda) {
-      const data = await coinsServices.actualizarMoneda(moneda);
+    async updateCoins(moneda) {
+      const data = await coinsServices.updateCoins(moneda);
       if (data) {
-        this.cargarMonedas();
+        this.loadCoins();
         return true;
       } else {
         return false;
       }
     },
-    async eliminarMoneda(moneda) {
-      const data = await coinsServices.eliminarMoneda(moneda);
+    async deleteCoins(moneda) {
+      const data = await coinsServices.deleteCoins(moneda);
       if (data) {
-        this.cargarMonedas();
+        this.loadCoins();
         return true;
       } else {
         return false;

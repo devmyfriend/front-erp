@@ -17,7 +17,7 @@ const props = defineProps({
 
 function buscar(texto) {
     if (texto.length != 0) {
-        store.buscarMonedas(texto).then((res) => {
+        store.findCoins(texto).then((res) => {
             if (res) {
                 emit('eBusqueda', texto);
             } else {

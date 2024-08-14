@@ -2,7 +2,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 const rutaGeneral = import.meta.env.VITE_API_URL;
 
-export const cargarMonedas = async () => {
+export const loadCoins = async () => {
   try {
     const datos = await axios.get(`${rutaGeneral}v1/catalogo/metodos/moneda`);
     if (datos.status === 200 && datos.statusText === "OK") {
@@ -18,7 +18,7 @@ export const cargarMonedas = async () => {
   }
 };
 
-export const buscarMonedas = async (moneda) => {
+export const findCoins = async (moneda) => {
   try {
     const datos = await axios.get(
       `${rutaGeneral}v1/catalogo/metodos/moneda/buscar/${moneda}`
@@ -36,7 +36,7 @@ export const buscarMonedas = async (moneda) => {
   }
 };
 
-export const crearMoneda = async (moneda) => {
+export const createCoin = async (moneda) => {
   try {
     const datos = await axios.post(
       `${rutaGeneral}v1/catalogo/metodos/moneda`,
@@ -73,7 +73,7 @@ export const crearMoneda = async (moneda) => {
   }
 };
 
-export const actualizarMoneda = async (moneda) => {
+export const updateCoins = async (moneda) => {
   try {
     const datos = await axios.patch(
       `${rutaGeneral}v1/catalogo/metodos/moneda`,
@@ -109,7 +109,7 @@ export const actualizarMoneda = async (moneda) => {
   }
 };
 
-export const eliminarMoneda = async (clave) => {
+export const deleteCoins = async (clave) => {
   try {
     const datos = await axios.delete(
       `${rutaGeneral}v1/catalogo/metodos/moneda`,
@@ -145,7 +145,7 @@ export const eliminarMoneda = async (clave) => {
   }
 };
 
-/* export const crearMoneda = async (moneda) => {
+/* export const createCoin = async (moneda) => {
     try {
         const datos = await axios.post(`${rutaGeneral}v1/catalogo/metodos/moneda`, moneda);
         if (datos.status === 200 && datos.statusText === "OK") {
@@ -173,7 +173,7 @@ export const eliminarMoneda = async (clave) => {
     }
 }
 
-export const actualizarMoneda = async (moneda) => {
+export const updateCoins = async (moneda) => {
     try {
         const datos = await axios.patch(`${rutaGeneral}v1/catalogo/metodos/moneda`, moneda);
         if (datos.status === 200 && datos.statusText === "OK") {
@@ -201,7 +201,7 @@ export const actualizarMoneda = async (moneda) => {
     }
 }
 
-export const eliminarMoneda = async (moneda) => {
+export const deleteCoins = async (moneda) => {
     try {
         const datos = await axios.delete(`${rutaGeneral}v1/catalogo/metodos/moneda/${moneda}`);
         if (datos.status === 200 && datos.statusText === "OK") {
