@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import * as receiptServices from "@/services/receiptServices";
+import * as receiptServices from "@/services/receipt/receiptServices";
 
 export const receiptStore = defineStore("receipt", {
   state: () => ({
