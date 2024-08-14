@@ -3,7 +3,7 @@
     import buscadorProductos from '@/modules/products/components/productFinder.vue';
     import tablaProductos from '@/modules/products/components/tableProducts.vue'
     import { useRouter } from 'vue-router';
-    import { useProductos } from '@/store/productsStore'
+    import { useProductos } from '@/store/product/productsStore'
     import { useListProducts } from '@/modules/products/composables/useListProducts.js';
     import Swal from 'sweetalert2';
     import { useLayout } from '@/commons/composables/useLayout';

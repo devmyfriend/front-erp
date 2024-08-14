@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { taxStore } from "@/store/taxStore";
+import { taxStore } from "@/store/tax/taxStore";
 const store = taxStore();
 
 const ListadoImpuestos = ref([]);

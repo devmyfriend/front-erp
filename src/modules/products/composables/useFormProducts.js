@@ -1,7 +1,7 @@
 // src/modules/products/composables/useFormProducts.js
 
 import { ref, onMounted, onBeforeMount } from "vue";
-import { useProductos } from "@/store/productsStore";
+import { useProductos } from "@/store/product/productsStore";
 import { useWindows } from "@/modules/products/composables/useWindows.js";
 
 export function useFormProducts(props) {

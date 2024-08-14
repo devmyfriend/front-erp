@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { useZipCode } from "@/store/zipCodeStore";
+import { useZipCode } from "@/store/zipCode/zipCodeStore";
 import Swal from "sweetalert2";
 
 const store = useZipCode();

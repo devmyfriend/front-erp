@@ -11,7 +11,7 @@
 <script setup>
 import { ref } from 'vue';
 import Swal from 'sweetalert2';
-import { useProductos } from '@/store/productsStore'
+import { useProductos } from '@/store/product/productsStore'
 import searchIco from '@/commons/ui/icons/actionIcons/searchIco.vue';
 
 const emit = defineEmits('eBusqueda');

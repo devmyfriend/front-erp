@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { paymentStore } from "@/store/paymentStore";
+import { paymentStore } from "@/store/payment/paymentStore";
 const store = paymentStore();
 
 const ListadoMetodosPago = ref([]);

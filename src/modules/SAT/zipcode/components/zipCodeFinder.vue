@@ -9,7 +9,7 @@
 
 <script setup>
 import { ref } from "vue";
-import { useZipCode } from "@/store/zipCodeStore";
+import { useZipCode } from "@/store/zipCode/zipCodeStore";
 import Swal from "sweetalert2";
 import searchIco from "@/commons/ui/icons/actionIcons/searchIco.vue";
 

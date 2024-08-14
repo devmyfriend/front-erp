@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { receiptStore } from "@/store/receiptStore";
+import { receiptStore } from "@/store/receipt/receiptStore";
 const store = receiptStore();
 
 const ListadoComprobantes = ref([]);

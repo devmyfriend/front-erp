@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import Swal from 'sweetalert2';
-import { coinsStore } from '@/store/coinsStore'
+import { coinsStore } from '@/store/coin/coinsStore'
 import searchIco from '@/commons/ui/icons/actionIcons/searchIco.vue';
 const emit = defineEmits('eBusqueda');
 const store = coinsStore();

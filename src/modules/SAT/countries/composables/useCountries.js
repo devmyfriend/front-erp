@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { countryStore } from "@/store/countryStore";
+import { countryStore } from "@/store/country/countryStore";
 const store = countryStore();
 
 const ListadoPaises = ref([]);

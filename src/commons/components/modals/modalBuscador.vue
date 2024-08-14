@@ -43,7 +43,7 @@ import { ref, onMounted, onBeforeUnmount } from 'vue';
 /* Test */
 import coinFinder from '@/modules/SAT/coins/components/coinFinder.vue';
 import tableCoins from '@/modules/SAT/coins/components/tableCoins.vue';
-import { coinsStore } from '@/store/coinsStore';
+import { coinsStore } from '@/store/coin/coinsStore';
 const store = coinsStore();
 /* Test */
 

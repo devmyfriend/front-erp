@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { coinsStore } from "@/store/coinsStore";
+import { coinsStore } from "@/store/coin/coinsStore";
 const store = coinsStore();
 
 const ListadoMonedas = ref([]);
