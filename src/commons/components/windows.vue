@@ -3,19 +3,14 @@ import { ref } from 'vue';
 import closeIco from '@/commons/ui/icons/actionIcons/closeIco.vue';
 import { useTheme } from '@/commons/composables/theme';
 import { useRouter } from 'vue-router';
+import { useWindows } from '@/commons/composables/useWindows';
+const { tabsCollection, activeTab } = useWindows();
 const router = useRouter();
 const { theme } = useTheme();
 
-const props = defineProps({
-    tabsCollection: Array
-});
-
-const btnActivo = ref(parseInt(sessionStorage.getItem('btnActivo')) || 0);
-
 const changeView = (view, index) => {
     router.push({ name: view.route });
-    btnActivo.value = index;
-    sessionStorage.setItem('btnActivo', index);
+    activeTab.value = index;
 }
 </script>
 
@@ -24,7 +19,7 @@ const changeView = (view, index) => {
         <div class="flex flex-row overflow-hidden rounded-xl shadow-md shadow-[#212121] h-8" :class="`bg-${theme}-primary`">
             <button v-for="(tab, index) in tabsCollection" :key="index"
             class="cursor-pointer flex-shrink-0 text-white px-4 border text-xs md:text-base hover:px-6 transition-all duration-200"
-            :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover border-${theme}-primary-hover ${ btnActivo === index ? `bg-${theme}-primary-hover px-6` : ''}`"
+            :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover border-${theme}-primary-hover ${ activeTab === index ? `bg-${theme}-primary-hover px-6` : ''}`"
             @click="changeView(tab, index)">
                 {{ tab.name }}
             </button>

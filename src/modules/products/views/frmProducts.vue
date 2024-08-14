@@ -6,6 +6,8 @@ import { useFormProducts } from '@/modules/products/composables/useFormProducts.
 import ventanas from '@/commons/components/windows.vue';
 import { useLayout } from '@/commons/composables/useLayout';
 import { useTheme } from '@/commons/composables/theme';
+import { useWindows } from '@/commons/composables/useWindows';
+const { setActiveTab } = useWindows();
 const { setTitle ,setViewTitle } = useLayout();
 const { theme } = useTheme();
 
@@ -18,15 +20,10 @@ const props = defineProps({
 
 const { producto } = useFormProducts(props);
 
-const tabsCollection = [
-  { name: 'Listado', route: 'productsList' },
-  { name: 'Formulario', route: 'productsForm' }
-];
-
 onMounted(() => {
-  sessionStorage.setItem('btnActivo', 1);
   setViewTitle('Formulario de Productos');
   setTitle('Productos');
+  setActiveTab(1);
 });
 
 </script>

@@ -5,7 +5,7 @@ const { theme } = useTheme();
 </script>
 
 <template>
-    <div class="navbar flex items-center px-4 h-[5%] w-full max-w-full flex-wrap" :class="`bg-${theme}-navbar`">
+    <div class="flex items-center px-4 h-[5%] w-full max-w-full flex-wrap" :class="`bg-${theme}-navbar`">
         
         <themeSwitcher/>
         <div class="flex-grow"></div> 
@@ -16,9 +16,5 @@ const { theme } = useTheme();
 <style scoped>
 .userImg {
     filter: drop-shadow(3px 1px 4px rgba(0, 0, 0, 0.6)); 
-}
-.navbar{
-    z-index: 1;
-    box-shadow: 8px 4px 16px rgba(0, 0, 0, 0.6);
 }
 </style>

@@ -77,9 +77,6 @@ watch(() => theme.value, (newValue) => {
 .dropdown-menu option:hover {
     background: #f0f0f0;
 }
-.themeSwitcher {
-    filter: drop-shadow(4px 2px 4px rgba(0, 0, 0, 0.4));
-}
 .dropdownIco{
     filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.4));
 }

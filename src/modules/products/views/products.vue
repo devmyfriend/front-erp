@@ -4,18 +4,18 @@
     import tablaProductos from '@/modules/products/components/tableProducts.vue'
     import { useRouter } from 'vue-router';
     import { useProductos } from '@/store/productsStore'
-    import { useWindows } from '@/modules/products/composables/useWindows.js';
     import { useListProducts } from '@/modules/products/composables/useListProducts.js';
     import Swal from 'sweetalert2';
     import { useLayout } from '@/commons/composables/useLayout';
     import { useTheme } from '@/commons/composables/theme';
     import ventanas from '@/commons/components/windows.vue';
-
+    import { useWindows } from '@/commons/composables/useWindows';
+    const { setActiveTab, setTabsCollection } = useWindows();
+    
     const { setTitle, setViewTitle } = useLayout();
     const { theme } = useTheme();
     const { borrarProducto: deleteProduct } = useListProducts();
     const store = useProductos();
-    const { setCodigoProducto } = useWindows();
 
     const router = useRouter();
     const tipoProducto = ref('Todos');
@@ -74,20 +74,18 @@
         deleteProduct(producto);
     }
     const borrarCodigoProducto = () => {
-        setCodigoProducto('');
         CodigoProducto.value = '';
     }
-
-    const tabsCollection = [
-        { name: 'Listado', route: 'productsList' },
-        { name: 'Formulario', route: 'productsForm' }
-    ];
 
     onBeforeMount(() => {
         cargarDatos();
         setViewTitle('Listado de Productos');
         setTitle('Productos');
-        sessionStorage.setItem('btnActivo', 0);
+        setTabsCollection([
+            { name: 'Listado', route: 'productsList' },
+            { name: 'Formulario', route: 'productsForm' }
+        ]);
+        setActiveTab(0);
     });
 
     watch(tipoProducto, (newValue) => {
@@ -111,7 +109,7 @@
 
 <template>
     <div class="flex sticky top-0 z-20">
-        <ventanas :tabsCollection="tabsCollection" />
+        <ventanas />
     </div>
 
     <div class="flex-grow flex flex-col">
