@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { loadZipCode, searchZipCode } from "@/services/zipCodeService";
+import { loadZipCode, searchZipCode } from "@/services/zipCode/zipCodeService";
 
 export const useZipCode = defineStore("CP", {
   state: () => ({

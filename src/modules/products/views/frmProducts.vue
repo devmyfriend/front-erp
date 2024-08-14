@@ -34,7 +34,7 @@ onMounted(() => {
 
 <template>
   <div class="flex sticky top-0 z-20">
-        <ventanas :tabsCollection="tabsCollection" />
+        <ventanas/>
   </div>
 
   <div class="flex-grow flex flex-col">

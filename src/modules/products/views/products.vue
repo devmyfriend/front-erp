@@ -1,15 +1,15 @@
 <script setup>
-    import { ref, watch, onBeforeMount } from 'vue';
     import buscadorProductos from '@/modules/products/components/productFinder.vue';
     import tablaProductos from '@/modules/products/components/tableProducts.vue'
+    import ventanas from '@/commons/components/windows.vue';
     import { useRouter } from 'vue-router';
+    import { ref, watch, onBeforeMount } from 'vue';
     import { useProductos } from '@/store/product/productsStore'
     import { useListProducts } from '@/modules/products/composables/useListProducts.js';
     import Swal from 'sweetalert2';
     import { useLayout } from '@/commons/composables/useLayout';
     import { useTheme } from '@/commons/composables/theme';
-    import ventanas from '@/commons/components/windows.vue';
-    import { useWindows } from '@/commons/composables/useWindows';
+    import { useWindows } from '@/commons/composables/useWindows'; 
     const { setActiveTab, setTabsCollection } = useWindows();
     
     const { setTitle, setViewTitle } = useLayout();
@@ -17,12 +17,13 @@
     const { borrarProducto: deleteProduct } = useListProducts();
     const store = useProductos();
 
-    const router = useRouter();
     const tipoProducto = ref('Todos');
-    const ListadoProductos = ref([]);
     const ListadoTiposProducto = ref([]);
+    const ListadoProductos = ref([]);
     const CodigoProducto = ref('');
 
+    const router = useRouter();
+    
     const cargarDatos = () => {
         store.cargarProductos().then(() => {
             if (tipoProducto.value == 'Todos') {
