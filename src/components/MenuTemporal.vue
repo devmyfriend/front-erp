@@ -21,7 +21,6 @@ const abrirModal = async () => {
 };
 
 const esperarSelect = (moneda) => {
-    console.log('[Padre] La moneda es: ', JSON.stringify(moneda));
     registro.value = moneda;
     showModal.value = false;
 };

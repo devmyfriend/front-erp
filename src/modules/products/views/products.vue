@@ -27,7 +27,7 @@
     const cargarDatos = () => {
         store.loadProducts().then(() => {
             if (tipoProducto.value == 'Todos') {
-                productsCollection.value = store.w;
+                productsCollection.value = store.getProducts;
             } else {
                 productsCollection.value = store.getProducts.filter(producto => producto.NombreTipoProducto == tipoProducto.value);
                 if (productsCollection.value.length == 0) {
