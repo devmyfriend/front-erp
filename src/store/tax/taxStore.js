@@ -3,42 +3,42 @@ import * as taxServices from "@/services/tax/taxServices";
 
 export const taxStore = defineStore("tax", {
   state: () => ({
-    ListadoImpuestos: [],
+    taxesCollection: [],
   }),
   getters: {
-    getImpuestos(state) {
-      return state.ListadoImpuestos;
+    getTaxes(state) {
+      return state.taxesCollection;
     },
   },
   actions: {
-    async cargarImpuestos() {
-      const data = await taxServices.cargarImpuestos();
+    async loadTaxes() {
+      const data = await taxServices.loadTaxes();
       if (data) {
-        this.ListadoImpuestos = data;
+        this.taxesCollection = data;
       }
     },
-    async crearImpuesto(impuesto) {
-      const data = await taxServices.crearImpuesto(impuesto);
+    async createTaxes(impuesto) {
+      const data = await taxServices.createTaxes(impuesto);
       if (data) {
-        this.cargarImpuestos();
+        this.loadTaxes();
         return true;
       } else {
         return false;
       }
     },
-    async actualizarImpuesto(impuesto) {
-      const data = await taxServices.actualizarImpuesto(impuesto);
+    async updateTax(impuesto) {
+      const data = await taxServices.updateTax(impuesto);
       if (data) {
-        this.cargarImpuestos();
+        this.loadTaxes();
         return true;
       } else {
         return false;
       }
     },
-    async eliminarImpuesto(impuesto) {
-      const data = await taxServices.eliminarImpuesto(impuesto);
+    async deleteTax(impuesto) {
+      const data = await taxServices.deleteTax(impuesto);
       if (data) {
-        this.cargarImpuestos();
+        this.loadTaxes();
         return true;
       } else {
         return false;

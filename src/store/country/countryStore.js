@@ -3,18 +3,18 @@ import * as countryServices from "@/services/country/countryServices";
 
 export const countryStore = defineStore("country", {
   state: () => ({
-    ListadoPaises: [],
+    countriesCollection: [],
   }),
   getters: {
-    getPaises(state) {
-      return state.ListadoPaises;
+    getCountries(state) {
+      return state.countriesCollection;
     },
   },
   actions: {
-    async cargarPaises() {
-      const data = await countryServices.cargarPaises();
+    async loadCountries() {
+      const data = await countryServices.loadCountries();
       if (data) {
-        this.ListadoPaises = data;
+        this.countriesCollection = data;
       }
     },
   },

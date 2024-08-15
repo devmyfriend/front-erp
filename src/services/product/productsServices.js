@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 const rutaProductos = import.meta.env.VITE_API_PRODUCTS_URL;
 const rutaGeneral = import.meta.env.VITE_API_URL;
 
-export const cargarProductos = async () => {
+export const loadProducts = async () => {
   try {
     const datos = await axios.get(`${rutaProductos}v1/productos`);
     if (datos.status === 200 && datos.statusText === "OK") {
@@ -18,7 +18,7 @@ export const cargarProductos = async () => {
     });
   }
 };
-export const cargarTiposProducto = async () => {
+export const loadTypeProducts = async () => {
   try {
     const datos = await axios.get(`${rutaProductos}v1/productos/tipo`);
     if (datos.status === 200 && datos.statusText === "OK") {
@@ -33,7 +33,7 @@ export const cargarTiposProducto = async () => {
     });
   }
 };
-export const buscarProductos = async (nombre, tipo) => {
+export const findProducts = async (nombre, tipo) => {
   try {
     const datos = await axios.get(
       `${rutaProductos}v1/productos/buscar/${nombre}`
@@ -60,7 +60,7 @@ export const buscarProductos = async (nombre, tipo) => {
   }
 };
 
-export const cargarClavesUnidades = async (pagina) => {
+export const loadUnitKeys = async (pagina) => {
   try {
     const datos = await axios.get(
       `${process.env.VUE_APP_PATH_API}v1/unidades/${pagina}`
@@ -78,7 +78,7 @@ export const cargarClavesUnidades = async (pagina) => {
     });
   }
 };
-export const cargarClavesProductos = async (pagina) => {
+export const loadProductsKeys = async (pagina) => {
   try {
     const datos = await axios.get(
       `${rutaGeneral}v1/productos/servicio/palabra/${pagina}`
@@ -95,7 +95,7 @@ export const cargarClavesProductos = async (pagina) => {
     });
   }
 };
-export const buscarClavesProductos = async (palabra) => {
+export const findProductsKeys = async (palabra) => {
   try {
     const datos = await axios.get(
       `${process.env.VUE_APP_PATH_API}v1/productos/servicio/buscar/descripcion/${palabra}`
@@ -121,7 +121,7 @@ export const buscarClavesProductos = async (palabra) => {
     });
   }
 };
-export const buscarClavesUnidades = async (palabra) => {
+export const findUnitKeys = async (palabra) => {
   try {
     const datos = await axios.get(
       `${process.env.VUE_APP_PATH_API}v1/unidades/buscar/nombre/${palabra}`
@@ -141,7 +141,7 @@ export const buscarClavesUnidades = async (palabra) => {
   }
 };
 
-export const obtenerProducto = async (clave) => {
+export const getProduct = async (clave) => {
   try {
     const datos = await axios.get(
       `${rutaProductos}v1/productos/detalle/${clave}`
@@ -159,7 +159,7 @@ export const obtenerProducto = async (clave) => {
     });
   }
 };
-export const crearProducto = async (producto) => {
+export const createProduct = async (producto) => {
   try {
     const data = await axios.post(
       `${rutaProductos}v1/productos/crear`,
@@ -189,7 +189,7 @@ export const crearProducto = async (producto) => {
     });
   }
 };
-export const borrarProducto = async (payload) => {
+export const deleteProduct = async (payload) => {
   try {
     const datos = await axios.delete(`${rutaProductos}v1/productos/borrar`, {
       data: payload,

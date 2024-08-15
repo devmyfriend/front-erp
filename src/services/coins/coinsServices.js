@@ -73,7 +73,7 @@ export const createCoin = async (moneda) => {
   }
 };
 
-export const updateCoins = async (moneda) => {
+export const updateCoin = async (moneda) => {
   try {
     const datos = await axios.patch(
       `${rutaGeneral}v1/catalogo/metodos/moneda`,
@@ -109,7 +109,7 @@ export const updateCoins = async (moneda) => {
   }
 };
 
-export const deleteCoins = async (clave) => {
+export const deleteCoin = async (clave) => {
   try {
     const datos = await axios.delete(
       `${rutaGeneral}v1/catalogo/metodos/moneda`,
@@ -173,7 +173,7 @@ export const deleteCoins = async (clave) => {
     }
 }
 
-export const updateCoins = async (moneda) => {
+export const updateCoin = async (moneda) => {
     try {
         const datos = await axios.patch(`${rutaGeneral}v1/catalogo/metodos/moneda`, moneda);
         if (datos.status === 200 && datos.statusText === "OK") {
@@ -201,7 +201,7 @@ export const updateCoins = async (moneda) => {
     }
 }
 
-export const deleteCoins = async (moneda) => {
+export const deleteCoin = async (moneda) => {
     try {
         const datos = await axios.delete(`${rutaGeneral}v1/catalogo/metodos/moneda/${moneda}`);
         if (datos.status === 200 && datos.statusText === "OK") {

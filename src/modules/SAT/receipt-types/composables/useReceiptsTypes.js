@@ -2,19 +2,19 @@ import { ref } from "vue";
 import { receiptStore } from "@/store/receipt/receiptStore";
 const store = receiptStore();
 
-const ListadoComprobantes = ref([]);
+const receiptsCollection = ref([]);
 const showModal = ref(false);
 const modoFormulario = ref(0);
 const modalData = ref(null);
 const bodyFrm = ref({ ClaveTipoDeComprobante: "", Descripcion: "" });
 
-const cargarComprobantes = async () => {
-  await store.cargarComprobantes();
-  ListadoComprobantes.value = store.getComprobantes;
+const loadReceipts = async () => {
+  await store.loadReceipts();
+  receiptsCollection.value = store.getReceipts;
 };
 
 const cargarDatos = async () => {
-  await cargarComprobantes();
+  await loadReceipts();
 };
 
 const esperarTabla = (data) => {
@@ -34,12 +34,12 @@ const subirDatos = (datos) => {
 
 const esperarModal = (datos) => {
   if (modoFormulario.value === 0) {
-    store.crearComprobante(bodyFrm.value).then(() => {
+    store.createReceipt(bodyFrm.value).then(() => {
       cargarDatos();
       esperarCancelar();
     });
   } else if (modoFormulario.value === 1) {
-    store.actualizarComprobante(datos).then(() => {
+    store.updateReceipt(datos).then(() => {
       cargarDatos();
       esperarCancelar();
     });
@@ -57,7 +57,7 @@ const esperarCancelar = () => {
 };
 
 const borrarRegistro = () => {
-  store.eliminarComprobante(modalData.value).then(() => {
+  store.deleteReceipt(modalData.value).then(() => {
     cargarDatos();
     esperarCancelar();
   });
@@ -65,8 +65,8 @@ const borrarRegistro = () => {
 
 export function useReceiptsTypes() {
   return {
-    ListadoComprobantes,
-    cargarComprobantes,
+    receiptsCollection,
+    loadReceipts,
     showModal,
     modoFormulario,
     modalData,

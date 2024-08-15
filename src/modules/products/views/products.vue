@@ -14,23 +14,23 @@
     
     const { setTitle, setViewTitle } = useLayout();
     const { theme } = useTheme();
-    const { borrarProducto: deleteProduct } = useListProducts();
+    const { deleteProduct } = useListProducts();
     const store = useProductos();
 
     const tipoProducto = ref('Todos');
-    const ListadoTiposProducto = ref([]);
-    const ListadoProductos = ref([]);
+    const productsTypeCollection = ref([]);
+    const productsCollection = ref([]);
     const CodigoProducto = ref('');
 
     const router = useRouter();
     
     const cargarDatos = () => {
-        store.cargarProductos().then(() => {
+        store.loadProducts().then(() => {
             if (tipoProducto.value == 'Todos') {
-                ListadoProductos.value = store.getProductos;
+                productsCollection.value = store.w;
             } else {
-                ListadoProductos.value = store.getProductos.filter(producto => producto.NombreTipoProducto == tipoProducto.value);
-                if (ListadoProductos.value.length == 0) {
+                productsCollection.value = store.getProducts.filter(producto => producto.NombreTipoProducto == tipoProducto.value);
+                if (productsCollection.value.length == 0) {
                     Swal.fire({
                         icon: 'info',
                         title: 'No hay productos',
@@ -41,8 +41,8 @@
             }
         });
 
-        store.cargarTiposProducto().then(() => {
-            ListadoTiposProducto.value = store.getTiposProducto;
+        store.loadTypeProducts().then(() => {
+            productsTypeCollection.value = store.getTypeProducts;
         });
     }
     const esperarBusqueda = (texto) => {
@@ -50,9 +50,9 @@
             if (tipoProducto.value == 'Todos') {
                 cargarDatos();
             } else {
-                store.cargarProductos().then(() => {
-                    ListadoProductos.value = store.getProductos.filter(producto => producto.NombreTipoProducto == tipoProducto.value);
-                    if (ListadoProductos.value.length == 0) {
+                store.loadProducts().then(() => {
+                    productsCollection.value = store.getProducts.filter(producto => producto.NombreTipoProducto == tipoProducto.value);
+                    if (productsCollection.value.length == 0) {
                         Swal.fire({
                             icon: 'info',
                             title: 'No hay productos',
@@ -63,14 +63,14 @@
                 });
             }
         } else {
-            ListadoProductos.value = store.getProductos;
+            productsCollection.value = store.getProducts;
         }
     }
     const editarProducto = (codigoProducto) => {
         CodigoProducto.value = codigoProducto;
         router.push({ name: 'formProducts', params: { tipo: tipoProducto } });
     }
-    const borrarProducto = (producto) => {
+    const deleteProducts = (producto) => {
         CodigoProducto.value = producto.CodigoProducto;
         deleteProduct(producto);
     }
@@ -96,7 +96,7 @@
             tipoProducto.value = newValue;
             cargarDatos();
 
-            if (ListadoProductos.value.length == 0) {
+            if (productsCollection.value.length == 0) {
                 Swal.fire({
                     icon: 'info',
                     title: 'No hay productos',
@@ -125,15 +125,15 @@
                 p-paddingInput rounded-inputRadius border-inputBorder 
                 border-inputWidth text-black text-base" id="tipoProducto" v-model="tipoProducto">
                     <option value="Todos">Todos</option>
-                    <option v-for="Tipo in ListadoTiposProducto" :value="Tipo.NombreTipoProducto"> {{
+                    <option v-for="Tipo in productsTypeCollection" :value="Tipo.NombreTipoProducto"> {{
                         Tipo.NombreTipoProducto }}</option>
                 </select>
             </div>
         </div>
 
         <div class="w-full items-center flex flex-col overflow-y-scroll text-secondaryFontColor text-base rounded-3xl">
-            <tablaProductos :ListadoProductos="ListadoProductos" :tipoProducto="tipoProducto"
-                @eEditarProducto="editarProducto" @eBorrarProducto="borrarProducto" />
+            <tablaProductos :productsCollection="productsCollection" :tipoProducto="tipoProducto"
+                @eEditarProducto="editarProducto" @edeleteProduct="deleteProducts" />
                 <!-- <deleteModal :id="modalData" v-if="modalData !== null" @eEliminar="borrarRegistro"
                 @eCancelar="esperarCancelar" /> -->
         </div>

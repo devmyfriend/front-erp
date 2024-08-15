@@ -10,7 +10,7 @@ The `tablePaymentForms` component is designed to allow users to view the records
 
 ## Props
 
-### ListadoFormas
+### paymentFormsCollection
 
 This prop is *array*, and it has a default value: []. The component render this array in the table, lettting to the user to view the records of the array but only with the fields the dev has selected
 
@@ -19,7 +19,7 @@ This prop is *array*, and it has a default value: []. The component render this 
 Here's how to use the `tablePaymentForms` component with a Vue template:
 
 ```html
-<tablePaymentForms :ListadoFormas="arrayOfPaymentForms"/>
+<tablePaymentForms :paymentFormsCollection="arrayOfPaymentForms"/>
 ```
 
 Where `arrayOfPaymentForms` is a variable type *array* that keeps the records of the PaymentForms. This is the value that the `tablePaymentForms` is gonna render in the table

@@ -3,12 +3,12 @@ import { useZipCode } from "@/store/zipCode/zipCodeStore";
 import Swal from "sweetalert2";
 
 const store = useZipCode();
-const ZipCodeList = ref([]);
+const zipCodesCollection = ref([]);
 
 const waitSearch = async (cp) => {
   try {
     if (cp) {
-      const found = await store.searchZipCode(cp);
+      const found = await store.findZipCode(cp);
       if (!found) {
         Swal.fire({
           icon: "info",
@@ -33,14 +33,14 @@ const loadData = async () => {
       text: "No existen registros",
     });
   } else {
-    ZipCodeList.value = store.getZipCodes;
+    zipCodesCollection.value = store.getZipCodes;
   }
 };
 
-export function useZipCodeList() {
+export function usezipCodesCollection() {
   return {
     waitSearch,
     loadData,
-    ZipCodeList,
+    zipCodesCollection,
   };
 }

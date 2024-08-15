@@ -1,5 +1,4 @@
 <script setup>
-import { ref } from 'vue';
 import closeIco from '@/commons/ui/icons/actionIcons/closeIco.vue';
 import { useTheme } from '@/commons/composables/theme';
 import { useRouter } from 'vue-router';

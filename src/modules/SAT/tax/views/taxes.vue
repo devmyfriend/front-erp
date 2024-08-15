@@ -12,7 +12,7 @@ const { theme } = useTheme();
 
 const { setTitle, setViewTitle } = useLayout();
 const {
-    ListadoImpuestos,
+    taxesCollection,
     showModal,
     modoFormulario,
     modalData,
@@ -39,7 +39,7 @@ onBeforeMount(() => {
 
     <div
         class="w-full items-center flex flex-col overflow-y-scroll text-secondaryFontColor text-base rounded-3xl">
-        <tableTaxes :ListadoImpuestos="ListadoImpuestos" :editable="true" @eAccion="esperarTabla" />
+        <tableTaxes :taxesCollection="taxesCollection" :editable="true" @eAccion="esperarTabla" />
 
         <deleteModal :id="modalData" v-if="modalData !== null" @eEliminar="borrarRegistro"
             @eCancelar="esperarCancelar" />

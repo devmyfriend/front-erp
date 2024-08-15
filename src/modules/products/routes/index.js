@@ -5,7 +5,7 @@ export default {
   children: [
     {
       path: "listado/:tipo?",
-      name: "listadoProductos",
+      name: "productsCollection",
       component: () => import("@/modules/products/views/products.vue"),
     },
     {

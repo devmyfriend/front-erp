@@ -2,7 +2,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 const rutaGeneral = import.meta.env.VITE_API_URL;
 
-export const cargarMetodosFormasPago = async () => {
+export const loadMethodsFormsPayments = async () => {
   try {
     const datos = await axios.get(`${rutaGeneral}v1/catalogo/metodos/pago`);
     if (datos.status === 200 && datos.statusText === "OK") {

@@ -1,25 +1,25 @@
 import { defineStore } from "pinia";
-import { loadZipCode, searchZipCode } from "@/services/zipCode/zipCodeService";
+import { loadZipCode, findZipCode } from "@/services/zipCode/zipCodeService";
 
 export const useZipCode = defineStore("CP", {
   state: () => ({
-    ZipCodeList: [],
+    zipCodesCollection: [],
     ZipCode: {},
   }),
   getters: {
     getZipCodes(state) {
-      return state.ZipCodeList;
+      return state.zipCodesCollection;
     },
   },
   actions: {
     async loadZipCode() {
       const data = await loadZipCode();
       if (data) {
-        this.ZipCodeList = data;
+        this.zipCodesCollection = data;
       }
     },
-    async searchZipCode(cp) {
-      const data = await searchZipCode(cp);
+    async findZipCode(cp) {
+      const data = await findZipCode(cp);
       if (data) {
         return data;
       }

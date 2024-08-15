@@ -3,17 +3,17 @@ import { ref, watch } from 'vue';
 import { useTheme } from '@/commons/composables/theme';
 const { theme } = useTheme();
 
-const ListadoFormasPago = ref([]);
+const paymentFormsCollection = ref([]);
 
 const props = defineProps({
-    ListadoFormasPago: {
+    paymentFormsCollection: {
         type: Array,
         default: () => []
     }
 });
 
-watch(() => props.ListadoFormasPago, (newValue) => {
-    ListadoFormasPago.value = newValue;
+watch(() => props.paymentFormsCollection, (newValue) => {
+    paymentFormsCollection.value = newValue;
 });
 </script>
 
@@ -28,7 +28,7 @@ watch(() => props.ListadoFormasPago, (newValue) => {
             </tr>
         </thead>
         <tbody>
-            <tr class="text-primaryFontColor" v-for="(forma, index) in ListadoFormasPago" :key="index" :class="[
+            <tr class="text-primaryFontColor" v-for="(forma, index) in paymentFormsCollection" :key="index" :class="[
                 forma.Activo === 1 ? `text-${theme}-text bg-white` : '',
                 forma.Activo === 0 ? `text-${theme}-subtext bg-${theme}-disabled` : ''
             ]">

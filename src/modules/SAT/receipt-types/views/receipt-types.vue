@@ -17,7 +17,7 @@ onBeforeMount(() => {
 });
 
 const {
-    ListadoComprobantes,
+    receiptsCollection,
     showModal,
     modoFormulario,
     modalData,
@@ -40,7 +40,7 @@ const {
     </div>
     <div
         class="w-full items-center flex flex-col overflow-y-scroll text-secondaryFontColor text-base rounded-3xl">
-            <tableReceipt :ListadoComprobantes="ListadoComprobantes" :editable="true" @eAccion="esperarTabla" />
+            <tableReceipt :receiptsCollection="receiptsCollection" :editable="true" @eAccion="esperarTabla" />
             <deleteModal :id="modalData" v-if="modalData !== null" @eEliminar="borrarRegistro"
                 @eCancelar="esperarCancelar" />
     </div>

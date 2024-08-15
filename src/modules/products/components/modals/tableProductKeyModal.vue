@@ -20,8 +20,8 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
-import { cProductosStore } from '@/store/product/cProductsStore';
-const store = cProductosStore();
+import { cProductsStore } from '@/store/product/cProductsStore';
+const store = cProductsStore();
 
 const listado = ref([]);
 const emit = defineEmits(['eBajarProducto']);
@@ -34,8 +34,8 @@ const props = defineProps({
 });
 
 onMounted(() => {
-  store.cargarClavesProductos().then(() => {
-    listado.value = store.getClavesProductos;
+  store.loadProductsKeys().then(() => {
+    listado.value = store.getProductsKeys;
   });
 });
 

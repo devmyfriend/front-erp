@@ -1,10 +1,10 @@
 <script setup>
 import { onBeforeMount, onMounted } from "vue";
-import { useZipCodeList } from "@/modules/SAT/zipcode/composables/useListZipCode";
+import { usezipCodesCollection } from "@/modules/SAT/zipcode/composables/useListZipCode";
 import tabla from "@/modules/SAT/zipcode/components/tableZipCode.vue";
 import buscadorZipCode from "@/modules/SAT/zipcode/components/zipCodeFinder.vue";
 import { useLayout } from "@/commons/composables/useLayout.js";
-const { loadData, ZipCodeList } = useZipCodeList();
+const { loadData, zipCodesCollection } = usezipCodesCollection();
 const { setTitle, setViewTitle } = useLayout();
 
 onBeforeMount(() => {
@@ -22,7 +22,7 @@ onMounted(async () => {
         <buscadorZipCode />
       </div>
       <div class="w-full items-center flex flex-col overflow-y-scroll text-secondaryFontColor text-base rounded-3xl">
-        <tabla :ZipCodeList="ZipCodeList" />
+        <tabla :zipCodesCollection="zipCodesCollection" />
       </div>
 </template>
 

@@ -10,7 +10,7 @@ const { theme } = useTheme();
 const { setCodigoProducto } = useWindows();
 
 const props = defineProps({
-    ListadoProductos: {
+    productsCollection: {
         type: Array,
         default: () => []
     },
@@ -19,10 +19,10 @@ const props = defineProps({
         default: ''
     }
 });
-const emits = defineEmits(['eEditarProducto', 'eBorrarProducto']);
+const emits = defineEmits(['eEditarProducto', 'edeleteProduct']);
 
 
-const ListadoProductos = ref([]);
+const productsCollection = ref([]);
 
 const editarProducto = (codigoProducto) => {
     emits('eEditarProducto', codigoProducto);
@@ -31,7 +31,7 @@ const editarProducto = (codigoProducto) => {
 
 const registroParaBorrar = ref(null);
 
-const borrarProducto = (producto) => {
+const deleteProduct = (producto) => {
     registroParaBorrar.value = producto;
 };
 
@@ -39,7 +39,7 @@ const handleEliminar = (producto) => {
     registroParaBorrar.value = null;
 
     if (producto) {
-        emits('eBorrarProducto', producto);
+        emits('edeleteProduct', producto);
     }
 };
 
@@ -47,9 +47,9 @@ const handleCancelar = () => {
     registroParaBorrar.value = null;
 };
 
-watch(() => props.ListadoProductos, (newValue, oldValue) => {
+watch(() => props.productsCollection, (newValue, oldValue) => {
     if (newValue !== oldValue) {
-        ListadoProductos.value = newValue;
+        productsCollection.value = newValue;
     }
 });
 </script>
@@ -75,7 +75,7 @@ watch(() => props.ListadoProductos, (newValue, oldValue) => {
             </tr>
         </thead>
         <tbody>
-            <tr v-for="(producto, index) in ListadoProductos" :key="index" class="border-x-[1px] border-white" :class="[
+            <tr v-for="(producto, index) in productsCollection" :key="index" class="border-x-[1px] border-white" :class="[
                 !producto.Borrado ? `text-${theme}-text bg-white` : '',
                 producto.Borrado ? `text-${theme}-text bg-${theme}-disabled` : ''
             ]">
@@ -109,7 +109,7 @@ watch(() => props.ListadoProductos, (newValue, oldValue) => {
                         <div
                             class="min-w-16 h-full text-center items-center lg:justify-start justify-center flex gap-1 lg:gap-1 flex-wrap">
                             <editIco class="cursor-pointer shrink" @click="editarProducto(producto.CodigoProducto)"/>
-                            <trashIco class="cursor-pointer shrink" @click="borrarProducto(producto)" v-if="producto.Borrado === 0" />
+                            <trashIco class="cursor-pointer shrink" @click="deleteProduct(producto)" v-if="producto.Borrado === 0" />
                         </div>
                     </div>
                 </td>

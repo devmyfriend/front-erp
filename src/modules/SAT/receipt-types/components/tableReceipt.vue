@@ -6,10 +6,10 @@ import trashIco from '@/commons/ui/icons/tableIcons/trashIco.vue';
 const { theme } = useTheme();
 const emits = defineEmits(['eAccion']);
 
-const ListadoComprobantes = ref([]);
+const receiptsCollection = ref([]);
 
 const props = defineProps({
-    ListadoComprobantes: {
+    receiptsCollection: {
         type: Array,
         default: () => []
     },
@@ -27,8 +27,8 @@ const handleAccion = (comprobante, accion) => {
     emits('eAccion', [comprobante, accion]);
 };
 
-watch(() => props.ListadoComprobantes, (newValue) => {
-    ListadoComprobantes.value = newValue;
+watch(() => props.receiptsCollection, (newValue) => {
+    receiptsCollection.value = newValue;
 });
 </script>
 
@@ -44,7 +44,7 @@ watch(() => props.ListadoComprobantes, (newValue) => {
             </tr>
         </thead>
         <tbody>
-            <tr class="text-primaryFontColor" v-for="(comprobante, index) in ListadoComprobantes" :key="index"
+            <tr class="text-primaryFontColor" v-for="(comprobante, index) in receiptsCollection" :key="index"
                 :class="`text-${theme}-text bg-white`">
                 <!-- :class="[comprobante.Borrado ? `text-${theme}-text bg-white` : '', !comprobante.Borrado ? `text-${theme}-subtext bg-${theme}-disabled` : '']" -->
                 <td

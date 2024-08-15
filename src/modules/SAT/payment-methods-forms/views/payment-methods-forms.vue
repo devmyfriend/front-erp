@@ -7,7 +7,7 @@ import { useLayout } from '@/commons/composables/useLayout.js';
 import { usePaymentMethodsForms } from '@/modules/SAT/payment-methods-forms/composables/usePaymentMethodsForms.js';
 import { useTheme } from '@/commons/composables/theme';
 const { theme } = useTheme();
-const { ListadoFormasPago, ListadoMetodosPago, cargarMetodosFormasPago } = usePaymentMethodsForms();
+const { paymentFormsCollection, paymentMethodsCollection, loadMethodsFormsPayments } = usePaymentMethodsForms();
 const { setTitle, setViewTitle } = useLayout();
 
 onBeforeMount(() => {
@@ -17,7 +17,7 @@ onBeforeMount(() => {
 });
 
 const cargarDatos = async () => {
-    await cargarMetodosFormasPago();
+    await loadMethodsFormsPayments();
 };
 
 </script>
@@ -25,13 +25,13 @@ const cargarDatos = async () => {
 <template>
     <div
         class="w-full items-center flex flex-col overflow-y-scroll text-secondaryFontColor text-base rounded-3xl my-6 max-h-[25rem]">
-        <tablePaymentForms :ListadoFormasPago="ListadoFormasPago" />
+        <tablePaymentForms :paymentFormsCollection="paymentFormsCollection" />
     </div>
 
     <titleH2> Listado de Métodos de pago </titleH2>
     <div
         class="w-full items-center flex flex-col overflow-y-scroll text-secondaryFontColor text-base rounded-3xl mt-6 min-h-max">
-        <tablePaymentMethods :ListadoMetodosPago="ListadoMetodosPago" />
+        <tablePaymentMethods :paymentMethodsCollection="paymentMethodsCollection" />
     </div>
 </template>
 

@@ -2,19 +2,19 @@ import { ref } from "vue";
 import { taxStore } from "@/store/tax/taxStore";
 const store = taxStore();
 
-const ListadoImpuestos = ref([]);
+const taxesCollection = ref([]);
 const showModal = ref(false);
 const modoFormulario = ref(0);
 const modalData = ref(null);
 const bodyFrm = ref({ ClaveImpuesto: "", Nombre: "" });
 
-const cargarImpuestos = async () => {
-  await store.cargarImpuestos();
-  ListadoImpuestos.value = store.getImpuestos;
+const loadTaxes = async () => {
+  await store.loadTaxes();
+  taxesCollection.value = store.getTaxes;
 };
 
 const cargarDatos = async () => {
-  await cargarImpuestos();
+  await loadTaxes();
 };
 
 const esperarTabla = (data) => {
@@ -34,12 +34,12 @@ const subirDatos = (datos) => {
 
 const esperarModal = (datos) => {
   if (modoFormulario.value === 0) {
-    store.crearImpuesto(bodyFrm.value).then(() => {
+    store.createTaxes(bodyFrm.value).then(() => {
       cargarDatos();
       esperarCancelar();
     });
   } else if (modoFormulario.value === 1) {
-    store.actualizarImpuesto(datos).then(() => {
+    store.updateTax(datos).then(() => {
       cargarDatos();
       esperarCancelar();
     });
@@ -57,7 +57,7 @@ const esperarCancelar = () => {
 };
 
 const borrarRegistro = () => {
-  store.eliminarImpuesto(modalData.value).then(() => {
+  store.deleteTax(modalData.value).then(() => {
     cargarDatos();
     esperarCancelar();
   });
@@ -65,12 +65,12 @@ const borrarRegistro = () => {
 
 export function useTaxes() {
   return {
-    ListadoImpuestos,
+    taxesCollection,
     showModal,
     modoFormulario,
     modalData,
     bodyFrm,
-    cargarImpuestos,
+    loadTaxes,
     cargarDatos,
     esperarTabla,
     subirDatos,

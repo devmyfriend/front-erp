@@ -2,7 +2,7 @@ import { ref } from "vue";
 import { coinsStore } from "@/store/coin/coinsStore";
 const store = coinsStore();
 
-const ListadoMonedas = ref([]);
+const coinsCollection = ref([]);
 const modalData = ref(null);
 const showModal = ref(false);
 const modoFormulario = ref(0);
@@ -13,12 +13,12 @@ const bodyFrm = ref({
 
 const findCoins = async (texto) => {
   await store.findCoins(texto);
-  ListadoMonedas.value = store.getMonedas;
+  coinsCollection.value = store.getCoins;
 };
 
 const cargarDatos = async () => {
   await store.loadCoins();
-  ListadoMonedas.value = store.getMonedas;
+  coinsCollection.value = store.getCoins;
   modoFormulario.value = 0;
   showModal.value = false;
   bodyFrm.value = {
@@ -56,14 +56,14 @@ const esperarModal = (datos) => {
       cargarDatos();
     });
   } else if (modoFormulario.value === 1) {
-    store.updateCoins(datos).then(() => {
+    store.updateCoin(datos).then(() => {
       cargarDatos();
     });
   }
 };
 
 const borrarRegistro = () => {
-  store.deleteCoins(modalData.value).then(() => {
+  store.deleteCoin(modalData.value).then(() => {
     cargarDatos();
     modalData.value = null;
   });
@@ -81,7 +81,7 @@ const esperarCancelar = () => {
 
 export function useCoins() {
   return {
-    ListadoMonedas,
+    coinsCollection,
     modalData,
     showModal,
     modoFormulario,

@@ -3,81 +3,80 @@ import * as productServices from "@/services/product/productsServices";
 
 export const useProductos = defineStore("Productos", {
   state: () => ({
-    ListadoProductos: [],
-    ListadoTiposProducto: [],
-    ListadoClavesProductos: [],
+    productsCollection: [],
+    productsTypeCollection: [],
+    productsKeysCollection: [],
     Producto: {},
   }),
   getters: {
-    getProductos(state) {
-      return state.ListadoProductos;
+    getProducts(state) {
+      return state.productsCollection;
     },
-    getProducto(state) {
+    getProductFinded(state) {
       return state.Producto;
     },
-    getTiposProducto(state) {
-      return state.ListadoTiposProducto;
+    getTypeProducts(state) {
+      return state.productsTypeCollection;
     },
-    getClavesProductos(state) {
-      return state.ListadoClavesProductos;
+    getProductsKeys(state) {
+      return state.productsKeysCollection;
     },
   },
   actions: {
-    async cargarProductos() {
-      const data = await productServices.cargarProductos();
+    async loadProducts() {
+      const data = await productServices.loadProducts();
       if (data) {
-        this.ListadoProductos = data;
+        this.productsCollection = data;
       }
     },
-    async cargarTiposProducto() {
-      const data = await productServices.cargarTiposProducto();
+    async loadTypeProducts() {
+      const data = await productServices.loadTypeProducts();
       if (data) {
-        this.ListadoTiposProducto = data;
+        this.productsTypeCollection = data;
       }
     },
-    async buscarProductos(palabra, tipo) {
-      const data = await productServices.buscarProductos(palabra, tipo);
+    async findProducts(palabra, tipo) {
+      const data = await productServices.findProducts(palabra, tipo);
       if (data) {
-        this.ListadoProductos = data;
+        this.productsCollection = data;
         return true;
       }
     },
-    async borrarProducto(payload) {
-      const data = await productServices.borrarProducto(payload);
+    async deleteProduct(payload) {
+      const data = await productServices.deleteProduct(payload);
       if (data) {
         return true;
       }
     },
-    async obtenerProducto(id) {
-      const data = await productServices.obtenerProducto(id);
+    async getProduct(id) {
+      const data = await productServices.getProduct(id);
       if (data) {
         this.Producto = data;
         return true;
       }
     },
+    async loadUnitKeys(pagina) {
+      const data = await productServices.loadUnitKeys(pagina);
+      if (data) {
+        return data;
+      }
+    },
+    async loadProductsKeys(pagina) {
+      const data = await productServices.loadProductsKeys(pagina);
+      if (data) {
+        this.productsKeysCollection = data;
+        return data;
+      }
+    },
 
-    async cargarClavesUnidades(pagina) {
-      const data = await productServices.cargarClavesUnidades(pagina);
+    async findProductsKeys(palabra, pagina) {
+      const data = await productServices.findProductsKeys(palabra, pagina);
       if (data) {
         return data;
       }
     },
-    async cargarClavesProductos(pagina) {
-      const data = await productServices.cargarClavesProductos(pagina);
-      if (data) {
-        this.ListadoClavesProductos = data;
-        return data;
-      }
-    },
-
-    async buscarClavesProductos(palabra, pagina) {
-      const data = await productServices.buscarClavesProductos(palabra, pagina);
-      if (data) {
-        return data;
-      }
-    },
-    async buscarClavesUnidades(palabra, pagina) {
-      const data = await productServices.buscarClavesUnidades(palabra, pagina);
+    async findUnitKeys(palabra, pagina) {
+      const data = await productServices.findUnitKeys(palabra, pagina);
       if (data) {
         return data;
       }

@@ -2,7 +2,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 const rutaGeneral = import.meta.env.VITE_API_URL;
 
-export const cargarImpuestos = async () => {
+export const loadTaxes = async () => {
   try {
     const datos = await axios.get(`${rutaGeneral}v1/impuestos`);
     if (datos.status === 200 && datos.statusText === "OK") {
@@ -18,7 +18,7 @@ export const cargarImpuestos = async () => {
   }
 };
 
-export const crearImpuesto = async (impuesto) => {
+export const createTaxes = async (impuesto) => {
   try {
     const datos = await axios.post(`${rutaGeneral}v1/impuestos`, impuesto);
     if (datos.status === 200 && datos.statusText === "OK") {
@@ -52,7 +52,7 @@ export const crearImpuesto = async (impuesto) => {
   }
 };
 
-export const actualizarImpuesto = async (impuesto) => {
+export const updateTax = async (impuesto) => {
   try {
     const datos = await axios.put(`${rutaGeneral}v1/impuestos`, impuesto);
     if (datos.status === 200 && datos.statusText === "OK") {
@@ -86,7 +86,7 @@ export const actualizarImpuesto = async (impuesto) => {
   }
 };
 
-export const eliminarImpuesto = async (id) => {
+export const deleteTax = async (id) => {
   try {
     const datos = await axios.delete(`${rutaGeneral}v1/impuestos/${id}`);
     if (datos.status === 200 && datos.statusText === "OK") {
@@ -122,7 +122,7 @@ export const eliminarImpuesto = async (id) => {
 
 /* 
 
-export const eliminarImpuesto = async (impuesto) => {
+export const deleteTax = async (impuesto) => {
     try {
         const datos = await axios.delete(`${rutaGeneral}v1/impuestos`, { data: impuesto });
         if (datos.status === 200 && datos.statusText === "OK") {

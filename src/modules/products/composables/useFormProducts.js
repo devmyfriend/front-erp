@@ -9,7 +9,7 @@ export function useFormProducts(props) {
   const { setTitle, setBtActivo, getCodigoProducto } = useWindows();
 
   const tipoProducto = ref(props.tipoProducto);
-  const ListadoTiposProducto = ref([]);
+  const productsTypeCollection = ref([]);
   const codigoProducto = ref("");
   const producto = ref({});
 
@@ -21,15 +21,15 @@ export function useFormProducts(props) {
   onMounted(() => {
     codigoProducto.value = getCodigoProducto();
     if (codigoProducto.value != "") {
-      store.obtenerProducto(codigoProducto.value).then(() => {
-        producto.value = store.getProducto;
+      store.getProduct(codigoProducto.value).then(() => {
+        producto.value = store.getProductFinded;
       });
     }
   });
 
   return {
     tipoProducto,
-    ListadoTiposProducto,
+    productsTypeCollection,
     codigoProducto,
     producto,
   };

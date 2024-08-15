@@ -2,16 +2,16 @@ import { ref } from "vue";
 import { countryStore } from "@/store/country/countryStore";
 const store = countryStore();
 
-const ListadoPaises = ref([]);
+const countriesCollection = ref([]);
 
-const cargarPaises = async () => {
-  await store.cargarPaises();
-  ListadoPaises.value = store.getPaises;
+const loadCountries = async () => {
+  await store.loadCountries();
+  countriesCollection.value = store.getCountries;
 };
 
 export function useCountries() {
   return {
-    ListadoPaises,
-    cargarPaises,
+    countriesCollection,
+    loadCountries,
   };
 }

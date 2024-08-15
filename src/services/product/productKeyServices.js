@@ -2,7 +2,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 const rutaGeneral = import.meta.env.VITE_API_URL;
 
-export const cargarClavesProductos = async (pagina) => {
+export const loadProductsKeys = async (pagina) => {
   try {
     if (pagina === undefined) {
       pagina = 1;

@@ -19,7 +19,7 @@ export const loadZipCode = async () => {
   }
 };
 
-export const searchZipCode = async (cp) => {
+export const findZipCode = async (cp) => {
   try {
     const response = await axios.post(`${rutaGeneral}v1/catalogo/cp/buscar`, {
       cp,

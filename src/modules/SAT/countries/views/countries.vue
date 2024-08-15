@@ -8,7 +8,7 @@ import { useLayout } from '@/commons/composables/useLayout.js';
 import { useCountries } from '@/modules/SAT/countries/composables/useCountries.js';
 import { useTheme } from '@/commons/composables/theme';
 const { theme } = useTheme();
-const { cargarPaises, ListadoPaises } = useCountries();
+const { loadCountries, countriesCollection } = useCountries();
 const { setTitle, setViewTitle } = useLayout();
 
 onBeforeMount(() => {
@@ -21,7 +21,7 @@ onMounted(async () => {
 });
 
 const cargarDatos = async () => {
-    await cargarPaises();
+    await loadCountries();
 };
 
 
@@ -31,7 +31,7 @@ const cargarDatos = async () => {
     <!-- <titleH2> Listado de Países </titleH2> -->
     <div
         class="w-full mt-6 items-center flex flex-col overflow-y-scroll text-secondaryFontColor text-base rounded-3xl">
-        <tableCountry :ListadoPaises="ListadoPaises" />
+        <tableCountry :countriesCollection="countriesCollection" />
     </div>
 </template>
 

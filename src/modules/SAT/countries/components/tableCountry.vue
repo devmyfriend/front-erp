@@ -3,17 +3,17 @@ import { ref, watch } from 'vue';
 import { useTheme } from '@/commons/composables/theme';
 const { theme } = useTheme();
 
-const ListadoPaises = ref([]);
+const countriesCollection = ref([]);
 
 const props = defineProps({
-    ListadoPaises: {
+    countriesCollection: {
         type: Array,
         default: () => []
     }
 });
 
-watch(() => props.ListadoPaises, (newValue) => {
-    ListadoPaises.value = newValue;
+watch(() => props.countriesCollection, (newValue) => {
+    countriesCollection.value = newValue;
 });
 </script>
 
@@ -26,7 +26,7 @@ watch(() => props.ListadoPaises, (newValue) => {
             </tr>
         </thead>
         <tbody>
-            <tr class="bg-white" v-for="(pais, index) in ListadoPaises" :key="index" :class="`text-${theme}-text`">
+            <tr class="bg-white" v-for="(pais, index) in countriesCollection" :key="index" :class="`text-${theme}-text`">
                 <td
                     class="h-primaryBodyTableHeight border-b-secondaryTableWidth px-2 ">
                     {{ pais.ClavePais }}

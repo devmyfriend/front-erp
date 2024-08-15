@@ -4,8 +4,8 @@ import Swal from "sweetalert2";
 const store = useProductos();
 
 const tipoProducto = ref("Todos");
-const ListadoProductos = ref([]);
-const ListadoTiposProductos = ref([]);
+const productsCollection = ref([]);
+const productsTypeCollections = ref([]);
 
 const CodigoProducto = ref("");
 
@@ -14,11 +14,11 @@ const esperarBusqueda = (texto) => {
     if (tipoProducto.value == "Todos") {
       cargarDatos();
     } else {
-      store.cargarProductos().then(() => {
-        ListadoProductos.value = store.getProductos.filter(
+      store.loadProducts().then(() => {
+        productsCollection.value = store.getProducts.filter(
           (producto) => producto.NombreTipoProducto == tipoProducto.value
         );
-        if (ListadoProductos.value.length == 0) {
+        if (productsCollection.value.length == 0) {
           Swal.fire({
             icon: "info",
             title: "No hay productos",
@@ -29,18 +29,18 @@ const esperarBusqueda = (texto) => {
       });
     }
   } else {
-    ListadoProductos.value = store.getProductos;
+    productsCollection.value = store.getProducts;
   }
 };
 const cargarDatos = async () => {
-  store.cargarProductos().then(() => {
+  store.loadProducts().then(() => {
     if (tipoProducto.value == "Todos") {
-      ListadoProductos.value = store.getProductos;
+      productsCollection.value = store.getProducts;
     } else {
-      ListadoProductos.value = store.getProductos.filter(
+      productsCollection.value = store.getProducts.filter(
         (producto) => producto.NombreTipoProducto == tipoProducto.value
       );
-      if (ListadoProductos.value.length == 0) {
+      if (productsCollection.value.length == 0) {
         Swal.fire({
           icon: "info",
           title: "No hay productos",
@@ -51,8 +51,8 @@ const cargarDatos = async () => {
     }
   });
 
-  store.cargarTiposProducto().then(() => {
-    ListadoTiposProductos.value = store.getTiposProducto;
+  store.loadTypeProducts().then(() => {
+    productsTypeCollections.value = store.getTypeProducts;
   });
 };
 const editarProducto = (codigoProducto) => {
@@ -62,12 +62,12 @@ const editarProducto = (codigoProducto) => {
     params: { tipo: tipoProducto, id: codigoProducto },
   });
 };
-const borrarProducto = (producto) => {
+const deleteProduct = (producto) => {
   const payload = {
     ProductoId: producto.ProductoId,
     BorradoPor: 2,
   };
-  store.borrarProducto(payload).then((res) => {
+  store.deleteProduct(payload).then((res) => {
     cargarDatos();
     if (res) {
       Swal.fire({
@@ -90,13 +90,13 @@ const setCodigoProducto = (codigoProducto) => {
 export function useListProducts() {
   return {
     tipoProducto,
-    ListadoProductos,
-    ListadoTiposProductos,
+    productsCollection,
+    productsTypeCollections,
     CodigoProducto,
     esperarBusqueda,
     cargarDatos,
     editarProducto,
-    borrarProducto,
+    deleteProduct,
     borrarCodigoProducto,
     setCodigoProducto,
   };

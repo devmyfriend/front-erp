@@ -21,7 +21,7 @@
         <!-- Slot para la tabla -->
         <slot name="tabla">
           <div class="h-96 w-full overflow-auto border-4 rounded-b-2xl" :class="`border-${theme}-headers`">
-            <tableCoins :ListadoMonedas="ListadoMonedas"/>
+            <tableCoins :coinsCollection="coinsCollection"/>
           </div>
         </slot>
         <p class="pl-1 italic opacity-80 underline font-semibold text-base w-full text-left bg-white" :class="`text-${theme}-headers`"> Selecciona un registro, por favor.</p>

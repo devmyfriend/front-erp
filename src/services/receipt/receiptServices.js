@@ -2,7 +2,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 const rutaGeneral = import.meta.env.VITE_API_URL;
 
-export const cargarComprobantes = async () => {
+export const loadReceipts = async () => {
   try {
     const datos = await axios.get(`${rutaGeneral}v1/comprobante`);
     if (datos.status === 200 && datos.statusText === "OK") {
@@ -18,7 +18,7 @@ export const cargarComprobantes = async () => {
   }
 };
 
-export const crearComprobante = async (comprobante) => {
+export const createReceipt = async (comprobante) => {
   try {
     const datos = await axios.post(`${rutaGeneral}v1/comprobante`, comprobante);
     if (datos.status === 200 && datos.statusText === "OK") {
@@ -52,7 +52,7 @@ export const crearComprobante = async (comprobante) => {
   }
 };
 
-export const actualizarComprobante = async (comprobante) => {
+export const updateReceipt = async (comprobante) => {
   try {
     const datos = await axios.patch(
       `${rutaGeneral}v1/comprobante`,
@@ -89,7 +89,7 @@ export const actualizarComprobante = async (comprobante) => {
   }
 };
 
-export const eliminarComprobante = async (comprobante) => {
+export const deleteReceipt = async (comprobante) => {
   try {
     const datos = await axios.delete(
       `${rutaGeneral}v1/comprobante/${comprobante}`
@@ -125,7 +125,7 @@ export const eliminarComprobante = async (comprobante) => {
   }
 };
 
-/* export const eliminarComprobante = async(comprobante) => {
+/* export const deleteReceipt = async(comprobante) => {
     try {
         const id = { ClaveTipoDeComprobante: comprobante}
         const datos = await axios.delete(`${rutaGeneral}v1/comprobante`, {data: id});

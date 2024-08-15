@@ -3,17 +3,17 @@ import { ref, watch } from 'vue';
 import { useTheme } from '@/commons/composables/theme';
 const { theme } = useTheme();
 
-const ListadoMetodosPago = ref([]);
+const paymentMethodsCollection = ref([]);
 
 const props = defineProps({
-    ListadoMetodosPago: {
+    paymentMethodsCollection: {
         type: Array,
         default: () => []
     }
 });
 
-watch(() => props.ListadoMetodosPago, (newValue) => {
-    ListadoMetodosPago.value = newValue;
+watch(() => props.paymentMethodsCollection, (newValue) => {
+    paymentMethodsCollection.value = newValue;
 });
 </script>
 
@@ -27,7 +27,7 @@ watch(() => props.ListadoMetodosPago, (newValue) => {
             </tr>
         </thead>
         <tbody>
-            <tr class="text-primaryFontColor" v-for="(metodo, index) in ListadoMetodosPago" :key="index" :class="[
+            <tr class="text-primaryFontColor" v-for="(metodo, index) in paymentMethodsCollection" :key="index" :class="[
                 metodo.Activo === 1 ? `text-${theme}-text bg-white` : '',
                 metodo.Activo === 0 ? `text-${theme}-subtext bg-${theme}-disabled` : ''
             ]">

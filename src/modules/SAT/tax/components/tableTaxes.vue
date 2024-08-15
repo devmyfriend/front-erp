@@ -6,10 +6,10 @@ import trashIco from '@/commons/ui/icons/tableIcons/trashIco.vue';
 const { theme } = useTheme();
 const emits = defineEmits(['eAccion']);
 
-const ListadoImpuestos = ref([]);
+const taxesCollection = ref([]);
 
 const props = defineProps({
-    ListadoImpuestos: {
+    taxesCollection: {
         type: Array,
         default: () => []
     },
@@ -27,8 +27,8 @@ const handleAccion = (impuesto, accion) => {
     emits('eAccion', [impuesto, accion]);
 };
 
-watch(() => props.ListadoImpuestos, (newValue) => {
-    ListadoImpuestos.value = newValue;
+watch(() => props.taxesCollection, (newValue) => {
+    taxesCollection.value = newValue;
 });
 </script>
 
@@ -43,7 +43,7 @@ watch(() => props.ListadoImpuestos, (newValue) => {
             </tr>
         </thead>
         <tbody>
-            <tr class="text-primaryFontColor" v-for="(impuesto, index) in ListadoImpuestos" :key="index" :class="[
+            <tr class="text-primaryFontColor" v-for="(impuesto, index) in taxesCollection" :key="index" :class="[
                 impuesto.Activo ? `text-${theme}-text bg-white` : '',
                 !impuesto.Activo ? `text-${theme}-subtext bg-${theme}-disabled` : ''
             ]">

@@ -10,7 +10,7 @@ The `tablePaymentMethods` component is designed to allow users to view the recor
 
 ## Props
 
-### ListadoMetodos
+### paymentMethodsCollection
 
 This prop is *array*, and it has a default value: []. The component render this array in the table, lettting to the user to view the records of the array but only with the fields the dev has selected
 
@@ -19,7 +19,7 @@ This prop is *array*, and it has a default value: []. The component render this 
 Here's how to use the `tablePaymentMethods` component with a Vue template:
 
 ```html
-<tablePaymentMethods :ListadoMetodos="arrayOfPaymentMethods"/>
+<tablePaymentMethods :paymentMethodsCollection="arrayOfPaymentMethods"/>
 ```
 
 Where `arrayOfPaymentMethods` is a variable type *array* that keeps the records of the PaymentMethods. This is the value that the `tablePaymentMethods` is gonna render in the table

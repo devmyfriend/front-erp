@@ -3,42 +3,42 @@ import * as receiptServices from "@/services/receipt/receiptServices";
 
 export const receiptStore = defineStore("receipt", {
   state: () => ({
-    ListadoComprobantes: [],
+    receiptsCollection: [],
   }),
   getters: {
-    getComprobantes(state) {
-      return state.ListadoComprobantes;
+    getReceipts(state) {
+      return state.receiptsCollection;
     },
   },
   actions: {
-    async cargarComprobantes() {
-      const data = await receiptServices.cargarComprobantes();
+    async loadReceipts() {
+      const data = await receiptServices.loadReceipts();
       if (data) {
-        this.ListadoComprobantes = data;
+        this.receiptsCollection = data;
       }
     },
-    async crearComprobante(comprobante) {
-      const data = await receiptServices.crearComprobante(comprobante);
+    async createReceipt(comprobante) {
+      const data = await receiptServices.createReceipt(comprobante);
       if (data) {
-        this.cargarComprobantes();
+        this.loadReceipts();
         return true;
       } else {
         return false;
       }
     },
-    async actualizarComprobante(comprobante) {
-      const data = await receiptServices.actualizarComprobante(comprobante);
+    async updateReceipt(comprobante) {
+      const data = await receiptServices.updateReceipt(comprobante);
       if (data) {
-        this.cargarComprobantes();
+        this.loadReceipts();
         return true;
       } else {
         return false;
       }
     },
-    async eliminarComprobante(comprobante) {
-      const data = await receiptServices.eliminarComprobante(comprobante);
+    async deleteReceipt(comprobante) {
+      const data = await receiptServices.deleteReceipt(comprobante);
       if (data) {
-        this.cargarComprobantes();
+        this.loadReceipts();
         return true;
       } else {
         return false;

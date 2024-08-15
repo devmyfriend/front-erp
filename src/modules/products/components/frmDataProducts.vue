@@ -38,7 +38,7 @@ const ClaveProductoServicio = ref('10123');
 
 const verDatosAnidados = ref(false);
 
-const ListadoTiposProducto = ref([]); // No trabajado
+const productsTypeCollection = ref([]); // No trabajado
 const ListadoLineasProducto = ref([]); // No trabajado
 const ListadoFamiliasProducto = ref([]); // No trabajado
 const ListadoSubfamiliasProducto = ref([]); // No trabajado
@@ -95,11 +95,11 @@ onMounted(() => {
 });
 
 const cargarDatos = () => {
-    store.cargarTiposProducto().then(() => {
-        ListadoTiposProducto.value = store.getTiposProducto;
+    store.loadTypeProducts().then(() => {
+        productsTypeCollection.value = store.getTypeProducts;
     });
-    store.cargarClavesProductos(1).then(() => {
-        ListadoClavesProducto.value = store.getClavesProductos;
+    store.loadProductsKeys(1).then(() => {
+        ListadoClavesProducto.value = store.getProductsKeys;
     });
 }
 
@@ -139,7 +139,7 @@ const test2 = () => {
                     <label class="text-white font-bold max-w-48 min-w-48 text-[1rem] items-center flex" for="tipoProducto"> Tipo de producto:
                     </label>
                     <select v-model="registro.NombreTipoProducto" id="tipoProducto">
-                        <option v-for="Tipo in ListadoTiposProducto" :value="Tipo.NombreTipoProducto"> {{
+                        <option v-for="Tipo in productsTypeCollection" :value="Tipo.NombreTipoProducto"> {{
                             Tipo.NombreTipoProducto }} </option>
                     </select>
                 </div>

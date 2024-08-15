@@ -1,20 +1,20 @@
 import { defineStore } from "pinia";
 import * as ProductKeyServices from "@/services/receipt/productKeyServices";
 
-export const cProductosStore = defineStore("cProductos", {
+export const cProductsStore = defineStore("cProductos", {
   state: () => ({
-    listadoClavesProductos: [],
+    productsKeysCollection: [],
   }),
   getters: {
-    getClavesProductos(state) {
-      return state.listadoClavesProductos;
+    getProductsKeys(state) {
+      return state.productsKeysCollection;
     },
   },
   actions: {
-    async cargarClavesProductos() {
-      const data = await ProductKeyServices.cargarClavesProductos();
+    async loadProductsKeys() {
+      const data = await ProductKeyServices.loadProductsKeys();
       if (data) {
-        this.listadoClavesProductos = data;
+        this.productsKeysCollection = data;
       }
     },
   },

@@ -102,12 +102,12 @@ export const createCoin = async (moneda) => {
 };
 ```
 
-### 4. `updateCoins`
+### 4. `updateCoin`
 
 This function updates an existing currency in the backend.
 
 ```javascript
-export const updateCoins = async (moneda) => {
+export const updateCoin = async (moneda) => {
   try {
     const datos = await axios.patch(
       `${rutaGeneral}v1/catalogo/metodos/moneda`,
@@ -144,12 +144,12 @@ export const updateCoins = async (moneda) => {
 };
 ```
 
-### 5. `deleteCoins`
+### 5. `deleteCoin`
 
 This function deletes a currency from the backend.
 
 ```javascript
-export const deleteCoins = async (clave) => {
+export const deleteCoin = async (clave) => {
   try {
     const datos = await axios.delete(
       `${rutaGeneral}v1/catalogo/metodos/moneda`,
@@ -185,9 +185,3 @@ export const deleteCoins = async (clave) => {
   }
 };
 ```
-
-## Note
-
-1. **Response Standardization**: It is advisable to verify that the responses from the endpoints are consistent in terms of the response object structure (e.g., `{ status: 200, statusText: "OK", data: { ... } }`).
-2. **Error Handling**: Ensure that all possible server error codes are handled and clear error messages are provided to the user.
-3. **Environment Variables Usage**: Using `import.meta.env` is correct for accessing environment variables, ensure they are properly configured in your development and production environments.

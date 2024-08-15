@@ -4,7 +4,7 @@ import { useTheme } from '@/commons/composables/theme';
 import editIco from '@/commons/ui/icons/tableIcons/editIco.vue';
 import trashIco from '@/commons/ui/icons/tableIcons/trashIco.vue';
 import { useCoins } from '@/modules/SAT/coins/composables/useCoins';
-const { ListadoMonedas, cargarDatos } = useCoins();
+const { coinsCollection, cargarDatos } = useCoins();
 const { theme } = useTheme();
 
 const emits = defineEmits(['eAccion', 'eSelect']);
@@ -43,7 +43,7 @@ onMounted(() => {
             </tr>
         </thead>
         <tbody>
-            <tr v-for="(moneda, index) in ListadoMonedas" :key="index" :class="[
+            <tr v-for="(moneda, index) in coinsCollection" :key="index" :class="[
                 moneda.Activo ? `text-${theme}-text bg-white` : '',
                 !moneda.Activo ? `text-${theme}-text bg-disabled-${theme}` : '',
                 clickeable ? 'cursor-pointer hover:font-bold transition-all duration-100' : ''

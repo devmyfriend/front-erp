@@ -4,18 +4,18 @@ import { useTheme } from '@/commons/composables/theme';
 const { theme } = useTheme();
 
 const props = defineProps({
-  ZipCodeList: {
+  zipCodesCollection: {
     type: Array,
     default: () => [],
   },
 });
 
-const localZipCodeList = ref(props.ZipCodeList);
+const localzipCodesCollection = ref(props.zipCodesCollection);
 
 watch(
-  () => props.ZipCodeList,
+  () => props.zipCodesCollection,
   (newVal) => {
-    localZipCodeList.value = newVal;
+    localzipCodesCollection.value = newVal;
   }
 );
 </script>
@@ -44,7 +44,7 @@ watch(
       </tr>
     </thead>
     <tbody>
-      <tr class="bg-white" v-for="(zipcode, index) in localZipCodeList" :key="index" :class="`text-${theme}-text`">
+      <tr class="bg-white" v-for="(zipcode, index) in localzipCodesCollection" :key="index" :class="`text-${theme}-text`">
         <td
           class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate first:rounded-l-primaryHeaderTableRadius">
           {{ zipcode.pais }}

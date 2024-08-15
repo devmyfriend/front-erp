@@ -3,24 +3,24 @@ import * as paymentServices from "@/services/payment/paymentServices";
 
 export const paymentStore = defineStore("Payment", {
   state: () => ({
-    ListadoMetodosPago: [],
-    ListadoFormasPago: [],
+    paymentMethodsCollection: [],
+    paymentFormsCollection: [],
   }),
   getters: {
-    getMetodosPago(state) {
-      return state.ListadoMetodosPago;
+    getPaymentMethods(state) {
+      return state.paymentMethodsCollection;
     },
-    getFormasPago(state) {
-      return state.ListadoFormasPago;
+    getPaymentForms(state) {
+      return state.paymentFormsCollection;
     },
   },
   actions: {
-    async cargarMetodosFormasPago() {
-      const data = await paymentServices.cargarMetodosFormasPago();
+    async loadMethodsFormsPayments() {
+      const data = await paymentServices.loadMethodsFormsPayments();
       if (data) {
         const { metodos, formas } = data[0];
-        this.ListadoMetodosPago = metodos;
-        this.ListadoFormasPago = formas;
+        this.paymentMethodsCollection = metodos;
+        this.paymentFormsCollection = formas;
       }
     },
   },

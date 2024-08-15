@@ -1,6 +1,5 @@
 <script setup>
 import sidebar from '@/commons/ui/sidebar/sidebar.vue';
-import themeSwitcher from '@/commons/ui/theme-switcher/theme-switcher.vue';
 import navbar from '../ui/navbar/navbar.vue';
 import titleH1 from '../ui/title-h1/title-h1.vue';
 import { useTheme } from '@/commons/composables/theme';

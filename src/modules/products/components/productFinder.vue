@@ -26,7 +26,7 @@ const props = defineProps({
 
 function buscar(texto) {
     if (texto.length != 0) {
-        store.buscarProductos(texto, props.tipoProducto).then((res) => {
+        store.findProducts(texto, props.tipoProducto).then((res) => {
             if (res) {
                 emit('eBusqueda', texto);
             } else {

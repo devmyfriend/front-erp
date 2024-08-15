@@ -2,7 +2,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 const rutaGeneral = import.meta.env.VITE_API_URL;
 
-export const cargarPaises = async () => {
+export const loadCountries = async () => {
   try {
     const datos = await axios.get(`${rutaGeneral}v1/pais`);
     if (datos.status === 200 && datos.statusText === "OK") {
