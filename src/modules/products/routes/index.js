@@ -1,17 +1,17 @@
-export default {
-  name: "productos",
-  path: "/productos",
+export default     {
+  name: "products",
+  path: "/productos/",
   redirect: "/productos/listado/",
   children: [
     {
-      path: "listado/:tipo?",
-      name: "productsCollection",
+      path: "listado",
+      name: "productsList",
       component: () => import("@/modules/products/views/products.vue"),
     },
     {
-      path: "formulario/:tipo?/:id?",
-      name: "formularioProductos",
-      component: () => import("@/modules/products/views/frmProducts.vue"),
+        path: "formulario",
+        name: "productsForm",
+        component: () => import("@/modules/products/views/frmProducts.vue"),
     },
-  ],
+  ]
 };

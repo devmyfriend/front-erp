@@ -6,7 +6,6 @@ const { theme } = useTheme();
 
 const modulos = ref([
     { nombre: 'Login', ruta: '/login' },
-    { nombre: 'Productos', ruta: '/productos' },
     { nombre: 'Monedas', ruta: { name: 'coins' } },
     { nombre: 'Metodos y formas de pago', ruta: { name: 'payment' } },
     { nombre: 'Tipo de comprobantes', ruta: { name: 'receipts' } },
@@ -14,9 +13,9 @@ const modulos = ref([
     { nombre: 'Impuestos SAT', ruta: { name: 'taxesSAT' } },
     { nombre: 'Horacio', ruta: '/helloword' },
     { nombre: 'Codigos Postales - SAT', ruta: { name: 'zipcode' } },
-    { nombre: '(Productos)', ruta: { name: 'products' } },
-    { nombre: '(Productos Listado)', ruta: { name: 'productsList' } },
-    { nombre: '(Productos Formulario)', ruta: { name: 'productsForm' } },
+    { nombre: 'Productos Listado', ruta: { name: 'productsList' } },
+    { nombre: 'Productos Formulario', ruta: { name: 'productsForm' } },
+    { nombre: 'Dashoard de Catálogos', ruta: { name: 'catalogsDashboard' }},
 ]);
 </script>
 

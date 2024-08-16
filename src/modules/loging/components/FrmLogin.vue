@@ -10,7 +10,7 @@ const forceFailLogin = () => {
     failLogin.value = !failLogin.value
 }
 const moveHome = () => {
-    router.push({ name: 'Menu' })
+    router.push({ name: 'products' })
 }
 </script>
 
@@ -37,19 +37,15 @@ const moveHome = () => {
                         placeholder="Contraseña">
                 </div>
                 <div class="flex justify-center mb-4">
-                    <BtnLogin @handle-click="forceFailLogin">Iniciar sesión</BtnLogin>
+                    <BtnLogin @handle-click="moveHome">Iniciar sesión</BtnLogin>
                     <p></p>
                 </div>
                 <div class="flex justify-center">
-                    <p>
-                        ¿Olvidaste tu contraseña? <a @click="moveHome" class="cursor-pointer hover:underline">Haz click
-                            aquí</a>
-                    </p>
+                    <p> ¿Olvidaste tu contraseña? <a @click="forceFailLogin" class="cursor-pointer hover:underline"> Haz click aquí </a> </p>
                 </div>
             </form>
         </div>
     </div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

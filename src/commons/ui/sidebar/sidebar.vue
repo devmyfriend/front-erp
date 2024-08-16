@@ -6,7 +6,7 @@ const { imageTheme } = useTheme();
 
 const sidebarItems = ref([
     { icon: 'organizationIco', toProp: 'home', title: 'Organización' },
-    { icon: 'sellIco', toProp: 'home', title: 'Venta' },
+    { icon: 'sellIco', toProp: 'products', title: 'Venta' },
     { icon: 'buyIco', toProp: 'home', title: 'Compra' },
     { icon: 'catalogueIco', toProp: 'home', title: 'Catalógo' },
     { icon: 'settingsIco', toProp: 'home', title: 'Config.' },

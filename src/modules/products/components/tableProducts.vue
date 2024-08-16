@@ -62,13 +62,13 @@ watch(() => props.productsCollection, (newValue, oldValue) => {
                     :class="`bg-${theme}-headers`">ID</th>
                 <th class="border-b-secondaryTableWidth border-b-primaryUnderline rounded-t-[1px]"
                     :class="`bg-${theme}-headers`">Nombre</th>
-                <th class="hidden md:table-cell border-b-secondaryTableWidth border-b-primaryUnderline rounded-t-[1px]"
+                <th class="hidden lg:table-cell border-b-secondaryTableWidth border-b-primaryUnderline rounded-t-[1px]"
                     :class="`bg-${theme}-headers`">Código del Producto</th>
                 <th class="border-b-secondaryTableWidth border-b-primaryUnderline rounded-t-[1px]"
                     :class="`bg-${theme}-headers`">Tipo Producto</th>
-                <th class="hidden md:table-cell border-b-secondaryTableWidth border-b-primaryUnderline rounded-t-[1px]"
+                <th class="hidden lg:table-cell border-b-secondaryTableWidth border-b-primaryUnderline rounded-t-[1px]"
                 :class="`bg-${theme}-headers`">Puntos</th>
-                <th class="hidden md:table-cell border-b-secondaryTableWidth border-b-primaryUnderline rounded-t-[1px]"
+                <th class="hidden lg:table-cell border-b-secondaryTableWidth border-b-primaryUnderline rounded-t-[1px]"
                     :class="`bg-${theme}-headers`">Serie</th>
                 <th class="border-b-secondaryTableWidth border-b-primaryUnderline rounded-tr-xl"
                     :class="`bg-${theme}-headers`">Acciones</th>
@@ -88,7 +88,7 @@ watch(() => props.productsCollection, (newValue, oldValue) => {
                     {{ producto.NombreProducto }}
                 </td>
                 <td
-                    class="hidden md:table-cell h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+                    class="hidden lg:table-cell h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
                     {{ producto.CodigoProducto }}
                 </td>
                 <td
@@ -96,11 +96,11 @@ watch(() => props.productsCollection, (newValue, oldValue) => {
                     {{ producto.NombreTipoProducto }}
                 </td>
                 <td
-                    class="hidden md:table-cell h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+                    class="hidden lg:table-cell h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
                     {{ producto.Puntos }}
                 </td>
                 <td
-                    class="hidden md:table-cell h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+                    class="hidden lg:table-cell h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
                     {{ producto.Serie ? 'Sí' : 'No' }}
                 </td>
                 <td

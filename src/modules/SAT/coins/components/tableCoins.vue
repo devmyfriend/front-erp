@@ -45,7 +45,7 @@ onMounted(() => {
         <tbody>
             <tr v-for="(moneda, index) in coinsCollection" :key="index"
                 :class="[moneda.Activo ? `text-${theme}-text bg-white`
-                    : `text-${theme}-text bg-disabled-${theme}`, clickeable ? 'cursor-pointer hover:font-bold transition-all duration-100' : '']"
+                    : `text-${theme}-text bg-${theme}-disabled`, clickeable ? 'cursor-pointer hover:font-bold transition-all duration-100' : '']"
                 @click="clickeable ? selectItem(moneda) : null">
                 <td class="h-primaryBodyTableHeight border-b-secondaryTableWidth px-2 text-center truncate">
                     {{ moneda.ClaveMoneda }}
