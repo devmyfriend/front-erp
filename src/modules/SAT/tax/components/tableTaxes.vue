@@ -58,13 +58,13 @@ watch(() => props.taxesCollection, (newValue) => {
                     class="h-primaryBodyTableHeight border-b-secondaryTableWidth border-l-primaryTableWidth px-2 text-start truncate">
                     {{ impuesto.Activo ? 'Activo' : 'Inactivo' }}
                 </td>
-                <td v-if="editable" class="h-primaryBodyTableHeight 
-                    border-b-secondaryTableWidth
-                    border-l-primaryTableWidth
-                    text-center truncate px-2
-                    flex justify-center items-center">
-                    <editIco class="cursor-pointer" @click="handleAccion(impuesto, 1)" />
-                    <trashIco class="cursor-pointer" @click="handleAccion(impuesto, 2)" />
+
+                <td v-if="editable"
+                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-start truncate">
+                    <div class="w-full h-full flex items-center justify-center">
+                        <editIco class="cursor-pointer" @click="handleAccion(impuesto, 1)" />
+                        <trashIco class="cursor-pointer" @click="handleAccion(impuesto, 2)" />
+                    </div>
                 </td>
             </tr>
         </tbody>

@@ -36,18 +36,17 @@ onMounted(() => {
     <table class="w-full table-fixed leading-4 text-[1rem]">
         <thead>
             <tr class="sticky top-0 h-primaryHeaderTableHeight text-white">
-                <th class="bg-primaryHeaderTable" :class="`bg-${theme}-headers`">Clave</th>
-                <th class="bg-primaryHeaderTable" :class="`bg-${theme}-headers`">Nombre</th>
-                <th class="bg-primaryHeaderTable" :class="`bg-${theme}-headers `">Status</th>
-                <th v-if="editable" class="bg-primaryHeaderTable " :class="`bg-${theme}-headers`"> Acciones </th>
+                <th :class="`bg-${theme}-headers`">Clave</th>
+                <th :class="`bg-${theme}-headers`">Nombre</th>
+                <th :class="`bg-${theme}-headers `">Status</th>
+                <th v-if="editable" :class="`bg-${theme}-headers`"> Acciones </th>
             </tr>
         </thead>
         <tbody>
-            <tr v-for="(moneda, index) in coinsCollection" :key="index" :class="[
-                moneda.Activo ? `text-${theme}-text bg-white` : '',
-                !moneda.Activo ? `text-${theme}-text bg-disabled-${theme}` : '',
-                clickeable ? 'cursor-pointer hover:font-bold transition-all duration-100' : ''
-            ]" @click="clickeable ? selectItem(moneda) : null">
+            <tr v-for="(moneda, index) in coinsCollection" :key="index"
+                :class="[moneda.Activo ? `text-${theme}-text bg-white`
+                    : `text-${theme}-text bg-disabled-${theme}`, clickeable ? 'cursor-pointer hover:font-bold transition-all duration-100' : '']"
+                @click="clickeable ? selectItem(moneda) : null">
                 <td class="h-primaryBodyTableHeight border-b-secondaryTableWidth px-2 text-center truncate">
                     {{ moneda.ClaveMoneda }}
                 </td>
@@ -59,13 +58,19 @@ onMounted(() => {
                     class="h-primaryBodyTableHeight border-b-secondaryTableWidth border-l-primaryTableWidth px-2 text-center truncate">
                     {{ moneda.Activo ? 'Activo' : 'Inactivo' }}
                 </td>
-                <td v-if="editable" class="h-primaryBodyTableHeight 
+<!--                 class="h-primaryBodyTableHeight 
                     border-b-secondaryTableWidth
                     border-l-primaryTableWidth
                     text-center truncate px-2
                     flex justify-center items-center">
+ -->
+
+                <td v-if="editable" 
+                class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-start truncate">
+                <div class="w-full h-full flex items-center justify-center">
                     <editIco class="cursor-pointer" @click="handleAccion(moneda, 1)" />
                     <trashIco class="cursor-pointer" @click="handleAccion(moneda, 2)" />
+                </div>
                 </td>
             </tr>
         </tbody>
