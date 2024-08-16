@@ -45,12 +45,12 @@ watch(() => theme.value, (newValue) => {
         <option value="TheFit">The Fit Gym / The Fit Bar</option>
         <option value="Bonavida">Bonavida</option>
     </select>
-    <div class="relative inline-block">
+    <div class="relative inline-block" @focusout="cerrarDropdown">
         <dropdownIco class="dropdownIco cursor-pointer block md:hidden max-h-3 hover:max-h-[14px] transition-all duration-200" @click="abrirDropdown"></dropdownIco>
-        <div v-if="mostrarDropdown" class="dropdown-menu">
-            <option @click="() => { temaActual = 'MyFriend'; cambiarTema(); }">MyFriend</option>
-            <option @click="() => { temaActual = 'TheFit'; cambiarTema(); }">The Fit Gym / The Fit Bar</option>
-            <option @click="() => { temaActual = 'Bonavida'; cambiarTema(); }">Bonavida</option>
+        <div v-if="mostrarDropdown" class="dropdown-menu block md:hidden">
+            <option class=" text-sm px-2 py-0 max-h-6 overflow-hidden text-start block whitespace-nowrap hover:bg-[#1967d2] hover:text-white" @click="() => { temaActual = 'MyFriend'; cambiarTema(); }">MyFriend</option>
+            <option class=" text-sm px-2 py-0 max-h-6 overflow-hidden text-start block whitespace-nowrap hover:bg-[#1967d2] hover:text-white" @click="() => { temaActual = 'TheFit'; cambiarTema(); }">The Fit Gym / The Fit Bar</option>
+            <option class=" text-sm px-2 py-0 max-h-6 overflow-hidden text-start block whitespace-nowrap hover:bg-[#1967d2] hover:text-white" @click="() => { temaActual = 'Bonavida'; cambiarTema(); }">Bonavida</option>
         </div>
     </div>
 </template>
@@ -67,15 +67,6 @@ watch(() => theme.value, (newValue) => {
     border: 1px solid #ccc;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-}
-.dropdown-menu option {
-    display: block;
-    padding: 10px;
-    cursor: pointer;
-    white-space: nowrap;
-}
-.dropdown-menu option:hover {
-    background: #f0f0f0;
 }
 .dropdownIco{
     filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.4));

@@ -1,6 +1,5 @@
 <script setup>
-import { onBeforeMount, onMounted, inject} from 'vue';
-import titleH2 from '@/commons/ui/title-h2/title-h2.vue';
+import { onBeforeMount, ref} from 'vue';
 import tableCoins from '@/modules/SAT/coins/components/tableCoins.vue';
 import coinFinder from '@/modules/SAT/coins/components/coinFinder.vue';
 import deleteModal from '@/commons/ui/modals/deleteModal.vue';
@@ -38,7 +37,6 @@ onBeforeMount(() => {
         <btnFormulario @eNuevo="showModal = true; modoFormulario = 0"
             class="text-base px-4 py-2 text-white rounded-md h-full uppercase font-semibold flex items-center justify-center transition-all duration-300 max-w-24 md:max-w-32 xl:max-w-36" />
     </div>
-
     <div
         class="w-full items-center flex flex-col flex-grow overflow-y-scroll text-secondaryFontColor text-base rounded-3xl">
         <tableCoins :editable="true" @eAccion="esperarTabla" />

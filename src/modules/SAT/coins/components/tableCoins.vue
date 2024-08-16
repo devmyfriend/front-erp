@@ -36,7 +36,7 @@ onMounted(() => {
     <table class="w-full table-fixed leading-4 text-[1rem]">
         <thead>
             <tr class="sticky top-0 h-primaryHeaderTableHeight text-white">
-                <th class="bg-primaryHeaderTable" :class="`bg-${theme}-headers`">Clave {{ clickeable }}</th>
+                <th class="bg-primaryHeaderTable" :class="`bg-${theme}-headers`">Clave</th>
                 <th class="bg-primaryHeaderTable" :class="`bg-${theme}-headers`">Nombre</th>
                 <th class="bg-primaryHeaderTable" :class="`bg-${theme}-headers `">Status</th>
                 <th v-if="editable" class="bg-primaryHeaderTable " :class="`bg-${theme}-headers`"> Acciones </th>
