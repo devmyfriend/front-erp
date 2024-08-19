@@ -4,7 +4,6 @@ import titleH2 from '@/commons/ui/title-h2/title-h2.vue';
 import tablePaymentMethods from '@/modules/SAT/payment-methods-forms/components/tablePaymentMethods.vue';
 import tablePaymentForms from '@/modules/SAT/payment-methods-forms/components/tablePaymentForms.vue';
 import { useLayout } from '@/commons/composables/useLayout.js';
-import { useTheme } from '@/commons/composables/theme';
 const { setTitle, setViewTitle } = useLayout();
 
 onBeforeMount(() => {

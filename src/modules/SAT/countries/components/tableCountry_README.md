@@ -1,31 +1,45 @@
-# tableCountry
+# tableCountry Component
 
-The `tableCountry` component is designed to allow users to view the records retrieved from the database.
-
-## Features
-
-- **Rendering**: The component is capable to show the records.
+## Overview
+The `tableCountry` component is a Vue table component that displays a list of countries. It uses data loaded from a composable and renders it in a table with a specific format.
 
 ## Props
+- No props are directly passed to this component.
 
-### countriesCollection
+## Variables and Functions
+- `countriesCollection`: A reactive reference that holds the collection of countries loaded from the `useCountries` composable.
+- `loadCountries`: A function imported from `useCountries` that loads the countries when the component is mounted.
+- `theme`: The current theme of the application, obtained from the `useTheme` composable.
 
-This prop is *array*, and it has a default value: []. The component render this array in the table, lettting to the user to view the records of the array but only with the fields the dev has selected
+## Lifecycle Hooks
+- `onMounted`: Calls the `loadCountries` function when the component is mounted, triggering the loading of country data.
 
-## Usage 
+## Template Structure
+- **Table**:
+  - **Columns**:
+    - `Clave`: Displays the country code.
+    - `Nombre`: Displays the country name.
 
-Here's how to use the `tableCountry` component with a Vue template:
-
-```html
-<tableCountry :countriesCollection="arrayOfCountry"/>
-```
-
-Where `arrayOfCountry` is a variable type *array* that keeps the records of the Country. This is the value that the `tableCountry` is gonna render in the table
-
-## Events
-
-This component don't has events.
-
-## Styling
-
-The component uses TailwindCSS for styling. The table is designed to be visually cohesive with the rest of the application's design system.
+```vue
+<template>
+    <table class="w-full table-fixed leading-4 text-[1rem]">
+        <thead>
+            <tr class="sticky top-0 h-primaryHeaderTableHeight text-white">
+                <th class="bg-primaryHeaderTable" :class="`bg-${theme}-headers`">Clave</th>
+                <th class="bg-primaryHeaderTable" :class="`bg-${theme}-headers`">Nombre</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="bg-white" v-for="(pais, index) in countriesCollection" :key="index" :class="`text-${theme}-text`">
+                <td
+                    class="h-primaryBodyTableHeight border-b-secondaryTableWidth px-2 ">
+                    {{ pais.ClavePais }}
+                </td>
+                <td
+                    class="h-primaryBodyTableHeight border-b-secondaryTableWidth px-2 border-l-primaryTableWidth">
+                    {{ pais.Descripcion }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</template>

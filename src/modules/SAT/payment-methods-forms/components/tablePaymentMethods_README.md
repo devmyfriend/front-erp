@@ -1,33 +1,34 @@
-# tablePaymentMethods
+# tablePaymentMethods Component
 
-The `tablePaymentMethods` component is designed to allow users to view the records retrieved from the database.
-
-## Features
-
-- **Rendering**: The component is capable to show the records.
-
-- **Disabled Records**: Some records are disabled by it's field `Activo`, so, the user will view it with other color.
+## Overview
+The `tablePaymentMethods` component is used to display a table of payment methods within the application. This component dynamically loads and displays the payment methods based on the current theme and their active status.
 
 ## Props
+The component does not accept any props.
 
-### paymentMethodsCollection
+## Emits
+The component does not emit any events.
 
-This prop is *array*, and it has a default value: []. The component render this array in the table, lettting to the user to view the records of the array but only with the fields the dev has selected
+## Lifecycle Hooks
+- `onMounted`: Loads the payment methods and forms when the component is mounted.
 
-## Usage 
+## Composition Functions
+- `usePaymentMethodsForms`: Manages the loading and retrieval of payment methods and forms.
+  - `paymentMethodsCollection`: An array of payment methods.
+  - `paymentFormsCollection`: An array of payment forms (not used in this component).
+  - `loadMethodsFormsPayments()`: A function to load the payment methods and forms from the store.
+  
+- `useTheme`: Provides access to the current theme, allowing the component to apply theme-specific styles.
 
-Here's how to use the `tablePaymentMethods` component with a Vue template:
+## Template Structure
+The template contains:
+- A table with three columns: `Clave`, `Nombre`, and `Status`.
+- Each row displays a payment method, and the row's style changes based on the payment method's active status (`Activo` or `Inactivo`).
 
-```html
-<tablePaymentMethods :paymentMethodsCollection="arrayOfPaymentMethods"/>
-```
+## Dynamic Classes
+- The table headers' background colors are dynamically set based on the current theme.
+- The text and background color of each row also depend on the active status of the payment method and the current theme.
 
-Where `arrayOfPaymentMethods` is a variable type *array* that keeps the records of the PaymentMethods. This is the value that the `tablePaymentMethods` is gonna render in the table
-
-## Events
-
-This component don't has events.
-
-## Styling
-
-The component uses TailwindCSS for styling. The table is designed to be visually cohesive with the rest of the application's design system.
+## Example Usage
+```vue
+<tablePaymentMethods />

@@ -1,32 +1,46 @@
-# CoinFinder
+# `coinFinder` Component
 
-The `coinFinder` component is designed to allow users to search coins among the table in the database. Once a promp is submitted by the enter key or the button, the component emits the promp so it can be handled by the parent component and process it.
-
-## Features
-
-- **Promp**: The user can type in the input and then click the button or press the enter key to submit the text.
-
-
-## Events
-
-### eBusqueda
-
-This event is emmited when the user press the enter key or click the search button. It sends the promp as a payload
-
-## Usage
-
-Here's how to use the `coinFinder` component with a Vue template:
-
-```html
-<coinFinder @eBusqueda="handlePromp"><coinFinder/>
-```
-
-Where `handlePromp` is a method in the Vue component that handles the promp received from the `coinFinder` component.
+The `coinFinder` component is a Vue 3 input component designed to search for coins by their name. It emits search results based on the user's input.
 
 ## Props
 
-This component does not use any props.
+- **color**: A string that determines the color of the search icon. The default value is `'white'`.
 
-## Styling
+## Emits
 
-The component uses TailwindCSS for styling. The component is designed to be visually cohesive with the rest of the application's design system.
+- **eBusqueda**: Emits an event when a search is performed. It passes the search text if results are found, or it emits without parameters if no results are found.
+
+## Methods
+
+- **buscar**: This method is triggered when the user presses the Enter key or clicks the search icon. It checks the search text:
+  - If the text is not empty, it calls the `findCoins` method from the `coinsStore`.
+  - If results are found, it emits the `eBusqueda` event with the search text.
+  - If no results are found, it triggers a SweetAlert modal with a "No results found" message and emits `eBusqueda` without parameters.
+
+## Component Structure
+
+- **Input Field**: The main input field where the user can type the name of the coin they want to search for.
+- **Search Icon**: A clickable icon that also triggers the `buscar` method. The color of the icon is customizable via the `color` prop.
+
+## Code and Functionality
+
+The code defines the behavior of the `coinFinder` component, allowing users to search for coins and handle the results accordingly. The component also uses SweetAlert for user feedback when no results are found.
+
+### Example Usage
+
+```vue
+<template>
+    <coinFinder @eBusqueda="handleSearch" />
+</template>
+
+<script setup>
+import coinFinder from '@/modules/SAT/coins/components/coinFinder.vue';
+
+const handleSearch = (searchText) => {
+    if (searchText) {
+        // Process the search result
+    } else {
+        // Handle no result found
+    }
+};
+</script>

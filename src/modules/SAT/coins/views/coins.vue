@@ -29,7 +29,7 @@ onBeforeMount(() => {
 </script>
 
 <template>
-    <div 
+    <div
         class="flex flex-row mb-6 h-inputHeight justify-between">
         <div class="flex flex-row mb-6 h-inputHeight gap-4">
             <coinFinder @eBusqueda="esperarBusqueda" />
