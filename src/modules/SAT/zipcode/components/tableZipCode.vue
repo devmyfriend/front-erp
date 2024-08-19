@@ -1,23 +1,14 @@
 <script setup>
-import { ref, watch } from "vue";
 import { useTheme } from '@/commons/composables/theme';
+import { usezipCodesCollection } from '@/modules/SAT/zipcode/composables/useListZipCode'
+import { onMounted } from 'vue';
+const { zipCodesCollection, loadData } = usezipCodesCollection();
 const { theme } = useTheme();
 
-const props = defineProps({
-  zipCodesCollection: {
-    type: Array,
-    default: () => [],
-  },
+onMounted(() => {
+    loadData();
 });
 
-const localzipCodesCollection = ref(props.zipCodesCollection);
-
-watch(
-  () => props.zipCodesCollection,
-  (newVal) => {
-    localzipCodesCollection.value = newVal;
-  }
-);
 </script>
 
 <template>

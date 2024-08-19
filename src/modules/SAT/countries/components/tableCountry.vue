@@ -1,20 +1,14 @@
 <script setup>
-import { ref, watch } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useTheme } from '@/commons/composables/theme';
+import { useCountries } from '@/modules/SAT/countries/composables/useCountries';
+const { countriesCollection, loadCountries } = useCountries();
 const { theme } = useTheme();
 
-const countriesCollection = ref([]);
-
-const props = defineProps({
-    countriesCollection: {
-        type: Array,
-        default: () => []
-    }
+onMounted(() => {
+    loadCountries();
 });
 
-watch(() => props.countriesCollection, (newValue) => {
-    countriesCollection.value = newValue;
-});
 </script>
 
 <template>

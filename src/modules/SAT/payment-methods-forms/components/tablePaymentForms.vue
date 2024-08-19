@@ -1,19 +1,12 @@
 <script setup>
-import { ref, watch } from 'vue';
+import { usePaymentMethodsForms } from '@/modules/SAT/payment-methods-forms/composables/usePaymentMethodsForms';
+const { paymentFormsCollection, loadMethodsFormsPayments } = usePaymentMethodsForms();
 import { useTheme } from '@/commons/composables/theme';
+import { onMounted } from 'vue';
 const { theme } = useTheme();
 
-const paymentFormsCollection = ref([]);
-
-const props = defineProps({
-    paymentFormsCollection: {
-        type: Array,
-        default: () => []
-    }
-});
-
-watch(() => props.paymentFormsCollection, (newValue) => {
-    paymentFormsCollection.value = newValue;
+onMounted(() => {
+    loadMethodsFormsPayments();
 });
 </script>
 

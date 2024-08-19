@@ -1,18 +1,18 @@
 <script setup>
-import { ref, watch } from 'vue';
+import { onMounted } from 'vue';
 import { useTheme } from '@/commons/composables/theme';
 import editIco from '@/commons/ui/icons/tableIcons/editIco.vue';
 import trashIco from '@/commons/ui/icons/tableIcons/trashIco.vue';
+import { useReceiptsTypes } from '@/modules/SAT/receipt-types/composables/useReceiptsTypes';
+const { receiptsCollection, loadReceipts } = useReceiptsTypes();
 const { theme } = useTheme();
 const emits = defineEmits(['eAccion']);
 
-const receiptsCollection = ref([]);
+onMounted(() => {
+    loadReceipts();
+});
 
 const props = defineProps({
-    receiptsCollection: {
-        type: Array,
-        default: () => []
-    },
     editable: {
         type: Boolean,
         default: false
@@ -26,10 +26,6 @@ const props = defineProps({
 const handleAccion = (comprobante, accion) => {
     emits('eAccion', [comprobante, accion]);
 };
-
-watch(() => props.receiptsCollection, (newValue) => {
-    receiptsCollection.value = newValue;
-});
 </script>
 
 <template>

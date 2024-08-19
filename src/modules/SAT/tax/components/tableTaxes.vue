@@ -1,18 +1,18 @@
 <script setup>
-import { ref, watch } from 'vue';
 import { useTheme } from '@/commons/composables/theme';
 import editIco from '@/commons/ui/icons/tableIcons/editIco.vue';
 import trashIco from '@/commons/ui/icons/tableIcons/trashIco.vue';
+import { useTaxes } from '@/modules/SAT/tax/composables/useTaxes';
+import { onMounted } from 'vue';
+const { taxesCollection, loadTaxes } = useTaxes();
 const { theme } = useTheme();
 const emits = defineEmits(['eAccion']);
 
-const taxesCollection = ref([]);
+onMounted(() => {
+    loadTaxes();
+});
 
 const props = defineProps({
-    taxesCollection: {
-        type: Array,
-        default: () => []
-    },
     editable: {
         type: Boolean,
         default: false
@@ -26,10 +26,6 @@ const props = defineProps({
 const handleAccion = (impuesto, accion) => {
     emits('eAccion', [impuesto, accion]);
 };
-
-watch(() => props.taxesCollection, (newValue) => {
-    taxesCollection.value = newValue;
-});
 </script>
 
 <template>

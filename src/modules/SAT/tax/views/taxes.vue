@@ -12,12 +12,10 @@ const { theme } = useTheme();
 
 const { setTitle, setViewTitle } = useLayout();
 const {
-    taxesCollection,
     showModal,
     modoFormulario,
     modalData,
     bodyFrm,
-    cargarDatos,
     esperarTabla,
     esperarModal,
     esperarCancelar,
@@ -27,7 +25,6 @@ const {
 onBeforeMount(() => {
     setTitle('Impuestos SAT');
     setViewTitle('Listado de Impuestos');
-    cargarDatos();
 });
 </script>
 
@@ -39,7 +36,7 @@ onBeforeMount(() => {
 
     <div
         class="w-full items-center flex flex-col overflow-y-scroll text-secondaryFontColor text-base rounded-3xl">
-        <tableTaxes :taxesCollection="taxesCollection" :editable="true" @eAccion="esperarTabla" />
+        <tableTaxes :editable="true" @eAccion="esperarTabla" />
 
         <deleteModal :id="modalData" v-if="modalData !== null" @eEliminar="borrarRegistro"
             @eCancelar="esperarCancelar" />

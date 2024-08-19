@@ -7,7 +7,6 @@ export default {
   theme: {
     extend: {
       colors: {
-        /* Diseños generales */
         blanco: '#fff',
         negro: '#000',
         disabled: ({
@@ -40,9 +39,9 @@ export default {
           "headers-hover": "#858585",
           "text": "#999999",
           "subtext": "#EC633A",
-          "background": "#FBD6CC",
+          "background": "#F5BBAA ",
           "container": "#F5AA95",
-          "disabled": "#FBD6CC"
+          "disabled": "#ffece6"
         },        
         Bonavida: {
           "primary": "#1c75b9",
@@ -55,7 +54,7 @@ export default {
           "headers-hover": "#175f95",
           "text": "#1c75b9",
           "subtext": "#1c75b9",
-          "background": "#CDD1DE",
+          "background": "#A1B7CC ",
           "container": "#8AAED0",
           "disabled": "#CDD1DE"
         },
