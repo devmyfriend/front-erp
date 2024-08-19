@@ -1,33 +1,44 @@
-# tableTaxes
-
-The `tableTaxes` component is designed to allow users to view the records retrieved from the database.
-
-## Features
-
-- **Rendering**: The component is capable to show the records.
-
-- **Disabled Records**: Some records are disabled by it's field `Activo`, so, the user will view it with other color.
+# tableTaxes.vue
 
 ## Props
 
-### taxesCollection
+- **editable** (`Boolean`): 
+  - Description: Determines if the table has edit and delete options available.
+  - Default value: `false`.
 
-This prop is *array*, and it has a default value: []. The component render this array in the table, lettting to the user to view the records of the array but only with the fields the dev has selected
+- **accion** (`Array`): 
+  - Description: Allows passing a list of actions to be handled in the table.
+  - Default value: `[]`.
 
-## Usage 
+## Emits
 
-Here's how to use the `tableTaxes` component with a Vue template:
+- **eAccion**: 
+  - Description: Emits an event with the tax data and the selected action (edit or delete).
+  - Arguments:
+    - `impuesto` (`Object`): The selected tax.
+    - `accion` (`Number`): The action to be performed (1 for edit, 2 for delete).
 
-```html
-<tableTaxes :taxesCollection="arrayOfTaxes"/>
-```
+## Functions
 
-Where `arrayOfTaxes` is a variable type *array* that keeps the records of the Taxes. This is the value that the `tableTaxes` is gonna render in the table
+- **handleAccion(impuesto, accion)**:
+  - Description: Handles the edit and delete actions, emitting the `eAccion` event with the corresponding data.
+  - Arguments:
+    - `impuesto` (`Object`): The selected tax.
+    - `accion` (`Number`): The action to be performed.
 
-## Events
+## Composables Used
 
-This component don't has events.
+- **useTheme**: 
+  - Description: Used to get the current theme and apply dynamic classes based on the selected theme.
 
-## Styling
+- **useTaxes**: 
+  - Description: Composable that handles the logic for loading taxes through the store (`taxesCollection` and `loadTaxes`).
 
-The component uses TailwindCSS for styling. The table is designed to be visually cohesive with the rest of the application's design system.
+## Lifecycle
+
+- **onMounted**: 
+  - Description: Calls `loadTaxes` to load the taxes from the store when the component is mounted.
+
+## Styles
+
+- The CSS classes are dynamically linked to the current theme using the `useTheme` composable. This ensures that the table follows the color scheme of the selected theme.
