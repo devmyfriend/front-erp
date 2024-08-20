@@ -6,16 +6,19 @@ const { theme } = useTheme();
 
 const modulos = ref([
     { nombre: 'Login', ruta: '/login' },
+    { nombre: 'Productos Listado', ruta: { name: 'productsList' } },
+    { nombre: 'Productos Formulario', ruta: { name: 'productsForm' } },
+    { nombre: 'Dashoard de Catálogos', ruta: { name: 'catalogsDashboard' }},
+    { nombre: 'Dashoard de Organización', ruta: { name: 'organizationDashboard' }},
+
+    { nombre: 'Horacio', ruta: '/helloword' },
+
     { nombre: 'Monedas', ruta: { name: 'coins' } },
     { nombre: 'Metodos y formas de pago', ruta: { name: 'payment' } },
     { nombre: 'Tipo de comprobantes', ruta: { name: 'receipts' } },
     { nombre: 'Paises', ruta: { name: 'countries' } },
     { nombre: 'Impuestos SAT', ruta: { name: 'taxesSAT' } },
-    { nombre: 'Horacio', ruta: '/helloword' },
     { nombre: 'Codigos Postales - SAT', ruta: { name: 'zipcode' } },
-    { nombre: 'Productos Listado', ruta: { name: 'productsList' } },
-    { nombre: 'Productos Formulario', ruta: { name: 'productsForm' } },
-    { nombre: 'Dashoard de Catálogos', ruta: { name: 'catalogsDashboard' }},
 ]);
 </script>
 
@@ -29,7 +32,7 @@ const modulos = ref([
             </div>
         </div>
         <section class="flex flex-grow min-h-44 p-6 w-full justify-center">
-            <div class="flex flex-grow p-4 rounded-2xl flex-col gap-4 overflow-y-scroll items-center xl:h-min"
+            <div class="flex flex-grow p-4 rounded-2xl flex-col gap-4 overflow-y-scroll items-center"
                 :class="`bg-${theme}-container border-${theme}-primary border-4`">
                 <router-link :to="modulo.ruta" v-for="modulo in modulos" :key="modulo.nombre"
                     :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover`" class="flex items-center px-6 transition-all duration-300

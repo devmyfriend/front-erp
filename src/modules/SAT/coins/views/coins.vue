@@ -40,9 +40,9 @@ onBeforeMount(() => {
     <div
         class="w-full items-center flex flex-col flex-grow overflow-y-scroll text-secondaryFontColor text-base rounded-3xl">
         <tableCoins :editable="true" @eAccion="esperarTabla" />
-        <deleteModal :id="modalData" v-if="modalData !== null" @eEliminar="borrarRegistro"
-            @eCancelar="esperarCancelar" />
     </div>
+    <deleteModal :id="modalData" v-if="modalData !== null" @eEliminar="borrarRegistro"
+        @eCancelar="esperarCancelar" />
     <coinsModal :datos="bodyFrm" :mostrar="showModal" :modo="modoFormulario" @eConfirm="esperarModal"
         @eCancel="esperarCancelar" />
 </template>

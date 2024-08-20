@@ -1,0 +1,52 @@
+<script setup>
+import { ref } from 'vue';
+import Swal from 'sweetalert2';
+import searchIco from '@/commons/ui/icons/actionIcons/searchIco.vue';
+const emit = defineEmits('eBusqueda');
+const props = defineProps({
+  color: {
+    type: String,
+    default: 'white'
+  }
+});
+const txtBusqueda = ref('');
+
+function buscar(texto) {
+    if (texto.length != 0) {
+        /* Lógica de busqueda de registros */
+            /*
+                store.findCoins(texto).then((res) => {
+                    if (res) {
+                        emit('eBusqueda', texto);
+                    } else {
+                        Swal.fire({
+                            title: 'No se encontraron resultados',
+                            icon: 'info',
+                            confirmButtonText: 'Aceptar'
+                        });
+                        emit('eBusqueda');
+                    }
+                });
+            */
+        /* Lógica de busqueda de registros */
+    } else {
+        emit('eBusqueda');
+    }
+}
+</script>
+
+<template>
+    <div class="flex items-center h-inputHeight">
+        <input
+            name="buscador"
+            class=" text-black rounded-inputRadius border-inputBorder border-inputWidth p-paddingInput lg:w-96 md:w-60 w-32 outline-none h-full text-base"
+            type="text" v-model="txtBusqueda" @keyup.enter="buscar(txtBusqueda)" placeholder="Nombre example">
+        <searchIco class="cursor-pointer max-h-buscadorIconHeight ml-4" @click="buscar(txtBusqueda)" :color="color" />
+    </div>
+</template>
+
+<style scoped>
+input::placeholder {
+    color: theme('colors.disabled.DEFAULT');
+}
+</style>

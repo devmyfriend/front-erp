@@ -1,31 +1,41 @@
-# tableReceipts
 
-The `tableReceipts` component is designed to allow users to view the records retrieved from the database.
+# tableReceipt Component
 
-## Features
-
-- **Rendering**: The component is capable to show the records.
+## Overview
+The `tableReceipt` component is used to display a table of receipt types within the application. This component can show or hide an actions column based on the `editable` prop, allowing users to edit or delete receipts.
 
 ## Props
+- **`editable`**: (Boolean, default: `false`)
+  - Defines whether the table is editable, showing or hiding the actions column.
 
-### receiptsCollection
+- **`accion`**: (Array, default: `[]`)
+  - An array that defines available actions for the table, though it is not directly used in the component.
 
-This prop is *array*, and it has a default value: []. The component render this array in the table, lettting to the user to view the records of the array but only with the fields the dev has selected
+## Emits
+- **`eAccion`**
+  - Emitted with the receipt and the selected action. Useful for handling edit or delete actions.
 
-## Usage 
+## Lifecycle Hooks
+- `onMounted`: Loads the receipts when the component is mounted.
 
-Here's how to use the `tableReceipts` component with a Vue template:
+## Composition Functions
+- `useReceiptsTypes`: Manages the loading and retrieval of receipt types.
+  - `receiptsCollection`: An array of receipt types.
+  - `loadReceipts()`: A function to load the receipt types from the store.
 
-```html
-<tableReceipts :receiptsCollection="arrayOfReceipts"/>
+- `useTheme`: Provides access to the current theme, allowing the component to apply theme-specific styles.
+
+## Template Structure
+The template contains:
+- A table with two main columns: `Clave` and `Nombre`.
+- An additional `Acciones` column is displayed if the `editable` prop is `true`.
+- Each row displays a receipt type, with dynamic classes applied based on the current theme.
+
+## Dynamic Classes
+- The table headers' background colors are dynamically set based on the current theme.
+- The text and background color of each row also depend on the current theme and the receipt type's status.
+
+## Example Usage
+```vue
+<tableReceipt :editable="true" :accion="['edit', 'delete']" @eAccion="handleAction" />
 ```
-
-Where `arrayOfReceipts` is a variable type *array* that keeps the records of the Receipts. This is the value that the `tableReceipts` is gonna render in the table
-
-## Events
-
-This component don't has events.
-
-## Styling
-
-The component uses TailwindCSS for styling. The table is designed to be visually cohesive with the rest of the application's design system.

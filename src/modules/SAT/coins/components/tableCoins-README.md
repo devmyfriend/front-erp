@@ -14,7 +14,7 @@ The `tableCoins` component is a Vue 3 table component that displays a list of cu
 
 ## Lifecycle Hook
 
-- **onMounted**: When the component is mounted, it calls `cargarDatos` to load the collection of currencies from the store.
+- **onMounted**: When the component is mounted, it calls `cargarDatos` to load the collection of currencies from the composable.
 
 ## Methods
 
