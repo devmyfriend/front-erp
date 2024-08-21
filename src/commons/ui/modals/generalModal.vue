@@ -3,7 +3,7 @@
     <div class="bg-white rounded-lg shadow-xl transform transition-all max-w-[96vw] min-w-[24rem] max-h-[96vh] flex flex-col overflow-scroll">
       <div class="px-4 py-5 sm:px-6">
         <div class="w-full flex flex-row justify-between items-center">
-          <titleH2 class="!mb-0 uppercase" :class="`text-${theme}-text`">
+          <titleH2 class="!mb-0 uppercase" :class="`text-${theme}-text pr-4`">
             <slot name="header">
               ¡Sin título!
             </slot>
