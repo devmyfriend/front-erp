@@ -1,12 +1,12 @@
+Datos del representante legal
 <script setup>
 import { onBeforeMount } from 'vue';
-import titleH2 from '@/commons/ui/title-h2/title-h2.vue';
 import tableTaxes from '@/modules/SAT/tax/components/tableTaxes.vue';
 import { useLayout } from '@/commons/composables/useLayout.js';
 import { useTaxes } from '@/modules/SAT/tax/composables/useTaxes.js';
 import btnFormulario from '@/commons/ui/btn-formulario/btn-formulario.vue';
 import deleteModal from '@/commons/ui/modals/deleteModal.vue';
-import TaxesModal from '@/commons/ui/modals/taxesModal.vue';
+import generalModal from '@/commons/ui/modals/generalModal.vue';
 import { useTheme } from '@/commons/composables/theme';
 const { theme } = useTheme();
 
@@ -37,14 +37,28 @@ onBeforeMount(() => {
     <div
         class="w-full items-center flex flex-col overflow-y-scroll text-secondaryFontColor text-base rounded-3xl">
         <tableTaxes :editable="true" @eAccion="esperarTabla" />
-
-        <deleteModal :id="modalData" v-if="modalData !== null" @eEliminar="borrarRegistro"
-            @eCancelar="esperarCancelar" />
     </div>
+    
+    <deleteModal :id="modalData" v-if="modalData !== null" @eEliminar="borrarRegistro"
+        @eCancelar="esperarCancelar" />
 
-    <TaxesModal :datos="bodyFrm" :mostrar="showModal" :modo="modoFormulario" @eConfirm="esperarModal"
-        @eCancel="esperarCancelar" />
-
+    <generalModal v-if="showModal" @eConfirm="esperarModal" @eCancel="esperarCancelar" :datos="bodyFrm">
+        <template #header>
+            {{ modoFormulario === 0 ? 'Crear' : 'Editar' }} Impuesto SAT
+        </template>
+        <template #content>
+            <div class="flex flex-col justify-center items-start">
+                <label for="Clave" class="text-sm font-bold text-gray-700 relative px-1">Clave Impuesto:</label>
+                <input :disabled="modoFormulario === 1" name="Clave" v-model="bodyFrm.ClaveImpuesto" type="text"
+                    placeholder="004"
+                    class="mt-1 block w-full text-sm border-2 border-gray-400 transition-all duration-300 focus:border-gray-800 box-border p-2 outline-none"
+                    :class="{ [`bg-${theme}-disabled`]: modoFormulario === 1, 'bg-white': modoFormulario !== 1 }">
+                <label class="text-sm font-bold text-gray-700 relative px-1 mt-4">Nombre:</label>
+                <input v-model="bodyFrm.Nombre" type="text" placeholder="IVA"
+                    class="mt-1 mb-1 block w-full text-sm border-2 border-gray-400 transition-all duration-300 focus:border-gray-800 box-border p-2 outline-none">
+            </div>
+        </template>
+    </generalModal>
 </template>
 
 <style scoped></style>

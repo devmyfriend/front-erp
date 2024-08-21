@@ -43,7 +43,7 @@ onBeforeMount(() => {
     <deleteModal :id="modalData" v-if="modalData !== null" @eEliminar="borrarRegistro" @eCancelar="esperarCancelar" />
     <generalModal v-if="showModal" @eConfirm="esperarModal" @eCancel="esperarCancelar" :datos="bodyFrm">
         <template #header>
-            {{ modoFormulario === 1 ? 'Crear' : 'Editar' }} moneda
+            {{ modoFormulario === 0 ? 'Crear' : 'Editar' }} moneda
         </template>
         <template #content>
             <div class="flex flex-col justify-center items-start">

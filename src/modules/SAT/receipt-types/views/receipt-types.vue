@@ -1,11 +1,10 @@
 <script setup>
-import { onBeforeMount, ref } from 'vue';
+import { onBeforeMount } from 'vue';
 import tableReceipt from '@/modules/SAT/receipt-types/components/tableReceipt.vue';
 import { useLayout } from '@/commons/composables/useLayout.js';
 import { useReceiptsTypes } from '@/modules/SAT/receipt-types/composables/useReceiptsTypes.js';
 import btnFormulario from '@/commons/ui/btn-formulario/btn-formulario.vue';
 import deleteModal from '@/commons/ui/modals/deleteModal.vue';
-import receiptTypesModal from '@/commons/ui/modals/receiptTypesModal.vue';
 import generalModal from '@/commons/ui/modals/generalModal.vue';
 import { useTheme } from '@/commons/composables/theme';
 const { theme } = useTheme();
@@ -42,7 +41,7 @@ const {
         @eCancelar="esperarCancelar" />
     <generalModal v-if="showModal" @eConfirm="esperarModal" @eCancel="esperarCancelar" :datos="bodyFrm">
         <template #header>
-            {{ modoFormulario === 1 ? 'Crear' : 'Editar' }} Tipo de Comprobante
+            {{ modoFormulario === 0 ? 'Crear' : 'Editar' }} Tipo de Comprobante
         </template>
         <template #content>
             <div class="flex flex-col justify-center items-start">
