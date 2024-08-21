@@ -1,18 +1,18 @@
 <script setup>
 import { ref } from 'vue';
 import Swal from 'sweetalert2';
-import { coinsStore } from '@/store/coin/coinsStore'
+import { coinsStore } from '@/store/coin/coinsStore';
 import searchIco from '@/commons/ui/icons/actionIcons/searchIco.vue';
-const emit = defineEmits('eBusqueda');
+const emit = defineEmits(['eBusqueda']);
 const store = coinsStore();
 
 const txtBusqueda = ref('');
 
 const props = defineProps({
-  color: {
-    type: String,
-    default: 'white'
-  }
+    color: {
+        type: String,
+        default: 'white'
+    }
 });
 
 function buscar(texto) {
@@ -37,8 +37,7 @@ function buscar(texto) {
 
 <template>
     <div class="flex items-center h-inputHeight">
-        <input
-            name="buscador"
+        <input name="buscador"
             class=" text-black rounded-inputRadius border-inputBorder border-inputWidth p-paddingInput lg:w-96 md:w-60 w-32 outline-none h-full text-base"
             type="text" v-model="txtBusqueda" @keyup.enter="buscar(txtBusqueda)" placeholder="Nombre moneda">
         <searchIco class="cursor-pointer max-h-buscadorIconHeight ml-4" @click="buscar(txtBusqueda)" :color="color" />
