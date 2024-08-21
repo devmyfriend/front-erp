@@ -1,17 +1,17 @@
 
 # useListZipCode
 
-This composable manages the logic for handling a list of postal codes (zip codes). It interacts with the `useZipCode` store to load and search for zip codes, and provides reactive variables and functions to be used within Vue components.
+This composable manages the logic for handling a list of postal codes (zip codes). It interacts with the `zipCodeStore` store to load and search for zip codes, and provides reactive variables and functions to be used within Vue components.
 
 ## Imports
 
 - `ref` from `vue`: Used to create reactive variables.
-- `useZipCode` from `@/store/zipCode/zipCodeStore`: This store manages the state related to zip codes.
+- `zipCodeStore` from `@/store/zipCode/zipCodeStore`: This store manages the state related to zip codes.
 - `Swal` from `sweetalert2`: Used to display alerts to the user.
 
 ## State
 
-- `store`: Instance of the `useZipCode` store.
+- `store`: Instance of the `zipCodeStore` store.
 - `zipCodesCollection`: A reactive array that holds the collection of zip codes.
 
 ## Methods

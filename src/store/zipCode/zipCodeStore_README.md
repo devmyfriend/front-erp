@@ -59,8 +59,8 @@ async findZipCode(cp) {
 ## Usage
 
 ```javascript
-import { useZipCode } from '@/stores/zipCodeStore';
+import { zipCodeStore } from '@/stores/zipCodeStore';
 
-const store = useZipCode();
+const store = zipCodeStore();
 store.loadZipCode();
 ```

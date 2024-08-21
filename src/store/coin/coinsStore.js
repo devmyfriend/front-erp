@@ -1,5 +1,7 @@
 import { defineStore } from "pinia";
 import * as coinsServices from "@/services/coins/coinsServices";
+import { validateResponse } from "@/utils/validateResponse";
+import Swal from "sweetalert2";
 
 export const coinsStore = defineStore("Coins", {
   state: () => ({
@@ -12,26 +14,26 @@ export const coinsStore = defineStore("Coins", {
   },
   actions: {
     async loadCoins() {
-      const data = await coinsServices.loadCoins();
-      if (data) {
-        this.coinsCollection = data;
+      const response = await validateResponse(coinsServices.loadCoins());
+      if (response.length === 0) {
+        this.coinsCollection = [];
+      } else {
+        this.coinsCollection = response;
       }
     },
     async findCoins(moneda) {
-      const data = await coinsServices.findCoins(moneda);
-      if (data) {
-        if (data.length > 0) {
-          this.coinsCollection = data;
-          return true;
-        } else {
-          return false;
-        }
+      const response = await validateResponse(coinsServices.findCoins(moneda));
+      if (response.length === 0) {
+        this.coinsCollection = [];
+        return false;
+      } else {
+        this.coinsCollection = response;
+        return true;
       }
     },
-
     async createCoin(moneda) {
-      const data = await coinsServices.createCoin(moneda);
-      if (data) {
+      const response = await validateResponse(coinsServices.createCoin(moneda));
+      if (response.success) {
         this.loadCoins();
         return true;
       } else {
@@ -39,8 +41,8 @@ export const coinsStore = defineStore("Coins", {
       }
     },
     async updateCoin(moneda) {
-      const data = await coinsServices.updateCoin(moneda);
-      if (data) {
+      const response = await validateResponse(coinsServices.updateCoin(moneda));
+      if (response.success) {
         this.loadCoins();
         return true;
       } else {
@@ -48,8 +50,8 @@ export const coinsStore = defineStore("Coins", {
       }
     },
     async deleteCoin(moneda) {
-      const data = await coinsServices.deleteCoin(moneda);
-      if (data) {
+      const response = await validateResponse(coinsServices.deleteCoin(moneda));
+      if (response.success) {
         this.loadCoins();
         return true;
       } else {

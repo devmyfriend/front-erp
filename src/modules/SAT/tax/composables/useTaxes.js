@@ -1,5 +1,6 @@
 import { ref } from "vue";
 import { taxStore } from "@/store/tax/taxStore";
+import Swal from "sweetalert2";
 const store = taxStore();
 
 const taxesCollection = ref([]);
@@ -33,14 +34,32 @@ const subirDatos = (datos) => {
 };
 
 const esperarModal = (datos) => {
-  if (modoFormulario.value === 0) {
-    store.createTaxes(bodyFrm.value).then(() => {
+  if (modoFormulario.value === 0) {    
+    store.createTaxes(bodyFrm.value).then((res) => {
       cargarDatos();
+      if(res) {
+        Swal.fire({
+          title: "¡Registro exitoso!",
+          text: "El registro se ha guardado correctamente",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
       esperarCancelar();
     });
   } else if (modoFormulario.value === 1) {
-    store.updateTax(datos).then(() => {
+    store.updateTax(datos).then((res) => {
       cargarDatos();
+      if(res) {
+        Swal.fire({
+          title: "¡Actualización exitosa!",
+          text: "El registro se ha actualizado con éxito",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
       esperarCancelar();
     });
   }
@@ -57,8 +76,17 @@ const esperarCancelar = () => {
 };
 
 const borrarRegistro = () => {
-  store.deleteTax(modalData.value).then(() => {
+  store.deleteTax(modalData.value).then((res) => {
     cargarDatos();
+    if(res) {
+      Swal.fire({
+        title: "¡Eliminación exitosa!",
+        text: "El registro se ha eliminado con éxito",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
     esperarCancelar();
   });
 };

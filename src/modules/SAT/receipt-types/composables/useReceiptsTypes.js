@@ -1,5 +1,6 @@
 import { ref } from "vue";
 import { receiptStore } from "@/store/receipt/receiptStore";
+import Swal from "sweetalert2";
 const store = receiptStore();
 
 const receiptsCollection = ref([]);
@@ -36,11 +37,25 @@ const esperarModal = (datos) => {
   if (modoFormulario.value === 0) {
     store.createReceipt(bodyFrm.value).then(() => {
       cargarDatos();
+      Swal.fire({
+        icon: "success",
+        title: "¡Registro exitoso!",
+        text: "El registro se ha guardado correctamente.",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       esperarCancelar();
     });
   } else if (modoFormulario.value === 1) {
     store.updateReceipt(datos).then(() => {
       cargarDatos();
+      Swal.fire({
+        title: "¡Actualización exitosa!",
+        text: "El registro se ha actualizado con éxito.",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       esperarCancelar();
     });
   }
@@ -59,6 +74,13 @@ const esperarCancelar = () => {
 const borrarRegistro = () => {
   store.deleteReceipt(modalData.value).then(() => {
     cargarDatos();
+    Swal.fire({
+      title: "¡Eliminación exitosa!",
+      text: "El registro se ha eliminado con éxito.",
+      icon: "success",
+      showConfirmButton: false,
+      timer: 1500,
+    });
     esperarCancelar();
   });
 };

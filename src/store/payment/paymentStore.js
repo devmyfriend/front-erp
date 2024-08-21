@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import * as paymentServices from "@/services/payment/paymentServices";
+import { validateResponse } from "@/utils/validateResponse";
 
 export const paymentStore = defineStore("Payment", {
   state: () => ({
@@ -15,13 +16,15 @@ export const paymentStore = defineStore("Payment", {
     },
   },
   actions: {
-    async loadMethodsFormsPayments() {
-      const data = await paymentServices.loadMethodsFormsPayments();
-      if (data) {
-        const { metodos, formas } = data[0];
-        this.paymentMethodsCollection = metodos;
-        this.paymentFormsCollection = formas;
+    async loadMethodsFormsPayments(){
+      const response = await validateResponse(paymentServices.loadMethodsFormsPayments());
+      if (response.length === 0) {
+        this.paymentMethodsCollection = [];
+        this.paymentFormsCollection = [];
+      } else {
+        this.paymentMethodsCollection = response[0].metodos;
+        this.paymentFormsCollection = response[0].formas;
       }
-    },
+    }
   },
 });

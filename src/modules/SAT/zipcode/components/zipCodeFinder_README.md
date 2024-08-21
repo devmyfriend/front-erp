@@ -29,7 +29,7 @@ This method triggers a search for the postal code entered in the input field.
 
 ## Dependencies
 
-- `useZipCode`: A store that manages the state of postal codes.
+- `zipCodeStore`: A store that manages the state of postal codes.
 - `Swal`: A library for displaying modal dialogs (SweetAlert2).
 - `searchIco`: A component for displaying the search icon.
 
@@ -47,11 +47,11 @@ This method triggers a search for the postal code entered in the input field.
 
 <script setup>
 import { ref } from "vue";
-import { useZipCode } from "@/store/zipCode/zipCodeStore";
+import { zipCodeStore } from "@/store/zipCode/zipCodeStore";
 import Swal from "sweetalert2";
 import searchIco from "@/commons/ui/icons/actionIcons/searchIco.vue";
 
-const store = useZipCode();
+const store = zipCodeStore();
 const txtBusqueda = ref("");
 
 const findZipCode = async () => {

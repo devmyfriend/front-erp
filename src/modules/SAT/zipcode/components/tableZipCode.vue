@@ -1,12 +1,25 @@
 <script setup>
 import { useTheme } from '@/commons/composables/theme';
 import { usezipCodesCollection } from '@/modules/SAT/zipcode/composables/useListZipCode'
-import { onMounted } from 'vue';
+import { onMounted, defineAsyncComponent } from 'vue';
+const editIco = defineAsyncComponent(() => import('@/commons/ui/icons/tableIcons/editIco.vue'));
+const trashIco = defineAsyncComponent(() => import('@/commons/ui/icons/tableIcons/trashIco.vue'));
 const { zipCodesCollection, loadData } = usezipCodesCollection();
 const { theme } = useTheme();
 
 onMounted(() => {
     loadData();
+});
+
+const props = defineProps({
+    editable: {
+        type: Boolean,
+        default: false
+    },
+    clickeable: {
+        type: Boolean,
+        default: false
+    }
 });
 
 </script>

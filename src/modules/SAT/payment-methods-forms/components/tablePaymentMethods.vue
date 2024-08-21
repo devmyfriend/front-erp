@@ -8,7 +8,6 @@ const { theme } = useTheme();
 onMounted(() => {
     loadMethodsFormsPayments();
 });
-
 </script>
 
 <template>

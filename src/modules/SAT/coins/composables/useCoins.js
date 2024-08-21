@@ -1,5 +1,6 @@
 import { ref } from "vue";
 import { coinsStore } from "@/store/coin/coinsStore";
+import Swal from "sweetalert2";
 const store = coinsStore();
 
 const coinsCollection = ref([]);
@@ -19,6 +20,7 @@ const findCoins = async (texto) => {
 const cargarDatos = async () => {
   await store.loadCoins();
   coinsCollection.value = store.getCoins;
+
   modoFormulario.value = 0;
   showModal.value = false;
   bodyFrm.value = {
@@ -52,19 +54,46 @@ const subirDatos = (datos) => {
 
 const esperarModal = (datos) => {
   if (modoFormulario.value === 0) {
-    store.createCoin(bodyFrm.value).then(() => {
+    store.createCoin(bodyFrm.value).then((res) => {
       cargarDatos();
+      if (res) {
+        Swal.fire({
+          title: "¡Registro exitoso!",
+          text: "El registro se ha guardado correctamente",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
     });
   } else if (modoFormulario.value === 1) {
-    store.updateCoin(datos).then(() => {
+    store.updateCoin(datos).then((res) => {
       cargarDatos();
+      if (res) {
+        Swal.fire({
+          title: "¡Actualización exitosa!",
+          text: "El registro se ha actualizado con éxito",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
     });
   }
 };
 
 const borrarRegistro = () => {
-  store.deleteCoin(modalData.value).then(() => {
+  store.deleteCoin(modalData.value).then((res) => {
     cargarDatos();
+    if (res) {
+      Swal.fire({
+        title: "¡Eliminación exitosa!",
+        text: "El registro se ha eliminado con éxito",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
     modalData.value = null;
   });
 };

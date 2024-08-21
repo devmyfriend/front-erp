@@ -5,7 +5,7 @@ import { useLayout } from '@/commons/composables/useLayout.js';
 import { useReceiptsTypes } from '@/modules/SAT/receipt-types/composables/useReceiptsTypes.js';
 import btnFormulario from '@/commons/ui/btn-formulario/btn-formulario.vue';
 import deleteModal from '@/commons/ui/modals/deleteModal.vue';
-import receiptTypesModal from '@/commons/components/modals/receiptTypesModal.vue';
+import receiptTypesModal from '@/commons/ui/modals/receiptTypesModal.vue';
 import { useTheme } from '@/commons/composables/theme';
 const { theme } = useTheme();
 const { setTitle, setViewTitle } = useLayout();

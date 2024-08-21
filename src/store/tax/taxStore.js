@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import * as taxServices from "@/services/tax/taxServices";
+import { validateResponse } from "@/utils/validateResponse";
 
 export const taxStore = defineStore("tax", {
   state: () => ({
@@ -12,23 +13,25 @@ export const taxStore = defineStore("tax", {
   },
   actions: {
     async loadTaxes() {
-      const data = await taxServices.loadTaxes();
-      if (data) {
-        this.taxesCollection = data;
+      const response = await validateResponse(taxServices.loadTaxes());
+      if (response.length === 0) {
+        this.taxesCollection = [];
+      } else {
+        this.taxesCollection = response;
       }
     },
     async createTaxes(impuesto) {
-      const data = await taxServices.createTaxes(impuesto);
-      if (data) {
+      const response = await validateResponse(taxServices.createTaxes(impuesto));
+      if (response.length !== 0) {
         this.loadTaxes();
         return true;
-      } else {
+      }else{
         return false;
       }
     },
     async updateTax(impuesto) {
-      const data = await taxServices.updateTax(impuesto);
-      if (data) {
+      const response = await validateResponse(taxServices.updateTax(impuesto));
+      if (response.length !== 0) {
         this.loadTaxes();
         return true;
       } else {
@@ -36,8 +39,8 @@ export const taxStore = defineStore("tax", {
       }
     },
     async deleteTax(impuesto) {
-      const data = await taxServices.deleteTax(impuesto);
-      if (data) {
+      const response = await validateResponse(taxServices.deleteTax(impuesto));
+      if (response.length !== 0) {
         this.loadTaxes();
         return true;
       } else {

@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import * as receiptServices from "@/services/receipt/receiptServices";
+import { validateResponse } from "@/utils/validateResponse";
 
 export const receiptStore = defineStore("receipt", {
   state: () => ({
@@ -12,14 +13,16 @@ export const receiptStore = defineStore("receipt", {
   },
   actions: {
     async loadReceipts() {
-      const data = await receiptServices.loadReceipts();
-      if (data) {
-        this.receiptsCollection = data;
+      const response = await validateResponse(receiptServices.loadReceipts());
+      if (response.length === 0) {
+        this.receiptsCollection = [];
+      } else {
+        this.receiptsCollection = response;
       }
     },
     async createReceipt(comprobante) {
-      const data = await receiptServices.createReceipt(comprobante);
-      if (data) {
+      const response = await validateResponse(receiptServices.createReceipt(comprobante));
+      if (response.success) {
         this.loadReceipts();
         return true;
       } else {
@@ -27,8 +30,8 @@ export const receiptStore = defineStore("receipt", {
       }
     },
     async updateReceipt(comprobante) {
-      const data = await receiptServices.updateReceipt(comprobante);
-      if (data) {
+      const response = await validateResponse(receiptServices.updateReceipt(comprobante));
+      if (response.success) {
         this.loadReceipts();
         return true;
       } else {
@@ -36,8 +39,8 @@ export const receiptStore = defineStore("receipt", {
       }
     },
     async deleteReceipt(comprobante) {
-      const data = await receiptServices.deleteReceipt(comprobante);
-      if (data) {
+      const response = await validateResponse(receiptServices.deleteReceipt(comprobante));
+      if (response.success) {
         this.loadReceipts();
         return true;
       } else {

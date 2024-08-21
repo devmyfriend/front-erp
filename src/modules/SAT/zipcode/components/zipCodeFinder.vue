@@ -9,11 +9,11 @@
 
 <script setup>
 import { ref } from "vue";
-import { useZipCode } from "@/store/zipCode/zipCodeStore";
+import { zipCodeStore } from "@/store/zipCode/zipCodeStore";
 import Swal from "sweetalert2";
 import searchIco from "@/commons/ui/icons/actionIcons/searchIco.vue";
 
-const store = useZipCode();
+const store = zipCodeStore();
 const txtBusqueda = ref("");
 
 const findZipCode = async () => {
@@ -34,12 +34,6 @@ const findZipCode = async () => {
             </div>
           `,
         icon: "info",
-      });
-    } else {
-      Swal.fire({
-        icon: "info",
-        title: "No encontrado",
-        text: "No hay códigos postales de esta zona",
       });
     }
   } else {

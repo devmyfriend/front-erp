@@ -1,8 +1,8 @@
 <script setup>
-import { usePaymentMethodsForms } from '@/modules/SAT/payment-methods-forms/composables/usePaymentMethodsForms';
-const { paymentFormsCollection, loadMethodsFormsPayments } = usePaymentMethodsForms();
-import { useTheme } from '@/commons/composables/theme';
 import { onMounted } from 'vue';
+import { usePaymentMethodsForms } from '@/modules/SAT/payment-methods-forms/composables/usePaymentMethodsForms';
+import { useTheme } from '@/commons/composables/theme';
+const { paymentFormsCollection, loadMethodsFormsPayments } = usePaymentMethodsForms();
 const { theme } = useTheme();
 
 onMounted(() => {

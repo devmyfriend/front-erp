@@ -6,7 +6,7 @@ import { useLayout } from '@/commons/composables/useLayout.js';
 import { useTaxes } from '@/modules/SAT/tax/composables/useTaxes.js';
 import btnFormulario from '@/commons/ui/btn-formulario/btn-formulario.vue';
 import deleteModal from '@/commons/ui/modals/deleteModal.vue';
-import TaxesModal from '@/commons/components/modals/taxesModal.vue';
+import TaxesModal from '@/commons/ui/modals/taxesModal.vue';
 import { useTheme } from '@/commons/composables/theme';
 const { theme } = useTheme();
 

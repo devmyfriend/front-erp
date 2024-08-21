@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import * as countryServices from "@/services/country/countryServices";
+import { validateResponse } from "@/utils/validateResponse";
 
 export const countryStore = defineStore("country", {
   state: () => ({
@@ -12,9 +13,11 @@ export const countryStore = defineStore("country", {
   },
   actions: {
     async loadCountries() {
-      const data = await countryServices.loadCountries();
-      if (data) {
-        this.countriesCollection = data;
+      const response = await validateResponse(countryServices.loadCountries());
+      if (response.length === 0) {
+        this.countriesCollection = [];
+      } else {
+        this.countriesCollection = response;
       }
     },
   },
