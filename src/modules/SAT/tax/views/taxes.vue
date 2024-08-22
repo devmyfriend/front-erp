@@ -1,12 +1,12 @@
 Datos del representante legal
 <script setup>
-import { onBeforeMount } from 'vue';
+import { onBeforeMount, defineAsyncComponent } from 'vue';
 import tableTaxes from '@/modules/SAT/tax/components/tableTaxes.vue';
 import { useLayout } from '@/commons/composables/useLayout.js';
 import { useTaxes } from '@/modules/SAT/tax/composables/useTaxes.js';
 import btnFormulario from '@/commons/ui/btn-formulario/btn-formulario.vue';
-import deleteModal from '@/commons/ui/modals/deleteModal.vue';
-import generalModal from '@/commons/ui/modals/generalModal.vue';
+const deleteModal = defineAsyncComponent(() => import('@/commons/ui/modals/deleteModal.vue'));
+const generalModal = defineAsyncComponent(() => import('@/commons/ui/modals/generalModal.vue'));
 import { useTheme } from '@/commons/composables/theme';
 const { theme } = useTheme();
 

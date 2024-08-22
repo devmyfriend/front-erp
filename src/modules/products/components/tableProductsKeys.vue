@@ -1,9 +1,9 @@
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, defineAsyncComponent } from 'vue';
 import { useTheme } from '@/commons/composables/theme';
-import editIco from '@/commons/ui/icons/tableIcons/editIco.vue';
-import trashIco from '@/commons/ui/icons/tableIcons/trashIco.vue';
 import { useProductsKeys } from '@/modules/products/composables/useProductsKeys';
+const editIco = defineAsyncComponent(() => import('@/commons/ui/icons/tableIcons/editIco.vue'));
+const trashIco = defineAsyncComponent(() => import('@/commons/ui/icons/tableIcons/trashIco.vue'));
 const { productsKeysCollection, loadProductsKeys } = useProductsKeys();
 const { theme } = useTheme();
 

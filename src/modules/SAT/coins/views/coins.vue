@@ -1,13 +1,13 @@
 <script setup>
-import { onBeforeMount, ref } from 'vue';
+import { onBeforeMount, defineAsyncComponent } from 'vue';
 import tableCoins from '@/modules/SAT/coins/components/tableCoins.vue';
 import coinFinder from '@/modules/SAT/coins/components/coinFinder.vue';
-import deleteModal from '@/commons/ui/modals/deleteModal.vue';
 import btnFormulario from '@/commons/ui/btn-formulario/btn-formulario.vue';
-import generalModal from '@/commons/ui/modals/generalModal.vue';
 import { useLayout } from '@/commons/composables/useLayout.js';
 import { useCoins } from '@/modules/SAT/coins/composables/useCoins.js';
 import { useTheme } from '@/commons/composables/theme';
+const deleteModal = defineAsyncComponent(() => import('@/commons/ui/modals/deleteModal.vue'));
+const generalModal = defineAsyncComponent(() => import('@/commons/ui/modals/generalModal.vue'));
 const { theme } = useTheme();
 const { setTitle, setViewTitle } = useLayout();
 const {

@@ -1,9 +1,9 @@
 <script setup>
+import { onMounted, defineAsyncComponent } from 'vue';
 import { useTheme } from '@/commons/composables/theme';
-import editIco from '@/commons/ui/icons/tableIcons/editIco.vue';
-import trashIco from '@/commons/ui/icons/tableIcons/trashIco.vue';
 import { useTaxes } from '@/modules/SAT/tax/composables/useTaxes';
-import { onMounted } from 'vue';
+const editIco = defineAsyncComponent(() => import('@/commons/ui/icons/tableIcons/editIco.vue'));
+const trashIco = defineAsyncComponent(() => import('@/commons/ui/icons/tableIcons/trashIco.vue'));
 const { taxesCollection, loadTaxes } = useTaxes();
 const { theme } = useTheme();
 const emits = defineEmits(['eAccion']);

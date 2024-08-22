@@ -1,14 +1,16 @@
 <script setup>
-import { onUpdated, ref, watch } from 'vue';
+import { ref, watch, defineAsyncComponent } from 'vue';
 import { useWindows } from '@/modules/products/composables/useWindows.js';
-import modalEliminar from '@/commons/ui/modals/deleteModal.vue';
 import { useTheme } from '@/commons/composables/theme'
-import trashIco from '@/commons/ui/icons/tableIcons/trashIco.vue';
-import editIco from '@/commons/ui/icons/tableIcons/editIco.vue';
-const { theme } = useTheme();
+const editIco = defineAsyncComponent(() => import('@/commons/ui/icons/tableIcons/editIco.vue'));
+const trashIco = defineAsyncComponent(() => import('@/commons/ui/icons/tableIcons/trashIco.vue'));
+const modalEliminar = defineAsyncComponent(() => import('@/commons/ui/modals/modalEliminar.vue'));
 
+const { theme } = useTheme();
 const { setCodigoProducto } = useWindows();
 
+const productsCollection = ref([]);
+const registroParaBorrar = ref(null);
 const props = defineProps({
     productsCollection: {
         type: Array,
@@ -20,21 +22,13 @@ const props = defineProps({
     }
 });
 const emits = defineEmits(['eEditarProducto', 'edeleteProduct']);
-
-
-const productsCollection = ref([]);
-
 const editarProducto = (codigoProducto) => {
     emits('eEditarProducto', codigoProducto);
     setCodigoProducto(codigoProducto);
 };
-
-const registroParaBorrar = ref(null);
-
 const deleteProduct = (producto) => {
     registroParaBorrar.value = producto;
 };
-
 const handleEliminar = (producto) => {
     registroParaBorrar.value = null;
 
@@ -42,7 +36,6 @@ const handleEliminar = (producto) => {
         emits('edeleteProduct', producto);
     }
 };
-
 const handleCancelar = () => {
     registroParaBorrar.value = null;
 };

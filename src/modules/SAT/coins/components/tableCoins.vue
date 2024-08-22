@@ -1,9 +1,9 @@
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, defineAsyncComponent } from 'vue';
 import { useTheme } from '@/commons/composables/theme';
-import editIco from '@/commons/ui/icons/tableIcons/editIco.vue';
-import trashIco from '@/commons/ui/icons/tableIcons/trashIco.vue';
 import { useCoins } from '@/modules/SAT/coins/composables/useCoins';
+const editIco = defineAsyncComponent(() => import('@/commons/ui/icons/tableIcons/editIco.vue'));
+const trashIco = defineAsyncComponent(() => import('@/commons/ui/icons/tableIcons/trashIco.vue'));
 const { coinsCollection, cargarDatos } = useCoins();
 const { theme } = useTheme();
 

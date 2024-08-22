@@ -1,10 +1,10 @@
 <script setup>
 import { useProductos } from '@/store/product/productsStore'
-import { onMounted, ref, watch } from 'vue';
+import { onMounted, ref, watch, defineAsyncComponent } from 'vue';
 import btnSave from '@/commons/ui/btn-save/btn-save.vue';
-import generalModal from '@/commons/ui/modals/generalModal.vue';
-import tableProductsKeys from './tableProductsKeys.vue';
 import { useTheme } from '@/commons/composables/theme';
+const generalModal = defineAsyncComponent(() => import('@/commons/ui/modals/generalModal.vue'));
+const tableProductsKeys = defineAsyncComponent(() => import('@/modules/products/components/tableProductsKeys.vue'));
 const { theme } = useTheme();
 const store = useProductos();
 const imagenPrueba = ref('https://images3.alphacoders.com/133/1332803.png');

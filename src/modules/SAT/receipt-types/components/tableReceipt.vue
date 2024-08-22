@@ -1,9 +1,9 @@
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, defineAsyncComponent } from 'vue';
 import { useTheme } from '@/commons/composables/theme';
-import editIco from '@/commons/ui/icons/tableIcons/editIco.vue';
-import trashIco from '@/commons/ui/icons/tableIcons/trashIco.vue';
 import { useReceiptsTypes } from '@/modules/SAT/receipt-types/composables/useReceiptsTypes';
+const editIco = defineAsyncComponent(() => import('@/commons/ui/icons/tableIcons/editIco.vue'));
+const trashIco = defineAsyncComponent(() => import('@/commons/ui/icons/tableIcons/trashIco.vue'));
 const { receiptsCollection, loadReceipts } = useReceiptsTypes();
 const { theme } = useTheme();
 const emits = defineEmits(['eAccion']);

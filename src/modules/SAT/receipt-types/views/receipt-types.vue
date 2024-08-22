@@ -1,12 +1,12 @@
 <script setup>
-import { onBeforeMount } from 'vue';
+import { onBeforeMount, defineAsyncComponent } from 'vue';
 import tableReceipt from '@/modules/SAT/receipt-types/components/tableReceipt.vue';
 import { useLayout } from '@/commons/composables/useLayout.js';
 import { useReceiptsTypes } from '@/modules/SAT/receipt-types/composables/useReceiptsTypes.js';
 import btnFormulario from '@/commons/ui/btn-formulario/btn-formulario.vue';
-import deleteModal from '@/commons/ui/modals/deleteModal.vue';
-import generalModal from '@/commons/ui/modals/generalModal.vue';
 import { useTheme } from '@/commons/composables/theme';
+const deleteModal = defineAsyncComponent(() => import('@/commons/ui/modals/deleteModal.vue'));
+const generalModal = defineAsyncComponent(() => import('@/commons/ui/modals/generalModal.vue'));
 const { theme } = useTheme();
 const { setTitle, setViewTitle } = useLayout();
 
