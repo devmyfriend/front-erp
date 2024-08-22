@@ -1,5 +1,6 @@
 import productsRoutes from "@/modules/products/routes/index"
 import catalogsRoutes from "@/router/catalogsRoutes";
+import organizationRoutes from "@/router/organizationRoutes";
 export default {
   path: "/",
   name: "layContent",
@@ -7,6 +8,9 @@ export default {
   children: [
     {
       ...catalogsRoutes,
+    },
+    {
+      ...organizationRoutes,
     },
     {
       ...productsRoutes,

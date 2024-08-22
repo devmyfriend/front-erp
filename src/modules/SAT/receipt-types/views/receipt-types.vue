@@ -30,8 +30,7 @@ const {
 
 <template>
     <div class="flex mb-6 h-inputHeight justify-end">
-        <btnFormulario @eNuevo="showModal = true; modoFormulario = 0"
-            class="text-base px-4 py-2 text-white rounded-md uppercase font-semibold flex items-center justify-center transition-all duration-300 max-w-24 min-w-24 md:max-w-32 md:min-w-32 xl:max-w-36 xl:min-w-36" />
+        <btnFormulario @eNuevo="showModal = true; modoFormulario = 0"/>
     </div>
     <div
         class="w-full items-center flex flex-col overflow-y-scroll text-secondaryFontColor text-base rounded-3xl">

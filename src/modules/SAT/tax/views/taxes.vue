@@ -30,8 +30,7 @@ onBeforeMount(() => {
 
 <template>
     <div class="flex flex-row mb-6 h-inputHeight justify-end">
-        <btnFormulario @eNuevo="showModal = true; modoFormulario = 0"
-            class="text-base px-4 py-2 text-white rounded-md h-full uppercase font-semibold flex items-center justify-center transition-all duration-300 max-w-24 min-w-24 md:max-w-32 md:min-w-32 xl:max-w-36 xl:min-w-36" />
+        <btnFormulario @eNuevo="showModal = true; modoFormulario = 0"/>
     </div>
 
     <div
