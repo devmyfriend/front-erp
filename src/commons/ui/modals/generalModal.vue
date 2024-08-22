@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed inset-0 bg-gray-600 bg-opacity-75 flex items-center justify-center z-10" @keydown.escape="closeModal">
+  <div class="fixed inset-0 bg-gray-600 bg-opacity-75 flex items-center justify-center z-50" @keydown.escape="closeModal">
     <div class="bg-white rounded-lg shadow-xl transform transition-all max-w-[96vw] min-w-[24rem] max-h-[96vh] flex flex-col overflow-scroll">
       <div class="px-4 py-5 sm:px-6">
         <div class="w-full flex flex-row justify-between items-center">

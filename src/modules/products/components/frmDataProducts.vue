@@ -2,13 +2,11 @@
 import { useProductos } from '@/store/product/productsStore'
 import { onMounted, ref, watch } from 'vue';
 import btnSave from '@/commons/ui/btn-save/btn-save.vue';
-import Swal from 'sweetalert2';
-import { useRoute, useRouter } from 'vue-router';
-import modalClaveProducto from '@/commons/ui/modals/productKeyModal.vue';
+import generalModal from '@/commons/ui/modals/generalModal.vue';
+import tableProductsKeys from './tableProductsKeys.vue';
 import { useTheme } from '@/commons/composables/theme';
 const { theme } = useTheme();
 const store = useProductos();
-const route = useRoute()
 const imagenPrueba = ref('https://images3.alphacoders.com/133/1332803.png');
 
 const props = defineProps({
@@ -18,7 +16,6 @@ const props = defineProps({
     }
 });
 
-const elemento = ref('Producto');
 const registro = ref({
     NombreTipoProducto: 'Todos',
     CodigoProducto: '',
@@ -34,10 +31,6 @@ const registro = ref({
     ImpuestoCompuesto: ''
 });
 
-const ClaveProductoServicio = ref('10123');
-
-const verDatosAnidados = ref(false);
-
 const productsTypeCollection = ref([]); // No trabajado
 const ListadoLineasProducto = ref([]); // No trabajado
 const ListadoFamiliasProducto = ref([]); // No trabajado
@@ -46,18 +39,6 @@ const ListadoClavesProducto = ref([]);
 
 const esperarImagen = (archivo) => {
     imagenPrueba.value = archivo;
-}
-const GuardarRegistro = () => {
-    console.log('Guardando...');
-}
-const selecionarClaveUnidad = (r) => {
-    registro.value.ClaveProductoServicio = r.ClaveProductoServicio;
-    modal.value.ClaveProductoServicio = false;
-    console.log('El valor obtenido: ' + JSON.stringify(r.ClaveProductoServicio) + ' y el valor asignado local es: ' + registro.value.ClaveProductoServicio);
-}
-const cerrarModal = () => {
-    modal.value.ClaveProductoServicio = false;
-    registro.value.ClaveProductoServicio = '';
 }
 const modal = ref({
     ClaveProductoServicio: false
@@ -108,24 +89,34 @@ watch(() => props.producto, (newValue) => {
         registro.value = newValue;
     }
 });
-const Toast = Swal.mixin({
-    toast: true,
-    position: "top",
-    showConfirmButton: false,
-    timer: 1500,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-        toast.onmouseenter = Swal.stopTimer;
-        toast.onmouseleave = Swal.resumeTimer;
+
+const esperarModal = (tipo, reg) => {
+    switch (tipo) {
+        case 1: /* Tipo: claveProductoServicio */
+            registro.value.ClaveProductoServicio = reg.ClaveProductoServicio;
+            break;
+        default:
+            console.log('Opción no válida');
+            break;
     }
-});
+    modal.value.ClaveProductoServicio = false;
+}
+
+const esperarCancelar = (tipo) => {
+    switch (tipo) {
+        case 1:
+            modal.value.ClaveProductoServicio = false;
+            break;
+        default:
+            console.log('Opción no válida');
+            break;
+    }
+}
 
 const test2 = () => {
-    Toast.fire({
-        icon: 'success',
-        title: 'Signed in successfully'
-    });
+    console.log('Test 2');
 }
+
 </script>
 
 <template>
@@ -136,7 +127,8 @@ const test2 = () => {
 
             <div class="mt-4 gap-y-4 flex flex-col">
                 <div class="min-w-full flex-wrap flex">
-                    <label class="text-white font-bold max-w-48 min-w-48 text-[1rem] items-center flex" for="tipoProducto"> Tipo de producto:
+                    <label class="text-white font-bold max-w-48 min-w-48 text-[1rem] items-center flex"
+                        for="tipoProducto"> Tipo de producto:
                     </label>
                     <select v-model="registro.NombreTipoProducto" id="tipoProducto">
                         <option v-for="Tipo in productsTypeCollection" :value="Tipo.NombreTipoProducto"> {{
@@ -144,27 +136,32 @@ const test2 = () => {
                     </select>
                 </div>
                 <div class="min-w-full flex-wrap flex">
-                    <label class="text-white font-bold max-w-48 min-w-48 text-[1rem] items-center flex" for="CodigoProducto"> Código del
+                    <label class="text-white font-bold max-w-48 min-w-48 text-[1rem] items-center flex"
+                        for="CodigoProducto"> Código del
                         producto: </label>
                     <input type="text" v-model="registro.CodigoProducto" id="CodigoProducto">
                 </div>
                 <div class="min-w-full flex-wrap flex">
-                    <label class="text-white font-bold max-w-48 min-w-48 text-[1rem] items-center flex" for="NombreProducto"> Nombre del
+                    <label class="text-white font-bold max-w-48 min-w-48 text-[1rem] items-center flex"
+                        for="NombreProducto"> Nombre del
                         producto: </label>
                     <input type="text" v-model="registro.NombreProducto" id="NombreProducto">
                 </div>
                 <div class="flex flex-wrap descr">
-                    <label class="text-white font-bold max-w-48 min-w-48 text-[1rem]" for="DescripcionProducto"> Descripción del producto:
+                    <label class="text-white font-bold max-w-48 min-w-48 text-[1rem]" for="DescripcionProducto">
+                        Descripción del producto:
                     </label>
                     <textarea v-model="registro.DescripcionProducto" id="DescripcionProducto"></textarea>
                 </div>
                 <div class="min-w-full flex-wrap max-w-full flex gap-4">
                     <div class="flex grow flex-wrap">
-                        <label class="text-white font-bold max-w-48 min-w-48 shrink-0 text-[1rem] items-center flex"> Puntos: </label>
+                        <label class="text-white font-bold max-w-48 min-w-48 shrink-0 text-[1rem] items-center flex">
+                            Puntos: </label>
                         <input type="number" min="0" v-model="registro.Puntos" id="Puntos" class="grow">
                     </div>
                     <div class="flex">
-                        <label class="text-white font-bold max-w-48 min-w-48 md:max-w-none md:min-w-1 text-[1rem] items-center flex md:mr-4"
+                        <label
+                            class="text-white font-bold max-w-48 min-w-48 md:max-w-none md:min-w-1 text-[1rem] items-center flex md:mr-4"
                             for="noSeries"> Número de serie: </label>
                         <input type="checkbox" v-model="registro.Serie" id="noSeries" :checked="registro.Serie">
                     </div>
@@ -173,7 +170,8 @@ const test2 = () => {
 
             <div class="gap-y-4 flex flex-col">
                 <div class="min-w-full flex-wrap flex">
-                    <label class="text-white font-bold max-w-48 min-w-48 text-[1rem] items-center flex" for="lineaProducto"> Línea: </label>
+                    <label class="text-white font-bold max-w-48 min-w-48 text-[1rem] items-center flex"
+                        for="lineaProducto"> Línea: </label>
                     <select v-model="registro.lineaProducto" id="lineaProducto">
                         <option v-for="Linea in ListadoLineasProducto" :value="Linea.NombreLineaProducto"> {{
                             Linea.NombreLineaProducto }} </option>
@@ -189,7 +187,8 @@ const test2 = () => {
                     </button>
                 </div>
                 <div class="min-w-full flex-wrap flex">
-                    <label class="text-white font-bold max-w-48 min-w-48 text-[1rem] items-center flex" for="familiaProducto"> Familia:
+                    <label class="text-white font-bold max-w-48 min-w-48 text-[1rem] items-center flex"
+                        for="familiaProducto"> Familia:
                     </label>
                     <select v-model="registro.familiaProducto" id="familiaProducto">
                         <option v-for="Familia in ListadoFamiliasProducto" :value="Familia.NombreFamiliaProducto"> {{
@@ -206,7 +205,8 @@ const test2 = () => {
                     </button>
                 </div>
                 <div class="min-w-full flex-wrap flex">
-                    <label class="text-white font-bold max-w-48 min-w-48 text-[1rem] items-center flex" for="subfamiliaProducto"> Subfamilia:
+                    <label class="text-white font-bold max-w-48 min-w-48 text-[1rem] items-center flex"
+                        for="subfamiliaProducto"> Subfamilia:
                     </label>
                     <select v-model="registro.subfamiliaProducto" id="subfamiliaProducto">
                         <option v-for="Subfamilia in ListadoSubfamiliasProducto"
@@ -224,9 +224,11 @@ const test2 = () => {
                     </button>
                 </div>
                 <div class="min-w-full flex-wrap flex">
-                    <label class="text-white font-bold max-w-48 min-w-48 text-[1rem] items-center flex" for="ClaveProductoServicio"> C.
+                    <label class="text-white font-bold max-w-48 min-w-48 text-[1rem] items-center flex"
+                        for="ClaveProductoServicio"> C.
                         Producto SAT: </label>
                     <input v-model="registro.ClaveProductoServicio" id="ClaveProductoServicio" disabled />
+                    
                     <button type="button" @click="abrirModal(4)"
                         class="bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 transition-all duration-300 basis-16 min-h-7"
                         :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover`">
@@ -238,7 +240,8 @@ const test2 = () => {
                     </button>
                 </div>
                 <div class="min-w-full flex-wrap flex">
-                    <label class="text-white font-bold max-w-48 min-w-48 text-[1rem] items-center flex" for="ClaveUnidadSAT"> C. Unidad SAT:
+                    <label class="text-white font-bold max-w-48 min-w-48 text-[1rem] items-center flex"
+                        for="ClaveUnidadSAT"> C. Unidad SAT:
                     </label>
                     <select v-model="registro.ClaveUnidadSAT" id="ClaveUnidadSAT">
                         <option v-for="ClaveUnidad in ListadoSubfamiliasProducto"
@@ -256,7 +259,8 @@ const test2 = () => {
                     </button>
                 </div>
                 <div class="min-w-full flex-wrap flex">
-                    <label class="text-white font-bold max-w-48 min-w-48 text-[1rem] items-center flex" for="ImpuestoCompuesto"> C. Impuesto
+                    <label class="text-white font-bold max-w-48 min-w-48 text-[1rem] items-center flex"
+                        for="ImpuestoCompuesto"> C. Impuesto
                         Compuesto: </label>
                     <select v-model="registro.ImpuestoCompuesto" id="ImpuestoCompuesto">
                         <option v-for="ImpCompuesto in ListadoSubfamiliasProducto"
@@ -278,8 +282,17 @@ const test2 = () => {
             <btnSave class="mt-4 mb-2" />
         </div>
     </form>
-    <modalClaveProducto v-if="modal.ClaveProductoServicio === true" :registros="ListadoClavesProducto"
-        @eSeleccionar="selecionarClaveUnidad" @eCancelar="cerrarModal" />
+    <generalModal v-if="modal.ClaveProductoServicio === true" @eCancel="esperarCancelar(1)">
+        <template v-slot:header>
+            Selecciona una Clave Unidad
+        </template>
+        <template v-slot:content>
+            <div class=" flex-grow overflow-y-auto rounded-lg w-full">
+                <tableProductsKeys :clickeable="true" @eSelect="(registroSeleccionado) => esperarModal(1, registroSeleccionado)" />
+            </div>
+        </template>
+        
+    </generalModal>
 </template>
 
 <style scoped>

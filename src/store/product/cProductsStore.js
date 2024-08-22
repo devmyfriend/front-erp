@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
-import * as ProductKeyServices from "@/services/receipt/productKeyServices";
+import * as ProductKeyServices from "@/services/product/productKeyServices";
+import { validateResponse } from "@/utils/validateResponse";
 
 export const cProductsStore = defineStore("cProductos", {
   state: () => ({
@@ -11,11 +12,13 @@ export const cProductsStore = defineStore("cProductos", {
     },
   },
   actions: {
-    async loadProductsKeys() {
-      const data = await ProductKeyServices.loadProductsKeys();
-      if (data) {
-        this.productsKeysCollection = data;
+    async loadProductsKeys(palabra) {
+      const response = await validateResponse(ProductKeyServices.loadProductsKeys(palabra));
+      if (response.length === 0) {
+        this.productsKeysCollection = [];
+      }else{
+        this.productsKeysCollection = response.response;
       }
-    },
+    }
   },
 });
