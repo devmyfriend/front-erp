@@ -16,7 +16,7 @@ export const useBusinessEntity = defineStore("businessentity", {
         const { data } = await getBusinessEntityList();
         this.ListadoEmpresa = data;
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     },
   },
