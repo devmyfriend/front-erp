@@ -5,13 +5,6 @@ export const validateResponse = async (peticion) => {
     const response = await peticion;
     return response.data;
   } catch (error) {
-    if (error.response.status === 404) {
-      Swal.fire({
-        icon: "error",
-        title: "Error 404",
-        text: "No se encontraron registros",
-      });
-    }
     if (error.response.status === 400) {
       const errors = error.response.data.errors;
       if(errors === undefined) {
@@ -31,6 +24,20 @@ export const validateResponse = async (peticion) => {
           `,
         });
       }
+    }
+    if (error.response.status === 404) {
+      Swal.fire({
+        icon: "error",
+        title: "Error 404",
+        text: "No se encontraron registros",
+      });
+    }
+    if (error.response.status === 409) {
+      Swal.fire({
+        icon: "error",
+        title: "Error 409",
+        text: error.response.data.error,
+      });
     }
     if (error.response.status === 500) {
       Swal.fire({
