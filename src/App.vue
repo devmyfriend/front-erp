@@ -52,20 +52,18 @@ onMounted(() => {
 
 /* Formato del checkbox */
 
-input[type="checkbox"] {
+input[type="checkbox"], input[type="radio"] {
   appearance: none;
   border: 1px solid #d9d9d9;
   outline: none;
   cursor: pointer;
-  width: 10.75rem;
-  height: 10.5rem;
   border-radius: 0.5rem;
   background-color: white;
-  height: 2rem;
-  width: 2rem;
+  height: 1rem;
+  width: 1rem;
 }
 
-input[type="checkbox"]::before {
+input[type="checkbox"]::before, input[type="radio"]::before {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -73,10 +71,10 @@ input[type="checkbox"]::before {
   border-radius: 0.3125rem;
 }
 
-input[type="checkbox"]:checked::before {
+input[type="checkbox"]:checked::before, input[type="radio"]:checked::before {
   content: '✓';
-  font-size: 2rem;
-  line-height: 1.1125rem;
+  font-size: 1rem;
+  line-height: 0.25rem;
 }
 
 input,
