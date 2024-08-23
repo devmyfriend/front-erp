@@ -15,13 +15,16 @@ import tableBranchs from '@/modules/businessEntity/components/tableBranchs.vue';
 import { useContact } from '@/store/contact/contact.js';
 import { usePhone } from '@/store/phone/phone.js'
 import { useEmailBusinessEntity } from '@/store/emails/email.js'
+import { branchesStore } from '@/store/branches/branchesStore';
 
+const storeBranch = branchesStore();
 const storeContact = useContact();
 const storePhone = usePhone();
 const storeEmail = useEmailBusinessEntity();
 const contactosEmpresa = ref([]);
 const telefonosEmpresa = ref([]);
 const emailsEmpresa = ref([]);
+const sucursalesEmpresa = ref([]);
 const showPanel = ref(0);
 const showContact = ref(false);
 const { theme } = useTheme();
@@ -41,6 +44,13 @@ const loadEmails = (idEmpresa) => {
         emailsEmpresa.value = storeEmail.getListaEmail;
     })
 }
+const loadBranches = (idEmpresa) => {
+    storeBranch.findBranchesByBusinessEntityID(idEmpresa).then(() => {
+        sucursalesEmpresa.value = storeBranch.getBranches;
+        console.log('Las sucursales son: ' + JSON.stringify(sucursalesEmpresa.value));
+        
+    })
+}
 const handleClickTab = (tab) => {
     showPanel.value = tab
 }
@@ -56,6 +66,7 @@ onBeforeMount(() => {
     loadContact(1);
     loadPhones(1);
     loadEmails(1);
+    loadBranches(1);
 })
 </script>
 
@@ -146,8 +157,7 @@ onBeforeMount(() => {
                         </div>
                         <div
                             class="w-full items-center flex flex-col flex-grow overflow-y-scroll text-secondaryFontColor text-base rounded-2xl max-h-[40rem]">
-                            <tableBranchs :ListaSucursales="emailsEmpresa" :editable="true" />
-                            <!-- ListaSucursales: sucursalesEmpresa -->
+                            <tableBranchs :ListaSucursales="sucursalesEmpresa" :editable="true" />
                         </div>
                     </div>
                 </div>
