@@ -17,7 +17,7 @@ const changeView = (view, index) => {
     <div class="flex-grow h-[44px] flex flex-row justify-between" :class="`bg-${theme}-background`">
         <div class="flex flex-row overflow-hidden rounded-xl shadow-md shadow-[#212121] h-8" :class="`bg-${theme}-primary`">
             <button v-for="(tab, index) in tabsCollection" :key="index"
-            class="cursor-pointer flex-shrink-0 text-white px-4 border text-xs md:text-base hover:px-6 transition-all duration-200"
+            class="window-general"
             :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover border-${theme}-primary-hover ${ activeTab === index ? `bg-${theme}-primary-hover px-6` : ''}`"
             @click="changeView(tab, index)">
                 {{ tab.name }}

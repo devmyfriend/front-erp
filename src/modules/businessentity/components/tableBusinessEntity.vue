@@ -44,35 +44,30 @@ onMounted(() => {
             </tr>
         </thead>
         <tbody>
-            <tr v-for="(empresa, index) in businessEntityCollection" :key="index"
-                class="bg-white"
+            <tr v-for="(empresa, index) in businessEntityCollection" :key="index" class="bg-white"
                 :class="[`text-${theme}-text`, clickeable ? 'cursor-pointer hover:font-bold transition-all duration-100' : '']"
                 @click="clickeable ? selectItem(empresa) : null">
-                <td class="h-primaryBodyTableHeight border-b-secondaryTableWidth px-2 text-center truncate">
+                <td class="general-cell text-center">
                     {{ empresa.EntidadNegocioId }}
                 </td>
-                <td
-                    class="h-primaryBodyTableHeight border-b-secondaryTableWidth border-l-primaryTableWidth px-2 text-center truncate">
+                <td class="general-cell border-l-primaryTableWidth text-center">
                     {{ empresa.NombreComercial }}
                 </td>
-                <td
-                    class="h-primaryBodyTableHeight border-b-secondaryTableWidth border-l-primaryTableWidth px-2 text-center truncate">
+                <td class="general-cell border-l-primaryTableWidth text-center">
                     {{ empresa.NombreOficial }}
                 </td>
-                <td
-                    class="h-primaryBodyTableHeight border-b-secondaryTableWidth border-l-primaryTableWidth px-2 text-center truncate">
+                <td class="general-cell border-l-primaryTableWidth text-center">
                     {{ empresa.RFC }}
                 </td>
-<!--                 <td
-                    class="h-primaryBodyTableHeight border-b-secondaryTableWidth border-l-primaryTableWidth px-2 text-center truncate">
+                <!--                 <td
+                    class="border-l-primaryTableWidth text-center">
                     {{ empresa.Activo ? 'Activo' : 'Inactivo' }}
                 </td> -->
-                <td v-if="editable" 
-                class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-start truncate">
-                <div class="w-full h-full flex items-center justify-center">
-                    <editIco class="cursor-pointer" @click="handleAccion(empresa, 1)" />
-                    <trashIco class="cursor-pointer" @click="handleAccion(empresa, 2)" />
-                </div>
+                <td v-if="editable" class="general-cell border-l-primaryTableWidth text-start">
+                    <div class="w-full h-full flex items-center justify-center">
+                        <editIco class="cursor-pointer" @click="handleAccion(empresa, 1)" />
+                        <trashIco class="cursor-pointer" @click="handleAccion(empresa, 2)" />
+                    </div>
                 </td>
             </tr>
         </tbody>

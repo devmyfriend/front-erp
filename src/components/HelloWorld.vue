@@ -1,5 +1,5 @@
 <script setup>
-  /* import frmGeneralData from '@/modules/businessentity/components/frmGeneralData.vue' */
+  /* import frmGeneralData from '@/modules/businessEntity/components/frmGeneralData.vue' */
 </script>
 
 <template>

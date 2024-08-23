@@ -17,8 +17,7 @@ onBeforeMount(() => {
             <div class="flex flex-row mb-6 h-inputHeight gap-4">
                 <coinFinder @eBusqueda="esperarBusqueda" />
             </div>
-            <btnFormulario @eNuevo="showModal = true; modoFormulario = 0"
-                class="text-base px-4 py-2 text-white rounded-md h-full uppercase font-semibold flex items-center justify-center transition-all duration-300 max-w-24 md:max-w-32 xl:max-w-36" />
+            <btnFormulario @eNuevo="showModal = true; modoFormulario = 0" />
         </div>
         -->
     <!-- Versión con buscador y botón de agregar -->

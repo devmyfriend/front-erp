@@ -39,27 +39,27 @@ const props = defineProps({
         <tbody>
             <tr v-for="(zipCode, index) in zipCodesCollection" :key="index" :class="`text-${theme}-text bg-white`">
                 <td
-                    class="h-primaryBodyTableHeight border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+                    class="general-cell text-center">
                     {{ zipCode.pais }}
                 </td>
                 <td
-                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+                    class="general-cell border-l-primaryTableWidth text-center">
                     {{ zipCode.codigo_postal }}
                 </td>
                 <td
-                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-start truncate">
+                    class="general-cell border-l-primaryTableWidth text-start">
                     {{ zipCode.estado }}
                 </td>
                 <td
-                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-start truncate">
+                    class="general-cell border-l-primaryTableWidth text-start">
                     {{ zipCode.municipio }}
                 </td>
                 <td
-                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-start truncate">
+                    class="general-cell border-l-primaryTableWidth text-start">
                     {{ zipCode.localidad }}
                 </td>
                 <td v-if="editable"
-                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-start truncate">
+                    class="general-cell border-l-primaryTableWidth text-start">
                     <div class="w-full h-full flex items-center justify-center">
                         <editIco class="cursor-pointer" @click="handleAccion(zipCode, 1)" />
                         <trashIco class="cursor-pointer" @click="handleAccion(zipCode, 2)" />

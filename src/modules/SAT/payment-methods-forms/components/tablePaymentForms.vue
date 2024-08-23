@@ -25,20 +25,16 @@ onMounted(() => {
                 forma.Activo === 1 ? `text-${theme}-text bg-white` : '',
                 forma.Activo === 0 ? `text-${theme}-subtext bg-${theme}-disabled` : ''
             ]">
-                <td
-                    class="h-primaryBodyTableHeight border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+                <td class="general-cell text-center">
                     {{ forma.ClaveFormaPago }}
                 </td>
-                <td
-                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-start truncate">
+                <td class="general-cell border-l-primaryTableWidth text-start">
                     {{ forma.Descripcion }}
                 </td>
-                <td
-                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+                <td class="general-cell border-l-primaryTableWidth text-center">
                     {{ forma.Bancarizado ? 'Si' : 'No' }}
                 </td>
-                <td
-                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+                <td class="general-cell border-l-primaryTableWidth text-center">
                     {{ forma.Activo ? 'Activo' : 'Inactivo' }}
                 </td>
             </tr>

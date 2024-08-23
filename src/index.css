@@ -50,5 +50,21 @@ select {
     --bonavida-light-400: #699fce;
     --bonavida-light-500: #498ac3;
     --bonavida-light-600: #1c75b9; /* Principal: Cabeceras y Sidebar */
-  }
-  
+}
+
+.btn-general {
+    @apply text-white flex p-primaryPaddingButton border-none gap-4 h-8 w-24 md:w-32 xl:w-36 sm:h-8 md:h-10 lg:h-10 xl:h-10 2xl:h-10 font-bold
+    rounded-primaryButtonRadius justify-center items-center uppercase text-base transition-all duration-300;
+}
+
+.btn-icon {
+    @apply hidden sm:hidden md:hidden lg:w-4 lg:inline-flex xl:w-5 xl:inline-flex 2xl:w-6 2xl:inline-flex h-2 sm:h-2 md:h-3 lg:h-4 xl:h-5 2xl:h-6;
+}
+
+.general-cell {
+    @apply h-primaryBodyTableHeight px-2 truncate border-b-secondaryTableWidth;
+}
+
+.window-general{
+    @apply cursor-pointer flex-shrink-0 text-white px-4 border text-xs md:text-base hover:px-6 transition-all duration-200;
+}

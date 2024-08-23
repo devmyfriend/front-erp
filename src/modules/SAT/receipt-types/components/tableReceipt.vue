@@ -42,19 +42,19 @@ const handleAccion = (comprobante, accion) => {
             <tr v-for="(comprobante, index) in receiptsCollection" :key="index" :class="`text-${theme}-text bg-white`">
                 <!-- :class="[comprobante.Borrado ? `text-${theme}-text bg-white` : '', !comprobante.Borrado ? `text-${theme}-subtext bg-${theme}-disabled` : '']" -->
                 <td
-                    class="h-primaryBodyTableHeight border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+                    class="general-cell text-center">
                     {{ comprobante.ClaveTipoDeComprobante }}
                 </td>
                 <td
-                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-start truncate">
+                    class="general-cell border-l-primaryTableWidth text-start">
                     {{ comprobante.Descripcion }}
                 </td>
                 <!--                 <td
-                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+                    class="general-cell border-l-primaryTableWidth text-center">
                     {{ comprobante.Borrado ? 'Activo' : 'Inactivo' }}
                 </td> -->
                 <td v-if="editable"
-                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-start truncate">
+                    class="general-cell border-l-primaryTableWidth text-start">
                     <div class="w-full h-full flex items-center justify-center">
                         <editIco class="cursor-pointer" @click="handleAccion(comprobante, 1)" />
                         <trashIco class="cursor-pointer" @click="handleAccion(comprobante, 2)" />

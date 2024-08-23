@@ -4,7 +4,7 @@ import { useWindows } from '@/modules/products/composables/useWindows.js';
 import { useTheme } from '@/commons/composables/theme'
 const editIco = defineAsyncComponent(() => import('@/commons/ui/icons/tableIcons/editIco.vue'));
 const trashIco = defineAsyncComponent(() => import('@/commons/ui/icons/tableIcons/trashIco.vue'));
-const modalEliminar = defineAsyncComponent(() => import('@/commons/ui/modals/modalEliminar.vue'));
+const modalEliminar = defineAsyncComponent(() => import('@/commons/ui/modals/deleteModal.vue'));
 
 const { theme } = useTheme();
 const { setCodigoProducto } = useWindows();
@@ -48,23 +48,16 @@ watch(() => props.productsCollection, (newValue, oldValue) => {
 </script>
 
 <template>
-    <table class="w-full table-fixed">
-        <thead class="sticky top-0 bg-transparent">
+    <table class="w-full table-fixed leading-4 text-[1rem]">
+        <thead>
             <tr class="sticky top-0 h-primaryHeaderTableHeight text-white">
-                <th class="border-b-secondaryTableWidth border-b-primaryUnderline rounded-tl-xl"
-                    :class="`bg-${theme}-headers`">ID</th>
-                <th class="border-b-secondaryTableWidth border-b-primaryUnderline rounded-t-[1px]"
-                    :class="`bg-${theme}-headers`">Nombre</th>
-                <th class="hidden lg:table-cell border-b-secondaryTableWidth border-b-primaryUnderline rounded-t-[1px]"
-                    :class="`bg-${theme}-headers`">Código del Producto</th>
-                <th class="border-b-secondaryTableWidth border-b-primaryUnderline rounded-t-[1px]"
-                    :class="`bg-${theme}-headers`">Tipo Producto</th>
-                <th class="hidden lg:table-cell border-b-secondaryTableWidth border-b-primaryUnderline rounded-t-[1px]"
-                :class="`bg-${theme}-headers`">Puntos</th>
-                <th class="hidden lg:table-cell border-b-secondaryTableWidth border-b-primaryUnderline rounded-t-[1px]"
-                    :class="`bg-${theme}-headers`">Serie</th>
-                <th class="border-b-secondaryTableWidth border-b-primaryUnderline rounded-tr-xl"
-                    :class="`bg-${theme}-headers`">Acciones</th>
+                <th :class="`bg-${theme}-headers`">ID</th>
+                <th :class="`bg-${theme}-headers`">Nombre</th>
+                <th :class="`bg-${theme}-headers`">Código del Producto</th>
+                <th :class="`bg-${theme}-headers`">Tipo Producto</th>
+                <th :class="`bg-${theme}-headers`">Puntos</th>
+                <th :class="`bg-${theme}-headers`">Serie</th>
+                <th :class="`bg-${theme}-headers`">Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -72,37 +65,31 @@ watch(() => props.productsCollection, (newValue, oldValue) => {
                 !producto.Borrado ? `text-${theme}-text bg-white` : '',
                 producto.Borrado ? `text-${theme}-text bg-${theme}-disabled` : ''
             ]">
-                <td
-                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+                <td class="general-cell border-l-primaryTableWidth text-center">
                     {{ producto.ProductoId }}
                 </td>
-                <td
-                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-start truncate">
+                <td class="general-cell border-l-primaryTableWidth text-start">
                     {{ producto.NombreProducto }}
                 </td>
-                <td
-                    class="hidden lg:table-cell h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+                <td class="general-cell hidden lg:table-cell border-l-primaryTableWidth text-center">
                     {{ producto.CodigoProducto }}
                 </td>
-                <td
-                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+                <td class="general-cell border-l-primaryTableWidth text-center">
                     {{ producto.NombreTipoProducto }}
                 </td>
-                <td
-                    class="hidden lg:table-cell h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+                <td class="general-cell hidden lg:table-cell border-l-primaryTableWidth text-center">
                     {{ producto.Puntos }}
                 </td>
-                <td
-                    class="hidden lg:table-cell h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+                <td class="general-cell hidden lg:table-cell border-l-primaryTableWidth text-center">
                     {{ producto.Serie ? 'Sí' : 'No' }}
                 </td>
-                <td
-                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 ">
+                <td class="general-cell border-l-primaryTableWidth ">
                     <div class="flex w-full items-center justify-center min-w-16">
                         <div
                             class="min-w-16 h-full text-center items-center lg:justify-start justify-center flex gap-1 lg:gap-1 flex-wrap">
-                            <editIco class="cursor-pointer shrink" @click="editarProducto(producto.CodigoProducto)"/>
-                            <trashIco class="cursor-pointer shrink" @click="deleteProduct(producto)" v-if="producto.Borrado === 0" />
+                            <editIco class="cursor-pointer shrink" @click="editarProducto(producto.CodigoProducto)" />
+                            <trashIco class="cursor-pointer shrink" @click="deleteProduct(producto)"
+                                v-if="producto.Borrado === 0" />
                         </div>
                     </div>
                 </td>

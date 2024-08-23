@@ -2,11 +2,12 @@
     import buscadorProductos from '@/modules/products/components/productFinder.vue';
     import tablaProductos from '@/modules/products/components/tableProducts.vue'
     import ventanas from '@/commons/components/windows.vue';
+    import Swal from 'sweetalert2';
+    import btnAgregar from '@/commons/ui/btn-agregar/btn-agregar.vue';
     import { useRouter } from 'vue-router';
     import { ref, watch, onBeforeMount } from 'vue';
     import { useProductos } from '@/store/product/productsStore'
     import { useListProducts } from '@/modules/products/composables/useListProducts.js';
-    import Swal from 'sweetalert2';
     import { useLayout } from '@/commons/composables/useLayout';
     import { useTheme } from '@/commons/composables/theme';
     import { useWindows } from '@/commons/composables/useWindows'; 
@@ -119,7 +120,9 @@
                 <buscadorProductos @eBusqueda="esperarBusqueda" :tipoProducto="tipoProducto" />
             </div>
 
-            <div class="min-h-[35px]">
+            <!-- <div class="flex h-0 flex-grow-[50]"></div> -->
+
+            <div class="flex gap-4">
                 <label for="tipoProducto" class="text-labelSize font-labelWeight text-white mr-1"> Tipo </label>
                 <select class="h-inputHeight min-w-40 max-w-sm 
                 p-paddingInput rounded-inputRadius border-inputBorder 
@@ -128,6 +131,7 @@
                     <option v-for="Tipo in productsTypeCollection" :value="Tipo.NombreTipoProducto"> {{
                         Tipo.NombreTipoProducto }}</option>
                 </select>
+                <btnAgregar :ruta="'productsForm'"/>
             </div>
         </div>
 

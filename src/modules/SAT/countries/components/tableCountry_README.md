@@ -25,8 +25,8 @@ The `tableCountry` component is a Vue table component that displays a list of co
     <table class="w-full table-fixed leading-4 text-[1rem]">
         <thead>
             <tr class="sticky top-0 h-primaryHeaderTableHeight text-white">
-                <th class="bg-primaryHeaderTable" :class="`bg-${theme}-headers`">Clave</th>
-                <th class="bg-primaryHeaderTable" :class="`bg-${theme}-headers`">Nombre</th>
+                <th :class="`bg-${theme}-headers`">Clave</th>
+                <th :class="`bg-${theme}-headers`">Nombre</th>
             </tr>
         </thead>
         <tbody>

@@ -42,22 +42,22 @@ onMounted(() => {
     </thead>
     <tbody>
       <tr v-for="(zipCode, index) in zipCodesCollection" :key="index" :class="`text-${theme}-text bg-white`">
-        <td class="h-primaryBodyTableHeight border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+        <td class="h-primaryBodyTableHeight border-b-secondaryTableWidth px-2 text-center truncate">
           {{ zipCode.pais }}
         </td>
-        <td class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+        <td class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth px-2 text-center truncate">
           {{ zipCode.codigo_postal }}
         </td>
-        <td class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-start truncate">
+        <td class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth px-2 text-start truncate">
           {{ zipCode.estado }}
         </td>
-        <td class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-start truncate">
+        <td class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth px-2 text-start truncate">
           {{ zipCode.municipio }}
         </td>
-        <td class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-start truncate">
+        <td class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth px-2 text-start truncate">
           {{ zipCode.localidad }}
         </td>
-        <td v-if="editable" class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-start truncate">
+        <td v-if="editable" class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth px-2 text-start truncate">
           <div class="w-full h-full flex items-center justify-center">
             <editIco class="cursor-pointer" @click="handleAccion(zipCode, 1)" />
             <trashIco class="cursor-pointer" @click="handleAccion(zipCode, 2)" />

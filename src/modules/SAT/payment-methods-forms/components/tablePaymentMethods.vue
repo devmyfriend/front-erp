@@ -24,16 +24,13 @@ onMounted(() => {
                 metodo.Activo === 1 ? `text-${theme}-text bg-white` : '',
                 metodo.Activo === 0 ? `text-${theme}-subtext bg-${theme}-disabled` : ''
             ]">
-                <td
-                    class="h-primaryBodyTableHeight border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+                <td class="general-cell text-center">
                     {{ metodo.ClaveMetodoPago }}
                 </td>
-                <td
-                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-start truncate">
+                <td class="general-cell border-l-primaryTableWidth text-start">
                     {{ metodo.Descripcion }}
                 </td>
-                <td
-                    class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-center truncate">
+                <td class="general-cell border-l-primaryTableWidth text-center">
                     {{ metodo.Activo ? 'Activo' : 'Inactivo' }}
                 </td>
             </tr>

@@ -38,7 +38,7 @@ onMounted(() => {
             <tr class="sticky top-0 h-primaryHeaderTableHeight text-white">
                 <th :class="`bg-${theme}-headers`">Clave</th>
                 <th :class="`bg-${theme}-headers`">Nombre</th>
-                <th :class="`bg-${theme}-headers `">Status</th>
+                <th :class="`bg-${theme}-headers`">Status</th>
                 <th v-if="editable" :class="`bg-${theme}-headers`"> Acciones </th>
             </tr>
         </thead>
@@ -47,26 +47,25 @@ onMounted(() => {
                 :class="[moneda.Activo ? `text-${theme}-text bg-white`
                     : `text-${theme}-text bg-${theme}-disabled`, clickeable ? 'cursor-pointer hover:font-bold transition-all duration-100' : '']"
                 @click="clickeable ? selectItem(moneda) : null">
-                <td class="h-primaryBodyTableHeight border-b-secondaryTableWidth px-2 text-center truncate">
+                <td class="general-cell text-center">
                     {{ moneda.ClaveMoneda }}
                 </td>
                 <td
-                    class="h-primaryBodyTableHeight border-b-secondaryTableWidth border-l-primaryTableWidth px-2 text-center truncate">
+                    class="general-cell border-l-primaryTableWidth text-center">
                     {{ moneda.Descripcion }}
                 </td>
                 <td
-                    class="h-primaryBodyTableHeight border-b-secondaryTableWidth border-l-primaryTableWidth px-2 text-center truncate">
+                    class="general-cell border-l-primaryTableWidth text-center">
                     {{ moneda.Activo ? 'Activo' : 'Inactivo' }}
                 </td>
-<!--                 class="h-primaryBodyTableHeight 
-                    border-b-secondaryTableWidth
+<!--                 class="
                     border-l-primaryTableWidth
-                    text-center truncate px-2
+                    text-center general-cell
                     flex justify-center items-center">
  -->
 
                 <td v-if="editable" 
-                class="h-primaryBodyTableHeight border-l-primaryTableWidth border-b-secondaryTableWidth border-b-primaryUnderline px-2 text-start truncate">
+                class="general-cell border-l-primaryTableWidth text-start">
                 <div class="w-full h-full flex items-center justify-center">
                     <editIco class="cursor-pointer" @click="handleAccion(moneda, 1)" />
                     <trashIco class="cursor-pointer" @click="handleAccion(moneda, 2)" />
