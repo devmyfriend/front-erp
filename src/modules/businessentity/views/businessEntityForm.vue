@@ -31,7 +31,7 @@ onBeforeMount(()=>{
 //datos de empresa
 
 const businessentity = reactive({
-    EntidadNegocioId:   0,
+    EntidadNegocioId:   null,
     EsPropietaria:      true,
     NombreOficial:      '',
     RFC:                '',

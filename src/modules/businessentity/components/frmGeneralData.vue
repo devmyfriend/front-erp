@@ -7,7 +7,7 @@
     import { useRegimenFiscal } from '@/store/regimenfiscal/regimenfiscal';
     import { useCountry } from '@/store/country/country';
     import { useAddress } from '@/store/address/address';
-
+    import { useTheme } from '@/commons/composables/theme';
     //importaciones de ui propias
     import titleH3 from '@/commons/ui/title-h3/title-h3.vue';
 
@@ -38,6 +38,7 @@
     
     // variables de control.
     const isTaxId = ref(false)
+    const { theme } = useTheme()
     
     // definicion de props
 
@@ -100,7 +101,7 @@
                 Datos Generales
             </titleH3>
             <div class="flex w-max pr-2 justify-end text-right">
-                <input v-model="data.EntidadNegocioId" class="w-36" name="BusinessEntityId" role="Id" readonly placeholder="Id de la empresa" type="text">
+                <input v-model="data.EntidadNegocioId" class="w-36 font-semibold" :class="`${(data.EntidadNegocioId === null || data.EntidadNegocioId === 0) ? `bg-${theme}-disabled` : `text-${theme}-primary`}`" name="BusinessEntityId" role="Id" readonly placeholder="Id de la empresa" type="text">
             </div>
         </div>
         <div class="flex w-[100%]">
