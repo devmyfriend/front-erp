@@ -75,6 +75,7 @@ input[type="checkbox"]:checked::before, input[type="radio"]:checked::before {
   content: '✓';
   font-size: 1rem;
   line-height: 0.25rem;
+  font-weight: bold;
 }
 
 input,
