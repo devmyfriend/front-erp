@@ -11,8 +11,13 @@ const { setActiveTab, setTabsCollection } = useWindows();
 
 const { setTitle, setViewTitle } = useLayout();
 
+const props = defineProps({
+  CodigoProducto: String,
+  default: '',
+});
+
 const datos = {
-  codigoProducto: '',
+  codigoProducto: props.CodigoProducto,
   tipoProducto: '',
   nombreProducto: '',
   descripcionProducto: '',
@@ -28,7 +33,7 @@ const datos = {
 
 onBeforeMount(() => {
   setTitle('Productos');
-  setViewTitle('Formulario de Productos');
+  setViewTitle((props.CodigoProducto ? ('Editando producto: ' + props.CodigoProducto) : 'Nuevo Producto'));
   setTabsCollection([
     { name: 'Listado', route: 'productsList' },
     { name: 'Formulario', route: 'productsForm' }

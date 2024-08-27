@@ -8,8 +8,9 @@ const modulos = ref([
     { nombre: 'Login', ruta: '/login' },
     { nombre: 'Productos Listado', ruta: { name: 'productsList' } },
     { nombre: 'Productos Formulario', ruta: { name: 'productsForm' } },
-    { nombre: 'Dashoard de Catálogos', ruta: { name: 'catalogsDashboard' }},
-    { nombre: 'Dashoard de Organización', ruta: { name: 'organizationDashboard' }},
+    { nombre: 'Productos Formulario con producto', ruta: { name: 'productsFormEdit', params: {CodigoProducto: '202200117' } } },
+    { nombre: 'Dashoard de Catálogos', ruta: { name: 'catalogsDashboard' } },
+    { nombre: 'Dashoard de Organización', ruta: { name: 'organizationDashboard' } },
 
     { nombre: 'Horacio', ruta: '/helloword' },
 
@@ -28,17 +29,16 @@ const modulos = ref([
             class="bg-sidebar rounded-2xl w-3/4 max-h-44 py-6 flex place-content-center text-center gap-4 flex-wrap flex-col mt-6 h-[40%] xl:h-max px-4 md:px-6 ">
             <h1 class="text-white font-semibold text-[2rem] flex-grow max-h-12"> Menú temporal </h1>
             <div class="w-64 max-w-64 max-h-12 h-12 flex justify-center items-center">
-                <themeSwitcher/>
+                <themeSwitcher />
             </div>
         </div>
         <section class="flex flex-grow min-h-44 p-6 w-full justify-center">
             <div class="flex flex-grow p-4 rounded-2xl flex-col gap-4 overflow-y-scroll items-center"
                 :class="`bg-${theme}-container border-${theme}-primary border-4`">
                 <router-link :to="modulo.ruta" v-for="modulo in modulos" :key="modulo.nombre"
-                    :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover`" class="flex items-center px-6 transition-all duration-300
-                        border-4 border-solid justify-center
-                        text-2xl font-semibold rounded-2xl text-white no-underline
-                        w-full min-h-[2.5rem] max-w-[35rem]">
+                    :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover`"
+                    class="flex items-center px-6 transition-all duration-300
+                        border-4 border-solid justify-center py-1 text-2xl font-semibold rounded-2xl text-white no-underline w-full max-w-[35rem]">
                     {{ modulo.nombre }}
                 </router-link>
             </div>

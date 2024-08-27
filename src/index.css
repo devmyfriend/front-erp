@@ -53,7 +53,7 @@ select {
 }
 
 .btn-general {
-    @apply text-white flex p-primaryPaddingButton border-none gap-4 h-8 w-24 md:w-32 xl:w-36 sm:h-8 md:h-10 lg:h-10 xl:h-10 2xl:h-10 font-bold
+    @apply text-white flex p-primaryPaddingButton border-none gap-4 h-[35px] w-24 md:w-32 xl:w-36 md:h-10 lg:h-10 xl:h-10 2xl:h-10 font-bold
     rounded-primaryButtonRadius justify-center items-center uppercase text-base transition-all duration-300;
 }
 

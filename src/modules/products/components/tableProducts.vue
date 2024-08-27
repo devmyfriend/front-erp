@@ -53,10 +53,10 @@ watch(() => props.productsCollection, (newValue, oldValue) => {
             <tr class="sticky top-0 h-primaryHeaderTableHeight text-white">
                 <th :class="`bg-${theme}-headers`">ID</th>
                 <th :class="`bg-${theme}-headers`">Nombre</th>
-                <th :class="`bg-${theme}-headers`">Código del Producto</th>
+                <th class="hidden lg:table-cell" :class="`bg-${theme}-headers`">Código del Producto</th>
                 <th :class="`bg-${theme}-headers`">Tipo Producto</th>
-                <th :class="`bg-${theme}-headers`">Puntos</th>
-                <th :class="`bg-${theme}-headers`">Serie</th>
+                <th class="hidden lg:table-cell" :class="`bg-${theme}-headers`">Puntos</th>
+                <th class="hidden lg:table-cell" :class="`bg-${theme}-headers`">Serie</th>
                 <th :class="`bg-${theme}-headers`">Acciones</th>
             </tr>
         </thead>

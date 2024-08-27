@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import btnSave from '@/commons/ui/btn-save/btn-save.vue';
 import generalModal from '@/commons/ui/modals/generalModal.vue';
 import tableProductsKeys from '@/modules/products/components/tableProductsKeys.vue';
@@ -17,6 +17,7 @@ const props = defineProps({
 
 const showModal = ref(false);
 const modalMode = ref(0);
+const codigoProducto = ref('');
 
 const obtenerRegistro = (registro) => {
     switch (modalMode.value) {
@@ -40,6 +41,10 @@ const obtenerRegistro = (registro) => {
     modalMode.value = 0;
 }
 
+onMounted(() => {
+    codigoProducto.value = props.datos.codigoProducto;
+});
+
 watch(() => modalMode.value, (value) => {
     if (value != 0) {
         showModal.value = true;
@@ -56,7 +61,7 @@ watch(() => modalMode.value, (value) => {
 
             <div class="flex w-full gap-2">
                 <label class="text-white" for="CodigoProducto"> Codigo Producto: </label>
-                <input type="number" id="CodigoProducto" v-model="datos.codigoProducto">
+                <input type="text" id="CodigoProducto" v-model="datos.codigoProducto" :disabled="datos.codigoProducto" :class="datos.codigoProducto?`bg-${theme}-disabled`:''" >
             </div>
 
             <div class="flex w-full gap-2">
