@@ -1,338 +1,204 @@
 <script setup>
-import { useProductos } from '@/store/product/productsStore'
-import { onMounted, ref, watch, defineAsyncComponent } from 'vue';
+import { ref, watch } from 'vue';
 import btnSave from '@/commons/ui/btn-save/btn-save.vue';
+import generalModal from '@/commons/ui/modals/generalModal.vue';
+import tableProductsKeys from '@/modules/products/components/tableProductsKeys.vue';
+import tableUnitKeys from '@/modules/products/components/tableUnitKeys.vue';
 import { useTheme } from '@/commons/composables/theme';
-const generalModal = defineAsyncComponent(() => import('@/commons/ui/modals/generalModal.vue'));
-const tableProductsKeys = defineAsyncComponent(() => import('@/modules/products/components/tableProductsKeys.vue'));
+import Swal from 'sweetalert2';
 const { theme } = useTheme();
-const store = useProductos();
-const imagenPrueba = ref('https://images3.alphacoders.com/133/1332803.png');
 
 const props = defineProps({
-    producto: {
+    datos: {
         type: Object,
-        resquired: false
-    }
+        required: true
+    },
 });
 
-const registro = ref({
-    NombreTipoProducto: 'Todos',
-    CodigoProducto: '',
-    NombreProducto: '',
-    DescripcionProducto: '',
-    Serie: false,
-    Puntos: null,
-    lineaProducto: '',
-    familiaProducto: '',
-    subfamiliaProducto: '',
-    ClaveProductoServicio: null,
-    ClaveUnidadSAT: '',
-    ImpuestoCompuesto: ''
-});
+const showModal = ref(false);
+const modalMode = ref(0);
 
-const productsTypeCollection = ref([]); // No trabajado
-const ListadoLineasProducto = ref([]); // No trabajado
-const ListadoFamiliasProducto = ref([]); // No trabajado
-const ListadoSubfamiliasProducto = ref([]); // No trabajado
-const ListadoClavesProducto = ref([]);
-
-const esperarImagen = (archivo) => {
-    imagenPrueba.value = archivo;
-}
-const modal = ref({
-    ClaveProductoServicio: false
-});
-
-const abrirModal = (opt) => {
-    switch (opt) {
-        case 1:
-            modal.value.lineaProducto = true;
-            break;
-        case 2:
-            modal.value.familiaProducto = true;
-            break;
-        case 3:
-            modal.value.subfamiliaProd = true;
-            break;
+const obtenerRegistro = (registro) => {
+    switch (modalMode.value) {
         case 4:
-            modal.value.ClaveProductoServicio = true;
+            props.datos.claveProductoServicio = registro.ClaveProductoServicio;
             break;
+
         case 5:
-            modal.value.ClaveUnidadSAT = true;
+            props.datos.claveUnidad = registro.ClaveUnidadSat;            
             break;
-        case 6:
-            modal.value.ImpuestoCompuesto = true;
-            break;
+    
         default:
-            console.log('Opción no válida');
+            Swal.fire({
+                title: 'Error',
+                text: 'No se ha seleccionado un modo de modal',
+                icon: 'error',
+                confirmButtonText: 'Aceptar'
+            });
             break;
     }
-
+    modalMode.value = 0;
 }
 
-onMounted(() => {
-    cargarDatos();
-});
-
-const cargarDatos = () => {
-    store.loadTypeProducts().then(() => {
-        productsTypeCollection.value = store.getTypeProducts;
-    });
-    store.loadProductsKeys(1).then(() => {
-        ListadoClavesProducto.value = store.getProductsKeys;
-    });
-}
-
-watch(() => props.producto, (newValue) => {
-    if (newValue != undefined) {
-        registro.value = newValue;
+watch(() => modalMode.value, (value) => {
+    if (value != 0) {
+        showModal.value = true;
+    }else if(value == 0){
+        showModal.value = false;
     }
 });
-
-const esperarModal = (tipo, reg) => {
-    switch (tipo) {
-        case 1: /* Tipo: claveProductoServicio */
-            registro.value.ClaveProductoServicio = reg.ClaveProductoServicio;
-            break;
-        default:
-            console.log('Opción no válida');
-            break;
-    }
-    modal.value.ClaveProductoServicio = false;
-}
-
-const esperarCancelar = (tipo) => {
-    switch (tipo) {
-        case 1:
-            modal.value.ClaveProductoServicio = false;
-            break;
-        default:
-            console.log('Opción no válida');
-            break;
-    }
-}
-
-const test2 = () => {
-    console.log('Test 2');
-}
-
 </script>
 
 <template>
-    <form @submit.prevent="modo === 0 ? test2() : test2()"
-        class="w-full xl:w-[64%] min-h-max max-h-full mb-8 xl:mb-0 rounded-2xl overflow-y-scroll"
-        :class="`bg-${theme}-container`">
-        <div class="m-4 gap-y-4 flex flex-col">
+    <div class="flex px-4 py-6 rounded-xl border-2 overflow-y-scroll flex-wrap gap-4 w-full 2xl:w-4/6"
+        :class="`bg-${theme}-container border-${theme}-primary`">
+        <div class="flex w-full gap-4 flex-wrap lg:flex-nowrap">
 
-            <div class="mt-4 gap-y-4 flex flex-col">
-                <div class="min-w-full flex-wrap flex">
-                    <label class="text-white font-bold max-w-48 min-w-48 text-[1rem] items-center flex"
-                        for="tipoProducto"> Tipo de producto:
-                    </label>
-                    <select v-model="registro.NombreTipoProducto" id="tipoProducto">
-                        <option v-for="Tipo in productsTypeCollection" :value="Tipo.NombreTipoProducto"> {{
-                            Tipo.NombreTipoProducto }} </option>
-                    </select>
-                </div>
-                <div class="min-w-full flex-wrap flex">
-                    <label class="text-white font-bold max-w-48 min-w-48 text-[1rem] items-center flex"
-                        for="CodigoProducto"> Código del
-                        producto: </label>
-                    <input type="text" v-model="registro.CodigoProducto" id="CodigoProducto">
-                </div>
-                <div class="min-w-full flex-wrap flex">
-                    <label class="text-white font-bold max-w-48 min-w-48 text-[1rem] items-center flex"
-                        for="NombreProducto"> Nombre del
-                        producto: </label>
-                    <input type="text" v-model="registro.NombreProducto" id="NombreProducto">
-                </div>
-                <div class="flex flex-wrap descr">
-                    <label class="text-white font-bold max-w-48 min-w-48 text-[1rem]" for="DescripcionProducto">
-                        Descripción del producto:
-                    </label>
-                    <textarea v-model="registro.DescripcionProducto" id="DescripcionProducto"></textarea>
-                </div>
-                <div class="min-w-full flex-wrap max-w-full flex gap-4">
-                    <div class="flex grow flex-wrap">
-                        <label class="text-white font-bold max-w-48 min-w-48 shrink-0 text-[1rem] items-center flex">
-                            Puntos: </label>
-                        <input type="number" min="0" v-model="registro.Puntos" id="Puntos" class="grow">
-                    </div>
-                    <div class="flex">
-                        <label
-                            class="text-white font-bold max-w-48 min-w-48 md:max-w-none md:min-w-1 text-[1rem] items-center flex md:mr-4"
-                            for="noSeries"> Número de serie: </label>
-                        <input type="checkbox" v-model="registro.Serie" id="noSeries" :checked="registro.Serie">
-                    </div>
-                </div>
+            <div class="flex w-full gap-2">
+                <label class="text-white" for="CodigoProducto"> Codigo Producto: </label>
+                <input type="number" id="CodigoProducto" v-model="datos.codigoProducto">
             </div>
 
-            <div class="gap-y-4 flex flex-col">
-                <div class="min-w-full flex-wrap flex">
-                    <label class="text-white font-bold max-w-48 min-w-48 text-[1rem] items-center flex"
-                        for="lineaProducto"> Línea: </label>
-                    <select v-model="registro.lineaProducto" id="lineaProducto">
-                        <option v-for="Linea in ListadoLineasProducto" :value="Linea.NombreLineaProducto"> {{
-                            Linea.NombreLineaProducto }} </option>
-                    </select>
-                    <button type="button" @click="abrirModal(1)"
-                        class="basis-16 min-h-7 bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 transition-all duration-300"
-                        :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover`">
-                        <svg width="16" height="16" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M21.7008 19.0204L17.4165 14.7368C17.2231 14.5435 16.961 14.4361 16.686 14.4361H15.9855C17.1716 12.9194 17.8763 11.0118 17.8763 8.93663C17.8763 4 13.8756 0 8.93815 0C4.00068 0 0 4 0 8.93663C0 13.8733 4.00068 17.8733 8.93815 17.8733C11.0137 17.8733 12.9216 17.1686 14.4386 15.9828V16.6831C14.4386 16.9581 14.546 17.2202 14.7394 17.4135L19.0237 21.6971C19.4276 22.101 20.0808 22.101 20.4804 21.6971L21.6965 20.4812C22.1004 20.0773 22.1004 19.4243 21.7008 19.0204ZM8.93815 14.4361C5.90004 14.4361 3.43775 11.9785 3.43775 8.93663C3.43775 5.89903 5.89574 3.43716 8.93815 3.43716C11.9763 3.43716 14.4386 5.89474 14.4386 8.93663C14.4386 11.9742 11.9806 14.4361 8.93815 14.4361Z"
-                                fill="#fff" />
-                        </svg>
-                    </button>
-                </div>
-                <div class="min-w-full flex-wrap flex">
-                    <label class="text-white font-bold max-w-48 min-w-48 text-[1rem] items-center flex"
-                        for="familiaProducto"> Familia:
-                    </label>
-                    <select v-model="registro.familiaProducto" id="familiaProducto">
-                        <option v-for="Familia in ListadoFamiliasProducto" :value="Familia.NombreFamiliaProducto"> {{
-                            Familia.NombreFamiliaProducto }} </option>
-                    </select>
-                    <button type="button" @click="abrirModal(2)"
-                        class="bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 transition-all duration-300 basis-16 min-h-7"
-                        :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover`">
-                        <svg width="16" height="16" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M21.7008 19.0204L17.4165 14.7368C17.2231 14.5435 16.961 14.4361 16.686 14.4361H15.9855C17.1716 12.9194 17.8763 11.0118 17.8763 8.93663C17.8763 4 13.8756 0 8.93815 0C4.00068 0 0 4 0 8.93663C0 13.8733 4.00068 17.8733 8.93815 17.8733C11.0137 17.8733 12.9216 17.1686 14.4386 15.9828V16.6831C14.4386 16.9581 14.546 17.2202 14.7394 17.4135L19.0237 21.6971C19.4276 22.101 20.0808 22.101 20.4804 21.6971L21.6965 20.4812C22.1004 20.0773 22.1004 19.4243 21.7008 19.0204ZM8.93815 14.4361C5.90004 14.4361 3.43775 11.9785 3.43775 8.93663C3.43775 5.89903 5.89574 3.43716 8.93815 3.43716C11.9763 3.43716 14.4386 5.89474 14.4386 8.93663C14.4386 11.9742 11.9806 14.4361 8.93815 14.4361Z"
-                                fill="#fff" />
-                        </svg>
-                    </button>
-                </div>
-                <div class="min-w-full flex-wrap flex">
-                    <label class="text-white font-bold max-w-48 min-w-48 text-[1rem] items-center flex"
-                        for="subfamiliaProducto"> Subfamilia:
-                    </label>
-                    <select v-model="registro.subfamiliaProducto" id="subfamiliaProducto">
-                        <option v-for="Subfamilia in ListadoSubfamiliasProducto"
-                            :value="Subfamilia.NombreSubfamiliaProducto"> {{ Subfamilia.NombreSubfamiliaProducto }}
-                        </option>
-                    </select>
-                    <button type="button" @click="abrirModal(3)"
-                        class="bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 transition-all duration-300 basis-16 min-h-7"
-                        :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover`">
-                        <svg width="16" height="16" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M21.7008 19.0204L17.4165 14.7368C17.2231 14.5435 16.961 14.4361 16.686 14.4361H15.9855C17.1716 12.9194 17.8763 11.0118 17.8763 8.93663C17.8763 4 13.8756 0 8.93815 0C4.00068 0 0 4 0 8.93663C0 13.8733 4.00068 17.8733 8.93815 17.8733C11.0137 17.8733 12.9216 17.1686 14.4386 15.9828V16.6831C14.4386 16.9581 14.546 17.2202 14.7394 17.4135L19.0237 21.6971C19.4276 22.101 20.0808 22.101 20.4804 21.6971L21.6965 20.4812C22.1004 20.0773 22.1004 19.4243 21.7008 19.0204ZM8.93815 14.4361C5.90004 14.4361 3.43775 11.9785 3.43775 8.93663C3.43775 5.89903 5.89574 3.43716 8.93815 3.43716C11.9763 3.43716 14.4386 5.89474 14.4386 8.93663C14.4386 11.9742 11.9806 14.4361 8.93815 14.4361Z"
-                                fill="#fff" />
-                        </svg>
-                    </button>
-                </div>
-                <div class="min-w-full flex-wrap flex">
-                    <label class="text-white font-bold max-w-48 min-w-48 text-[1rem] items-center flex"
-                        for="ClaveProductoServicio"> C.
-                        Producto SAT: </label>
-                    <input v-model="registro.ClaveProductoServicio" id="ClaveProductoServicio" disabled />
-                    
-                    <button type="button" @click="abrirModal(4)"
-                        class="bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 transition-all duration-300 basis-16 min-h-7"
-                        :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover`">
-                        <svg width="16" height="16" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M21.7008 19.0204L17.4165 14.7368C17.2231 14.5435 16.961 14.4361 16.686 14.4361H15.9855C17.1716 12.9194 17.8763 11.0118 17.8763 8.93663C17.8763 4 13.8756 0 8.93815 0C4.00068 0 0 4 0 8.93663C0 13.8733 4.00068 17.8733 8.93815 17.8733C11.0137 17.8733 12.9216 17.1686 14.4386 15.9828V16.6831C14.4386 16.9581 14.546 17.2202 14.7394 17.4135L19.0237 21.6971C19.4276 22.101 20.0808 22.101 20.4804 21.6971L21.6965 20.4812C22.1004 20.0773 22.1004 19.4243 21.7008 19.0204ZM8.93815 14.4361C5.90004 14.4361 3.43775 11.9785 3.43775 8.93663C3.43775 5.89903 5.89574 3.43716 8.93815 3.43716C11.9763 3.43716 14.4386 5.89474 14.4386 8.93663C14.4386 11.9742 11.9806 14.4361 8.93815 14.4361Z"
-                                fill="#fff" />
-                        </svg>
-                    </button>
-                </div>
-                <div class="min-w-full flex-wrap flex">
-                    <label class="text-white font-bold max-w-48 min-w-48 text-[1rem] items-center flex"
-                        for="ClaveUnidadSAT"> C. Unidad SAT:
-                    </label>
-                    <select v-model="registro.ClaveUnidadSAT" id="ClaveUnidadSAT">
-                        <option v-for="ClaveUnidad in ListadoSubfamiliasProducto"
-                            :value="ClaveUnidad.NombreSubfamiliaProducto"> {{ ClaveUnidad.NombreSubfamiliaProducto }}
-                        </option>
-                    </select>
-                    <button type="button" @click="abrirModal(5)"
-                        class="bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 transition-all duration-300 basis-16 min-h-7"
-                        :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover`">
-                        <svg width="16" height="16" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M21.7008 19.0204L17.4165 14.7368C17.2231 14.5435 16.961 14.4361 16.686 14.4361H15.9855C17.1716 12.9194 17.8763 11.0118 17.8763 8.93663C17.8763 4 13.8756 0 8.93815 0C4.00068 0 0 4 0 8.93663C0 13.8733 4.00068 17.8733 8.93815 17.8733C11.0137 17.8733 12.9216 17.1686 14.4386 15.9828V16.6831C14.4386 16.9581 14.546 17.2202 14.7394 17.4135L19.0237 21.6971C19.4276 22.101 20.0808 22.101 20.4804 21.6971L21.6965 20.4812C22.1004 20.0773 22.1004 19.4243 21.7008 19.0204ZM8.93815 14.4361C5.90004 14.4361 3.43775 11.9785 3.43775 8.93663C3.43775 5.89903 5.89574 3.43716 8.93815 3.43716C11.9763 3.43716 14.4386 5.89474 14.4386 8.93663C14.4386 11.9742 11.9806 14.4361 8.93815 14.4361Z"
-                                fill="#fff" />
-                        </svg>
-                    </button>
-                </div>
-                <div class="min-w-full flex-wrap flex">
-                    <label class="text-white font-bold max-w-48 min-w-48 text-[1rem] items-center flex"
-                        for="ImpuestoCompuesto"> C. Impuesto
-                        Compuesto: </label>
-                    <select v-model="registro.ImpuestoCompuesto" id="ImpuestoCompuesto">
-                        <option v-for="ImpCompuesto in ListadoSubfamiliasProducto"
-                            :value="ImpCompuesto.NombreSubfamiliaProducto"> {{ ImpCompuesto.NombreSubfamiliaProducto }}
-                        </option>
-                    </select>
-                    <button type="button" @click="abrirModal(6)"
-                        class="bg-primaryBtnColor border-inputWidth rounded-lg px-6 ml-2 transition-all duration-300 basis-16 min-h-7"
-                        :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover`">
-                        <svg width="16" height="16" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M21.7008 19.0204L17.4165 14.7368C17.2231 14.5435 16.961 14.4361 16.686 14.4361H15.9855C17.1716 12.9194 17.8763 11.0118 17.8763 8.93663C17.8763 4 13.8756 0 8.93815 0C4.00068 0 0 4 0 8.93663C0 13.8733 4.00068 17.8733 8.93815 17.8733C11.0137 17.8733 12.9216 17.1686 14.4386 15.9828V16.6831C14.4386 16.9581 14.546 17.2202 14.7394 17.4135L19.0237 21.6971C19.4276 22.101 20.0808 22.101 20.4804 21.6971L21.6965 20.4812C22.1004 20.0773 22.1004 19.4243 21.7008 19.0204ZM8.93815 14.4361C5.90004 14.4361 3.43775 11.9785 3.43775 8.93663C3.43775 5.89903 5.89574 3.43716 8.93815 3.43716C11.9763 3.43716 14.4386 5.89474 14.4386 8.93663C14.4386 11.9742 11.9806 14.4361 8.93815 14.4361Z"
-                                fill="#fff" />
-                        </svg>
-                    </button>
-                </div>
+            <div class="flex w-full gap-2">
+                <label class="text-white" for="TipoProducto"> Tipo de Producto: </label>
+                <select id="TipoProducto" v-model="datos.tipoProducto">
+                    <option value="1">Producto 1</option>
+                    <option value="2">Producto 2</option>
+                    <option value="3">Producto 3</option>
+                </select>
             </div>
-
-            <btnSave class="mt-4 mb-2" />
         </div>
-    </form>
-    <generalModal v-if="modal.ClaveProductoServicio === true" @eCancel="esperarCancelar(1)">
-        <template v-slot:header>
-            Selecciona una Clave Unidad
-        </template>
-        <template v-slot:content>
-            <div class=" flex-grow overflow-y-auto rounded-lg w-full">
-                <tableProductsKeys :clickeable="true" @eSelect="(registroSeleccionado) => esperarModal(1, registroSeleccionado)" />
-            </div>
-        </template>
-        
-    </generalModal>
+
+        <div class="flex w-full gap-2">
+            <label class="text-white" for="NombreProducto"> Nombre Producto: </label>
+            <input type="text" id="NombreProducto" v-model="datos.nombreProducto">
+        </div>
+
+        <div class="flex w-full gap-2">
+            <label class="text-white" for="DescripcionProducto"> Descripcion Producto: </label>
+            <textarea name="DescripcionProducto" id="DescripcionProducto" v-model="datos.descripcionProducto"
+                class="flex-grow min-w-60 rounded-inputRadius h-44 p-2 resize-none"> </textarea>
+        </div>
+
+        <div class="flex w-full gap-2">
+            <label class="text-white" for="Puntos"> Puntos: </label>
+            <input type="number" id="Puntos" v-model="datos.puntos">
+        </div>
+
+        <div class="flex w-full gap-2">
+            <label class="text-white" for="Numero de Serie"> Número de serie: </label>
+            <input type="text" id="Numero de Serie" v-model="datos.serie">
+        </div>
+
+        <!-- ----------------------------------------------------------------------------------------------------------------------- -->
+
+        <div class="flex w-full gap-2">
+            <label class="text-white" for="Linea"> Linea: </label>
+            <input type="text" :class="`bg-${theme}-disabled text-${theme}-primary font-semibold`" id="Linea" disabled v-model="datos.linea"> </input>
+            <button class="btn-action" :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover`" @click="modalMode = 1">
+                <svg width="16" height="16" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M21.7008 19.0204L17.4165 14.7368C17.2231 14.5435 16.961 14.4361 16.686 14.4361H15.9855C17.1716 12.9194 17.8763 11.0118 17.8763 8.93663C17.8763 4 13.8756 0 8.93815 0C4.00068 0 0 4 0 8.93663C0 13.8733 4.00068 17.8733 8.93815 17.8733C11.0137 17.8733 12.9216 17.1686 14.4386 15.9828V16.6831C14.4386 16.9581 14.546 17.2202 14.7394 17.4135L19.0237 21.6971C19.4276 22.101 20.0808 22.101 20.4804 21.6971L21.6965 20.4812C22.1004 20.0773 22.1004 19.4243 21.7008 19.0204ZM8.93815 14.4361C5.90004 14.4361 3.43775 11.9785 3.43775 8.93663C3.43775 5.89903 5.89574 3.43716 8.93815 3.43716C11.9763 3.43716 14.4386 5.89474 14.4386 8.93663C14.4386 11.9742 11.9806 14.4361 8.93815 14.4361Z"
+                        fill="#fff" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="flex w-full gap-2">
+            <label class="text-white" for="Familia"> Familia: </label>
+            <input type="text" :class="`bg-${theme}-disabled text-${theme}-primary font-semibold`" id="Familia" disabled v-model="datos.familia"> </input>
+            <button class="btn-action" :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover`" @click="modalMode = 2">
+                <svg width="16" height="16" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M21.7008 19.0204L17.4165 14.7368C17.2231 14.5435 16.961 14.4361 16.686 14.4361H15.9855C17.1716 12.9194 17.8763 11.0118 17.8763 8.93663C17.8763 4 13.8756 0 8.93815 0C4.00068 0 0 4 0 8.93663C0 13.8733 4.00068 17.8733 8.93815 17.8733C11.0137 17.8733 12.9216 17.1686 14.4386 15.9828V16.6831C14.4386 16.9581 14.546 17.2202 14.7394 17.4135L19.0237 21.6971C19.4276 22.101 20.0808 22.101 20.4804 21.6971L21.6965 20.4812C22.1004 20.0773 22.1004 19.4243 21.7008 19.0204ZM8.93815 14.4361C5.90004 14.4361 3.43775 11.9785 3.43775 8.93663C3.43775 5.89903 5.89574 3.43716 8.93815 3.43716C11.9763 3.43716 14.4386 5.89474 14.4386 8.93663C14.4386 11.9742 11.9806 14.4361 8.93815 14.4361Z"
+                        fill="#fff" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="flex w-full gap-2">
+            <label class="text-white" for="Subfamilia"> Subfamilia: </label>
+            <input type="text" :class="`bg-${theme}-disabled text-${theme}-primary font-semibold`" id="Subfamilia" disabled v-model="datos.subfamilia">
+            </input>
+            <button class="btn-action" :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover`" @click="modalMode = 3">
+                <svg width="16" height="16" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M21.7008 19.0204L17.4165 14.7368C17.2231 14.5435 16.961 14.4361 16.686 14.4361H15.9855C17.1716 12.9194 17.8763 11.0118 17.8763 8.93663C17.8763 4 13.8756 0 8.93815 0C4.00068 0 0 4 0 8.93663C0 13.8733 4.00068 17.8733 8.93815 17.8733C11.0137 17.8733 12.9216 17.1686 14.4386 15.9828V16.6831C14.4386 16.9581 14.546 17.2202 14.7394 17.4135L19.0237 21.6971C19.4276 22.101 20.0808 22.101 20.4804 21.6971L21.6965 20.4812C22.1004 20.0773 22.1004 19.4243 21.7008 19.0204ZM8.93815 14.4361C5.90004 14.4361 3.43775 11.9785 3.43775 8.93663C3.43775 5.89903 5.89574 3.43716 8.93815 3.43716C11.9763 3.43716 14.4386 5.89474 14.4386 8.93663C14.4386 11.9742 11.9806 14.4361 8.93815 14.4361Z"
+                        fill="#fff" />
+                </svg>
+            </button>
+        </div>
+        <div class="flex w-full gap-2">
+            <label class="text-white" for="Clave Producto"> C. Producto SAT: </label>
+            <input type="text" :class="`bg-${theme}-disabled text-${theme}-primary font-semibold`" id="Clave Producto" disabled
+                v-model="datos.claveProductoServicio"> </input>
+            <button class="btn-action" :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover`" @click="modalMode = 4">
+                <svg width="16" height="16" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M21.7008 19.0204L17.4165 14.7368C17.2231 14.5435 16.961 14.4361 16.686 14.4361H15.9855C17.1716 12.9194 17.8763 11.0118 17.8763 8.93663C17.8763 4 13.8756 0 8.93815 0C4.00068 0 0 4 0 8.93663C0 13.8733 4.00068 17.8733 8.93815 17.8733C11.0137 17.8733 12.9216 17.1686 14.4386 15.9828V16.6831C14.4386 16.9581 14.546 17.2202 14.7394 17.4135L19.0237 21.6971C19.4276 22.101 20.0808 22.101 20.4804 21.6971L21.6965 20.4812C22.1004 20.0773 22.1004 19.4243 21.7008 19.0204ZM8.93815 14.4361C5.90004 14.4361 3.43775 11.9785 3.43775 8.93663C3.43775 5.89903 5.89574 3.43716 8.93815 3.43716C11.9763 3.43716 14.4386 5.89474 14.4386 8.93663C14.4386 11.9742 11.9806 14.4361 8.93815 14.4361Z"
+                        fill="#fff" />
+                </svg>
+            </button>
+        </div>
+        <div class="flex w-full gap-2">
+            <label class="text-white" for="Clave Unidad"> C. Unidad SAT: </label>
+            <input type="text" :class="`bg-${theme}-disabled text-${theme}-primary font-semibold`" id="Clave Unidad" disabled v-model="datos.claveUnidad">
+            </input>
+            <button class="btn-action" :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover`" @click="modalMode = 5">
+                <svg width="16" height="16" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M21.7008 19.0204L17.4165 14.7368C17.2231 14.5435 16.961 14.4361 16.686 14.4361H15.9855C17.1716 12.9194 17.8763 11.0118 17.8763 8.93663C17.8763 4 13.8756 0 8.93815 0C4.00068 0 0 4 0 8.93663C0 13.8733 4.00068 17.8733 8.93815 17.8733C11.0137 17.8733 12.9216 17.1686 14.4386 15.9828V16.6831C14.4386 16.9581 14.546 17.2202 14.7394 17.4135L19.0237 21.6971C19.4276 22.101 20.0808 22.101 20.4804 21.6971L21.6965 20.4812C22.1004 20.0773 22.1004 19.4243 21.7008 19.0204ZM8.93815 14.4361C5.90004 14.4361 3.43775 11.9785 3.43775 8.93663C3.43775 5.89903 5.89574 3.43716 8.93815 3.43716C11.9763 3.43716 14.4386 5.89474 14.4386 8.93663C14.4386 11.9742 11.9806 14.4361 8.93815 14.4361Z"
+                        fill="#fff" />
+                </svg>
+            </button>
+        </div>
+        <div class="flex w-full gap-2">
+            <label class="text-white" for="Clave Impuesto Compuesto"> C. Impuesto Compuesto: </label>
+            <input type="text" :class="`bg-${theme}-disabled text-${theme}-primary font-semibold`" id="Clave Impuesto Compuesto" disabled
+                v-model="datos.claveImpuestoCompuesto"> </input>
+            <button class="btn-action" :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover`" @click="modalMode = 6">
+                <svg width="16" height="16" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M21.7008 19.0204L17.4165 14.7368C17.2231 14.5435 16.961 14.4361 16.686 14.4361H15.9855C17.1716 12.9194 17.8763 11.0118 17.8763 8.93663C17.8763 4 13.8756 0 8.93815 0C4.00068 0 0 4 0 8.93663C0 13.8733 4.00068 17.8733 8.93815 17.8733C11.0137 17.8733 12.9216 17.1686 14.4386 15.9828V16.6831C14.4386 16.9581 14.546 17.2202 14.7394 17.4135L19.0237 21.6971C19.4276 22.101 20.0808 22.101 20.4804 21.6971L21.6965 20.4812C22.1004 20.0773 22.1004 19.4243 21.7008 19.0204ZM8.93815 14.4361C5.90004 14.4361 3.43775 11.9785 3.43775 8.93663C3.43775 5.89903 5.89574 3.43716 8.93815 3.43716C11.9763 3.43716 14.4386 5.89474 14.4386 8.93663C14.4386 11.9742 11.9806 14.4361 8.93815 14.4361Z"
+                        fill="#fff" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- ----------------------------------------------------------------------------------------------------------------------- -->
+
+        <div class="flex w-full justify-center">
+            <btnSave class="w-full" />
+        </div>
+
+        <!--                                        Modales                                                                          -->
+
+        <generalModal v-if="showModal" @eCancel="showModal = 0" :buttonsMode="2" >
+            <template v-slot:header>
+                Selecciona un registro
+            </template>
+            <template v-slot:content>
+                <tableProductsKeys v-if="modalMode === 4" :clickeable="true" @eSelect="obtenerRegistro" />
+                <tableUnitKeys v-if="modalMode === 5" :clickeable="true" @eSelect="obtenerRegistro" />
+            </template>
+        </generalModal>
+
+        <!--                                        Modales                                                                          -->
+
+    </div>
 </template>
 
 <style scoped>
-.completa {
-    width: 100%;
-    max-width: 100%;
-    min-width: 100%;
-}
-
 input,
-select,
-textarea {
-    flex: 1 0 12rem;
-    padding: 0.25rem 0.5rem;
-    font-size: 1rem;
-    border-radius: 0.25rem;
-    outline: none;
+select {
+  @apply flex-grow h-inputHeight rounded-inputRadius p-paddingInput text-base;
 }
 
-input[type="checkbox"] {
-    flex: 1 0 auto;
+label {
+  @apply text-[15px] font-bold flex items-center w-20 md:min-w-48 max-w-28 md:max-w-max overflow-hidden text-ellipsis;
 }
 
-.descr {
-    display: flex;
-    flex-direction: row;
-}
-
-textarea {
-    resize: none;
-    flex-grow: 1;
-    height: 5rem;
-}
-
-.clickeable {
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.clickeable:hover {
-    color: #353535;
+.btn-action {
+  @apply w-10 md:w-14 lg:w-16 h-inputHeight rounded-lg flex items-center justify-center transition-all duration-300;
 }
 </style>

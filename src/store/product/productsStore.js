@@ -1,11 +1,13 @@
 import { defineStore } from "pinia";
 import * as productServices from "@/services/product/productsServices";
-
+import * as productLinesServices from "@/services/product/lineProductsServices";
 export const useProductos = defineStore("Productos", {
   state: () => ({
     productsCollection: [],
     productsTypeCollection: [],
     productsKeysCollection: [],
+    unitKeysCollection: [],
+    productsLineCollection: [],
     Producto: {},
   }),
   getters: {
@@ -20,6 +22,12 @@ export const useProductos = defineStore("Productos", {
     },
     getProductsKeys(state) {
       return state.productsKeysCollection;
+    },
+    getUnitKeys(state) {
+      return state.unitKeysCollection;
+    },
+    getProductsLine(state) {
+      return state.productsLineCollection;
     },
   },
   actions: {
@@ -56,9 +64,20 @@ export const useProductos = defineStore("Productos", {
       }
     },
     async loadUnitKeys(pagina) {
+      if (!pagina) {
+        pagina = 1;
+      }
       const data = await productServices.loadUnitKeys(pagina);
       if (data) {
-        return data;
+        this.unitKeysCollection = data;
+        return true;
+      }
+    },
+    async loadProductsLine() {
+      const data = await productLinesServices.loadLines();
+      if (data) {
+        this.productsLineCollection = data;
+        return true;
       }
     },
     async loadProductsKeys(pagina) {

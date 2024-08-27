@@ -1,5 +1,6 @@
 import axios from "axios";
 import Swal from "sweetalert2";
+import { apiSAT } from "@/apis/SAT";
 const rutaProductos = import.meta.env.VITE_API_PRODUCTS_URL;
 const rutaGeneral = import.meta.env.VITE_API_URL;
 
@@ -62,10 +63,8 @@ export const findProducts = async (nombre, tipo) => {
 
 export const loadUnitKeys = async (pagina) => {
   try {
-    const datos = await axios.get(
-      `${process.env.VUE_APP_PATH_API}v1/unidades/${pagina}`
-    );
-
+    const datos = await apiSAT.get(`unidades/${pagina}`);
+    
     if (datos.status === 200 && datos.statusText === "OK") {
       return datos.data;
     }
