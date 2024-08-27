@@ -26,8 +26,8 @@ onBeforeMount(() => {
     <div class="flex-grow flex flex-col">
         <!-- Versión con buscador y botón de agregar -->
             <!--
-            <div class="flex flex-row mb-6 h-inputHeight justify-between">
-                <div class="flex flex-row mb-6 h-inputHeight gap-4">
+            <div class="flex flex-row mb-6 flex-wrap justify-between">
+                <div class="flex flex-row mb-6 flex-wrap gap-4">
                     <coinFinder @eBusqueda="esperarBusqueda" />
                 </div>
                 <btnFormulario @eNuevo="showModal = true; modoFormulario = 0" />
@@ -46,7 +46,7 @@ onBeforeMount(() => {
         <!-- Versión con buscador sin botón de agregar -->
             <!--
                 <div
-                    class="flex flex-row mb-6 h-inputHeight justify-between">
+                    class="flex flex-row mb-6 flex-wrap justify-between">
                         <coinFinder @eBusqueda="esperarBusqueda" />
                 </div>
             -->
