@@ -11,6 +11,7 @@ const loadMethodsFormsPayments = async () => {
   if (response) {
     paymentMethodsCollection.value = store.getPaymentMethods;
     paymentFormsCollection.value = store.getPaymentForms;
+    return true;
   } else {
     Swal.fire({
       title: "¡Error!",
@@ -19,6 +20,7 @@ const loadMethodsFormsPayments = async () => {
       showConfirmButton: false,
       timer: 1500,
     });
+    return false;
   }
 };
 

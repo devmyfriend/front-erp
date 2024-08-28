@@ -16,8 +16,10 @@ export const coinsStore = defineStore("Coins", {
       const response = await validateResponse(coinsServices.loadCoins());
       if (response.length === 0) {
         this.coinsCollection = [];
+        return false;
       } else {
         this.coinsCollection = response;
+        return true;
       }
     },
     async findCoins(moneda) {

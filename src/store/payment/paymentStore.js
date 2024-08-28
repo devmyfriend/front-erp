@@ -21,9 +21,11 @@ export const paymentStore = defineStore("Payment", {
       if (response.length === 0) {
         this.paymentMethodsCollection = [];
         this.paymentFormsCollection = [];
+        return false;
       } else {
         this.paymentMethodsCollection = response[0].metodos;
         this.paymentFormsCollection = response[0].formas;
+        return true;
       }
     }
   },

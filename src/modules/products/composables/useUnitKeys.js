@@ -7,9 +7,14 @@ const unitKeysInfo = ref({});
 const productsLineCollection = ref([]);
 
 const loadUnitKeys = async (pagina) => {
-  await store.loadUnitKeys(pagina);
-  unitKeysCollection.value = store.getUnitKeys.items;
-  unitKeysInfo.value = store.getUnitKeys.info; 
+  const response = await store.loadUnitKeys(pagina);
+  if (response) {
+    unitKeysCollection.value = store.getUnitKeys.items;
+    unitKeysInfo.value = store.getUnitKeys.info;
+    return true;
+  } else {
+    return false;
+  }
 }
 
 export function useUnitKeys() {

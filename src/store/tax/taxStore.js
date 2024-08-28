@@ -16,8 +16,10 @@ export const taxStore = defineStore("tax", {
       const response = await validateResponse(taxServices.loadTaxes());
       if (response.length === 0) {
         this.taxesCollection = [];
+        return false;
       } else {
         this.taxesCollection = response;
+        return true;
       }
     },
     async createTaxes(impuesto) {

@@ -16,8 +16,10 @@ export const countryStore = defineStore("country", {
       const response = await validateResponse(countryServices.loadCountries());
       if (response.length === 0) {
         this.countriesCollection = [];
+        return false;
       } else {
         this.countriesCollection = response;
+        return true;
       }
     },
   },

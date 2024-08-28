@@ -16,8 +16,10 @@ export const receiptStore = defineStore("receipt", {
       const response = await validateResponse(receiptServices.loadReceipts());
       if (response.length === 0) {
         this.receiptsCollection = [];
+        return false;
       } else {
         this.receiptsCollection = response;
+        return true;
       }
     },
     async createReceipt(comprobante) {
