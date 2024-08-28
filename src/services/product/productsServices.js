@@ -1,10 +1,57 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 import { apiSAT } from "@/apis/SAT";
+import { apiProducts } from "@/apis/products";
 const rutaProductos = import.meta.env.VITE_API_PRODUCTS_URL;
 const rutaGeneral = import.meta.env.VITE_API_URL;
 
+/* Nuevos */
+
 export const loadProducts = async () => {
+  return await apiProducts.get("/productos");
+}
+
+export const loadTypeProducts = async () => {
+  return await apiProducts.get("/productos/tipo");
+}
+
+export const findProducts = async (nombre, tipo) => {
+  return await apiProducts.get(`/productos/buscar/${nombre}/${tipo}`);
+}
+
+export const getProduct = async (clave) => {
+  return await apiProducts.get(`/productos/detalle/${clave}`);
+}
+
+export const createProduct = async (producto) => {
+  return await apiProducts.post("/productos", producto);
+}
+
+export const deleteProduct = async (payload) => {
+  return await apiProducts.delete("/productos", { data: payload });
+}
+
+export const loadProductsKeys = async (pagina) => {
+  return await apiProducts.get(`/productos/servicio/palabra/${pagina}`);
+}
+
+export const loadUnitKeys = async (pagina) => {
+  return await apiProducts.get(`/unidades/${pagina}`);
+}
+
+export const findProductsKeys = async (palabra) => {
+  return await apiProducts.get(`/productos/servicio/buscar/descripcion/${palabra}`);
+}
+
+export const findUnitKeys = async (palabra) => {
+  return await apiProducts.get(`/unidades/buscar/nombre/${palabra}`);
+}
+
+/* Nuevos */
+
+
+
+/* export const loadProducts = async () => {
   try {
     const datos = await axios.get(`${rutaProductos}v1/productos`);
     if (datos.status === 200 && datos.statusText === "OK") {
@@ -60,7 +107,6 @@ export const findProducts = async (nombre, tipo) => {
     });
   }
 };
-
 export const loadUnitKeys = async (pagina) => {
   try {
     const datos = await apiSAT.get(`unidades/${pagina}`);
@@ -139,7 +185,6 @@ export const findUnitKeys = async (palabra) => {
     });
   }
 };
-
 export const getProduct = async (clave) => {
   try {
     const datos = await axios.get(
@@ -205,4 +250,4 @@ export const deleteProduct = async (payload) => {
       icon: "error",
     });
   }
-};
+}; */
