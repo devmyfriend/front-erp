@@ -13,13 +13,33 @@ const bodyFrm = ref({
 });
 
 const findCoins = async (texto) => {
-  await store.findCoins(texto);
-  coinsCollection.value = store.getCoins;
+  const response = await store.findCoins(texto);
+  if (response) {
+    coinsCollection.value = store.getCoins;
+  } else {
+    Swal.fire({
+      title: "¡Error!",
+      text: "No se encontraron registros",
+      icon: "error",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  }
 };
 
 const cargarDatos = async () => {
-  await store.loadCoins();
-  coinsCollection.value = store.getCoins;
+  const response = await store.loadCoins();
+  if (response) {
+    coinsCollection.value = store.getCoins;
+  } else {
+    Swal.fire({
+      title: "¡Error!",
+      text: "No se encontraron registros",
+      icon: "error",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  }
 
   modoFormulario.value = 0;
   showModal.value = false;
@@ -64,6 +84,14 @@ const esperarModal = (datos) => {
           showConfirmButton: false,
           timer: 1500,
         });
+      } else {
+        Swal.fire({
+          title: "¡Error!",
+          text: "No se pudo guardar el registro",
+          icon: "error",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
     });
   } else if (modoFormulario.value === 1) {
@@ -74,6 +102,14 @@ const esperarModal = (datos) => {
           title: "¡Actualización exitosa!",
           text: "El registro se ha actualizado con éxito",
           icon: "success",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        Swal.fire({
+          title: "¡Error!",
+          text: "No se pudo actualizar el registro",
+          icon: "error",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -90,6 +126,14 @@ const borrarRegistro = () => {
         title: "¡Eliminación exitosa!",
         text: "El registro se ha eliminado con éxito",
         icon: "success",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else {
+      Swal.fire({
+        title: "¡Error!",
+        text: "No se pudo eliminar el registro",
+        icon: "error",
         showConfirmButton: false,
         timer: 1500,
       });

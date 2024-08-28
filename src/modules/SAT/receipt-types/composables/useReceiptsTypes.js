@@ -10,8 +10,18 @@ const modalData = ref(null);
 const bodyFrm = ref({ ClaveTipoDeComprobante: "", Descripcion: "" });
 
 const loadReceipts = async () => {
-  await store.loadReceipts();
-  receiptsCollection.value = store.getReceipts;
+  const response = await store.loadReceipts();
+  if (response){
+    receiptsCollection.value = store.getReceipts;
+  } else {
+    Swal.fire({
+      title: "¡Error!",
+      text: "No se encontraron registros",
+      icon: "error",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  }
 };
 
 const cargarDatos = async () => {
@@ -35,27 +45,47 @@ const subirDatos = (datos) => {
 
 const esperarModal = (datos) => {
   if (modoFormulario.value === 0) {
-    store.createReceipt(bodyFrm.value).then(() => {
+    store.createReceipt(bodyFrm.value).then((res) => {
       cargarDatos();
-      Swal.fire({
-        icon: "success",
-        title: "¡Registro exitoso!",
-        text: "El registro se ha guardado correctamente.",
-        showConfirmButton: false,
-        timer: 1500,
-      });
+      if (res) {
+        Swal.fire({
+          icon: "success",
+          title: "¡Registro exitoso!",
+          text: "El registro se ha guardado correctamente.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "¡Error!",
+          text: "No se pudo guardar el registro.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
       esperarCancelar();
     });
   } else if (modoFormulario.value === 1) {
-    store.updateReceipt(datos).then(() => {
+    store.updateReceipt(datos).then((res) => {
       cargarDatos();
-      Swal.fire({
-        title: "¡Actualización exitosa!",
-        text: "El registro se ha actualizado con éxito.",
-        icon: "success",
-        showConfirmButton: false,
-        timer: 1500,
-      });
+      if (res){
+        Swal.fire({
+          title: "¡Actualización exitosa!",
+          text: "El registro se ha actualizado con éxito.",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "¡Error!",
+          text: "No se pudo actualizar el registro.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
       esperarCancelar();
     });
   }
@@ -72,15 +102,25 @@ const esperarCancelar = () => {
 };
 
 const borrarRegistro = () => {
-  store.deleteReceipt(modalData.value).then(() => {
+  store.deleteReceipt(modalData.value).then((res) => {
     cargarDatos();
-    Swal.fire({
-      title: "¡Eliminación exitosa!",
-      text: "El registro se ha eliminado con éxito.",
-      icon: "success",
-      showConfirmButton: false,
-      timer: 1500,
-    });
+    if (res){
+      Swal.fire({
+        title: "¡Eliminación exitosa!",
+        text: "El registro se ha eliminado con éxito.",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "¡Error!",
+        text: "No se pudo eliminar el registro.",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
     esperarCancelar();
   });
 };

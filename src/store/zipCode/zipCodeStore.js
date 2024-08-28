@@ -1,7 +1,6 @@
 import { defineStore } from "pinia";
 import { loadZipCode, findZipCode } from "@/services/zipCode/zipCodeService";
 import { validateResponse } from "@/utils/validateResponse";
-import Swal from "sweetalert2";
 
 export const zipCodeStore = defineStore("CP", {
   state: () => ({

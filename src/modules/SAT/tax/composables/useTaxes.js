@@ -10,8 +10,18 @@ const modalData = ref(null);
 const bodyFrm = ref({ ClaveImpuesto: "", Nombre: "" });
 
 const loadTaxes = async () => {
-  await store.loadTaxes();
-  taxesCollection.value = store.getTaxes;
+  const response = await store.loadTaxes();
+  if (response) {
+    taxesCollection.value = store.getTaxes;
+  } else {
+    Swal.fire({
+      title: "¡Error!",
+      text: "No se encontraron registros",
+      icon: "error",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  }
 };
 
 const cargarDatos = async () => {
@@ -45,17 +55,33 @@ const esperarModal = (datos) => {
           showConfirmButton: false,
           timer: 1500,
         });
+      } else {
+        Swal.fire({
+          title: "¡Error!",
+          text: "No se pudo guardar el registro",
+          icon: "error",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
       esperarCancelar();
     });
   } else if (modoFormulario.value === 1) {
     store.updateTax(datos).then((res) => {
       cargarDatos();
-      if(res) {
+      if (res) {
         Swal.fire({
           title: "¡Actualización exitosa!",
           text: "El registro se ha actualizado con éxito",
           icon: "success",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        Swal.fire({
+          title: "¡Error!",
+          text: "No se pudo actualizar el registro",
+          icon: "error",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -83,6 +109,14 @@ const borrarRegistro = () => {
         title: "¡Eliminación exitosa!",
         text: "El registro se ha eliminado con éxito",
         icon: "success",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else {
+      Swal.fire({
+        title: "¡Error!",
+        text: "No se pudo eliminar el registro",
+        icon: "error",
         showConfirmButton: false,
         timer: 1500,
       });
