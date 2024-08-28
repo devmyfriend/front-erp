@@ -1,6 +1,8 @@
 import { defineStore } from "pinia";
 import * as productServices from "@/services/product/productsServices";
 import * as productLinesServices from "@/services/product/lineProductsServices";
+import { validateResponse } from "@/utils/validateResponse";
+
 export const useProductos = defineStore("Productos", {
   state: () => ({
     productsCollection: [],
@@ -32,34 +34,51 @@ export const useProductos = defineStore("Productos", {
   },
   actions: {
     async loadProducts() {
-      const data = await productServices.loadProducts();
-      if (data) {
-        this.productsCollection = data;
+      const response = await validateResponse(productServices.loadProducts());
+      if (response.length === 0) {
+        this.productsCollection = [];
+        return false;
+      } else {
+        this.productsCollection = response.response;
+        return true;
       }
     },
     async loadTypeProducts() {
-      const data = await productServices.loadTypeProducts();
-      if (data) {
-        this.productsTypeCollection = data;
+      const response = await validateResponse(productServices.loadTypeProducts());
+      if (response.length === 0) {
+        this.productsTypeCollection = [];
+        return false;
+      } else {
+        this.productsTypeCollection = response.response;
+        return true;
       }
     },
     async findProducts(palabra, tipo) {
-      const data = await productServices.findProducts(palabra, tipo);
-      if (data) {
-        this.productsCollection = data;
+      const response = await validateResponse(productServices.findProducts(palabra, tipo));
+      if (response.length === 0) {
+        this.productsCollection = [];
+        return false;
+      } else {
+        this.productsCollection = response.response;
         return true;
       }
     },
     async deleteProduct(payload) {
-      const data = await productServices.deleteProduct(payload);
-      if (data) {
+      const response = await validateResponse(productServices.deleteProduct(payload));
+      if (response.success) {
+        this.loadProducts();
         return true;
+      } else {
+        return false;
       }
     },
     async getProduct(id) {
-      const data = await productServices.getProduct(id);
-      if (data) {
-        this.Producto = data;
+      const response = await validateResponse(productServices.getProduct(id));
+      if (response.length === 0) {
+        this.Producto = {};
+        return false;
+      } else {
+        this.Producto = response.response;
         return true;
       }
     },
@@ -67,37 +86,55 @@ export const useProductos = defineStore("Productos", {
       if (!pagina) {
         pagina = 1;
       }
-      const data = await productServices.loadUnitKeys(pagina);
-      if (data) {
-        this.unitKeysCollection = data;
+
+      const response = await validateResponse(productServices.loadUnitKeys(pagina));
+      
+      if (response.length === 0) {
+        this.unitKeysCollection = [];
+        return false;
+      } else {
+        this.unitKeysCollection = response.response;
         return true;
       }
     },
     async loadProductsLine() {
-      const data = await productLinesServices.loadLines();
-      if (data) {
-        this.productsLineCollection = data;
+      const response = await validateResponse(productLinesServices.loadLines());
+      if (response.length === 0) {
+        this.productsLineCollection = [];
+        return false;
+      } else {
+        this.productsLineCollection = response.response;
         return true;
       }
     },
     async loadProductsKeys(pagina) {
-      const data = await productServices.loadProductsKeys(pagina);
-      if (data) {
-        this.productsKeysCollection = data;
-        return data;
+      const response = await validateResponse(productServices.loadProductsKeys(pagina));
+      if (response.length === 0) {
+        this.productsKeysCollection = [];
+        return false;
+      } else {
+        this.productsKeysCollection = response.response;
+        return true;
       }
     },
-
     async findProductsKeys(palabra, pagina) {
-      const data = await productServices.findProductsKeys(palabra, pagina);
-      if (data) {
-        return data;
+      const response = await validateResponse(productServices.findProductsKeys(palabra, pagina));
+      if (response.length === 0) {
+        this.productsKeysCollection = [];
+        return false;
+      } else {
+        this.productsKeysCollection = response.response;
+        return true;
       }
     },
     async findUnitKeys(palabra, pagina) {
-      const data = await productServices.findUnitKeys(palabra, pagina);
-      if (data) {
-        return data;
+      const response = await validateResponse(productServices.findUnitKeys(palabra, pagina));
+      if (response.length === 0) {
+        this.unitKeysCollection = [];
+        return false;
+      } else {
+        this.unitKeysCollection = response.response;
+        return true;
       }
     },
   },

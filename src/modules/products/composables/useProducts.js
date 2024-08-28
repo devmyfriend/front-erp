@@ -16,17 +16,25 @@ const handleFinder = (texto) => {
     if (productType.value == "Todos") {
       loadProducts();
     } else {
-      store.loadProducts().then(() => {
-        productsCollection.value = store.getProducts.filter(
-          (producto) => producto.NombreTipoProducto == productType.value
-        );
-        if (productsCollection.value.length == 0) {
+      store.loadProducts().then((res) => {
+        if (res) {
+          productsCollection.value = store.getProducts.filter(
+            (producto) => producto.NombreTipoProducto == productType.value
+          );
+          if (productsCollection.value.length == 0) {
+            Swal.fire({
+              icon: "info",
+              title: "No hay productos",
+              text: "No hay productos de este tipo",
+            });
+            productType.value = "Todos";
+          }
+        } else {
           Swal.fire({
             icon: "info",
             title: "No hay productos",
-            text: "No hay productos de este tipo",
+            text: "No se encontraron productos con esa descripción",
           });
-          productType.value = "Todos";
         }
       });
     }
@@ -55,26 +63,42 @@ const handleFinder = (texto) => {
 };
 
 const loadProducts = async () => {
-  store.loadProducts().then(() => {
-    if (productType.value == "Todos") {
-      productsCollection.value = store.getProducts;
-    } else {
-      productsCollection.value = store.getProducts.filter(
-        (producto) => producto.NombreTipoProducto == productType.value
-      );
-      if (productsCollection.value.length == 0) {
-        Swal.fire({
-          icon: "info",
-          title: "No hay productos",
-          text: "No hay productos de este tipo",
-        });
-        productType.value = "Todos";
+  store.loadProducts().then((res) => {
+    if (res) {
+      if (productType.value == "Todos") {
+        productsCollection.value = store.getProducts;
+      } else {
+        productsCollection.value = store.getProducts.filter(
+          (producto) => producto.NombreTipoProducto == productType.value
+        );
+        if (productsCollection.value.length == 0) {
+          Swal.fire({
+            icon: "info",
+            title: "No hay productos",
+            text: "No hay productos de este tipo",
+          });
+          productType.value = "Todos";
+        }
       }
+    } else {
+      Swal.fire({
+        icon: "info",
+        title: "No hay productos",
+        text: "No se encontraron productos",
+      });
     }
   });
 
-  store.loadTypeProducts().then(() => {
-    productsTypeCollection.value = store.getTypeProducts;
+  store.loadTypeProducts().then((res) => {
+    if (res) {
+      productsTypeCollection.value = store.getTypeProducts;
+    } else {
+      Swal.fire({
+        icon: "info",
+        title: "No hay tipos de productos",
+        text: "No se encontraron tipos de productos",
+      });
+    }
   });
 };
 
@@ -98,6 +122,12 @@ const deleteProduct = (productCode) => {
         icon: "success",
         title: "Producto eliminado",
         text: "El producto ha sido eliminado correctamente",
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Error al eliminar",
+        text: "No se pudo eliminar el producto",
       });
     }
   });
