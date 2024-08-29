@@ -1,50 +1,28 @@
 <script setup>
-import { ref, watch, defineAsyncComponent } from 'vue';
+import { ref, defineAsyncComponent } from 'vue';
 import { useWindows } from '@/modules/products/composables/useWindows.js';
+import { useProducts } from '@/modules/products/composables/useProducts';
 import { useTheme } from '@/commons/composables/theme'
 const editIco = defineAsyncComponent(() => import('@/commons/ui/icons/tableIcons/editIco.vue'));
 const trashIco = defineAsyncComponent(() => import('@/commons/ui/icons/tableIcons/trashIco.vue'));
 const modalEliminar = defineAsyncComponent(() => import('@/commons/ui/modals/deleteModal.vue'));
 
+const { productsCollection } = useProducts();
 const { theme } = useTheme();
 const { setCodigoProducto } = useWindows();
 
-const productsCollection = ref([]);
 const registroParaBorrar = ref(null);
-const props = defineProps({
-    productsCollection: {
-        type: Array,
-        default: () => []
-    },
-    tipoProducto: {
-        type: String,
-        default: ''
-    }
-});
+
 const emits = defineEmits(['eEditarProducto', 'edeleteProduct']);
+
 const editarProducto = (codigoProducto) => {
-    emits('eEditarProducto', codigoProducto);
+    /* emits('eEditarProducto', codigoProducto); */
     setCodigoProducto(codigoProducto);
 };
-const deleteProduct = (producto) => {
-    registroParaBorrar.value = producto;
-};
-const handleEliminar = (producto) => {
-    registroParaBorrar.value = null;
-
-    if (producto) {
-        emits('edeleteProduct', producto);
-    }
-};
-const handleCancelar = () => {
+const handleCancelar = (registro) => {
+    /* Borrar del composable */
     registroParaBorrar.value = null;
 };
-
-watch(() => props.productsCollection, (newValue, oldValue) => {
-    if (newValue !== oldValue) {
-        productsCollection.value = newValue;
-    }
-});
 </script>
 
 <template>
@@ -88,7 +66,7 @@ watch(() => props.productsCollection, (newValue, oldValue) => {
                         <div
                             class="min-w-16 h-full text-center items-center lg:justify-start justify-center flex gap-1 lg:gap-1 flex-wrap">
                             <editIco class="cursor-pointer shrink" @click="editarProducto(producto.CodigoProducto)" />
-                            <trashIco class="cursor-pointer shrink" @click="deleteProduct(producto)"
+                            <trashIco class="cursor-pointer shrink" @click="producto = registroParaBorrar"
                                 v-if="producto.Borrado === 0" />
                         </div>
                     </div>
@@ -97,8 +75,8 @@ watch(() => props.productsCollection, (newValue, oldValue) => {
         </tbody>
     </table>
     <modalEliminar v-if="registroParaBorrar != null" :registro="registroParaBorrar"
-        :tipoRegistro="registroParaBorrar.NombreTipoProducto" :id="registroParaBorrar.CodigoProducto"
-        @eEliminar="handleEliminar" @eCancelar="handleCancelar" />
+        :id="registroParaBorrar.CodigoProducto"
+        @eEliminar="handleCancelar" @eCancelar="handleCancelar" />
 </template>
 
 <style scoped></style>

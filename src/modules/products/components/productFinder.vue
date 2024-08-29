@@ -1,5 +1,5 @@
 <template>
-    <div class="flex items-center h-inputHeight w-full md:w-auto">
+    <div class="flex items-center h-inputHeight w-full md:w-auto" @focusout="txtBusqueda=''">
         <input
             name="buscador"
             class="text-black rounded-inputRadius border-inputBorder border-inputWidth p-paddingInput flex-grow outline-none h-full text-base"

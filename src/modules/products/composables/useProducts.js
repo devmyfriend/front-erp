@@ -13,79 +13,35 @@ const productType = ref("Todos");
 
 const handleFinder = (texto) => {
   if (texto === undefined) {
-    if (productType.value == "Todos") {
-      loadProducts();
-    } else {
-      store.loadProducts().then((res) => {
-        if (res) {
-          productsCollection.value = store.getProducts.filter(
-            (producto) => producto.NombreTipoProducto == productType.value
-          );
-          if (productsCollection.value.length == 0) {
-            Swal.fire({
-              icon: "info",
-              title: "No hay productos",
-              text: "No hay productos de este tipo",
-            });
-            productType.value = "Todos";
-          }
-        } else {
-          Swal.fire({
-            icon: "info",
-            title: "No hay productos",
-            text: "No se encontraron productos con esa descripción",
-          });
-        }
-      });
-    }
+    loadProducts(productType.value);
   } else {
     store.findProducts(texto, productType.value).then((res) => {
       if (res) {
         productsCollection.value = store.getProducts;
-        if (productsCollection.value.length == 0) {
-          Swal.fire({
-            icon: "info",
-            title: "No hay productos",
-            text: "No se encontraron productos con esa descripción",
-          });
-          productType.value = "Todos";
-          loadProducts();
-        }
       } else {
         Swal.fire({
           icon: "info",
           title: "No hay productos",
           text: "No se encontraron productos con esa descripción",
         });
+        loadProducts(productType.value);
       }
     });
   }
 };
 
-const loadProducts = async () => {
-  store.loadProducts().then((res) => {
+const loadProducts = async (productT) => {
+  store.loadProducts(productT).then((res) => {
     if (res) {
-      if (productType.value == "Todos") {
-        productsCollection.value = store.getProducts;
-      } else {
-        productsCollection.value = store.getProducts.filter(
-          (producto) => producto.NombreTipoProducto == productType.value
-        );
-        if (productsCollection.value.length == 0) {
-          Swal.fire({
-            icon: "info",
-            title: "No hay productos",
-            text: "No hay productos de este tipo",
-          });
-          productType.value = "Todos";
-        }
-      }
+      productsCollection.value = store.getProducts;
     } else {
       Swal.fire({
         icon: "info",
         title: "No hay productos",
-        text: "No se encontraron productos",
+        text: "No se encontraron",
       });
+      productType.value = "Todos";
+      loadProducts();
     }
   });
 
@@ -139,7 +95,7 @@ const setProductCode = (productCode) => {
 
 const setProductType = (newProductType) => {
   productType.value = newProductType;
-  loadProducts();
+  loadProducts(productType.value);
 };
 
 export const useProducts = () => {

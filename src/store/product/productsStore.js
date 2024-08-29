@@ -33,14 +33,27 @@ export const useProductos = defineStore("Productos", {
     },
   },
   actions: {
-    async loadProducts() {
+    async loadProducts(tipo) {
+      if (!tipo) {
+        tipo = "Todos";
+      }
+
       const response = await validateResponse(productServices.loadProducts());
       if (response.length === 0) {
         this.productsCollection = [];
         return false;
       } else {
-        this.productsCollection = response.response;
-        return true;
+        if(tipo === "Todos") {
+          this.productsCollection = response.response;
+          return true;
+        } else {
+          this.productsCollection = response.response.filter((producto) => producto.NombreTipoProducto == tipo);
+          if (this.productsCollection.length === 0) {
+            return false;
+          } else {
+            return true;
+          }
+        }
       }
     },
     async loadTypeProducts() {
@@ -59,8 +72,17 @@ export const useProductos = defineStore("Productos", {
         this.productsCollection = [];
         return false;
       } else {
-        this.productsCollection = response.response;
-        return true;
+        if (tipo === "Todos"){
+          this.productsCollection = response.response;
+          return true;
+        } else {
+          this.productsCollection = response.response.filter((producto) => producto.NombreTipoProducto == tipo);
+          if (this.productsCollection.length === 0) {
+            return false;
+          } else {
+            return true;
+          }
+        }
       }
     },
     async deleteProduct(payload) {

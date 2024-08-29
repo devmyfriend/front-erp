@@ -8,8 +8,8 @@ export const loadTypeProducts = async () => {
   return await apiProducts.get("/productos/tipo");
 }
 
-export const findProducts = async (nombre, tipo) => {
-  return await apiProducts.get(`/productos/buscar/${nombre}/${tipo}`);
+export const findProducts = async (nombre) => {
+  return await apiProducts.get(`/productos/buscar/${nombre}`);
 }
 
 export const getProduct = async (clave) => {
