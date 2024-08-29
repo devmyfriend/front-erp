@@ -5,8 +5,10 @@ import generalModal from '@/commons/ui/modals/generalModal.vue';
 import tableProductsKeys from '@/modules/products/components/tableProductsKeys.vue';
 import tableUnitKeys from '@/modules/products/components/tableUnitKeys.vue';
 import { useTheme } from '@/commons/composables/theme';
+import { useProducts } from '@/modules/products/composables/useProducts';
 import Swal from 'sweetalert2';
 const { theme } = useTheme();
+const { productsTypeCollection, loadProducts } = useProducts();
 
 const props = defineProps({
     datos: {
@@ -41,8 +43,9 @@ const obtenerRegistro = (registro) => {
     modalMode.value = 0;
 }
 
-onMounted(() => {
+onMounted(async () => {
     codigoProducto.value = props.datos.codigoProducto;
+    loadProducts();
 });
 
 watch(() => modalMode.value, (value) => {
@@ -67,9 +70,8 @@ watch(() => modalMode.value, (value) => {
             <div class="flex w-full gap-2">
                 <label class="text-white" for="TipoProducto"> Tipo de Producto: </label>
                 <select id="TipoProducto" v-model="datos.tipoProducto">
-                    <option value="1">Producto 1</option>
-                    <option value="2">Producto 2</option>
-                    <option value="3">Producto 3</option>
+                    <option value="" disabled selected>Selecciona un tipo de producto</option>
+                    <option v-for="typeProd in productsTypeCollection" :value="typeProd.NombreTipoProducto"> {{ typeProd.NombreTipoProducto }}</option>
                 </select>
             </div>
         </div>
