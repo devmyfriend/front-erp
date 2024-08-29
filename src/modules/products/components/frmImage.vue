@@ -4,7 +4,7 @@ import btnFile from '@/commons/ui/btn-file/btn-file.vue';
 import { useTheme } from '@/commons/composables/theme';
 const { theme } = useTheme();
 
-const imagenProducto = ref('https://placehold.co/200x200');
+const imagenProducto = ref('https://placehold.co/400x00');
 const esperarImagen = (archivo) => {
     imagenProducto.value = archivo;
 }
