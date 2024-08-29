@@ -4,7 +4,7 @@ import { useTheme } from '@/commons/composables/theme';
 import { useUnitKeys } from '@/modules/products/composables/useUnitKeys';
 const editIco = defineAsyncComponent(() => import('@/commons/ui/icons/tableIcons/editIco.vue'));
 const trashIco = defineAsyncComponent(() => import('@/commons/ui/icons/tableIcons/trashIco.vue'));
-const { unitKeysCollection, unitKeysInfo, loadUnitKeys } = useUnitKeys();
+const { unitKeysCollection, loadUnitKeys } = useUnitKeys();
 const { theme } = useTheme();
 
 const emits = defineEmits(['eAccion', 'eSelect']);
@@ -28,7 +28,7 @@ const selectItem = (unitKey) => {
 
 onMounted(async () => {
     await loadUnitKeys();
-        
+
 });
 
 </script>
@@ -57,8 +57,7 @@ onMounted(async () => {
                 <td class="general-cell border-l-primaryTableWidth text-center">
                     {{ unitKey.Activo ? 'Activo' : 'Inactivo' }}
                 </td>
-                <td v-if="editable"
-                    class="general-cell border-l-primaryTableWidth text-start">
+                <td v-if="editable" class="general-cell border-l-primaryTableWidth text-start">
                     <div class="w-full h-full flex items-center justify-center">
                         <editIco class="cursor-pointer" @click="handleAccion(unitKey, 1)" />
                         <trashIco class="cursor-pointer" @click="handleAccion(unitKey, 2)" />

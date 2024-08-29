@@ -1,28 +1,30 @@
 <script setup>
-import { ref, defineAsyncComponent } from 'vue';
-import { useWindows } from '@/modules/products/composables/useWindows.js';
+import { ref, defineAsyncComponent, onMounted, watch } from 'vue';
+import { useTheme } from '@/commons/composables/theme';
 import { useProducts } from '@/modules/products/composables/useProducts';
-import { useTheme } from '@/commons/composables/theme'
+import { useRouter } from 'vue-router';
+
 const editIco = defineAsyncComponent(() => import('@/commons/ui/icons/tableIcons/editIco.vue'));
 const trashIco = defineAsyncComponent(() => import('@/commons/ui/icons/tableIcons/trashIco.vue'));
 const modalEliminar = defineAsyncComponent(() => import('@/commons/ui/modals/deleteModal.vue'));
 
-const { productsCollection } = useProducts();
 const { theme } = useTheme();
-const { setCodigoProducto } = useWindows();
-
+const router = useRouter();
+const { productsCollection, productCode, loadProducts, setProductCode } = useProducts();
 const registroParaBorrar = ref(null);
 
-const emits = defineEmits(['eEditarProducto', 'edeleteProduct']);
-
-const editarProducto = (codigoProducto) => {
-    /* emits('eEditarProducto', codigoProducto); */
-    setCodigoProducto(codigoProducto);
-};
-const handleCancelar = (registro) => {
-    /* Borrar del composable */
+const handleCancelar = () => {
     registroParaBorrar.value = null;
 };
+
+onMounted(() => {
+    loadProducts();
+});
+watch(productCode, () => {
+    if (productCode.value) {
+        router.push({ name: 'productsFormEdit', params: { CodigoProducto: productCode.value } });
+    }
+});
 </script>
 
 <template>
@@ -65,8 +67,8 @@ const handleCancelar = (registro) => {
                     <div class="flex w-full items-center justify-center min-w-16">
                         <div
                             class="min-w-16 h-full text-center items-center lg:justify-start justify-center flex gap-1 lg:gap-1 flex-wrap">
-                            <editIco class="cursor-pointer shrink" @click="editarProducto(producto.CodigoProducto)" />
-                            <trashIco class="cursor-pointer shrink" @click="producto = registroParaBorrar"
+                            <editIco class="cursor-pointer shrink" @click="setProductCode(producto.CodigoProducto)" />
+                            <trashIco class="cursor-pointer shrink" @click="registroParaBorrar = producto"
                                 v-if="producto.Borrado === 0" />
                         </div>
                     </div>
@@ -75,8 +77,8 @@ const handleCancelar = (registro) => {
         </tbody>
     </table>
     <modalEliminar v-if="registroParaBorrar != null" :registro="registroParaBorrar"
-        :id="registroParaBorrar.CodigoProducto"
-        @eEliminar="handleCancelar" @eCancelar="handleCancelar" />
+        :tipoRegistro="registroParaBorrar.NombreTipoProducto" :id="registroParaBorrar.CodigoProducto"
+        @eEliminar="registroParaBorrar = null" @eCancelar="handleCancelar" />
 </template>
 
 <style scoped></style>

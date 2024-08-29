@@ -9,7 +9,7 @@ import { onBeforeMount, ref, watch } from 'vue';
 import { useProducts } from '@/modules/products/composables/useProducts';
 import { useLayout } from '@/commons/composables/useLayout';
 import { useWindows } from '@/commons/composables/useWindows';
-const { productsTypeCollection, productType, loadProducts, handleFinder, setProductType } = useProducts();
+const { productsCollection, productsTypeCollection, productType, loadProducts, handleFinder, setProductType } = useProducts();
 const { setActiveTab, setTabsCollection } = useWindows();
 const { setTitle, setViewTitle } = useLayout();
 
@@ -25,8 +25,6 @@ onBeforeMount(() => {
 });
 
 watch(productType, (newValue, oldValue) => {
-    console.log('Se cambió el productType');
-    
     if (newValue !== oldValue) {
         setProductType(newValue)
     }

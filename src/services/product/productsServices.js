@@ -1,4 +1,5 @@
 import { apiProducts } from "@/apis/products";
+import { apiSAT } from "@/apis/SAT";
 
 export const loadProducts = async () => {
   return await apiProducts.get("/productos");
@@ -29,7 +30,7 @@ export const loadProductsKeys = async (pagina) => {
 }
 
 export const loadUnitKeys = async (pagina) => {
-  return await apiProducts.get(`/unidades/${pagina}`);
+  return await apiSAT.get(`/unidades/${pagina}`);
 }
 
 export const findProductsKeys = async (palabra) => {

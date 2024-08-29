@@ -9,6 +9,7 @@ export const useProductos = defineStore("Productos", {
     productsTypeCollection: [],
     productsKeysCollection: [],
     unitKeysCollection: [],
+    unitKeyInfo: {},
     productsLineCollection: [],
     Producto: {},
   }),
@@ -108,14 +109,13 @@ export const useProductos = defineStore("Productos", {
       if (!pagina) {
         pagina = 1;
       }
-
       const response = await validateResponse(productServices.loadUnitKeys(pagina));
       
       if (response.length === 0) {
         this.unitKeysCollection = [];
         return false;
       } else {
-        this.unitKeysCollection = response.response;
+        this.unitKeysCollection = response;
         return true;
       }
     },
