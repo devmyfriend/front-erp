@@ -15,8 +15,8 @@ const loadReceipts = async () => {
     receiptsCollection.value = store.getReceipts;
   } else {
     Swal.fire({
-      title: "¡Error!",
-      text: "No se encontraron registros",
+      title: "Error al cargar los comprobantes",
+      text: "No se encontraron comprobantes registrados",
       icon: "error",
       showConfirmButton: false,
       timer: 1500,
@@ -51,15 +51,15 @@ const esperarModal = (datos) => {
         Swal.fire({
           icon: "success",
           title: "¡Registro exitoso!",
-          text: "El registro se ha guardado correctamente.",
+          text: "El comprobante se ha guardado correctamente.",
           showConfirmButton: false,
           timer: 1500,
         });
       } else {
         Swal.fire({
           icon: "error",
-          title: "¡Error!",
-          text: "No se pudo guardar el registro.",
+          title: "Error al crear",
+          text: "No se pudo guardar el comprobante.",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -72,7 +72,7 @@ const esperarModal = (datos) => {
       if (res){
         Swal.fire({
           title: "¡Actualización exitosa!",
-          text: "El registro se ha actualizado con éxito.",
+          text: "La moneda se ha actualizado con éxito.",
           icon: "success",
           showConfirmButton: false,
           timer: 1500,
@@ -80,8 +80,8 @@ const esperarModal = (datos) => {
       } else {
         Swal.fire({
           icon: "error",
-          title: "¡Error!",
-          text: "No se pudo actualizar el registro.",
+          title: "Error al actualizar",
+          text: "No se pudo actualizar el comprobante.",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -107,7 +107,7 @@ const borrarRegistro = () => {
     if (res){
       Swal.fire({
         title: "¡Eliminación exitosa!",
-        text: "El registro se ha eliminado con éxito.",
+        text: "El comprobante se ha eliminado con éxito.",
         icon: "success",
         showConfirmButton: false,
         timer: 1500,
@@ -115,8 +115,8 @@ const borrarRegistro = () => {
     } else {
       Swal.fire({
         icon: "error",
-        title: "¡Error!",
-        text: "No se pudo eliminar el registro.",
+        title: "Error al eliminar",
+        text: "No se pudo eliminar el comprobante.",
         showConfirmButton: false,
         timer: 1500,
       });

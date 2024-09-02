@@ -15,8 +15,8 @@ const loadTaxes = async () => {
     taxesCollection.value = store.getTaxes;
   } else {
     Swal.fire({
-      title: "¡Error!",
-      text: "No se encontraron registros",
+      title: "Error al cargar los impuestos",
+      text: "No se encontraron impuestos registrados",
       icon: "error",
       showConfirmButton: false,
       timer: 1500,
@@ -50,15 +50,15 @@ const esperarModal = (datos) => {
       if(res) {
         Swal.fire({
           title: "¡Registro exitoso!",
-          text: "El registro se ha guardado correctamente",
+          text: "El impuesto se ha guardado correctamente",
           icon: "success",
           showConfirmButton: false,
           timer: 1500,
         });
       } else {
         Swal.fire({
-          title: "¡Error!",
-          text: "No se pudo guardar el registro",
+          title: "Error al crear",
+          text: "No se pudo guardar el impuesto",
           icon: "error",
           showConfirmButton: false,
           timer: 1500,
@@ -72,15 +72,15 @@ const esperarModal = (datos) => {
       if (res) {
         Swal.fire({
           title: "¡Actualización exitosa!",
-          text: "El registro se ha actualizado con éxito",
+          text: "El impuesto se ha actualizado correctamente",
           icon: "success",
           showConfirmButton: false,
           timer: 1500,
         });
       } else {
         Swal.fire({
-          title: "¡Error!",
-          text: "No se pudo actualizar el registro",
+          title: "Error al actualizar",
+          text: "No se pudo actualizar el impuesto",
           icon: "error",
           showConfirmButton: false,
           timer: 1500,
@@ -107,15 +107,15 @@ const borrarRegistro = () => {
     if(res) {
       Swal.fire({
         title: "¡Eliminación exitosa!",
-        text: "El registro se ha eliminado con éxito",
+        text: "El impuesto se ha eliminado con éxito",
         icon: "success",
         showConfirmButton: false,
         timer: 1500,
       });
     } else {
       Swal.fire({
-        title: "¡Error!",
-        text: "No se pudo eliminar el registro",
+        title: "Error al eliminar",
+        text: "No se pudo eliminar el impuesto",
         icon: "error",
         showConfirmButton: false,
         timer: 1500,

@@ -18,9 +18,9 @@ const findCoins = async (texto) => {
     coinsCollection.value = store.getCoins;
   } else {
     Swal.fire({
-      title: "¡Error!",
-      text: "No se encontraron registros",
-      icon: "error",
+      title: "No hay monedas",
+      text: "No se encontraron monedas con ese nombre",
+      icon: "info",
       showConfirmButton: false,
       timer: 1500,
     });
@@ -33,8 +33,8 @@ const cargarDatos = async () => {
     coinsCollection.value = store.getCoins;
   } else {
     Swal.fire({
-      title: "¡Error!",
-      text: "No se encontraron registros",
+      title: "Error al cargar las monedas",
+      text: "No se hay monedas registradas",
       icon: "error",
       showConfirmButton: false,
       timer: 1500,
@@ -79,15 +79,15 @@ const esperarModal = (datos) => {
       if (res) {
         Swal.fire({
           title: "¡Registro exitoso!",
-          text: "El registro se ha guardado correctamente",
+          text: "La moneda se ha guardado correctamente",
           icon: "success",
           showConfirmButton: false,
           timer: 1500,
         });
       } else {
         Swal.fire({
-          title: "¡Error!",
-          text: "No se pudo guardar el registro",
+          title: "Error al crear",
+          text: "No se pudo guardar la moneda",
           icon: "error",
           showConfirmButton: false,
           timer: 1500,
@@ -100,15 +100,15 @@ const esperarModal = (datos) => {
       if (res) {
         Swal.fire({
           title: "¡Actualización exitosa!",
-          text: "El registro se ha actualizado con éxito",
+          text: "La moneda se ha actualizado con éxito",
           icon: "success",
           showConfirmButton: false,
           timer: 1500,
         });
       } else {
         Swal.fire({
-          title: "¡Error!",
-          text: "No se pudo actualizar el registro",
+          title: "Error al actualizar",
+          text: "No se pudo actualizar la moneda",
           icon: "error",
           showConfirmButton: false,
           timer: 1500,
@@ -124,15 +124,15 @@ const borrarRegistro = () => {
     if (res) {
       Swal.fire({
         title: "¡Eliminación exitosa!",
-        text: "El registro se ha eliminado con éxito",
+        text: "La moneda se ha eliminado con éxito",
         icon: "success",
         showConfirmButton: false,
         timer: 1500,
       });
     } else {
       Swal.fire({
-        title: "¡Error!",
-        text: "No se pudo eliminar el registro",
+        title: "Error al eliminar",
+        text: "No se pudo eliminar la moneda",
         icon: "error",
         showConfirmButton: false,
         timer: 1500,

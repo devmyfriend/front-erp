@@ -14,8 +14,8 @@ const loadMethodsFormsPayments = async () => {
     return true;
   } else {
     Swal.fire({
-      title: "¡Error!",
-      text: "No se encontraron registros",
+      title: "Error al cargar los métodos de pago",
+      text: "No se encontraron métodos de pago registrados",
       icon: "error",
       showConfirmButton: false,
       timer: 1500,

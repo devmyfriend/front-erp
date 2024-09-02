@@ -1,6 +1,7 @@
 <template>
   <div class="fixed inset-0 bg-gray-600 bg-opacity-75 flex items-center justify-center z-50" @keydown.escape="closeModal">
-    <div class="bg-white rounded-lg shadow-xl transform transition-all max-w-[96vw] min-w-[24rem] max-h-[96vh] flex flex-col overflow-scroll">
+    <div class="bg-white rounded-lg shadow-xl transform transition-all flex flex-col overflow-scroll min-w-[24rem]
+     max-w-[95vw] max-h-[95vh] sm:max-w-[90vw] sm:max-h-[90vh] xl:max-w-[80vw] xl:max-h-[80vh]">
       <div class="px-4 py-5 sm:px-6">
         <div class="w-full flex flex-row justify-between items-center">
           <titleH2 class="!mb-0 uppercase" :class="`text-${theme}-text pr-4`">
@@ -17,9 +18,9 @@
           <div class="bg-black h-[1px] w-full"></div>
       </div>
       
-      <main class="flex-grow flex justify-center items-center p-4 pb-0">
-        <div class="w-full h-full flex-grow">
-          <slot name="content">
+      <main class="flex-grow flex justify-center  p-4 pb-0 overflow-scroll">
+        <div class="w-full flex-grow overflow-y-scroll">
+          <slot name="content">  
             <div class="w-full h-24 flex justify-center items-center">
               <p class="font-bold text-[1rem] w-full text-center"> ¡Sin contenido! </p>
             </div>
@@ -54,7 +55,8 @@
 <script setup>
 import { useTheme } from '@/commons/composables/theme';
 import titleH2 from '@/commons/ui/title-h2/title-h2.vue';
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+
+import { onMounted, onBeforeUnmount } from 'vue';
 
 const { theme } = useTheme();
 

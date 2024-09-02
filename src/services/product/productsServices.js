@@ -37,6 +37,9 @@ export const findProductsKeys = async (palabra) => {
   return await apiProducts.get(`/productos/servicio/buscar/descripcion/${palabra}`);
 }
 
-export const findUnitKeys = async (palabra) => {
-  return await apiProducts.get(`/unidades/buscar/nombre/${palabra}`);
+export const findUnitKeysByName = async (name) => {
+  return await apiSAT.get(`/unidades/buscar/nombre/${name}`);
+}
+export const findUnitKeysByKey = async (key) => {
+  return await apiSAT.get(`/unidades/buscar/${key}`);
 }

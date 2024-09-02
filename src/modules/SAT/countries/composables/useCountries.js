@@ -11,8 +11,8 @@ const loadCountries = async () => {
     countriesCollection.value = store.getCountries;
   } else {
     Swal.fire({
-      title: "¡Error!",
-      text: "No se encontraron registros",
+      title: "Error al cargar los países",
+      text: "No se encontraron países registrados",
       icon: "error",
       showConfirmButton: false,
       timer: 1500,

@@ -9,7 +9,7 @@ export const useProductos = defineStore("Productos", {
     productsTypeCollection: [],
     productsKeysCollection: [],
     unitKeysCollection: [],
-    unitKeyInfo: {},
+    unitKeysCollectionInfo: {},
     productsLineCollection: [],
     Producto: {},
   }),
@@ -28,6 +28,9 @@ export const useProductos = defineStore("Productos", {
     },
     getUnitKeys(state) {
       return state.unitKeysCollection;
+    },
+    getUnitKeysInfo(state) {
+      return state.unitKeysCollectionInfo;
     },
     getProductsLine(state) {
       return state.productsLineCollection;
@@ -115,7 +118,8 @@ export const useProductos = defineStore("Productos", {
         this.unitKeysCollection = [];
         return false;
       } else {
-        this.unitKeysCollection = response;
+        this.unitKeysCollection = response.items;
+        this.unitKeysCollectionInfo = response.info;
         return true;
       }
     },
@@ -149,10 +153,20 @@ export const useProductos = defineStore("Productos", {
         return true;
       }
     },
-    async findUnitKeys(palabra, pagina) {
-      const response = await validateResponse(productServices.findUnitKeys(palabra, pagina));
+    async findUnitKeysByName(name) {
+      const response = await validateResponse(productServices.findUnitKeysByName(name));
       if (response.length === 0) {
         this.unitKeysCollection = [];
+        return false;
+      } else {
+        this.unitKeysCollection = response.response;
+        return true;
+      }
+    },
+    async findUnitKeysByKey(key) {
+      const response = await validateResponse(productServices.findUnitKeysByKey(key));
+      if (response.length === 0) {
+        this.unitKeysCollection = {};
         return false;
       } else {
         this.unitKeysCollection = response.response;

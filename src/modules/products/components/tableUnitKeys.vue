@@ -2,6 +2,7 @@
 import { onMounted, defineAsyncComponent } from 'vue';
 import { useTheme } from '@/commons/composables/theme';
 import { useUnitKeys } from '@/modules/products/composables/useUnitKeys';
+const tdVoid = defineAsyncComponent(() => import('@/commons/ui/td-void/td-void.vue'));
 const editIco = defineAsyncComponent(() => import('@/commons/ui/icons/tableIcons/editIco.vue'));
 const trashIco = defineAsyncComponent(() => import('@/commons/ui/icons/tableIcons/trashIco.vue'));
 const { unitKeysCollection, loadUnitKeys } = useUnitKeys();
@@ -28,7 +29,6 @@ const selectItem = (unitKey) => {
 
 onMounted(async () => {
     await loadUnitKeys();
-
 });
 
 </script>
@@ -44,7 +44,7 @@ onMounted(async () => {
             </tr>
         </thead>
         <tbody>
-            <tr v-for="(unitKey, index) in unitKeysCollection" :key="index"
+            <tr v-if="unitKeysCollection.length !== 0" v-for="(unitKey, index) in unitKeysCollection" :key="index"
                 :class="[unitKey.Activo ? `text-${theme}-text bg-white`
                     : `text-${theme}-text bg-${theme}-disabled`, (clickeable && unitKey.Activo) ? 'cursor-pointer hover:font-bold transition-all duration-100' : '', (clickeable && !unitKey.Activo) ? 'cursor-not-allowed' : '']"
                 @click="(clickeable && unitKey.Activo) ? selectItem(unitKey) : null">
@@ -64,6 +64,7 @@ onMounted(async () => {
                     </div>
                 </td>
             </tr>
+            <tdVoid v-else :columnas="3" />
         </tbody>
     </table>
 </template>

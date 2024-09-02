@@ -21,7 +21,7 @@ const datos = {
   tipoProducto: '',
   nombreProducto: '',
   descripcionProducto: '',
-  puntos: '',
+  puntos: '0',
   serie: '',
   linea: '',
   familia: '',
