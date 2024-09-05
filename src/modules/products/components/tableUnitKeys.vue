@@ -27,8 +27,8 @@ const selectItem = (unitKey) => {
     emits('eSelect', unitKey);
 };
 
-onMounted(async () => {
-    await loadUnitKeys();
+onMounted( () => {
+    loadUnitKeys();
 });
 
 </script>

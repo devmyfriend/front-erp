@@ -14,7 +14,7 @@ onBeforeMount(() => {
     <!-- Versión con buscador y botón de agregar -->
         <!--
         <div class="flex flex-row mb-6 flex-wrap justify-between">
-            <div class="flex flex-row mb-6 flex-wrap gap-4">
+            <div class="flex flex-row flex-wrap gap-4">
                 <coinFinder @eBusqueda="esperarBusqueda" />
             </div>
             <btnFormulario @eNuevo="showModal = true; modoFormulario = 0" />

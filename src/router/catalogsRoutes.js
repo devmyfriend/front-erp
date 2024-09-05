@@ -41,5 +41,20 @@ export default {
       name: "zipcode",
       component: () => import("@/modules/SAT/zipcode/views/zipCode.vue"),
     },
+    {
+      path: "familias",
+      name: "families",
+      component: () => import("@/modules/families/views/families.vue"),
+    },
+    {
+      path: "subfamilias",
+      name: "subfamilies",
+      component: () => import("@/modules/subfamilies/views/subfamilies.vue"),
+    },
+    {
+      path: "lineas",
+      name: "lines",
+      component: () => import("@/modules/lines/views/lines.vue"),
+    },
   ],
 };

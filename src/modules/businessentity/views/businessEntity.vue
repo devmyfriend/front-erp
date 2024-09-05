@@ -15,7 +15,7 @@ onBeforeMount(() => {
 <template>
     <div class="frm flex justify-between mb-6">
         <frmSearch />
-        <btnAgregar />
+        <btnAgregar :ruta="`businessEntitiesForm`" />
     </div>
     
     <div

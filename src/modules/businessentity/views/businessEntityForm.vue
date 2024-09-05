@@ -100,9 +100,9 @@ const handleClick=()=>{
 </script>
 
 <template>
-    <div class="flex pl-4  w-full max-h-full h-full overflow-y-scroll">
+    <div class="flex w-full max-h-full h-full overflow-y-scroll gap-4 flex-wrap lg:flex-nowrap">
     <!-- Formualrio de datos de la empresa -->
-                <div class="flex flex-col w-[50%] h-[100%] frame">
+                <div class="flex flex-col lg:w-[50%] h-[100%] p-4 rounded-xl border frame w-full" :class="`border-${theme}-primary`">
                     <frmGeneralData :data="businessentity"></frmGeneralData>
                     <!-- comentar <div v-if="thereIsBranch(10)" class="flex flex-col w-full py-1 items-center">
                         <titleH2>Sucursales</titleH2>
@@ -118,7 +118,7 @@ const handleClick=()=>{
     <!-- Fin del formulario de datos de la empresa -->
     <!-- Contactos y sucursales -->
     <!-- Contacto -->
-                <div v-if="!thereIsBranch(0)" class="flex flex-col px-2 w-[50%] max-h-full overflow-y-scroll">
+                <div v-if="!thereIsBranch(0)" class="flex flex-col lg:w-[50%] max-h-full overflow-y-scroll p-4 rounded-xl border w-full" :class="`border-${theme}-primary`">
                     <frmConcat></frmConcat>
                 </div>
     <!-- Fin Contacto -->

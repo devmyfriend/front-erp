@@ -27,6 +27,12 @@ onMounted(() => {
                 :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover`"> Países </router-link>
             <router-link :to="{ name: 'taxesSAT' }" class="dashboardItems"
                 :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover`"> Impuestos </router-link>
+            <router-link :to="{ name: 'families' }" class="dashboardItems"
+                :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover`"> Familias </router-link>
+            <router-link :to="{ name: 'subfamilies' }" class="dashboardItems"
+                :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover`"> Subfamilias </router-link>
+            <router-link :to="{ name: 'lines' }" class="dashboardItems"
+                :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover`"> Líneas </router-link>
         </div>
 
     </div>

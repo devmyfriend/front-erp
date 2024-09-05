@@ -100,7 +100,7 @@
             <titleH3>
                 Datos Generales
             </titleH3>
-            <div class="flex w-max pr-2 justify-end text-right">
+            <div class="flex w-max  justify-end text-right">
                 <input v-model="data.EntidadNegocioId" class="w-36 font-semibold" :class="`${(data.EntidadNegocioId === null || data.EntidadNegocioId === 0) ? `bg-${theme}-disabled` : `text-${theme}-primary`}`" name="BusinessEntityId" role="Id" readonly placeholder="Id de la empresa" type="text">
             </div>
         </div>
@@ -127,7 +127,7 @@
                     <div class="flex ">
                         <label class="flex  text-[1rem]" for="Country"><strong class="text-red-700"> * </strong>&nbsp; País</label>
                     </div>
-                    <div class="flex w-full pr-2">
+                    <div class="flex w-full ">
                         <select v-model="data.ClavePais" class="w-full" name="Country" id="Country">
                             <option value="MEX" selected>México</option>
                             <option  v-for="pais in Paises" :key="pais.ClavePais" value="pais.ClavePais">{{pais.Descripcion}}</option>
@@ -156,7 +156,7 @@
                     <div class="flex ">
                         <label class=" text-[1rem]" for="Regimen"><strong class="text-red-700"> * </strong>&nbsp; Régimen Fiscal</label>
                     </div>
-                    <div class="w-full pr-2">
+                    <div class="w-full ">
                         <select class="w-full" name="Regimen" id="">
                             <option value=""></option>
                             <option v-for="regimen in RegimenesFiscales" :key="regimen.ClaveRegimenFiscal" value="regimen.ClaveRegimenFiscal"> {{regimen.Descripcion}}</option>
@@ -168,7 +168,7 @@
                 <div class="flex ">
                     <label class="mr-2 text-[1rem]" for="TradeName">Nombre Comercial</label>
                 </div>
-                <div class="flex w-full pr-2">
+                <div class="flex w-full ">
                     <input v-model="data.NombreComercial" class="w-full" name="TradeName" role="TradeName" placeholder="Nombre del Negocio" type="text">
                 </div>
                 </fieldset>
@@ -211,7 +211,7 @@
                         <div class="flex ">
                             <label class=" text-[1rem]" for="Cologne">Colonia</label>
                         </div>
-                        <div class="flex w-full pr-2">
+                        <div class="flex w-full ">
                             <input  v-model="data.Colonia" class="w-[100%]" name="Cologne" role="Cologne" placeholder="Colonia" type="text">
                         </div>
                     </div>
@@ -226,7 +226,7 @@
                         <input v-model="data.CodigoPostal" class="w-36" name="Zip" role="Zip" placeholder="Código Postal" type="text">
                     </div>
                 </div>
-                <div class="flex flex-col w-full pr-2">
+                <div class="flex flex-col w-full ">
                     <div class="flex ">
                         <label class=" text-[1rem]" for="State">Estado</label>
                     </div>
@@ -249,7 +249,7 @@
                         <div class="flex ">
                             <label class=" text-[1rem]" for="City">Ciudad</label>
                         </div>
-                        <div class="flex w-full pr-2">
+                        <div class="flex w-full ">
                             <input v-model="data.Localidad" class="w-[100%]" name="City" role="City" placeholder="Ciudad" type="text">
                         </div>
                     </div>
