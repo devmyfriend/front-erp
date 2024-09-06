@@ -21,5 +21,5 @@ export const updateProductSubfamily = async (productSubfamily) => {
 };
 
 export const deleteProductSubfamily = async (productSubfamily) => {
-    return await apiTest.delete(`/subfamilias`, productSubfamily);
+    return await apiTest.delete(`/subfamilias`, {data: productSubfamily});
 };

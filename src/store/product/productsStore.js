@@ -126,7 +126,7 @@ export const useProductos = defineStore("Productos", {
       }
     },
     
-
+    /* Claves de unidades -Próximamente mover a su módulo correspondiente */
 
     async loadUnitKeys(pagina) {
       if (!pagina) {
@@ -164,6 +164,7 @@ export const useProductos = defineStore("Productos", {
       }
     },
     
+    /* Claves de Producto Servicio */
     
     async loadProductsKeys(pagina) {
       const response = await validateResponse(productServices.loadProductsKeys(pagina));
@@ -186,7 +187,7 @@ export const useProductos = defineStore("Productos", {
       }
     },
 
-    /* Falta el resto del CRUD y buscadores */
+    /* Familias, subfamilias y lineas */
 
     async loadProductFamilies() {
       const response = await validateResponse(productFamilyServices.loadProductFamilies());
@@ -292,6 +293,36 @@ export const useProductos = defineStore("Productos", {
       } else{
         await this.loadProductLines();
         return true;
+      }
+    },
+
+    async createProductFamily(productFamilyPayload) {
+      const response = await validateResponse(productFamilyServices.createProductFamily(productFamilyPayload));
+      if (response.status === "OK") {
+        this.loadProductFamilies();
+        return true;
+      } else {
+        return false;
+      }
+    },
+
+    async updateProductFamily(productFamilyPayload) {
+      const response = await validateResponse(productFamilyServices.updateProductFamily(productFamilyPayload));
+      if (response.status === "OK") {
+        this.loadProductFamilies();
+        return true;
+      } else {
+        return false;
+      }
+    },
+
+    async deleteProductFamily(productFamilyPayload) {
+      const response = await validateResponse(productFamilyServices.deleteProductFamily(productFamilyPayload));
+      if (response.status === "OK") {
+        this.loadProductFamilies();
+        return true;
+      } else {
+        return false;
       }
     }
   },

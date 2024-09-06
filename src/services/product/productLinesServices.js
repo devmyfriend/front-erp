@@ -21,5 +21,5 @@ export const updateProductLine = async (line) => {
 };
 
 export const deleteProductLine = async (line) => {
-    return await apiTest.delete(`/lineas`, line);
+    return await apiTest.delete(`/lineas`, {data: line});
 };
