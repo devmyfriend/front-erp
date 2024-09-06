@@ -305,11 +305,47 @@ export const useProductos = defineStore("Productos", {
         return false;
       }
     },
+    async createProductSubfamily(productSubfamilyPayload) {
+      const response = await validateResponse(productSubFamilyServices.createProductSubfamily(productSubfamilyPayload));
+      if (response.status === "OK") {
+        this.loadProductSubfamilies();
+        return true;
+      } else {
+        return false;
+      }
+    },
+    async createProductLine(productLinePayload) {
+      const response = await validateResponse(productLineServices.createProductLine(productLinePayload));
+      if (response.status === "OK") {
+        this.loadProductLines();
+        return true;
+      } else {
+        return false;
+      }
+    },
 
     async updateProductFamily(productFamilyPayload) {
       const response = await validateResponse(productFamilyServices.updateProductFamily(productFamilyPayload));
       if (response.status === "OK") {
         this.loadProductFamilies();
+        return true;
+      } else {
+        return false;
+      }
+    },
+    async updateProductSubfamily(productSubfamilyPayload) {
+      const response = await validateResponse(productSubFamilyServices.updateProductSubfamily(productSubfamilyPayload));
+      if (response.status === "OK") {
+        this.loadProductSubfamilies();
+        return true;
+      } else {
+        return false;
+      }
+    },
+    async updateProductLine(productLinePayload) {
+      const response = await validateResponse(productLineServices.updateProductLine(productLinePayload));
+      if (response.status === "OK") {
+        this.loadProductLines();
         return true;
       } else {
         return false;
@@ -324,6 +360,24 @@ export const useProductos = defineStore("Productos", {
       } else {
         return false;
       }
-    }
+    },
+    async deleteProductSubfamily(productSubfamilyPayload) {
+      const response = await validateResponse(productSubFamilyServices.deleteProductSubfamily(productSubfamilyPayload));
+      if (response.status === "OK") {
+        this.loadProductSubfamilies();
+        return true;
+      } else {
+        return false;
+      }
+    },
+    async deleteProductLine(productLinePayload) {
+      const response = await validateResponse(productLineServices.deleteProductLine(productLinePayload));
+      if (response.status === "OK") {
+        this.loadProductLines();
+        return true;
+      } else {
+        return false;
+      }
+    },
   },
 });

@@ -23,7 +23,6 @@ onBeforeMount(() => {
         <div class="flex flex-row flex-wrap gap-4">
             <productFamiliesFinder />
         </div>
-        {{ registroBorrar }}
         <btnFormulario @eNuevo="showModal = true; modoFormulario = 0" />
     </div>
 
