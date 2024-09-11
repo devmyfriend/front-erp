@@ -19,6 +19,10 @@
   opacity: 1;
 }
 
+.rotate-180 {
+  transform: rotate(180deg);
+}
+
 /* Scroll invisible */
 * {
   scrollbar-width: none;
@@ -67,6 +71,7 @@ select,
 .v-select
 textarea {
   color: #000;
+   outline: none;
 }
 
 select, .v-select {

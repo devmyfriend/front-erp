@@ -1,11 +1,6 @@
 <script setup>
-import { onMounted, ref, watch, defineAsyncComponent, computed } from 'vue';
-import {
-    Combobox,
-    ComboboxInput,
-    ComboboxOptions,
-    ComboboxOption,
-} from '@headlessui/vue';
+import { onMounted, ref, watch, defineAsyncComponent } from 'vue';
+import combobox from '@/commons/ui/combobox/combobox.vue';
 
 const GeneralModal = defineAsyncComponent(() => import('@/commons/ui/modals/generalModal.vue'));
 const TableProductsKeys = defineAsyncComponent(() => import('@/modules/products/components/tableProductsKeys.vue'));
@@ -13,7 +8,6 @@ const TableUnitKeys = defineAsyncComponent(() => import('@/modules/products/comp
 const UnitKeyFinder = defineAsyncComponent(() => import('@/modules/products/components/unitKeyFinder.vue'));
 
 import titleH3 from '@/commons/ui/title-h3/title-h3.vue';
-import IconCheck from '@/commons/components/icons/IconCheck.vue'
 import Swal from 'sweetalert2';
 import btnSave from '@/commons/ui/btn-save/btn-save.vue';
 import btnButton from '@/commons/ui/btn-button/btn-button.vue';
@@ -36,60 +30,8 @@ const { productsTypeCollection, loadProducts, productCode } = useProducts();
 const newRecord = ref({});
 const viewMode = ref(0);
 const showModal = ref(false);
-const query = ref('');
 const modalMode = ref(0);
 const showConversion = ref(false);
-
-const filteredFamilies = computed(() => {
-  if (!query.value) {
-    return productFamiliesCollection.value;
-  }
-  
-  return productFamiliesCollection.value.filter(familia =>
-    familia.NombreFamilia.toLowerCase().includes(query.value.toLowerCase())
-  );
-});
-
-const filteredSubfamilies = computed(() => {
-  if (!query.value) {
-    return productSubfamiliesCollection.value;
-  }
-  
-  return productSubfamiliesCollection.value.filter(subfamilia =>
-  subfamilia.NombreSubFamilia.toLowerCase().includes(query.value.toLowerCase())
-  );
-});
-
-const filteredLines = computed(() => {
-  if (!query.value) {
-    return productLinesCollection.value;
-  }
-  
-  return productLinesCollection.value.filter(linea =>
-  linea.NombreLinea.toLowerCase().includes(query.value.toLowerCase())
-  );
-});
-
-const filteredProductKeys = computed(() => {
-  if (!query.value) {
-    return productsKeysCollection.value;
-  }
-  
-  return productsKeysCollection.value.filter(productKey =>
-  productKey.Descripcion.toLowerCase().includes(query.value.toLowerCase())
-  );
-});
-
-const filteredUnitKeys = computed(() => {
-  if (!query.value) {
-    return unitKeysCollection.value;
-  }
-  
-  return unitKeysCollection.value.filter(unitKey =>
-  unitKey.NombreUnidadSat.toLowerCase().includes(query.value.toLowerCase())
-  );
-});
-
 
 const obtenerRegistro = (registro) => {
     switch (modalMode.value) {
@@ -186,6 +128,32 @@ watch(() => modalMode.value, (value) => {
     subfamilyRecord.value = {};
     lineRecord.value = {};
 });
+
+const handleCombobox = (type, val) => {
+    switch (type) {
+        case 1:
+            newRecord.value.familia = val;
+            break;
+        case 2:
+            newRecord.value.subfamilia = val;
+            break;
+        case 3:
+            newRecord.value.linea = val;
+            break;
+        case 4:
+            newRecord.value.claveProductoServicio = val;
+            break;
+        case 5:
+            newRecord.value.claveUnidad = val;
+            break;
+        case 6:
+            newRecord.value.claveImpuestoCompuesto = val;
+            break;
+        default:
+            console.error('No se ha seleccionado un tipo de combobox');
+            break;
+    }
+};
 </script>
 
 <template>
@@ -216,7 +184,8 @@ watch(() => modalMode.value, (value) => {
 
         <div class="lineaFrm">
             <label class="text-white" for="DescripcionProducto"> Descripcion Producto: </label>
-            <textarea name="DescripcionProducto" id="DescripcionProducto" maxlength="255" v-model="newRecord.descripcionProducto"
+            <textarea name="DescripcionProducto" id="DescripcionProducto" maxlength="255"
+                v-model="newRecord.descripcionProducto"
                 class="flex-grow min-w-60 rounded-inputRadius h-44 p-2 resize-none"> </textarea>
         </div>
 
@@ -231,25 +200,11 @@ watch(() => modalMode.value, (value) => {
             </div>
         </div>
 
-
-        <!-- ----------------------------------------------------------- Botones ----------------------------------------------------------- -->
-
         <div class="lineaFrm">
-            <label class="text-white" for="Familia"> Familia: </label>
+            <label class="text-white"> Familia: </label>
             <div class="flex flex-col flex-grow">
-                <Combobox v-model="newRecord.familia" as="div" class="relative">
-                    <ComboboxInput @input="query = $event.target.value" :displayValue="(familia) => familia.NombreFamilia"
-                        class="flex-grow px-4 w-full" placeholder="Selecciona una familia"/>
-                    <ComboboxOptions
-                        class="absolute z-40 w-full max-h-44 overflow-y-scroll bg-white border border-gray-300 shadow-lg">
-                        <ComboboxOption v-for="familia in filteredFamilies" :key="familia.FamiliaId" :value="familia" :disabled="!familia.Activo"
-                            class="flex px-4 justify-between items-center ui-active:text-white ui-not-active:bg-white ui-not-active:text-black ui-not-active:cursor-not-allowed"
-                            :class="`ui-active:bg-${theme}-secondary ${!familia.Activo ? `ui-not-active:bg-${theme}-disabled` : ''}`">
-                                {{ familia.FamiliaId }} | {{ familia.NombreFamilia }}
-                            <IconCheck class="hidden ui-selected:block h-4" :color="`black`" />
-                        </ComboboxOption>
-                    </ComboboxOptions>
-                </Combobox>
+                <combobox @eCombobox="(val) => { handleCombobox(1, val) }" :collection="productFamiliesCollection"
+                    :placeholder="'Selecciona una familia'" />
             </div>
             <button class="btn-action" :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover`"
                 @click="modalMode = 1">
@@ -262,21 +217,10 @@ watch(() => modalMode.value, (value) => {
         </div>
 
         <div class="lineaFrm">
-            <label class="text-white" for="Subfamilia"> Subfamilia: </label>
-            <div class="flex flex-col flex-grow">                
-                <Combobox v-model="newRecord.subfamilia" as="div" class="relative">
-                    <ComboboxInput @input="query = $event.target.value" :displayValue="(subfamilia) => subfamilia.NombreSubFamilia"
-                        class="flex-grow px-4 w-full" placeholder="Selecciona una subfamilia"/>
-                    <ComboboxOptions
-                        class="absolute z-40 w-full max-h-44 overflow-y-scroll bg-white border border-gray-300 shadow-lg">
-                        <ComboboxOption v-for="subfamilia in filteredSubfamilies" :key="subfamilia.SubFamiliaId" :value="subfamilia" :disabled="!subfamilia.Activo"
-                            class="flex px-4 justify-between items-center ui-active:text-white ui-not-active:bg-white ui-not-active:text-black ui-not-active:cursor-not-allowed"
-                            :class="`ui-active:bg-${theme}-secondary ${!subfamilia.Activo ? `ui-not-active:bg-${theme}-disabled` : ''}`">
-                                {{ subfamilia.SubFamiliaId }} | {{ subfamilia.NombreSubFamilia }}
-                            <IconCheck class="hidden ui-selected:block h-4" :color="`black`" />
-                        </ComboboxOption>
-                    </ComboboxOptions>
-                </Combobox>
+            <label class="text-white"> Subfamilia: </label>
+            <div class="flex flex-col flex-grow">
+                <combobox @eCombobox="(val) => { handleCombobox(2, val) }" :collection="productSubfamiliesCollection"
+                    :placeholder="'Selecciona una subfamilia'" />
             </div>
 
             <button class="btn-action" :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover`"
@@ -290,21 +234,10 @@ watch(() => modalMode.value, (value) => {
         </div>
 
         <div class="lineaFrm">
-            <label class="text-white" for="Linea"> Linea: </label>
+            <label class="text-white"> Linea: </label>
             <div class="flex flex-col flex-grow">
-                <Combobox v-model="newRecord.linea" as="div" class="relative">
-                    <ComboboxInput @input="query = $event.target.value" :displayValue="(linea) => linea.NombreLinea"
-                        class="flex-grow px-4 w-full" placeholder="Selecciona una linea"/>
-                    <ComboboxOptions
-                        class="absolute z-40 w-full max-h-44 overflow-y-scroll bg-white border border-gray-300 shadow-lg">
-                        <ComboboxOption v-for="linea in filteredLines" :key="linea.LineaId" :value="linea" :disabled="linea.Borrado"
-                            class="flex px-4 justify-between items-center ui-active:text-white ui-not-active:bg-white ui-not-active:text-black ui-not-active:cursor-not-allowed"
-                            :class="`ui-active:bg-${theme}-secondary ${linea.Borrado ? `ui-not-active:bg-${theme}-disabled` : ''}`">
-                                {{ linea.LineaId }} | {{ linea.NombreLinea }}
-                            <IconCheck class="hidden ui-selected:block h-4" :color="`black`" />
-                        </ComboboxOption>
-                    </ComboboxOptions>
-                </Combobox>
+                <combobox @eCombobox="(val) => { handleCombobox(3, val) }" :collection="productLinesCollection"
+                    :placeholder="'Selecciona una linea'" />
             </div>
             <button class="btn-action" :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover`"
                 @click="modalMode = 3">
@@ -317,21 +250,10 @@ watch(() => modalMode.value, (value) => {
         </div>
 
         <div class="lineaFrm">
-            <label class="text-white" for="Clave Producto"> C. Producto SAT: </label>
+            <label class="text-white"> C. Producto SAT: </label>
             <div class="flex flex-col flex-grow">
-                <Combobox v-model="newRecord.claveProductoServicio" as="div" class="relative">
-                    <ComboboxInput @input="query = $event.target.value" :displayValue="(claveProductoServicio) => claveProductoServicio.Descripcion"
-                        class="flex-grow px-4 w-full" placeholder="Selecciona una clave de producto/servicio"/>
-                    <ComboboxOptions
-                        class="absolute z-40 w-full max-h-44 overflow-y-scroll bg-white border border-gray-300 shadow-lg">
-                        <ComboboxOption v-for="claveProductoServicio in filteredProductKeys" :key="claveProductoServicio.ClaveProductoServicio" :value="claveProductoServicio" :disabled="!claveProductoServicio.Activo"
-                            class="flex px-4 justify-between items-center ui-active:text-white ui-not-active:bg-white ui-not-active:text-black ui-not-active:cursor-not-allowed"
-                            :class="`ui-active:bg-${theme}-secondary ${!claveProductoServicio.Activo ? `ui-not-active:bg-${theme}-disabled` : ''}`">
-                                {{ claveProductoServicio.ClaveProductoServicio }} | {{ claveProductoServicio.Descripcion }}
-                            <IconCheck class="hidden ui-selected:block h-4" :color="`black`" />
-                        </ComboboxOption>
-                    </ComboboxOptions>
-                </Combobox>
+                <combobox @eCombobox="(val) => { handleCombobox(4, val) }" :collection="productsKeysCollection"
+                    :placeholder="'Selecciona una clave producto/servicio'" v-model="newRecord.claveProductoServicio" />
             </div>
             <button class="btn-action" :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover`"
                 @click="modalMode = 4">
@@ -342,23 +264,12 @@ watch(() => modalMode.value, (value) => {
                 </svg>
             </button>
         </div>
-        
+
         <div class="lineaFrm">
-            <label class="text-white" for="Clave Unidad"> C. Unidad SAT: </label>
+            <label class="text-white"> C. Unidad SAT: </label>
             <div class="flex flex-col flex-grow">
-                <Combobox v-model="newRecord.claveUnidad" as="div" class="relative">
-                    <ComboboxInput @input="query = $event.target.value" :displayValue="(claveUnidad) => claveUnidad.NombreUnidadSat"
-                        class="flex-grow px-4 w-full" placeholder="Selecciona una clave unidad"/>
-                        <ComboboxOptions
-                            class="absolute z-40 w-full max-h-44 overflow-y-scroll bg-white border border-gray-300 shadow-lg">
-                            <ComboboxOption v-for="claveUnidad in filteredUnitKeys" :key="claveUnidad.ClaveUnidadSat" :value="claveUnidad" :disabled="!claveUnidad.Activo"
-                                class="flex px-4 justify-between items-center ui-active:text-white ui-not-active:bg-white ui-not-active:text-black ui-not-active:cursor-not-allowed"
-                                :class="`ui-active:bg-${theme}-secondary ${!claveUnidad.Activo ? `ui-not-active:bg-${theme}-disabled` : ''}`">
-                                    {{ claveUnidad.ClaveUnidadSat }} | {{ claveUnidad.NombreUnidadSat }}
-                                <IconCheck class="hidden ui-selected:block h-4" :color="`black`" />
-                            </ComboboxOption>
-                        </ComboboxOptions>
-                </Combobox>
+                <combobox @eCombobox="(val) => { handleCombobox(5, val) }" :collection="unitKeysCollection"
+                    :placeholder="'Selecciona una clave producto/servicio'" v-model="newRecord.claveUnidad" />
             </div>
             <button class="btn-action" :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover`"
                 @click="modalMode = 5">
@@ -371,29 +282,11 @@ watch(() => modalMode.value, (value) => {
         </div>
 
         <div class="lineaFrm">
-            <label class="text-white" for="Clave Impuesto Compuesto"> C. Impuesto Compuesto: </label>
-
-            <!--            TEST            -->
-
+            <label class="text-white"> C. Impuesto Compuesto: </label>
             <div class="flex flex-col flex-grow">
                 <input type="text" class="w-full flex-grow" disabled>
-                <!-- <Combobox v-model="selectedPerson" as="div" class="relative">
-                    <ComboboxInput @change="query = $event.target.value" :displayValue="(person) => person.name"
-                        class="flex-grow px-4 w-full" />
-                    <ComboboxOptions
-                        class="absolute z-40 w-full max-h-44 overflow-y-scroll bg-white border border-gray-300 shadow-lg">
-                        <ComboboxOption v-for="person in filteredPeople" :key="person.id" :value="person"
-                            :disabled="!person.activo"
-                            class="flex px-4 justify-between items-center ui-active:text-white ui-not-active:bg-white ui-not-active:text-black"
-                            :class="`ui-active:bg-MyFriend-secondary ${!person.activo ? `ui-not-active:bg-${theme}-disabled` : ''}`">
-                            {{ person.name }}
-                            <IconCheck class="hidden ui-selected:block h-4" :color="`black`" />
-                        </ComboboxOption>
-                    </ComboboxOptions>
-                </Combobox> -->
+                <!-- <combobox @eCombobox="(val) => { handleCombobox(1, val)}" :collection="unitKeysCollection" :placeholder="'Selecciona una clave producto/servicio'" v-model="newRecord.claveUnidad" /> -->
             </div>
-
-            <!--            TEST            -->
             <button class="btn-action" :class="`bg-${theme}-primary hover:bg-${theme}-primary-hover`"
                 @click="modalMode = 6">
                 <svg width="16" height="16" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -404,12 +297,9 @@ watch(() => modalMode.value, (value) => {
             </button>
         </div>
 
-        <!-- ----------------------------------------------------------- Botones ----------------------------------------------------------- -->
-
         <div class="flex w-full justify-center">
-            <btnSave class="w-full" @click="console.log('JAJAJAJ \n ' + JSON.stringify(newRecord))" />
+            <btnSave class="w-full" @click="console.log('Registro completo:');console.log(JSON.stringify(newRecord, null, 2));" />
         </div>
-        <!-- ----------------------------------------------------------- Modales ----------------------------------------------------------- -->
 
         <generalModal v-if="showModal && modalMode === 1" @eCancel="handleCancel" @eConfirm="handleModal">
             <template v-slot:header>
@@ -462,10 +352,6 @@ watch(() => modalMode.value, (value) => {
                 </div>
             </template>
         </generalModal>
-
-
-
-        <!-- TEST -->
 
         <generalModal v-if="showModal && modalMode === 4" @eCancel="handleCancel" :buttonsMode="2">
             <template v-slot:header>
@@ -526,10 +412,6 @@ watch(() => modalMode.value, (value) => {
                 </div>
             </template>
         </generalModal>
-
-        <!-- TEST -->
-        <!-- ----------------------------------------------------------- Modales ----------------------------------------------------------- -->
-
     </div>
 </template>
 

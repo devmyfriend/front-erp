@@ -30,20 +30,20 @@ onBeforeMount(() => {
         class="w-full items-center flex flex-col flex-grow overflow-y-scroll text-secondaryFontColor text-base rounded-3xl">
         <tableProductFamilies :editable="true" @eAccion="esperarTabla" />
     </div>
-         <generalModal v-if="showModal" @eConfirm="esperarModal" @eCancel="showModal = false">
-            <template v-slot:header>
-                {{ modoFormulario == 0 ? 'Agregar' : 'Editar'}} Familia de Productos
-            </template>
-            <template v-slot:content>
-                <div class="flex flex-grow gap-4 items-center px-1">
-                    <label for="NombreFamilia" class="font-semibold"> Nombre Familia: </label>
-                    <input type="text" id="NombreFamilia" v-model="registroModal.NombreFamilia"
-                    class="inpModal"/>
-                </div>
-            </template>
-         </generalModal>
+    <generalModal v-if="showModal" @eConfirm="esperarModal" @eCancel="showModal = false">
+    <template v-slot:header>
+        {{ modoFormulario == 0 ? 'Agregar' : 'Editar'}} Familia de Productos
+    </template>
+    <template v-slot:content>
+        <div class="flex flex-grow gap-4 items-center px-1">
+            <label for="NombreFamilia" class="font-semibold"> Nombre Familia: </label>
+            <input type="text" id="NombreFamilia" v-model="registroModal.NombreFamilia"
+            class="inpModal"/>
+        </div>
+    </template>
+    </generalModal>
 
-        <deleteModal :id="registroBorrar.FamiliaId" v-if="registroBorrar !== null" @eEliminar="borrarRegistro" @eCancelar="registroBorrar = null" />
+    <deleteModal :id="registroBorrar.FamiliaId" v-if="registroBorrar !== null" @eEliminar="borrarRegistro" @eCancelar="registroBorrar = null" />
 </template>
 
 <style scoped></style>
