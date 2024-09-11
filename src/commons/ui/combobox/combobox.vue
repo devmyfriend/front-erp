@@ -73,6 +73,9 @@ const handleKeydown = (event) => {
     if (selectedIndex.value >= 0 && selectedIndex.value < filteredOptions.value.length) {
       selectOption(filteredOptions.value[selectedIndex.value]);
     }
+  } else if (event.key === 'Escape') {
+    event.preventDefault();
+    isDropdownOpen.value = false;
   }
 };
 
