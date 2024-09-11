@@ -23,7 +23,7 @@ export const useEmailBusinessEntity = defineStore('emailbusinessentity',{
                 this.ListaCorre = data;
 
             }catch(error){
-                console.log(error);
+                console.error(error);
             }
         }
     }

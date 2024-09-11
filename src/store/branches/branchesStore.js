@@ -8,7 +8,6 @@ export const branchesStore = defineStore("branches", {
   }),
   getters: {
     getBranches(state) {
-      console.log('branchesCollection', JSON.stringify(this.branchesCollection));
       return state.branchesCollection;
     },
   },

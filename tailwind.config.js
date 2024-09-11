@@ -63,7 +63,7 @@ export default {
         danger:    '#DC3545',
         warning:   '#FFC107',
 
-        /* Diseño por componente */
+        /* Diseños antiguos por componentes */
         sidebar: ({
           DEFAULT: '#0f0f0f',
           myfriend: 'var(--myfriend-900)',
@@ -192,6 +192,7 @@ export default {
     },
   },
   plugins: [
+    require('@headlessui/tailwindcss'),
     function({ addBase, theme }) {
       addBase({
         ':root': {

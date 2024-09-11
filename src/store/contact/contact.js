@@ -20,7 +20,7 @@ export const useContact = defineStore('contact',{
                 const {data} = await getContactList(idEmpresa)
                 this.ListadoContactosEmpresa = data;
             }catch(error){
-                console.log(error)
+                console.error(error)
             }
         }
     }

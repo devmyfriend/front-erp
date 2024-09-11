@@ -32,7 +32,7 @@ export const useRegimenFiscal = defineStore('regimenfiscal',{
                 this.ListaRegimenFiscal= regimen;
                 
             }catch(error){
-                console.log(error)
+                console.error(error)
             }
         }
     }

@@ -9,16 +9,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@headlessui/tailwindcss": "^0.2.1",
+    "@headlessui/vue": "^1.7.23",
     "animate.css": "^4.1.1",
     "axios": "^1.7.2",
     "core-js": "^3.33.3",
     "pinia": "^2.1.7",
-    "sweetalert2": "^11.10.5",
+    "sweetalert2": "^11.13.2",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0",
+    "vue-select": "^4.0.0-beta.6",
     "vue-sweetalert2": "^5.0.5"
   },
   "devDependencies": {
+    "@types/vue-select": "^3.16.8",
     "@vitejs/plugin-vue": "^5.0.4",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.38",

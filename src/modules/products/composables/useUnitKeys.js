@@ -5,7 +5,6 @@ const store = useProductos();
 
 const unitKeysCollection = ref([]);
 const unitKeysInfo = ref({});
-const productsLineCollection = ref([]);
 
 const loadUnitKeys = async (pagina) => {
   const response = await store.loadUnitKeys(pagina);

@@ -1,12 +1,12 @@
 <script setup>
-import { onBeforeMount } from 'vue';
+import { onBeforeMount, defineAsyncComponent } from 'vue';
 import { useLayout } from '@/commons/composables/useLayout.js';
 import { useProductFamilies } from '@/modules/families/composables/useProductFamilies';
 import tableProductFamilies from '@/modules/families/components/tableProductFamilies.vue';
 import productFamiliesFinder from '@/modules/families/components/productFamiliesFinder.vue';
 import btnFormulario from '@/commons/ui/btn-formulario/btn-formulario.vue';
-import generalModal from '@/commons/ui/modals/generalModal.vue';
-import deleteModal from '@/commons/ui/modals/deleteModal.vue';
+const generalModal = defineAsyncComponent(() => import('@/commons/ui/modals/generalModal.vue'));
+const deleteModal = defineAsyncComponent(() => import('@/commons/ui/modals/deleteModal.vue'));
 
 const { showModal, modoFormulario, registroModal, registroBorrar, esperarModal, esperarTabla, borrarRegistro } = useProductFamilies();
 const { setTitle, setViewTitle } = useLayout();
@@ -30,8 +30,6 @@ onBeforeMount(() => {
         class="w-full items-center flex flex-col flex-grow overflow-y-scroll text-secondaryFontColor text-base rounded-3xl">
         <tableProductFamilies :editable="true" @eAccion="esperarTabla" />
     </div>
-    <!-- Seccion de modales -->
-        <!-- deleteModal, modalGeneral, etc -->
          <generalModal v-if="showModal" @eConfirm="esperarModal" @eCancel="showModal = false">
             <template v-slot:header>
                 {{ modoFormulario == 0 ? 'Agregar' : 'Editar'}} Familia de Productos
@@ -40,13 +38,13 @@ onBeforeMount(() => {
                 <div class="flex flex-grow gap-4 items-center px-1">
                     <label for="NombreFamilia" class="font-semibold"> Nombre Familia: </label>
                     <input type="text" id="NombreFamilia" v-model="registroModal.NombreFamilia"
-                    class="outline-none h-full text-base border-gray-500 text-black rounded-inputRadius border-inputWidth p-paddingInput hover:border-inputBorder focus:border-inputBorder flex-grow"/>
+                    class="inpModal"/>
                 </div>
             </template>
          </generalModal>
 
         <deleteModal :id="registroBorrar.FamiliaId" v-if="registroBorrar !== null" @eEliminar="borrarRegistro" @eCancelar="registroBorrar = null" />
-    <!-- Seccion de modales -->
 </template>
 
 <style scoped></style>
+

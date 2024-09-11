@@ -19,7 +19,7 @@ export const useCountry = defineStore('country',{
                 const { data } = await getListCountry();
                 this.ListaPaises = data;
             }catch(error){
-                console.log(error);
+                console.error(error);
             }
         }
     }

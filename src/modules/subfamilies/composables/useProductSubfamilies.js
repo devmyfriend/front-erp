@@ -12,7 +12,7 @@ const registroModal = ref({}); // Registro del modal general para nuevo y editar
 const registroBorrar = ref(null); // Registro del modal para borrar
 
 watch(showModal, () => {
-  if (!showModal.value){
+  if (!showModal.value) {
     modoFormulario.value = 0;
     registroModal.value = {};
   }
@@ -34,7 +34,10 @@ const loadProductSubfamilies = async () => {
 };
 
 const findProductSubfamiliesByName = async (name) => {
-  const response = await store.findProductSubfamiliesByName(name, productFamily.value);
+  const response = await store.findProductSubfamiliesByName(
+    name,
+    productFamily.value
+  );
   if (response) {
     productSubfamiliesCollection.value = store.getProductSubfamilies;
     return true;
@@ -48,7 +51,7 @@ const findProductSubfamiliesByName = async (name) => {
     });
     if (productFamily.value === 0) {
       loadProductSubfamilies();
-    } else{
+    } else {
       findProductSubfamiliesByFamilyId(productFamily.value);
     }
     return false;
@@ -56,10 +59,10 @@ const findProductSubfamiliesByName = async (name) => {
 };
 
 const findProductSubfamiliesByFamilyId = async (id) => {
-  if(id === 0){
+  if (id === 0) {
     await loadProductSubfamilies();
     return true;
-  } else{
+  } else {
     const response = await store.findProductSubfamiliesByFamilyId(id);
     if (response) {
       productSubfamiliesCollection.value = store.getProductSubfamilies;
@@ -75,70 +78,85 @@ const findProductSubfamiliesByFamilyId = async (id) => {
       productFamily.value = 0;
       loadProductSubfamilies();
       return false;
-  }
+    }
   }
 };
 
-const esperarModal = () => {
+const esperarModal = async () => {
+  showModal.value = false;
   if (modoFormulario.value === 0) {
     registroModal.value.CreadoPor = "2";
-    store.createProductSubfamily(registroModal.value).then((res) => {
-      if (res) {
-        Swal.fire({
-          title: "¡Registro exitoso!",
-          text: "La subfamilia de productos se ha guardado correctamente",
-          icon: "success",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      } else{
-        Swal.fire({
-          title: "Error al crear",
-          text: "No se pudo registrar la subfamilia de productos",
-          icon: "error",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
+
+    const res = await store.createProductSubfamily(registroModal.value);
+
+    if (res) {
+      Swal.fire({
+        title: "¡Registro exitoso!",
+        text: "La subfamilia de productos se ha guardado correctamente",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
       if (productFamily.value === 0) {
         loadProductSubfamilies();
-      } else{
+      } else {
         findProductSubfamiliesByFamilyId(productFamily.value);
       }
-    });
+      return res.SubFamiliaId;
+    } else {
+      Swal.fire({
+        title: "Error al registrar",
+        text: "No se pudo registrar la subfamilia de productos",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      if (productFamily.value === 0) {
+        loadProductSubfamilies();
+      } else {
+        findProductSubfamiliesByFamilyId(productFamily.value);
+      }
+      return false;
+    }
   } else {
     registroModal.value.ActualizadoPor = "2";
-    store.updateProductSubfamily(registroModal.value).then((res) => {
-      if (res) {
-        Swal.fire({
-          title: "¡Actualización exitosa!",
-          text: "La subfamilia de productos se ha actualizado correctamente",
-          icon: "success",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      } else {
-        Swal.fire({
-          title: "Error al actualizar",
-          text: "No se pudo actualizar la subfamilia de productos",
-          icon: "error",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
+    const res = await store.updateProductSubfamily(registroModal.value);
+    if (res) {
+      Swal.fire({
+        title: "¡Actualización exitosa!",
+        text: "La subfamilia de productos se ha actualizado correctamente",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       if (productFamily.value === 0) {
         loadProductSubfamilies();
-      } else{
+      } else {
         findProductSubfamiliesByFamilyId(productFamily.value);
       }
-    });
+      return res.SubFamiliaId;
+    } else {
+      Swal.fire({
+        title: "Error al actualizar",
+        text: "No se pudo actualizar la subfamilia de productos",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      if (productFamily.value === 0) {
+        loadProductSubfamilies();
+      } else {
+        findProductSubfamiliesByFamilyId(productFamily.value);
+      }
+      return false;
+    }
   }
-  showModal.value = false;
 };
 
 const esperarTabla = (data) => {
   const [subfamilia, accion] = data;
-  if (accion ===  1) {
+  if (accion === 1) {
     registroModal.value = { ...subfamilia };
     modoFormulario.value = 1;
     showModal.value = true;
@@ -192,6 +210,6 @@ export function useProductSubfamilies() {
     esperarModal,
     esperarTabla,
     borrarRegistro,
-    setProductFamily
+    setProductFamily,
   };
 }

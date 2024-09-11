@@ -10,7 +10,7 @@ const registroModal = ref({}); // Registro del modal general para nuevo y editar
 const registroBorrar = ref(null); // Registro del modal para borrar
 
 watch(showModal, () => {
-  if (!showModal.value){
+  if (!showModal.value) {
     modoFormulario.value = 0;
     registroModal.value = {};
   }
@@ -49,59 +49,67 @@ const findProductFamiliesByName = async (name) => {
   }
 };
 
-const esperarModal = () => {
+const esperarModal = async () => {
+  showModal.value = false;
   if (modoFormulario.value === 0) {
     registroModal.value.CreadoPor = "2";
-    store.createProductFamily(registroModal.value).then((res) => {
-      if (res) {
-        Swal.fire({
-          title: "¡Registro exitoso!",
-          text: "La familia de productos se ha guardado correctamente",
-          icon: "success",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      } else{
-        Swal.fire({
-          title: "Error al crear",
-          text: "No se pudo registrar la familia de productos",
-          icon: "error",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
+
+    const res = await store.createProductFamily(registroModal.value);
+
+    if (res) {
+      Swal.fire({
+        title: "¡Registro exitoso!",
+        text: "La familia de productos se ha guardado correctamente",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       loadProductFamilies();
-    });
-  } else{
+      return res.FamiliaId;
+    } else {
+      Swal.fire({
+        title: "Error al crear",
+        text: "No se pudo registrar la familia de productos",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      loadProductFamilies();
+      return false;
+    }
+  } else {
     registroModal.value.ActualizadoPor = "2";
-    store.updateProductFamily(registroModal.value).then((res) => {
-      if (res) {
-        Swal.fire({
-          title: "¡Actualización exitosa!",
-          text: "La familia de productos se ha actualizado con éxito",
-          icon: "success",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      } else {
-        Swal.fire({
-          title: "Error al actualizar",
-          text: "No se pudo actualizar la familia de productos",
-          icon: "error",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
+
+    const res = await store.updateProductFamily(registroModal.value);
+
+    if (res) {
+      Swal.fire({
+        title: "¡Actualización exitosa!",
+        text: "La familia de productos se ha actualizado con éxito",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       loadProductFamilies();
-    });
+      return res;
+    } else {
+      Swal.fire({
+        title: "Error al actualizar",
+        text: "No se pudo actualizar la familia de productos",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      loadProductFamilies();
+      return false;
+    }
   }
-  showModal.value = false;
 };
 
 const esperarTabla = (data) => {
   const [familia, accion] = data;
   if (accion === 1) {
-    registroModal.value = {...familia};
+    registroModal.value = { ...familia };
     showModal.value = true;
     modoFormulario.value = 1;
   } else if (accion === 2) {

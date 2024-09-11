@@ -8,7 +8,6 @@ const modulos = ref([
     { nombre: 'Login', ruta: '/login' },
     { nombre: 'Productos Listado', ruta: { name: 'productsList' } },
     { nombre: 'Productos Formulario', ruta: { name: 'productsForm' } },
-    { nombre: 'Productos Formulario con producto', ruta: { name: 'productsFormEdit', params: {CodigoProducto: '202200117' } } },
     { nombre: 'Dashoard de Catálogos', ruta: { name: 'catalogsDashboard' } },
     { nombre: 'Dashoard de Organización', ruta: { name: 'organizationDashboard' } },
 

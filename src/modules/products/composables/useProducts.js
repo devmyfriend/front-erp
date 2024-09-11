@@ -1,4 +1,4 @@
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { useProductos } from "@/store/product/productsStore";
 import Swal from "sweetalert2";
 const store = useProductos();

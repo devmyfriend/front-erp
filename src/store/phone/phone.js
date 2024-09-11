@@ -19,7 +19,7 @@ export const usePhone = defineStore('phone',{
                 const { data } = await getPhoneBusinessEntityList(id)
                 this.ListaTelefonosEmpresa = data
             }catch(error){
-                console.log(error)
+                console.error(error)
             }
         }
     }

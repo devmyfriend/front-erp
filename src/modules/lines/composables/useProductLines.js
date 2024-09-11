@@ -12,7 +12,7 @@ const registroModal = ref({}); // Registro del modal general para nuevo y editar
 const registroBorrar = ref(null); // Registro del modal para borrar
 
 watch(showModal, () => {
-  if (!showModal.value){
+  if (!showModal.value) {
     modoFormulario.value = 0;
     registroModal.value = {};
   }
@@ -34,7 +34,10 @@ const loadProductLines = async () => {
 };
 
 const findProductLinesByName = async (name) => {
-  const response = await store.findProductLinesByName(name, productSubfamily.value);
+  const response = await store.findProductLinesByName(
+    name,
+    productSubfamily.value
+  );
   if (response) {
     productLinesCollection.value = store.getProductLines;
     return true;
@@ -48,7 +51,7 @@ const findProductLinesByName = async (name) => {
     });
     if (productSubfamily.value === 0) {
       loadProductLines();
-    } else{
+    } else {
       findProductLinesBySubfamilyId(productSubfamily.value);
     }
     return false;
@@ -56,10 +59,10 @@ const findProductLinesByName = async (name) => {
 };
 
 const findProductLinesBySubfamilyId = async (id) => {
-  if(id === 0){
+  if (id === 0) {
     await loadProductLines();
     return true;
-  } else{
+  } else {
     const response = await store.findProductLinesBySubfamilyId(id);
     if (response) {
       productLinesCollection.value = store.getProductLines;
@@ -75,37 +78,46 @@ const findProductLinesBySubfamilyId = async (id) => {
       productSubfamily.value = 0;
       loadProductLines();
       return false;
-  }
+    }
   }
 };
 
-const esperarModal = () => {
+const esperarModal = async () => {
+  showModal.value = false;
   if (modoFormulario.value === 0) {
     registroModal.value.CreadoPor = "2";
-    store.createProductLine(registroModal.value).then((res) => {
-      if (res) {
-        Swal.fire({
-          title: "Línea de productos creada",
-          text: "La línea de productos se ha creado correctamente",
-          icon: "success",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      } else{
-        Swal.fire({
-          title: "Error al crear la línea de productos",
-          text: "La línea de productos no se ha podido crear",
-          icon: "error",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
-      if(productSubfamily.value === 0){
+    const res = await store.createProductLine(registroModal.value);
+
+    if (res) {
+      Swal.fire({
+        title: "¡Registro exitoso!",
+        text: "La linea de productos se ha guardado correctamente",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      if (productSubfamily.value === 0) {
         loadProductLines();
       } else {
         findProductLinesBySubfamilyId(productSubfamily.value);
       }
-    });
+
+      return res.LineaId;
+    } else {
+      Swal.fire({
+        title: "Error al crear",
+        text: "No se pudo registrar la linea de productos",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      if (productSubfamily.value === 0) {
+        loadProductLines();
+      } else {
+        findProductLinesBySubfamilyId(productSubfamily.value);
+      }
+      return false;
+    }
   } else {
     registroModal.value.ActualizadoPor = "2";
     store.updateProductLine(registroModal.value).then((res) => {
@@ -117,7 +129,7 @@ const esperarModal = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-      } else{
+      } else {
         Swal.fire({
           title: "Error al actualizar la línea de productos",
           text: "La línea de productos no se ha podido actualizar",
@@ -126,7 +138,7 @@ const esperarModal = () => {
           timer: 1500,
         });
 
-        if(productSubfamily.value === 0){
+        if (productSubfamily.value === 0) {
           loadProductLines();
         } else {
           findProductLinesBySubfamilyId(productSubfamily.value);
@@ -134,8 +146,7 @@ const esperarModal = () => {
       }
     });
   }
-  showModal.value = false;
-}
+};
 
 const esperarTabla = (data) => {
   const [linea, accion] = data;
@@ -143,12 +154,11 @@ const esperarTabla = (data) => {
     registroModal.value = { ...linea };
     modoFormulario.value = 1;
     showModal.value = true;
-  } else if (accion = 2) {
+  } else if (accion === 2) {
     registroBorrar.value = {
-      LiniaId: linea.LiniaId,
+      LineaId: linea.LineaId,
       BorradoPor: "2",
     };
-
   }
 };
 
@@ -174,7 +184,7 @@ const borrarRegistro = () => {
     }
     registroBorrar.value = null;
   });
-}
+};
 
 const setProductSubfamily = async (id) => {
   productSubfamily.value = id;

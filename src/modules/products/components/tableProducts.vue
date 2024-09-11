@@ -22,7 +22,7 @@ onMounted(() => {
 });
 watch(productCode, () => {
     if (productCode.value) {
-        router.push({ name: 'productsFormEdit', params: { CodigoProducto: productCode.value } });
+        router.push({ name: 'productsForm'});
     }
 });
 </script>

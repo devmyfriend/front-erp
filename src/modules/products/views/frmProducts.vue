@@ -48,7 +48,7 @@ onBeforeMount(() => {
   </div>
 
   <div class="flex-grow flex overflow-y-scroll max-w-full mt-4 flex-wrap 2xl:flex-nowrap gap-12 justify-center 2xl:justify-normal">
-    <frmDataProducts :datos="datos" />
+    <frmDataProducts />
     <frmImage />
   </div>
 </template>

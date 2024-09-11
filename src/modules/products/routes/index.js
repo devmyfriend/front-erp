@@ -13,11 +13,5 @@ export default     {
         name: "productsForm",
         component: () => import("@/modules/products/views/frmProducts.vue"),
     },
-    {
-        path: "formulario/:CodigoProducto",
-        name: "productsFormEdit",
-        component: () => import("@/modules/products/views/frmProducts.vue"),
-        props: true,
-    },
   ]
 };

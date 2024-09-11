@@ -1,13 +1,13 @@
 <script setup>
-import { onBeforeMount, watch } from 'vue';
+import { onBeforeMount, watch, defineAsyncComponent } from 'vue';
 import { useLayout } from '@/commons/composables/useLayout.js';
 import { useProductSubfamilies } from '@/modules/subfamilies/composables/useProductSubfamilies';
 import { useProductFamilies } from '@/modules/families/composables/useProductFamilies';
 import tableProductSubfamilies from '@/modules/subfamilies/components/tableProductSubfamilies.vue';
 import productSubfamiliesFinder from '@/modules/subfamilies/components/productSubfamiliesFinder.vue';
 import btnFormulario from '@/commons/ui/btn-formulario/btn-formulario.vue';
-import generalModal from '@/commons/ui/modals/generalModal.vue';
-import deleteModal from '@/commons/ui/modals/deleteModal.vue';
+const generalModal = defineAsyncComponent(() => import('@/commons/ui/modals/generalModal.vue'));
+const deleteModal = defineAsyncComponent(() => import('@/commons/ui/modals/deleteModal.vue'));
 
 const { showModal, modoFormulario, registroModal, registroBorrar, esperarModal, esperarTabla, borrarRegistro } = useProductSubfamilies();
 const { loadProductFamilies, productFamiliesCollection } = useProductFamilies();
@@ -62,7 +62,4 @@ watch(showModal, (newValue) => {
 </template>
 
 <style scoped>
-.inpModal {
-    @apply outline-none h-full text-base border-gray-500 text-black rounded-inputRadius border-inputWidth p-paddingInput hover:border-inputBorder focus:border-inputBorder flex-grow
-}
 </style>
